@@ -1,3 +1,4 @@
+import 'package:dsa_simulation/pages/home_page.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -21,131 +23,131 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
-  AnimationController animationController;
-  Animation<Offset> offsetAnimation;
-  GlobalKey destination = GlobalKey();
-  GlobalKey source = GlobalKey();
-
-  bool forward = true;
-  Offset sourcePosition, destinationPosition, finalPosition;
-  double y;
-
-  @override
-  void initState() {
-    super.initState();
-    animationController = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 1),
-    );
-
-    // offsetAnimation = Tween<Offset>(
-    //   begin: Offset.zero,
-    //   end: position,
-    // ).animate(CurvedAnimation(
-    //   parent: animationController,
-    //   curve: Curves.fastOutSlowIn,
-    // ));
-
-    WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    animationController.dispose();
-  }
-
-  _afterLayout(_) {
-    getPosition();
-  }
-
-  void getPosition() {
-    final RenderBox sourceRenderBox = source.currentContext.findRenderObject();
-    final RenderBox destinationRenderBox = destination.currentContext.findRenderObject();
-    destinationPosition = destinationRenderBox.localToGlobal(Offset.zero);
-    double x = destinationPosition.dx;
-    x -= 50 * 0.1;
-    destinationPosition = Offset(x, destinationPosition.dy);
-    sourcePosition = sourceRenderBox.localToGlobal(Offset.zero);
-    finalPosition = Offset((destinationPosition.dx - sourcePos
-        .dx) / 50, (destinationPosition.dy - sourcePosition.dy) / 20);
-
-    print(finalPosition);
-    // y = position.dy + 10;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SlideTransition(
-          position: Tween<Offset>(
-            begin: Offset.zero,
-            end: finalPosition,
-            // end: Offset(0, MediaQuery.of(context).size.height / 2),
-          ).animate(animationController),
-          child: Container(
-            key: source,
-            color: Colors.white,
-            height: 20,
-            width: 50,
-          ),
-        ),
-        Row(
-
-          children: [
-            Container(
-              color: Colors.white,
-              height: 20,
-              width: 50,
-            ),
-            Spacer(),
-            SlideTransition(
-              position: Tween<Offset>(
-                begin: Offset.zero,
-                end: Offset(1, 0),
-              ).animate(animationController),
-              child: Container(
-                key: destination,
-                color: Colors.white,
-                height: 20,
-                width: 50,
-              ),
-            ),
-            Spacer(),
-            Container(
-              color: Colors.white,
-              height: 20,
-              width: 50,
-            ),
-          ],
-        ),
-        GestureDetector(
-          child: Container(
-            color: Colors.white,
-            height: 20,
-            width: 50,
-          ),
-          onTap: () {
-            if (forward)
-              animationController.forward();
-            else
-              animationController.reverse();
-            forward = !forward;
-          },
-        ),
-      ],
-    );
-  }
-}
+// class HomePage extends StatefulWidget {
+//   @override
+//   _HomePageState createState() => _HomePageState();
+// }
+//
+// class _HomePageState extends State<HomePage>
+//     with SingleTickerProviderStateMixin {
+//   AnimationController animationController;
+//   Animation<Offset> offsetAnimation;
+//   GlobalKey destination = GlobalKey();
+//   GlobalKey source = GlobalKey();
+//
+//   bool forward = true;
+//   Offset sourcePosition, destinationPosition, finalPosition;
+//   double y;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     animationController = AnimationController(
+//       vsync: this,
+//       duration: Duration(seconds: 1),
+//     );
+//
+//     // offsetAnimation = Tween<Offset>(
+//     //   begin: Offset.zero,
+//     //   end: position,
+//     // ).animate(CurvedAnimation(
+//     //   parent: animationController,
+//     //   curve: Curves.fastOutSlowIn,
+//     // ));
+//
+//     WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
+//   }
+//
+//   @override
+//   void dispose() {
+//     super.dispose();
+//     animationController.dispose();
+//   }
+//
+//   _afterLayout(_) {
+//     getPosition();
+//   }
+//
+//   void getPosition() {
+//     final RenderBox sourceRenderBox = source.currentContext.findRenderObject();
+//     final RenderBox destinationRenderBox = destination.currentContext.findRenderObject();
+//     destinationPosition = destinationRenderBox.localToGlobal(Offset.zero);
+//     double x = destinationPosition.dx;
+//     x -= 50 * 0.1;
+//     destinationPosition = Offset(x, destinationPosition.dy);
+//     sourcePosition = sourceRenderBox.localToGlobal(Offset.zero);
+//     finalPosition = Offset((destinationPosition.dx - sourcePos
+//         .dx) / 50, (destinationPosition.dy - sourcePosition.dy) / 20);
+//
+//     print(finalPosition);
+//     // y = position.dy + 10;
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       children: [
+//         SlideTransition(
+//           position: Tween<Offset>(
+//             begin: Offset.zero,
+//             end: finalPosition,
+//             // end: Offset(0, MediaQuery.of(context).size.height / 2),
+//           ).animate(animationController),
+//           child: Container(
+//             key: source,
+//             color: Colors.white,
+//             height: 20,
+//             width: 50,
+//           ),
+//         ),
+//         Row(
+//
+//           children: [
+//             Container(
+//               color: Colors.white,
+//               height: 20,
+//               width: 50,
+//             ),
+//             Spacer(),
+//             SlideTransition(
+//               position: Tween<Offset>(
+//                 begin: Offset.zero,
+//                 end: Offset(1, 0),
+//               ).animate(animationController),
+//               child: Container(
+//                 key: destination,
+//                 color: Colors.white,
+//                 height: 20,
+//                 width: 50,
+//               ),
+//             ),
+//             Spacer(),
+//             Container(
+//               color: Colors.white,
+//               height: 20,
+//               width: 50,
+//             ),
+//           ],
+//         ),
+//         GestureDetector(
+//           child: Container(
+//             color: Colors.white,
+//             height: 20,
+//             width: 50,
+//           ),
+//           onTap: () {
+//             if (forward)
+//               animationController.forward();
+//             else
+//               animationController.reverse();
+//             forward = !forward;
+//           },
+//         ),
+//       ],
+//     );
+//   }
+// }
 
 // class HomePage extends StatefulWidget {
 //   @override
