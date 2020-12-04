@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/route_generator.dart';
-
+import '../src/constants.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 decoration: BoxDecoration(
-                  color: Color(0xFFFE752F),
+                  color: kThemeColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 decoration: BoxDecoration(
-                  color: Color(0xFFFE752F),
+                  color: kThemeColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),

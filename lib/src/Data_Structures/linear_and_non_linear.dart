@@ -21,7 +21,9 @@ class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
           children: [
             SizedBox(height: height * 0.3,),
             GestureDetector(
-              onTap: (){},
+              onTap: (){
+                Navigator.of(context).pushNamed('/LinearDS');
+              },
               child: Container(
                 height: height * 0.2,
                 width: width * 0.9,
