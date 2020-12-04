@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:dsa_simulation/route_generator.dart';
 
-class HomePage extends StatefulWidget {
+class LinearNonLinearPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _LinearNonLinearPageState createState() => _LinearNonLinearPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -22,9 +21,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             SizedBox(height: height * 0.3,),
             GestureDetector(
-              onTap: (){
-                Navigator.of(context).pushNamed('/LinearNonLinearPage');
-              },
+              onTap: (){},
               child: Container(
                 height: height * 0.2,
                 width: width * 0.9,
@@ -32,13 +29,13 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Data Structures',
+                      'Linear',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: height * 0.05,
                       ),
                     ),
-                    SizedBox(width: width * 0.09,),
+                    SizedBox(width: width * 0.44,),
                     Icon(
                       Icons.arrow_forward_ios,
                       color: Colors.white,
@@ -63,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Algorithms',
+                      'NonLinear',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: height * 0.05,
