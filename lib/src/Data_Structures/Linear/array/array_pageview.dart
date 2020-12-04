@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/src/constants.dart';
 import 'introduction.dart';
+import 'insertion.dart';
 class ArrayPageView extends StatefulWidget {
   @override
   _ArrayPageViewState createState() => _ArrayPageViewState();
@@ -25,11 +26,7 @@ class _ArrayPageViewState extends State<ArrayPageView> {
           child: PageView(
             children: [
              ArrayIntro(),
-              Container(
-                color: Colors.red,
-                height: 100,
-                width: 100,
-              ),
+              ArrayInsert(),
               Container(
                 color: Colors.blue,
                 height: 100,
