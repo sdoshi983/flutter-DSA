@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:dsa_simulation/src/constants.dart';
 import 'introduction.dart';
 import 'insertion.dart';
-
-class ArrayPageView extends StatefulWidget {
+import 'deletion.dart';
+class ArrayNavigator extends StatefulWidget {
   @override
-  _ArrayPageViewState createState() => _ArrayPageViewState();
+  _ArrayNavigatorState createState() => _ArrayNavigatorState();
 }
 
-class _ArrayPageViewState extends State<ArrayPageView> {
+class _ArrayNavigatorState extends State<ArrayNavigator> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -105,7 +105,14 @@ class _ArrayPageViewState extends State<ArrayPageView> {
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ArrayDelete(),
+                    ),
+                  );
+                },
                 child: Container(
                   height: height * 0.2,
                   width: width * 0.9,
