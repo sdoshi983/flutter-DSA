@@ -19,7 +19,7 @@ class _LinearDSState extends State<LinearDS> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: height * 0.3,),
+            SizedBox(height: height * 0.05,),
             GestureDetector(
               onTap: (){
                 Navigator.of(context).pushNamed('/ArrayPageView');
@@ -52,10 +52,12 @@ class _LinearDSState extends State<LinearDS> {
               ),
             ),
             SizedBox(
-              height: height * 0.05,
+              height: height * 0.02,
             ),
             GestureDetector(
-              onTap: (){},
+              onTap: (){
+                Navigator.of(context).pushNamed('/StackMainPage');
+              },
               child: Container(
                 height: height * 0.2,
                 width: width * 0.9,
@@ -69,7 +71,69 @@ class _LinearDSState extends State<LinearDS> {
                         fontSize: height * 0.05,
                       ),
                     ),
-                    SizedBox(width: width * 0.25,),
+                    SizedBox(width: width * 0.4,),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  color: Color(0xFFFE752F),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            GestureDetector(
+              onTap: (){},
+              child: Container(
+                height: height * 0.2,
+                width: width * 0.9,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Queue',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: height * 0.05,
+                      ),
+                    ),
+                    SizedBox(width: width * 0.37,),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  color: Color(0xFFFE752F),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            GestureDetector(
+              onTap: (){},
+              child: Container(
+                height: height * 0.2,
+                width: width * 0.9,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Linked List',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: height * 0.05,
+                      ),
+                    ),
+                    SizedBox(width: width * 0.2,),
                     Icon(
                       Icons.arrow_forward_ios,
                       color: Colors.white,
