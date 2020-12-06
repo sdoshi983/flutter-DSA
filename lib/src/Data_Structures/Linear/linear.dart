@@ -56,7 +56,7 @@ class _LinearDSState extends State<LinearDS> {
             ),
             GestureDetector(
               onTap: (){
-                Navigator.of(context).pushNamed('/StackMainPage');
+                Navigator.of(context).pushNamed('/StackIntroduction');
               },
               child: Container(
                 height: height * 0.2,
