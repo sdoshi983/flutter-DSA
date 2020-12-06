@@ -7,18 +7,26 @@ class StackIntroduction extends StatefulWidget {
   _StackIntroductionState createState() => _StackIntroductionState();
 }
 
-class _StackIntroductionState extends State<StackIntroduction> with SingleTickerProviderStateMixin {
+class _StackIntroductionState extends State<StackIntroduction> with TickerProviderStateMixin {
   int currentState = 0;
   Color firstContainer = Colors.black;
   Color secondContainer = Colors.black;
   Color thirdContainer = Colors.black;
 
-  AnimationController animationController;
+  AnimationController firstController, secondController, thirdController;
 
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(
+    firstController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+    );
+    secondController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+    );
+    thirdController = AnimationController(
       vsync: this,
       duration: Duration(seconds: 1),
     );
@@ -26,38 +34,49 @@ class _StackIntroductionState extends State<StackIntroduction> with SingleTicker
 
   @override
   void dispose() {
-    animationController.dispose();
+    firstController.dispose();
+    secondController.dispose();
+    thirdController.dispose();
     super.dispose();
   }
 
   void forwardAnimation() {
     if (currentState == 0) {
-      firstContainer = Colors.yellow;
+      thirdContainer = Colors.green;
+      thirdController.forward();
 
     } else if (currentState == 1) {
       secondContainer = Colors.blueGrey;
+      secondController.forward();
+
     } else if (currentState == 2) {
-      thirdContainer = Colors.green;
+      firstContainer = Colors.yellow;
+      firstController.forward();
+
     }
    else{
       return;
     }
     currentState += 1;
-    animationController.forward();
   }
 
   void reverseAnimation() {
     if (currentState == 1) {
-      firstContainer = Colors.black;
+      thirdController.reverse();
+      thirdContainer = Colors.black;
+
     } else if (currentState == 2) {
+      secondController.reverse();
+
       secondContainer = Colors.black;
     }
     else if(currentState ==3){
-      thirdContainer = Colors.black;
+      firstController.reverse();
+
+      firstContainer = Colors.black;
     }
     else return;
     currentState -= 1;
-    animationController.reverse();
   }
 
   @override
@@ -88,10 +107,11 @@ class _StackIntroductionState extends State<StackIntroduction> with SingleTicker
                 children: [
                   SlideTransition(
                     position: Tween<Offset>(
-                      begin: Offset(-2, -2),
+                      begin: Offset(0, -2),
                       end: Offset.zero,
-                    ).animate(animationController),
-                    child: Container(
+                    ).animate(firstController),
+                    child: AnimatedContainer(
+                      duration: Duration(seconds: 1),
                       width: width * 0.38,
                       height: height * 0.1,
                       decoration: BoxDecoration(
@@ -102,10 +122,12 @@ class _StackIntroductionState extends State<StackIntroduction> with SingleTicker
                   ),
                   SlideTransition(
                     position: Tween<Offset>(
-                      begin: Offset(-2, -2),
+                      begin: Offset(0, -2),
                       end: Offset.zero,
-                    ).animate(animationController),
-                    child: Container(
+                    ).animate(secondController),
+                    child: AnimatedContainer(
+                      duration: Duration(seconds: 1),
+
                       width: width * 0.38,
                       height: height * 0.1,
                       decoration: BoxDecoration(
@@ -116,10 +138,12 @@ class _StackIntroductionState extends State<StackIntroduction> with SingleTicker
                   ),
                   SlideTransition(
                     position: Tween<Offset>(
-                      begin: Offset(-2, -2),
+                      begin: Offset(0, -2),
                       end: Offset.zero,
-                    ).animate(animationController),
-                    child: Container(
+                    ).animate(thirdController),
+                    child: AnimatedContainer(
+                      duration: Duration(seconds: 1),
+
                       width: width * 0.38,
                       height: height * 0.1,
                       decoration: BoxDecoration(
@@ -158,7 +182,7 @@ class _StackIntroductionState extends State<StackIntroduction> with SingleTicker
                     reverseAnimation();
                   });
                 },
-                child: Icon(Icons.backspace_sharp),
+                child: Text("Pop", style: TextStyle(color: Colors.white),),
                 color: kThemeColor,
               ),
               RaisedButton(
@@ -167,7 +191,7 @@ class _StackIntroductionState extends State<StackIntroduction> with SingleTicker
                       forwardAnimation();
                     });
                   },
-                  child: Icon(Icons.forward),
+                  child: Text("Push", style: TextStyle(color: Colors.white),),
                   color: kThemeColor),
             ],
           ),
