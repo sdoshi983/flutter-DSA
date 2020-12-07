@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/route_generator.dart';
 import '../src/constants.dart';
-import 'package:dsa_simulation/src/Utilities/widgets.dart';
-import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
+import 'Utilities/drawer_widget.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -15,7 +14,11 @@ class _HomePageState extends State<HomePage> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: appBar(context),
+      drawer: DrawerWidget(),
+      appBar: AppBar(
+        backgroundColor: kThemeColor,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
       body: Container(
         height: height,
         width: width,
@@ -23,25 +26,68 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: height * 0.3,
-            ),
-            Tiles(
-              onPress: () {
-                addElement('DS');
+            SizedBox(height: height * 0.3,),
+            GestureDetector(
+              onTap: (){
                 Navigator.of(context).pushNamed('/LinearNonLinearPage');
               },
-              title: 'D.S.',
+              child: Container(
+                height: height * 0.2,
+                width: width * 0.9,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Data Structures',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: height * 0.05,
+                      ),
+                    ),
+                    SizedBox(width: width * 0.09,),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  color: kThemeColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
             ),
             SizedBox(
               height: height * 0.05,
             ),
-            Tiles(
-              onPress: () {
-                //remaining
-              },
-              title: 'Algorithms',
-            )
+            GestureDetector(
+              onTap: (){},
+              child: Container(
+                height: height * 0.2,
+                width: width * 0.9,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Algorithms',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: height * 0.05,
+                      ),
+                    ),
+                    SizedBox(width: width * 0.25,),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  color: kThemeColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
           ],
         ),
       ),
