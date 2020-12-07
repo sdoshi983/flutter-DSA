@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/src/Utilities/animation_helper.dart';
 import 'package:dsa_simulation/src/constants.dart';
-
+import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
+import 'package:dsa_simulation/src/Utilities/widgets.dart';
 class Element extends StatelessWidget {
   final Color color;
   final String name;
@@ -120,6 +121,7 @@ class _ArrayDeleteState extends State<ArrayDelete>
 
   @override
   void dispose() {
+    removeLast();
     _controller.dispose();
     super.dispose();
   }
@@ -130,12 +132,7 @@ class _ArrayDeleteState extends State<ArrayDelete>
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Array',
-        ),
-        backgroundColor: kThemeColor,
-      ),
+      appBar: appBar(context),
       body: Container(
         color: Colors.black,
         child: Column(

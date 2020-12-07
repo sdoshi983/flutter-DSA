@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dsa_simulation/route_generator.dart';
 import '../src/constants.dart';
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
-
+import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      appBar: appBar(context),
       body: Container(
         height: height,
         width: width,
@@ -27,9 +28,10 @@ class _HomePageState extends State<HomePage> {
             ),
             Tiles(
               onPress: () {
+                addElement('DS');
                 Navigator.of(context).pushNamed('/LinearNonLinearPage');
               },
-              title: 'Data Structures',
+              title: 'D.S.',
             ),
             SizedBox(
               height: height * 0.05,

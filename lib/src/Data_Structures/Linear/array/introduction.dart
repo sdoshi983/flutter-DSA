@@ -1,6 +1,7 @@
 import 'package:dsa_simulation/src/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:dsa_simulation/src/Data_Structures/Linear/array/insertion.dart';
+import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
+import 'package:dsa_simulation/src/Utilities/widgets.dart';
 class Element extends StatelessWidget {
   final Color color, borderColor;
   final String name;
@@ -110,17 +111,18 @@ class _ArrayIntroState extends State<ArrayIntro>{
     else return;
     currentState -= 1;
   }
-
+@override
+  void dispose() {
+    removeLast();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Array',),
-        backgroundColor: kThemeColor,
-      ),
+      appBar: appBar(context),
       body: Container(
         color: Colors.black,
         child: Column(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
-
+import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
+import 'package:dsa_simulation/src/Utilities/widgets.dart';
 class StackIntroduction extends StatefulWidget {
   @override
   _StackIntroductionState createState() => _StackIntroductionState();
@@ -9,9 +10,9 @@ class StackIntroduction extends StatefulWidget {
 
 class _StackIntroductionState extends State<StackIntroduction> with TickerProviderStateMixin {
   int currentState = 0;
-  Color firstContainer = Colors.black;
-  Color secondContainer = Colors.black;
-  Color thirdContainer = Colors.black;
+  Color firstContainer = Colors.transparent;
+  Color secondContainer = Colors.transparent;
+  Color thirdContainer = Colors.transparent;
 
   AnimationController firstController, secondController, thirdController;
 
@@ -34,6 +35,7 @@ class _StackIntroductionState extends State<StackIntroduction> with TickerProvid
 
   @override
   void dispose() {
+    removeLast();
     firstController.dispose();
     secondController.dispose();
     thirdController.dispose();
@@ -63,17 +65,17 @@ class _StackIntroductionState extends State<StackIntroduction> with TickerProvid
   void reverseAnimation() {
     if (currentState == 1) {
       thirdController.reverse();
-      thirdContainer = Colors.black;
+      thirdContainer = Colors.transparent;
 
     } else if (currentState == 2) {
       secondController.reverse();
 
-      secondContainer = Colors.black;
+      secondContainer = Colors.transparent;
     }
     else if(currentState ==3){
       firstController.reverse();
 
-      firstContainer = Colors.black;
+      firstContainer = Colors.transparent;
     }
     else return;
     currentState -= 1;
@@ -83,122 +85,127 @@ class _StackIntroductionState extends State<StackIntroduction> with TickerProvid
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Container(
-      child: Column(
-        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          SizedBox(
-            height: height * 0.3,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return Scaffold(
+      appBar: appBar(context),
+      body: Center(
+        child: Container(
+          child: Column(
+            //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                //color: Colors.white,
-                width: width * 0.02,
+              SizedBox(
                 height: height * 0.3,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
               ),
-              SizedBox(width: width * 0.059,),
-              Column(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SlideTransition(
-                    position: Tween<Offset>(
-                      begin: Offset(0, -2),
-                      end: Offset.zero,
-                    ).animate(firstController),
-                    child: AnimatedContainer(
-                      duration: Duration(seconds: 1),
-                      width: width * 0.38,
-                      height: height * 0.1,
-                      decoration: BoxDecoration(
-                        color: firstContainer,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                  Container(
+                    //color: Colors.white,
+                    width: width * 0.02,
+                    height: height * 0.3,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  SlideTransition(
-                    position: Tween<Offset>(
-                      begin: Offset(0, -2),
-                      end: Offset.zero,
-                    ).animate(secondController),
-                    child: AnimatedContainer(
-                      duration: Duration(seconds: 1),
-
-                      width: width * 0.38,
-                      height: height * 0.1,
-                      decoration: BoxDecoration(
-                        color: secondContainer,
-                        borderRadius: BorderRadius.circular(10),
+                  SizedBox(width: width * 0.059,),
+                  Column(
+                    children: [
+                      SlideTransition(
+                        position: Tween<Offset>(
+                          begin: Offset(0, -2),
+                          end: Offset.zero,
+                        ).animate(firstController),
+                        child: AnimatedContainer(
+                          duration: Duration(seconds: 1),
+                          width: width * 0.38,
+                          height: height * 0.1,
+                          decoration: BoxDecoration(
+                            color: firstContainer,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
                       ),
+                      SlideTransition(
+                        position: Tween<Offset>(
+                          begin: Offset(0, -2),
+                          end: Offset.zero,
+                        ).animate(secondController),
+                        child: AnimatedContainer(
+                          duration: Duration(seconds: 1),
+
+                          width: width * 0.38,
+                          height: height * 0.1,
+                          decoration: BoxDecoration(
+                            color: secondContainer,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                      SlideTransition(
+                        position: Tween<Offset>(
+                          begin: Offset(0, -2),
+                          end: Offset.zero,
+                        ).animate(thirdController),
+                        child: AnimatedContainer(
+                          duration: Duration(seconds: 1),
+
+                          width: width * 0.38,
+                          height: height * 0.1,
+                          decoration: BoxDecoration(
+                            color: thirdContainer,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(width: width * 0.059,),
+                  Container(
+                    width: width * 0.02,
+                    height: height * 0.3,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  SlideTransition(
-                    position: Tween<Offset>(
-                      begin: Offset(0, -2),
-                      end: Offset.zero,
-                    ).animate(thirdController),
-                    child: AnimatedContainer(
-                      duration: Duration(seconds: 1),
-
-                      width: width * 0.38,
-                      height: height * 0.1,
-                      decoration: BoxDecoration(
-                        color: thirdContainer,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  )
                 ],
               ),
-              SizedBox(width: width * 0.059,),
               Container(
-                width: width * 0.02,
-                height: height * 0.3,
+                width: width * 0.54,
+                height: height * 0.01,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-            ],
-          ),
-          Container(
-            width: width * 0.54,
-            height: height * 0.01,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              RaisedButton(
-                onPressed: () {
-                  setState(() {
-                    reverseAnimation();
-                  });
-                },
-                child: Text("Pop", style: TextStyle(color: Colors.white),),
-                color: kThemeColor,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  RaisedButton(
+                    onPressed: () {
+                      setState(() {
+                        reverseAnimation();
+                      });
+                    },
+                    child: Text("Pop", style: TextStyle(color: Colors.white),),
+                    color: kThemeColor,
+                  ),
+                  RaisedButton(
+                      onPressed: () {
+                        setState(() {
+                          forwardAnimation();
+                        });
+                      },
+                      child: Text("Push", style: TextStyle(color: Colors.white),),
+                      color: kThemeColor),
+                ],
               ),
-              RaisedButton(
-                  onPressed: () {
-                    setState(() {
-                      forwardAnimation();
-                    });
-                  },
-                  child: Text("Push", style: TextStyle(color: Colors.white),),
-                  color: kThemeColor),
+              // Container(
+              //   height: height * 0.3,
+              // )
             ],
           ),
-          Container(
-            height: height * 0.3,
-          )
-        ],
+        ),
       ),
     );
   }

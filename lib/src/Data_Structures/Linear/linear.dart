@@ -1,5 +1,6 @@
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
 
 class LinearDS extends StatefulWidget {
   @override
@@ -8,10 +9,16 @@ class LinearDS extends StatefulWidget {
 
 class _LinearDSState extends State<LinearDS> {
   @override
+  void dispose() {
+    removeLast();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: appBar(context),
       body: Container(
         height: height,
         width: width,
@@ -24,6 +31,7 @@ class _LinearDSState extends State<LinearDS> {
             ),
             Tiles(
               onPress: () {
+                addElement('Array');
                 Navigator.of(context).pushNamed('/ArrayPageView');
               },
               title: 'Array',
@@ -33,6 +41,7 @@ class _LinearDSState extends State<LinearDS> {
             ),
             Tiles(
               onPress: () {
+                addElement('Stack');
                 Navigator.of(context).pushNamed('/StackIntroduction');
               },
               title: 'Stack',

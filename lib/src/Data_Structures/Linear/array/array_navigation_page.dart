@@ -1,9 +1,12 @@
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/src/constants.dart';
+import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
+
 import 'introduction.dart';
 import 'insertion.dart';
 import 'deletion.dart';
+
 class ArrayNavigator extends StatefulWidget {
   @override
   _ArrayNavigatorState createState() => _ArrayNavigatorState();
@@ -11,16 +14,16 @@ class ArrayNavigator extends StatefulWidget {
 
 class _ArrayNavigatorState extends State<ArrayNavigator> {
   @override
+  void dispose() {
+    removeLast();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Array',
-        ),
-        backgroundColor: kThemeColor,
-      ),
+      appBar: appBar(context),
       body: Align(
         alignment: Alignment.bottomCenter,
         child: Container(
@@ -33,6 +36,7 @@ class _ArrayNavigatorState extends State<ArrayNavigator> {
 
               Tiles(
                 onPress: (){
+                  addElement('Intro');
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -45,6 +49,7 @@ class _ArrayNavigatorState extends State<ArrayNavigator> {
               Tiles(
                 title: 'Insertion',
                 onPress: (){
+                  addElement('Insert');
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -55,6 +60,7 @@ class _ArrayNavigatorState extends State<ArrayNavigator> {
               ),
               Tiles(
                 onPress: (){
+                  addElement('Delete');
                   Navigator.push(
                     context,
                     MaterialPageRoute(
