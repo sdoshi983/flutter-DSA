@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'introduction.dart';
 import 'package:dsa_simulation/src/constants.dart';
+import 'package:dsa_simulation/src/Utilities/animation_helper.dart';
 
 class Element extends StatelessWidget {
   final Color color;
@@ -9,8 +10,8 @@ class Element extends StatelessWidget {
   const Element({Key key, this.color, this.name});
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
+    double h = MediaQuery.of(context).size.height;
     return AnimatedContainer(
       key: key,
       width: w * 0.2,
@@ -53,29 +54,14 @@ class _ArrayInsertState extends State<ArrayInsert>
   Size arrayElementSize;
   double down = 0.0, newElementDx = 0.0, newElementDy = 0.0;
   AnimationController _controller, _secondController;
-  Animation<Offset> _downOffet, _newElementOffset, _lastElementOffset;
-  Offset _getPositions(GlobalKey a) {
-    final RenderBox renderBox = a.currentContext.findRenderObject();
-    final position = renderBox.localToGlobal(Offset.zero);
-    print("POSITION : $position ");
-    return position;
-  }
+  Animation<Offset> _downOffset, _newElementOffset, _lastElementOffset;
 
-  Size _getSizes(GlobalKey a) {
-    final RenderBox renderBox = a.currentContext.findRenderObject();
-    final size = renderBox.size;
-    print("SIZE : $size");
-    return size;
-  }
-
-  @override
-  void initState() {
-    super.initState();
+  void preComputation() {
     _controller =
         AnimationController(duration: Duration(milliseconds: 800), vsync: this);
     _secondController =
         AnimationController(duration: Duration(milliseconds: 800), vsync: this);
-    _downOffet =
+    _downOffset =
         Tween<Offset>(begin: Offset.zero, end: Offset(0, down)).animate(
       CurvedAnimation(
         parent: _controller,
@@ -102,11 +88,16 @@ class _ArrayInsertState extends State<ArrayInsert>
   }
 
   @override
-  void dispose() {
-    super.dispose();
+  void initState() {
+    super.initState();
+    preComputation();
+  }
 
+  @override
+  void dispose() {
     _controller.dispose();
     _secondController.dispose();
+    super.dispose();
   }
 
   void forwardAnimation() {
@@ -121,17 +112,17 @@ class _ArrayInsertState extends State<ArrayInsert>
       newElementColor = Colors.cyan;
       if (!flag) {
         flag = true;
-        arrayElementSize = _getSizes(_keyLastElement);
-        thirdElementOffset = _getPositions(_keyThirdElement);
-        secondElementOffset = _getPositions(_keySecondElement);
-        newElementOffset = _getPositions(_keyNewElement);
+        arrayElementSize = getSizes(_keyLastElement);
+        thirdElementOffset = getPositions(_keyThirdElement);
+        secondElementOffset = getPositions(_keySecondElement);
+        newElementOffset = getPositions(_keyNewElement);
         double dy = thirdElementOffset.dy - secondElementOffset.dy;
         down = dy / arrayElementSize.height;
         dy = secondElementOffset.dy - newElementOffset.dy;
         double dx = secondElementOffset.dx - newElementOffset.dx;
         newElementDx = dx / arrayElementSize.width;
         newElementDy = dy / arrayElementSize.height;
-        _downOffet =
+        _downOffset =
             Tween<Offset>(begin: Offset.zero, end: Offset(0, down)).animate(
           CurvedAnimation(
             parent: _controller,
@@ -161,7 +152,6 @@ class _ArrayInsertState extends State<ArrayInsert>
     } else if (currentState == 3) {
       _secondController.forward();
       lastElementColor = Colors.transparent;
-
     }
     currentState += 1;
   }
@@ -174,7 +164,6 @@ class _ArrayInsertState extends State<ArrayInsert>
       newElementColor = Colors.black;
       newElementText = '';
     } else if (currentState == 3) {
-
       _controller.reverse();
     } else if (currentState == 4) {
       lastElementColor = Colors.white60;
@@ -240,7 +229,7 @@ class _ArrayInsertState extends State<ArrayInsert>
                         color: Colors.green,
                       ),
                       SlideTransition(
-                        position: _downOffet,
+                        position: _downOffset,
                         child: AnimatedContainer(
                           key: _keySecondElement,
                           width: width * 0.2,
@@ -260,7 +249,7 @@ class _ArrayInsertState extends State<ArrayInsert>
                         ),
                       ),
                       SlideTransition(
-                        position: _downOffet,
+                        position: _downOffset,
                         child: AnimatedContainer(
                           key: _keyThirdElement,
                           width: width * 0.2,
@@ -337,7 +326,20 @@ class _ArrayInsertState extends State<ArrayInsert>
           ],
         ),
       ),
-
+      // floatingActionButton: FloatingActionButton(
+      //   child: Text('T'),
+      //   onPressed: () {
+      //     popping(4, context);
+      //   },
+      // ),
     );
   }
+}
+
+void popping(int cnt, BuildContext context) {
+  int count = 0;
+  Navigator.popUntil(context, (route) {
+    count++;
+    return count == cnt;
+  });
 }

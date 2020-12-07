@@ -1,3 +1,4 @@
+import 'package:dsa_simulation/src/Utilities/widgets.dart';
 import 'package:flutter/material.dart';
 
 class LinearNonLinearPage extends StatefulWidget {
@@ -19,68 +20,24 @@ class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: height * 0.3,),
-            GestureDetector(
-              onTap: (){
+            SizedBox(
+              height: height * 0.3,
+            ),
+            Tiles(
+              onPress: () {
                 Navigator.of(context).pushNamed('/LinearDS');
               },
-              child: Container(
-                height: height * 0.2,
-                width: width * 0.9,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Linear',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: height * 0.05,
-                      ),
-                    ),
-                    SizedBox(width: width * 0.44,),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-                decoration: BoxDecoration(
-                  color: Color(0xFFFE752F),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
+              title: 'Linear',
             ),
             SizedBox(
               height: height * 0.05,
             ),
-            GestureDetector(
-              onTap: (){},
-              child: Container(
-                height: height * 0.2,
-                width: width * 0.9,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'NonLinear',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: height * 0.05,
-                      ),
-                    ),
-                    SizedBox(width: width * 0.25,),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-                decoration: BoxDecoration(
-                  color: Color(0xFFFE752F),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ),
+            Tiles(
+              title: 'Non-Linear',
+              onPress: () {
+                //remaining
+              },
+            )
           ],
         ),
       ),

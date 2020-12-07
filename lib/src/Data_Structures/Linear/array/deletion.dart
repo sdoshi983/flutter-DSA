@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:dsa_simulation/src/Utilities/animation_helper.dart';
 import 'package:dsa_simulation/src/constants.dart';
 
 class Element extends StatelessWidget {
@@ -49,19 +49,6 @@ class _ArrayDeleteState extends State<ArrayDelete>
   AnimationController _controller;
   Animation<Offset> _liftOffset, _downOffset;
   bool flag = false;
-  Offset _getPositions(GlobalKey a) {
-    final RenderBox renderBox = a.currentContext.findRenderObject();
-    final position = renderBox.localToGlobal(Offset.zero);
-    print("POSITION : $position ");
-    return position;
-  }
-
-  Size _getSizes(GlobalKey a) {
-    final RenderBox renderBox = a.currentContext.findRenderObject();
-    final size = renderBox.size;
-    print("SIZE : $size");
-    return size;
-  }
 
   void forwardAnimation() {
     if (currentState == 0) {
@@ -69,9 +56,9 @@ class _ArrayDeleteState extends State<ArrayDelete>
       delElementColor = Colors.white54;
       if (!flag) {
         flag = true;
-        _arrayElementSize = _getSizes(_keyFourth);
-        _thirdElementOffset = _getPositions(_keyThird);
-        _fourthElementOffset = _getPositions(_keyFourth);
+        _arrayElementSize = getSizes(_keyFourth);
+        _thirdElementOffset = getPositions(_keyThird);
+        _fourthElementOffset = getPositions(_keyFourth);
         liftValue = -(_fourthElementOffset.dy - _thirdElementOffset.dy) /
             _arrayElementSize.height;
         _liftOffset =
@@ -267,6 +254,6 @@ class _ArrayDeleteState extends State<ArrayDelete>
         ),
       ),
     );
-    ;
+
   }
 }

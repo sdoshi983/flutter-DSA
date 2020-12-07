@@ -1,3 +1,4 @@
+import 'package:dsa_simulation/src/Utilities/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/src/constants.dart';
 import 'introduction.dart';
@@ -29,46 +30,21 @@ class _ArrayNavigatorState extends State<ArrayNavigator> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              GestureDetector(
-                onTap: () {
+
+              Tiles(
+                onPress: (){
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (_) => ArrayIntro(),
                     ),
                   );
-                  print('New route');
                 },
-                child: Container(
-                  height: height * 0.2,
-                  width: width * 0.9,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Introduction',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: height * 0.05,
-                        ),
-                      ),
-                      SizedBox(
-                        width: width * 0.25,
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                  decoration: BoxDecoration(
-                    color: Color(0xFFFE752F),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+                title: 'Introduction',
               ),
-              GestureDetector(
-                onTap: () {
+              Tiles(
+                title: 'Insertion',
+                onPress: (){
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -76,36 +52,9 @@ class _ArrayNavigatorState extends State<ArrayNavigator> {
                     ),
                   );
                 },
-                child: Container(
-                  height: height * 0.2,
-                  width: width * 0.9,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Insertion',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: height * 0.05,
-                        ),
-                      ),
-                      SizedBox(
-                        width: width * 0.25,
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                  decoration: BoxDecoration(
-                    color: Color(0xFFFE752F),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
               ),
-              GestureDetector(
-                onTap: () {
+              Tiles(
+                onPress: (){
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -113,33 +62,7 @@ class _ArrayNavigatorState extends State<ArrayNavigator> {
                     ),
                   );
                 },
-                child: Container(
-                  height: height * 0.2,
-                  width: width * 0.9,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Deletion',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: height * 0.05,
-                        ),
-                      ),
-                      SizedBox(
-                        width: width * 0.25,
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                  decoration: BoxDecoration(
-                    color: Color(0xFFFE752F),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+                title: 'Deletion',
               ),
             ],
           ),

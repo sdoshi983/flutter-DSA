@@ -1,6 +1,6 @@
 import 'package:dsa_simulation/src/constants.dart';
 import 'package:flutter/material.dart';
-
+import 'package:dsa_simulation/src/Data_Structures/Linear/array/insertion.dart';
 class Element extends StatelessWidget {
   final Color color, borderColor;
   final String name;
@@ -66,7 +66,7 @@ class ArrayIntro extends StatefulWidget {
   _ArrayIntroState createState() => _ArrayIntroState();
 }
 
-class _ArrayIntroState extends State<ArrayIntro> with TickerProviderStateMixin {
+class _ArrayIntroState extends State<ArrayIntro>{
   int currentState = 0;
 
   Color indexColor = Colors.black,
@@ -94,6 +94,7 @@ class _ArrayIntroState extends State<ArrayIntro> with TickerProviderStateMixin {
 
   void reverseAnimation() {
     if (currentState == 1) {
+
       indexBGColor = Colors.black;
     } else if (currentState == 2) {
       thirdColor = Colors.black;
@@ -210,7 +211,7 @@ class _ArrayIntroState extends State<ArrayIntro> with TickerProviderStateMixin {
                       });
                     },
                     child: Icon(Icons.forward),
-                    color: kThemeColor),
+                    color: kThemeColor,),
               ],
             ),
             Container(
