@@ -1,3 +1,4 @@
+import 'package:dsa_simulation/src/Utilities/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/route_generator.dart';
 import '../src/constants.dart';
@@ -15,6 +16,7 @@ class _HomePageState extends State<HomePage> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      drawer: DrawerWidget(),
       appBar: appBar(context),
       body: Container(
         height: height,
