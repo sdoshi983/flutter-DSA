@@ -334,10 +334,3 @@ class _ArrayInsertState extends State<ArrayInsert>
   }
 }
 
-void popping(int cnt, BuildContext context) {
-  int count = 0;
-  Navigator.popUntil(context, (route) {
-    count++;
-    return count == cnt;
-  });
-}

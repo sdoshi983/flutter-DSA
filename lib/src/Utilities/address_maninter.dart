@@ -15,6 +15,14 @@ class AddressBar extends StatefulWidget {
 }
 
 class _AddressBarState extends State<AddressBar> {
+  void popping(int cnt, BuildContext context) {
+    int count = 0;
+    Navigator.popUntil(context, (route) {
+      count++;
+      return count == cnt;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -25,10 +33,14 @@ class _AddressBarState extends State<AddressBar> {
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              print("ok");
+              int len = path.length - 1;
+              int curr = index;
+              print(len-curr);
+              popping(len - curr <= 0 ? 1: len - curr+1, context);
             },
             child: Text(
               path[index],
+              style: TextStyle(color: Colors.black),
             ),
           );
         },

@@ -24,7 +24,7 @@ class Tiles extends StatelessWidget {
             Text(
               '$title',
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 fontSize: height * 0.05,
               ),
             ),
