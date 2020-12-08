@@ -19,11 +19,18 @@ class _AddressBarState extends State<AddressBar> {
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
     return Container(
-      width: w*0.8,
+      width: w * 0.8,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
-          return Text(path[index]);
+          return GestureDetector(
+            onTap: () {
+              print("ok");
+            },
+            child: Text(
+              path[index],
+            ),
+          );
         },
         separatorBuilder: (BuildContext context, int index) {
           return Text(' > ');
