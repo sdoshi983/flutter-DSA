@@ -51,6 +51,7 @@ Widget appBar(BuildContext context) {
 
   return AppBar(
     backgroundColor: kThemeColor,
+    iconTheme: IconThemeData(color: Colors.white),
     title: Center(
         child: Container(width: width * 0.9, height: 30, child: AddressBar())),
   );
