@@ -1,3 +1,4 @@
+import 'package:dsa_simulation/src/Utilities/drawer_widget.dart';
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
@@ -21,6 +22,8 @@ class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      drawer: DrawerWidget(),
+
       appBar: appBar(context),
       body: Container(
         height: height,
