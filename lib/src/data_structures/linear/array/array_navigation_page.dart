@@ -18,6 +18,7 @@ class _ArrayNavigatorState extends State<ArrayNavigator> {
     removeLast();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -33,9 +34,12 @@ class _ArrayNavigatorState extends State<ArrayNavigator> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-
+              Text(
+                'Array',
+                style: Theme.of(context).textTheme.headline6,
+              ),
               Tiles(
-                onPress: (){
+                onPress: () {
                   addElement('Intro');
                   Navigator.push(
                     context,
@@ -48,7 +52,7 @@ class _ArrayNavigatorState extends State<ArrayNavigator> {
               ),
               Tiles(
                 title: 'Insertion',
-                onPress: (){
+                onPress: () {
                   addElement('Insert');
                   Navigator.push(
                     context,
@@ -59,7 +63,7 @@ class _ArrayNavigatorState extends State<ArrayNavigator> {
                 },
               ),
               Tiles(
-                onPress: (){
+                onPress: () {
                   addElement('Delete');
                   Navigator.push(
                     context,

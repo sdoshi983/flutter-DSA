@@ -3,6 +3,7 @@ import 'package:dsa_simulation/src/Data_Structures/Linear/Stack/stack_mainPage.d
 import 'package:dsa_simulation/src/data_structures/linear_and_non_linear.dart';
 import 'src/data_structures/linear/linear.dart';
 import 'src/Data_Structures/Linear/array/array_navigation_page.dart';
+import 'src/data_structures/linear/q/q_navigation.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -12,6 +13,8 @@ class RouteGenerator {
     switch (settings.name) {
       case '/LinearNonLinearPage':
         return MaterialPageRoute(builder: (_) => LinearNonLinearPage());
+      case '/QueueNavigationPage':
+        return MaterialPageRoute(builder: (_)=>QNavigator());
       case '/LinearDS':
         return MaterialPageRoute(builder: (_) => LinearDS());
       case '/ArrayPageView':
