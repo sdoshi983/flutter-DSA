@@ -27,7 +27,7 @@ class _SinglyMainPageState extends State<SinglyMainPage> {
             Tiles(
               onPress: () {
                 addElement('Introduction');
-                //Navigator.of(context).pushNamed('/ArrayPageView');
+                Navigator.of(context).pushNamed('/SinglyIntroductionPage');
               },
               title: 'Introduction',
             ),
