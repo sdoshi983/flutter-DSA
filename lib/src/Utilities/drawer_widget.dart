@@ -174,7 +174,8 @@ class _ReusableExpansionPanelListState
                   child: Text(
                     widget.text,
                     style:
-                        TextStyle(color: Colors.white, fontSize: height * 0.027),
+                        TextStyle(color: Colors.white, fontSize: height * 0.027
+                        ),
                   ),
                 );
               },
