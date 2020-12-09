@@ -50,7 +50,10 @@ class _LinearDSState extends State<LinearDS> {
               height: height * 0.02,
             ),
             Tiles(
-              onPress: () {},
+              onPress: () {
+                addElement('Queue');
+                Navigator.of(context).pushNamed('/QueueNavigationPage');
+              },
               title: 'Queue',
             ),
             SizedBox(

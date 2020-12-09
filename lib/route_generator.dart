@@ -5,6 +5,7 @@ import 'package:dsa_simulation/src/data_structures/linear_and_non_linear.dart';
 import 'src/data_structures/linear/linear.dart';
 import 'src/Data_Structures/Linear/array/array_navigation_page.dart';
 import 'package:flutter/material.dart';
+import 'src/Data_Structures/Linear/q/q_navigation.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -15,6 +16,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => LinearNonLinearPage());
       case '/LinearDS':
         return MaterialPageRoute(builder: (_) => LinearDS());
+      case '/QueueNavigationPage':
+        return MaterialPageRoute(builder: (_)=>QNavigator());
       case '/ArrayPageView':
         return MaterialPageRoute(builder: (_) => ArrayNavigator());
       case '/StackMainPage':
