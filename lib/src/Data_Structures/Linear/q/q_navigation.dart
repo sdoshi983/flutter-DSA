@@ -11,6 +11,19 @@ class QNavigator extends StatefulWidget {
 }
 
 class _QNavigatorState extends State<QNavigator> {
+  GlobalKey _keyFirst = GlobalKey(),
+      _keySecond = GlobalKey(),
+      _keyThird = GlobalKey(),
+      _keyFourth = GlobalKey();
+  Color _firstColor = Colors.red,
+      _secondColor = Colors.red,
+      _thirdColor = Colors.red,
+      _fourthColor = Colors.red;
+  String _firstText = '1',
+      _secondText = '2',
+      _thirdText = '3',
+      _fourthText = '4';
+
   @override
   void dispose() {
     removeLast();
@@ -41,6 +54,79 @@ class _QNavigatorState extends State<QNavigator> {
                   horizontal: BorderSide(color: Colors.white),
                   vertical: BorderSide.none,
                 ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  AnimatedContainer(
+                    key: _keyFirst,
+                    width: width * 0.1,
+                    height: height * 0.13,
+                    child: Center(
+                      child: Text(
+                        _firstText,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: _firstColor,
+                      borderRadius: BorderRadius.circular(9),
+                    ),
+                    duration: Duration(milliseconds: 800),
+                    curve: Curves.ease,
+                  ),
+                  AnimatedContainer(
+                    key: _keySecond,
+                    width: width * 0.1,
+                    height: height * 0.13,
+                    child: Center(
+                      child: Text(
+                        _secondText,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: _secondColor,
+                      borderRadius: BorderRadius.circular(9),
+                    ),
+                    duration: Duration(milliseconds: 800),
+                    curve: Curves.ease,
+                  ),
+                  AnimatedContainer(
+                    key: _keyThird,
+                    width: width * 0.1,
+                    height: height * 0.13,
+                    child: Center(
+                      child: Text(
+                        _thirdText,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: _thirdColor,
+                      borderRadius: BorderRadius.circular(9),
+                    ),
+                    duration: Duration(milliseconds: 800),
+                    curve: Curves.ease,
+                  ),
+                  AnimatedContainer(
+                    key: _keyFourth,
+                    width: width * 0.1,
+                    height: height * 0.13,
+                    child: Center(
+                      child: Text(
+                        _fourthText,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: _fourthColor,
+                      borderRadius: BorderRadius.circular(9),
+                    ),
+                    duration: Duration(milliseconds: 800),
+                    curve: Curves.ease,
+                  ),
+                ],
               ),
             ),
             Row(
