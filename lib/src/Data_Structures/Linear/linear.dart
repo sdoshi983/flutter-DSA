@@ -57,7 +57,10 @@ class _LinearDSState extends State<LinearDS> {
               height: height * 0.02,
             ),
             Tiles(
-              onPress: () {},
+              onPress: () {
+                addElement('LinkedList');
+                Navigator.of(context).pushNamed('/LinkedListMainPage');
+              },
               title: 'Linked List',
             ),
           ],
