@@ -2,12 +2,12 @@ import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
 import 'package:flutter/material.dart';
 
-class LinkedListMainPage extends StatefulWidget {
+class SinglyMainPage extends StatefulWidget {
   @override
-  _LinkedListMainPageState createState() => _LinkedListMainPageState();
+  _SinglyMainPageState createState() => _SinglyMainPageState();
 }
 
-class _LinkedListMainPageState extends State<LinkedListMainPage> {
+class _SinglyMainPageState extends State<SinglyMainPage> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -24,20 +24,29 @@ class _LinkedListMainPageState extends State<LinkedListMainPage> {
             SizedBox(
               height: height * 0.05,
             ),
-
             Tiles(
               onPress: () {
-                addElement('Singly');
-                Navigator.of(context).pushNamed('/SinglyMainPage');
+                addElement('Introduction');
+                //Navigator.of(context).pushNamed('/ArrayPageView');
               },
-              title: 'Singly',
+              title: 'Introduction',
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Tiles(
+              onPress: () {
+                addElement('Insertion');
+                //Navigator.of(context).pushNamed('/StackIntroduction');
+              },
+              title: 'Insertion',
             ),
             SizedBox(
               height: height * 0.02,
             ),
             Tiles(
               onPress: () {},
-              title: 'Doubly',
+              title: 'Deletion',
             ),
 
           ],
