@@ -28,8 +28,13 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
   AnimationController _firstController,
       _secondController,
       _thirdController,
-      _fourthController;
-  Animation<Offset> _firstTween, _secondTween, _thirdTween, _fourthTween;
+      _fourthController,
+      _allAheadController;
+  Animation<Offset> _firstTween,
+      _secondTween,
+      _thirdTween,
+      _fourthTween,
+      _allAheadTween;
   Size _elementSize = Size(0.1, 0.13);
   bool isCalculated = false;
   Offset _fourthElementPosition = Offset(0, 0),
@@ -48,6 +53,12 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
   @override
   void initState() {
     _firstController = AnimationController(
+      duration: Duration(
+        milliseconds: 800,
+      ),
+      vsync: this,
+    );
+    _allAheadController = AnimationController(
       duration: Duration(
         milliseconds: 800,
       ),
@@ -77,17 +88,26 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
         curve: Curves.ease,
       ),
     );
+    _allAheadTween =
+        Tween<Offset>(begin: Offset.zero, end: Offset.zero).animate(
+      CurvedAnimation(
+        parent: _allAheadController,
+        curve: Curves.ease,
+      ),
+    );
     _secondTween = Tween<Offset>(begin: Offset.zero, end: Offset.zero).animate(
       CurvedAnimation(
         parent: _fourthController,
         curve: Curves.ease,
       ),
-    );_thirdTween = Tween<Offset>(begin: Offset.zero, end: Offset.zero).animate(
+    );
+    _thirdTween = Tween<Offset>(begin: Offset.zero, end: Offset.zero).animate(
       CurvedAnimation(
         parent: _fourthController,
         curve: Curves.ease,
       ),
-    );_fourthTween = Tween<Offset>(begin: Offset.zero, end: Offset.zero).animate(
+    );
+    _fourthTween = Tween<Offset>(begin: Offset.zero, end: Offset.zero).animate(
       CurvedAnimation(
         parent: _fourthController,
         curve: Curves.ease,
@@ -110,21 +130,23 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
         _startingPoint = getPositions(_keyStart);
         double dx = _fourthElementPosition.dx - _thirdElementPosition.dx;
         double dy = 0;
-        _oneMoveOffset = Offset(dx / _elementSize.width, dy);
+        _oneMoveOffset = Offset(dx, dy);
       }
-      //print(_startingPoint.dx);
-      //print(_fourthElementPosition.dx);
-    //  print(_thirdElementPosition.dx);
-  //    print(_nextElementPosition.dx);
+      print("Before Animation");
+      print('${_nextElementPosition.dx}');
       //Calculation is completed...
       Offset initialOffset, finalOffset;
       _currentElementPosition = getPositions(_keyFourth);
       double dx =
           (_startingPoint.dx - _currentElementPosition.dx) / _elementSize.width;
       initialOffset = Offset(dx, 0);
-      dx = (_nextElementPosition.dx - _currentElementPosition.dx) / _elementSize.width;
-      finalOffset = Offset(dx,0);
-      print(finalOffset.dx);
+      print('========>Initial offset:- $dx');
+      dx = (_nextElementPosition.dx - _currentElementPosition.dx) /
+          _elementSize.width;
+      print('========>Final offset:- $dx');
+
+      finalOffset = Offset(dx, 0);
+
       _firstTween =
           Tween<Offset>(begin: initialOffset, end: finalOffset).animate(
         CurvedAnimation(
@@ -133,12 +155,40 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
         ),
       );
       _firstController.forward();
-      _nextElementPosition =
-          Offset(_currentElementPosition.dx - _oneMoveOffset.dx, 0);
-      print(Offset.zero.dx);
-    }
 
+      // print(Offset.zero.dx);
+    } else {
+      return;
+    }
+    _nextElementPosition =
+        Offset(_nextElementPosition.dx - _oneMoveOffset.dx, 0);
+    print("After Animation");
+    print('${_nextElementPosition.dx}');
     currentState += 1;
+  }
+
+  void reverseAnimation() {
+    if (currentState == 1) {
+      print("Before Animation");
+      print('${_nextElementPosition.dx}');
+      Offset initialOffset = Offset.zero,
+          finalOffset = Offset(_oneMoveOffset.dx / _elementSize.width, 0);
+      _allAheadTween =
+          Tween<Offset>(begin: initialOffset, end: finalOffset).animate(
+        CurvedAnimation(
+          parent: _allAheadController,
+          curve: Curves.ease,
+        ),
+      );
+      _allAheadController.forward();
+      _fourthColor = Colors.transparent;
+    } else
+      return;
+    currentState -= 1;
+    _nextElementPosition =
+        Offset(_nextElementPosition.dx + _oneMoveOffset.dx, 0);
+    print("After Animation");
+    print('${_nextElementPosition.dx}');
   }
 
   @override
@@ -189,75 +239,87 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      AnimatedContainer(
-                        key: _keyFirst,
-                        width: width * 0.1,
-                        height: height * 0.13,
-                        child: Center(
-                          child: Text(
-                            _firstText,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                          color: _firstColor,
-                          borderRadius: BorderRadius.circular(9),
-                        ),
-                        duration: Duration(milliseconds: 800),
-                        curve: Curves.ease,
-                      ),
-                      AnimatedContainer(
-                        key: _keySecond,
-                        width: width * 0.1,
-                        height: height * 0.13,
-                        child: Center(
-                          child: Text(
-                            _secondText,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                          color: _secondColor,
-                          borderRadius: BorderRadius.circular(9),
-                        ),
-                        duration: Duration(milliseconds: 800),
-                        curve: Curves.ease,
-                      ),
-                      AnimatedContainer(
-                        key: _keyThird,
-                        width: width * 0.1,
-                        height: height * 0.13,
-                        child: Center(
-                          child: Text(
-                            _thirdText,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                          color: _thirdColor,
-                          borderRadius: BorderRadius.circular(9),
-                        ),
-                        duration: Duration(milliseconds: 800),
-                        curve: Curves.ease,
-                      ),
                       SlideTransition(
-                        position: _firstTween,
+                        position: _allAheadTween,
                         child: AnimatedContainer(
-                          key: _keyFourth,
+                          key: _keyFirst,
                           width: width * 0.1,
                           height: height * 0.13,
                           child: Center(
                             child: Text(
-                              _fourthText,
+                              _firstText,
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
                           decoration: BoxDecoration(
-                            color: _fourthColor,
+                            color: _firstColor,
                             borderRadius: BorderRadius.circular(9),
                           ),
                           duration: Duration(milliseconds: 800),
                           curve: Curves.ease,
+                        ),
+                      ),
+                      SlideTransition(
+                        child: AnimatedContainer(
+                          key: _keySecond,
+                          width: width * 0.1,
+                          height: height * 0.13,
+                          child: Center(
+                            child: Text(
+                              _secondText,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            color: _secondColor,
+                            borderRadius: BorderRadius.circular(9),
+                          ),
+                          duration: Duration(milliseconds: 800),
+                          curve: Curves.ease,
+                        ),
+                        position: _allAheadTween,
+                      ),
+                      SlideTransition(
+                        child: AnimatedContainer(
+                          key: _keyThird,
+                          width: width * 0.1,
+                          height: height * 0.13,
+                          child: Center(
+                            child: Text(
+                              _thirdText,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            color: _thirdColor,
+                            borderRadius: BorderRadius.circular(9),
+                          ),
+                          duration: Duration(milliseconds: 800),
+                          curve: Curves.ease,
+                        ),
+                        position: _allAheadTween,
+                      ),
+                      SlideTransition(
+                        position: _allAheadTween,
+                        child: SlideTransition(
+                          position: _firstTween,
+                          child: AnimatedContainer(
+                            key: _keyFourth,
+                            width: width * 0.1,
+                            height: height * 0.13,
+                            child: Center(
+                              child: Text(
+                                _fourthText,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              color: _fourthColor,
+                              borderRadius: BorderRadius.circular(9),
+                            ),
+                            duration: Duration(milliseconds: 800),
+                            curve: Curves.ease,
+                          ),
                         ),
                       ),
                     ],
@@ -287,20 +349,19 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
                 RaisedButton(
                   onPressed: () {
                     setState(() {
-                      //    reverseAnimation();
-                      _firstController.reverse();
+                      forwardAnimation();
                     });
                   },
-                  child: Icon(Icons.backspace_sharp),
+                  child: Text('enqueue'),
                   color: kThemeColor,
                 ),
                 RaisedButton(
                     onPressed: () {
                       setState(() {
-                        forwardAnimation();
+                        reverseAnimation();
                       });
                     },
-                    child: Icon(Icons.forward),
+                    child: Text('dequeue'),
                     color: kThemeColor),
               ],
             ),
