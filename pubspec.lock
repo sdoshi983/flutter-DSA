@@ -149,5 +149,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.3"
+  widget_arrows:
+    dependency: "direct main"
+    description:
+      name: widget_arrows
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.7"
 sdks:
   dart: ">=2.10.0-110 <2.11.0"
+  flutter: ">=1.17.0 <2.0.0"
