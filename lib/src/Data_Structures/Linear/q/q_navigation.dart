@@ -11,7 +11,7 @@ class QNavigator extends StatefulWidget {
 }
 
 class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
-  int currentState = 0;
+  int currentState = 0, head = -1, tail = 4;
   GlobalKey _keyFirst = GlobalKey(),
       _keySecond = GlobalKey(),
       _keyThird = GlobalKey(),
@@ -46,6 +46,7 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
 
   @override
   void dispose() {
+    //TODO : Dump Animation Controller
     removeLast();
     super.dispose();
   }
@@ -118,78 +119,101 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
   }
 
   void forwardAnimation() {
-    if (currentState % 4 == 0) {
+    if (!isCalculated) {
+      isCalculated = true;
+      _elementSize = getSizes(_keyFirst);
+      _fourthElementPosition = getPositions(_keyFourth);
+      _thirdElementPosition = getPositions(_keyThird);
+      _nextElementPosition = _fourthElementPosition;
+      _startingPoint = getPositions(_keyStart);
+      double dx = _fourthElementPosition.dx - _thirdElementPosition.dx;
+
+      _oneMoveOffset = Offset(dx, 0);
+    }
+    if (tail == 4) {
       _fourthColor = Colors.red;
-
-      if (!isCalculated) {
-        isCalculated = true;
-        _elementSize = getSizes(_keyFirst);
-        _fourthElementPosition = getPositions(_keyFourth);
-        _thirdElementPosition = getPositions(_keyThird);
-        _nextElementPosition = _fourthElementPosition;
-        _startingPoint = getPositions(_keyStart);
-        double dx = _fourthElementPosition.dx - _thirdElementPosition.dx;
-        double dy = 0;
-        _oneMoveOffset = Offset(dx, dy);
-      }
-      print("Before Animation");
-      print('${_nextElementPosition.dx}');
-      //Calculation is completed...
-      Offset initialOffset, finalOffset;
+      _nextElementPosition = _fourthElementPosition;
       _currentElementPosition = getPositions(_keyFourth);
-      double dx =
+      double forInitial =
           (_startingPoint.dx - _currentElementPosition.dx) / _elementSize.width;
-      initialOffset = Offset(dx, 0);
-      print('========>Initial offset:- $dx');
-      dx = (_nextElementPosition.dx - _currentElementPosition.dx) /
+      double forFinal = (_nextElementPosition.dx - _currentElementPosition.dx) /
           _elementSize.width;
-      print('========>Final offset:- $dx');
-
-      finalOffset = Offset(dx, 0);
-
+      Offset initialOffset = Offset(forInitial, 0),
+          finalOffset = Offset(forFinal, 0);
+      _fourthTween =
+          Tween<Offset>(begin: initialOffset, end: finalOffset).animate(
+            CurvedAnimation(
+              parent: _fourthController,
+              curve: Curves.ease,
+            ),
+          );
+      _fourthController.forward();
+      tail -= 1;
+      head = 1;
+    } else if (tail == 3) {
+      _thirdColor = Colors.blue;
+      double _positionRequired = _fourthElementPosition.dx - _oneMoveOffset.dx;
+      _currentElementPosition = getPositions(_keyThird);
+      double forInitial = (_startingPoint.dx - _currentElementPosition.dx) /
+          (_elementSize.width);
+      double forFinal =
+          (_positionRequired - _currentElementPosition.dx) / _elementSize.width;
+      Offset initialOffset = Offset(forInitial, 0),
+          finalOffset = Offset(forFinal, 0);
+      _thirdTween =
+          Tween<Offset>(begin: initialOffset, end: finalOffset).animate(
+            CurvedAnimation(
+              parent: _thirdController,
+              curve: Curves.ease,
+            ),
+          );
+      _thirdController.forward();
+      tail -= 1;
+    }
+    else if (tail == 2) {
+      _secondColor = Colors.green;
+      double _positionRequired = _fourthElementPosition.dx -
+          (2 * _oneMoveOffset.dx);
+      _currentElementPosition = getPositions(_keySecond);
+      double forInitial = (_startingPoint.dx - _currentElementPosition.dx) /
+          (_elementSize.width);
+      double forFinal =
+          (_positionRequired - _currentElementPosition.dx) / _elementSize.width;
+      Offset initialOffset = Offset(forInitial, 0),
+          finalOffset = Offset(forFinal, 0);
+      _secondTween =
+          Tween<Offset>(begin: initialOffset, end: finalOffset).animate(
+            CurvedAnimation(
+              parent: _secondController,
+              curve: Curves.ease,
+            ),
+          );
+      _secondController.forward();
+      tail -= 1;
+    }
+    else if (tail == 1) {
+      _firstColor = Colors.pink;
+      double _positionRequired = _fourthElementPosition.dx -
+          (3 * _oneMoveOffset.dx);
+      _currentElementPosition = getPositions(_keyFirst);
+      double forInitial = (_startingPoint.dx - _currentElementPosition.dx) /
+          (_elementSize.width);
+      double forFinal =
+          (_positionRequired - _currentElementPosition.dx) / _elementSize.width;
+      Offset initialOffset = Offset(forInitial, 0),
+          finalOffset = Offset(forFinal, 0);
       _firstTween =
           Tween<Offset>(begin: initialOffset, end: finalOffset).animate(
-        CurvedAnimation(
-          parent: _firstController,
-          curve: Curves.ease,
-        ),
-      );
+            CurvedAnimation(
+              parent: _firstController,
+              curve: Curves.ease,
+            ),
+          );
       _firstController.forward();
-
-      // print(Offset.zero.dx);
-    } else {
-      return;
+      tail -= 1;
     }
-    _nextElementPosition =
-        Offset(_nextElementPosition.dx - _oneMoveOffset.dx, 0);
-    print("After Animation");
-    print('${_nextElementPosition.dx}');
-    currentState += 1;
   }
-
-  void reverseAnimation() {
-    if (currentState == 1) {
-      print("Before Animation");
-      print('${_nextElementPosition.dx}');
-      Offset initialOffset = Offset.zero,
-          finalOffset = Offset(_oneMoveOffset.dx / _elementSize.width, 0);
-      _allAheadTween =
-          Tween<Offset>(begin: initialOffset, end: finalOffset).animate(
-        CurvedAnimation(
-          parent: _allAheadController,
-          curve: Curves.ease,
-        ),
-      );
-      _allAheadController.forward();
-      _fourthColor = Colors.transparent;
-    } else
-      return;
-    currentState -= 1;
-    _nextElementPosition =
-        Offset(_nextElementPosition.dx + _oneMoveOffset.dx, 0);
-    print("After Animation");
-    print('${_nextElementPosition.dx}');
-  }
+  void reverseAnimation() {}
 
   @override
   Widget build(BuildContext context) {
@@ -240,69 +264,78 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SlideTransition(
-                        position: _allAheadTween,
-                        child: AnimatedContainer(
-                          key: _keyFirst,
-                          width: width * 0.1,
-                          height: height * 0.13,
-                          child: Center(
-                            child: Text(
-                              _firstText,
-                              style: TextStyle(color: Colors.white),
+                        child: SlideTransition(
+                          position: _allAheadTween,
+                          child: AnimatedContainer(
+                            key: _keyFirst,
+                            width: width * 0.1,
+                            height: height * 0.13,
+                            child: Center(
+                              child: Text(
+                                _firstText,
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
+                            decoration: BoxDecoration(
+                              color: _firstColor,
+                              borderRadius: BorderRadius.circular(9),
+                            ),
+                            duration: Duration(milliseconds: 800),
+                            curve: Curves.ease,
                           ),
-                          decoration: BoxDecoration(
-                            color: _firstColor,
-                            borderRadius: BorderRadius.circular(9),
-                          ),
-                          duration: Duration(milliseconds: 800),
-                          curve: Curves.ease,
                         ),
+                        position: _firstTween,
                       ),
                       SlideTransition(
-                        child: AnimatedContainer(
-                          key: _keySecond,
-                          width: width * 0.1,
-                          height: height * 0.13,
-                          child: Center(
-                            child: Text(
-                              _secondText,
-                              style: TextStyle(color: Colors.white),
+                        child: SlideTransition(
+                          child: AnimatedContainer(
+                            key: _keySecond,
+                            width: width * 0.1,
+                            height: height * 0.13,
+                            child: Center(
+                              child: Text(
+                                _secondText,
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
+                            decoration: BoxDecoration(
+                              color: _secondColor,
+                              borderRadius: BorderRadius.circular(9),
+                            ),
+                            duration: Duration(milliseconds: 800),
+                            curve: Curves.ease,
                           ),
-                          decoration: BoxDecoration(
-                            color: _secondColor,
-                            borderRadius: BorderRadius.circular(9),
-                          ),
-                          duration: Duration(milliseconds: 800),
-                          curve: Curves.ease,
+                          position: _allAheadTween,
                         ),
-                        position: _allAheadTween,
+                        position: _secondTween,
                       ),
                       SlideTransition(
-                        child: AnimatedContainer(
-                          key: _keyThird,
-                          width: width * 0.1,
-                          height: height * 0.13,
-                          child: Center(
-                            child: Text(
-                              _thirdText,
-                              style: TextStyle(color: Colors.white),
+                        child: SlideTransition(
+                          child: AnimatedContainer(
+                            key: _keyThird,
+                            width: width * 0.1,
+                            height: height * 0.13,
+                            child: Center(
+                              child: Text(
+                                _thirdText,
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
+                            decoration: BoxDecoration(
+                              color: _thirdColor,
+                              borderRadius: BorderRadius.circular(9),
+                            ),
+                            duration: Duration(milliseconds: 800),
+                            curve: Curves.ease,
                           ),
-                          decoration: BoxDecoration(
-                            color: _thirdColor,
-                            borderRadius: BorderRadius.circular(9),
-                          ),
-                          duration: Duration(milliseconds: 800),
-                          curve: Curves.ease,
+                          position: _allAheadTween,
                         ),
-                        position: _allAheadTween,
+                        position: _thirdTween,
                       ),
                       SlideTransition(
                         position: _allAheadTween,
                         child: SlideTransition(
-                          position: _firstTween,
+                          position: _fourthTween,
                           child: AnimatedContainer(
                             key: _keyFourth,
                             width: width * 0.1,
