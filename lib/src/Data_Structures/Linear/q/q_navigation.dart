@@ -11,7 +11,9 @@ class QNavigator extends StatefulWidget {
 }
 
 class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
-  int currentState = 0, head = -1, tail = 4;
+  List toRemove = [4,3,2,1];
+  List toInsert = [4,3,2,1];
+  int currentSize = 0, head = -1, tail = 4;
   GlobalKey _keyFirst = GlobalKey(),
       _keySecond = GlobalKey(),
       _keyThird = GlobalKey(),
@@ -34,7 +36,8 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
       _secondTween,
       _thirdTween,
       _fourthTween,
-      _allAheadTween;
+      _firstAheadTween,_secondAheadTween,_thirdAheadTween,_fourthAheadTween,_allAheadTween;
+  double currentAheadOffset = 0;
   Size _elementSize = Size(0.1, 0.13);
   bool isCalculated = false;
   Offset _fourthElementPosition = Offset(0, 0),
@@ -43,7 +46,7 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
       _startingPoint,
       _nextElementPosition = Offset(0, 0),
       _currentElementPosition = Offset(0, 0);
-
+  double positionRequired = 0;
   @override
   void dispose() {
     //TODO : Dump Animation Controller
@@ -77,6 +80,13 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
       ),
       vsync: this,
     );
+    _allAheadTween =
+        Tween<Offset>(begin: Offset.zero, end: Offset.zero).animate(
+          CurvedAnimation(
+            parent: _allAheadController,
+            curve: Curves.ease,
+          ),
+        );
     _fourthController = AnimationController(
       duration: Duration(
         milliseconds: 800,
@@ -89,13 +99,34 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
         curve: Curves.ease,
       ),
     );
-    _allAheadTween =
+    _firstAheadTween =
         Tween<Offset>(begin: Offset.zero, end: Offset.zero).animate(
       CurvedAnimation(
         parent: _allAheadController,
         curve: Curves.ease,
       ),
     );
+    _secondAheadTween =
+        Tween<Offset>(begin: Offset.zero, end: Offset.zero).animate(
+          CurvedAnimation(
+            parent: _allAheadController,
+            curve: Curves.ease,
+          ),
+        );
+    _thirdAheadTween =
+        Tween<Offset>(begin: Offset.zero, end: Offset.zero).animate(
+          CurvedAnimation(
+            parent: _allAheadController,
+            curve: Curves.ease,
+          ),
+        );
+    _fourthAheadTween =
+        Tween<Offset>(begin: Offset.zero, end: Offset.zero).animate(
+          CurvedAnimation(
+            parent: _allAheadController,
+            curve: Curves.ease,
+          ),
+        );
     _secondTween = Tween<Offset>(begin: Offset.zero, end: Offset.zero).animate(
       CurvedAnimation(
         parent: _fourthController,
@@ -119,101 +150,182 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
   }
 
   void forwardAnimation() {
+    if(currentSize>=4)return;
     if (!isCalculated) {
       isCalculated = true;
       _elementSize = getSizes(_keyFirst);
       _fourthElementPosition = getPositions(_keyFourth);
       _thirdElementPosition = getPositions(_keyThird);
-      _nextElementPosition = _fourthElementPosition;
+      positionRequired = _fourthElementPosition.dx;
       _startingPoint = getPositions(_keyStart);
       double dx = _fourthElementPosition.dx - _thirdElementPosition.dx;
 
       _oneMoveOffset = Offset(dx, 0);
     }
-    if (tail == 4) {
+    if (toInsert[0]==4) {
+      _fourthController.reset();
       _fourthColor = Colors.red;
-      _nextElementPosition = _fourthElementPosition;
+
       _currentElementPosition = getPositions(_keyFourth);
       double forInitial =
           (_startingPoint.dx - _currentElementPosition.dx) / _elementSize.width;
-      double forFinal = (_nextElementPosition.dx - _currentElementPosition.dx) /
-          _elementSize.width;
+      double forFinal =
+          (positionRequired - _currentElementPosition.dx) / _elementSize.width;
       Offset initialOffset = Offset(forInitial, 0),
           finalOffset = Offset(forFinal, 0);
       _fourthTween =
           Tween<Offset>(begin: initialOffset, end: finalOffset).animate(
-            CurvedAnimation(
-              parent: _fourthController,
-              curve: Curves.ease,
-            ),
-          );
+        CurvedAnimation(
+          parent: _fourthController,
+          curve: Curves.ease,
+        ),
+      );
       _fourthController.forward();
       tail -= 1;
       head = 1;
-    } else if (tail == 3) {
+      positionRequired -= _oneMoveOffset.dx;
+      currentSize += 1;
+      toInsert.remove(4);
+      toInsert.add(4);
+    } else if (toInsert[0]==3) {
+      _thirdController.reset();
       _thirdColor = Colors.blue;
-      double _positionRequired = _fourthElementPosition.dx - _oneMoveOffset.dx;
       _currentElementPosition = getPositions(_keyThird);
       double forInitial = (_startingPoint.dx - _currentElementPosition.dx) /
           (_elementSize.width);
       double forFinal =
-          (_positionRequired - _currentElementPosition.dx) / _elementSize.width;
+          (positionRequired - _currentElementPosition.dx) / _elementSize.width;
       Offset initialOffset = Offset(forInitial, 0),
           finalOffset = Offset(forFinal, 0);
       _thirdTween =
           Tween<Offset>(begin: initialOffset, end: finalOffset).animate(
-            CurvedAnimation(
-              parent: _thirdController,
-              curve: Curves.ease,
-            ),
-          );
+        CurvedAnimation(
+          parent: _thirdController,
+          curve: Curves.ease,
+        ),
+      );
       _thirdController.forward();
       tail -= 1;
-    }
-    else if (tail == 2) {
+      positionRequired -= _oneMoveOffset.dx;
+      currentSize += 1;
+      toInsert.remove(3);
+      toInsert.add(3);
+    } else if (toInsert[0]==2) {
+      _secondController.reset();
       _secondColor = Colors.green;
-      double _positionRequired = _fourthElementPosition.dx -
-          (2 * _oneMoveOffset.dx);
       _currentElementPosition = getPositions(_keySecond);
       double forInitial = (_startingPoint.dx - _currentElementPosition.dx) /
           (_elementSize.width);
       double forFinal =
-          (_positionRequired - _currentElementPosition.dx) / _elementSize.width;
+          (positionRequired - _currentElementPosition.dx) / _elementSize.width;
       Offset initialOffset = Offset(forInitial, 0),
           finalOffset = Offset(forFinal, 0);
       _secondTween =
           Tween<Offset>(begin: initialOffset, end: finalOffset).animate(
-            CurvedAnimation(
-              parent: _secondController,
-              curve: Curves.ease,
-            ),
-          );
+        CurvedAnimation(
+          parent: _secondController,
+          curve: Curves.ease,
+        ),
+      );
       _secondController.forward();
       tail -= 1;
-    }
-    else if (tail == 1) {
+      positionRequired -= _oneMoveOffset.dx;
+      currentSize += 1;
+      toInsert.remove(2);toInsert.add(2);
+    } else if (toInsert[0] == 1) {
+      _firstController.reset();
       _firstColor = Colors.pink;
-      double _positionRequired = _fourthElementPosition.dx -
-          (3 * _oneMoveOffset.dx);
+
       _currentElementPosition = getPositions(_keyFirst);
       double forInitial = (_startingPoint.dx - _currentElementPosition.dx) /
           (_elementSize.width);
       double forFinal =
-          (_positionRequired - _currentElementPosition.dx) / _elementSize.width;
+          (positionRequired - _currentElementPosition.dx) / _elementSize.width;
       Offset initialOffset = Offset(forInitial, 0),
           finalOffset = Offset(forFinal, 0);
       _firstTween =
           Tween<Offset>(begin: initialOffset, end: finalOffset).animate(
+        CurvedAnimation(
+          parent: _firstController,
+          curve: Curves.ease,
+        ),
+      );
+      _firstController.forward();
+      tail -= 1;
+      positionRequired -= _oneMoveOffset.dx;
+      currentSize += 1;
+      toInsert.remove(1);toInsert.add(1);
+    }
+
+  }
+
+  void reverseAnimation() {
+    if (currentSize <= 0) return;
+    _allAheadController.reset();
+    if (toRemove[0]==4) {
+      positionRequired += _oneMoveOffset.dx;
+      _fourthColor = Colors.transparent;
+      _allAheadTween =
+          Tween<Offset>(begin: Offset(currentAheadOffset,0), end: Offset(currentAheadOffset+(_oneMoveOffset.dx/_elementSize.width), 0))
+              .animate(
+        CurvedAnimation(
+          parent: _allAheadController,
+          curve: Curves.ease,
+        ),
+      );
+      currentAheadOffset+=_oneMoveOffset.dx/_elementSize.width;
+      currentSize -= 1;
+      _allAheadController.forward();
+
+      toRemove.remove(4);toRemove.add(4);
+    } else if (toRemove[0]==3) {
+      print(2222);
+      positionRequired += _oneMoveOffset.dx;
+      _thirdColor = Colors.transparent;
+      _allAheadTween =
+          Tween<Offset>(begin: Offset(currentAheadOffset,0), end: Offset(currentAheadOffset+(_oneMoveOffset.dx/_elementSize.width), 0))
+              .animate(
+        CurvedAnimation(
+          parent: _allAheadController,
+          curve: Curves.ease,
+        ),
+      );
+      currentAheadOffset+=_oneMoveOffset.dx/_elementSize.width;
+
+      _allAheadController.forward();
+      currentSize -= 1;
+      toRemove.remove(3);toRemove.add(3);
+
+    } else if (toRemove[0] == 2) {
+      _secondColor = Colors.transparent;
+      positionRequired += _oneMoveOffset.dx;
+
+      _allAheadTween =
+          Tween<Offset>(begin: Offset(currentAheadOffset,0), end: Offset(currentAheadOffset+(_oneMoveOffset.dx/_elementSize.width), 0))
+              .animate(
             CurvedAnimation(
-              parent: _firstController,
+              parent: _allAheadController,
               curve: Curves.ease,
             ),
           );
-      _firstController.forward();
-      tail -= 1;
+      currentAheadOffset+=_oneMoveOffset.dx/_elementSize.width;
+      _allAheadController.value = 0.66;
+      _allAheadController.duration =Duration(milliseconds: 1600);
+      _allAheadController.forward();
+      currentSize -= 1;
+      toRemove.remove(2);toRemove.add(2);
     }
+    else if(toRemove[0] ==1){
+      _firstColor=Colors.transparent;
+      positionRequired+=_oneMoveOffset.dx;
+      _allAheadTween = Tween<Offset>(begin:Offset(currentAheadOffset,0),end:Offset(currentAheadOffset+(_oneMoveOffset.dx/_elementSize.width),0)).animate(CurvedAnimation(parent: _allAheadController,curve: Curves.ease,),);
+      _allAheadController.forward();
+      currentSize-=1;
+      toRemove.remove(1);toRemove.add(1);
+      currentAheadOffset+=_oneMoveOffset.dx/_elementSize.width;
+    }
+
   }
-  void reverseAnimation() {}
 
   @override
   Widget build(BuildContext context) {
