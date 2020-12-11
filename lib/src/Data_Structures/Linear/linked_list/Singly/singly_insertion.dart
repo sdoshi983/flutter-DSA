@@ -19,12 +19,15 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
   String headPointerTargetId = 'first';
   String newElementTargetId = '';
   String secondTargetId = 'third';
+  AlignmentGeometry headPointerArrow = Alignment.bottomCenter;
 
   void forward() {
     if(animationState == 0)
       newElementOpacity = 1;
-    else if(animationState == 1)
+    else if(animationState == 1) {
+      headPointerArrow = Alignment.bottomRight;
       headPointerTargetId = 'second';
+    }
     else if(animationState == 2)
       newElementTargetId = 'third';
     else if(animationState == 3)
@@ -38,8 +41,10 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
       secondTargetId = 'third';
     else if(animationState == 3)
       newElementTargetId = '';
-    else if(animationState == 2)
+    else if(animationState == 2) {
+      headPointerArrow = Alignment.bottomCenter;
       headPointerTargetId = 'first';
+    }
     else if (animationState == 1)
       newElementOpacity = 0;
 
@@ -72,7 +77,7 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
                   ArrowElement(
                     id: 'headPointer',
                     targetId: headPointerTargetId,
-                    sourceAnchor: Alignment.bottomCenter,
+                    sourceAnchor: headPointerArrow,
                     targetAnchor: Alignment.topCenter,
                     color: Colors.white,
                     child: Text(
