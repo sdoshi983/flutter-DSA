@@ -45,7 +45,10 @@ class _SinglyMainPageState extends State<SinglyMainPage> {
               height: height * 0.02,
             ),
             Tiles(
-              onPress: () {},
+              onPress: () {
+                addElement('Insertion');
+                Navigator.of(context).pushNamed('/SinglyDeletionPage');
+              },
               title: 'Deletion',
             ),
 
