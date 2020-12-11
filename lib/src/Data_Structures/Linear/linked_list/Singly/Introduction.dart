@@ -184,7 +184,7 @@ class _SinglyIntroductionState extends State<SinglyIntroduction> {
                     id: 'null',
                     color: Colors.white.withOpacity(arrowOpacity),
                     child: AnimatedContainer(
-                      duration: Duration(seconds: 1),
+                      duration: Duration(milliseconds: 100),
                       height: height * 0.05,
                       width: width * nullWidth,
                       child: Center(
