@@ -43,7 +43,11 @@ class _DoublyMainPageState extends State<DoublyMainPage> {
             Tiles(
               onPress: () {
                 addElement('Insertion');
-                //     Navigator.of(context).pushNamed('/SinglyInsertionPage');
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => DoublyInsertion(),
+                  ),
+                );
               },
               title: 'Insertion',
             ),
@@ -52,7 +56,7 @@ class _DoublyMainPageState extends State<DoublyMainPage> {
             ),
             Tiles(
               onPress: () {
-                addElement('Insertion');
+                addElement('Deletion');
                 //       Navigator.of(context).pushNamed('/SinglyDeletionPage');
               },
               title: 'Deletion',
