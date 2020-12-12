@@ -1,7 +1,8 @@
+import 'package:dsa_simulation/src/Data_Structures/Linear/linked_list/doubly/doubly_introduction.dart';
 import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
 import 'package:flutter/material.dart';
-
+import 'doubly_insertion.dart';
 
 class DoublyMainPage extends StatefulWidget {
   @override
@@ -28,7 +29,11 @@ class _DoublyMainPageState extends State<DoublyMainPage> {
             Tiles(
               onPress: () {
                 addElement('Introduction');
-              //  Navigator.of(context).pushNamed('/SinglyIntroductionPage');
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => DoublyIntroduction(),
+                  ),
+                );
               },
               title: 'Introduction',
             ),
@@ -38,7 +43,7 @@ class _DoublyMainPageState extends State<DoublyMainPage> {
             Tiles(
               onPress: () {
                 addElement('Insertion');
-           //     Navigator.of(context).pushNamed('/SinglyInsertionPage');
+                //     Navigator.of(context).pushNamed('/SinglyInsertionPage');
               },
               title: 'Insertion',
             ),
@@ -48,11 +53,10 @@ class _DoublyMainPageState extends State<DoublyMainPage> {
             Tiles(
               onPress: () {
                 addElement('Insertion');
-         //       Navigator.of(context).pushNamed('/SinglyDeletionPage');
+                //       Navigator.of(context).pushNamed('/SinglyDeletionPage');
               },
               title: 'Deletion',
             ),
-
           ],
         ),
       ),
