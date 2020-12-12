@@ -152,7 +152,7 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
   // 204.21818181818185
   // 149.23636363636365
   // 94.25454545454545
-  // 39.27272727272725
+// ---- // 39.27272727272725
 
   void forwardAnimation() {
     if(currentSize>=4)return;
@@ -316,8 +316,6 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
             ),
           );
       currentAheadOffset+=_oneMoveOffset.dx/_elementSize.width;
-   //   _allAheadController.value = 0.66;
-    //  _allAheadController.duration =Duration(milliseconds: 1600);
       _allAheadController.forward();
       currentSize -= 1;
       toRemove.remove(2);toRemove.add(2);
