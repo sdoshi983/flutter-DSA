@@ -41,6 +41,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SinglyInsertion());
       case '/SinglyDeletionPage':
         return MaterialPageRoute(builder: (_) => SinglyDeletion());
+      case '/DoublyIntroductionPage':
+        return MaterialPageRoute(builder: (_) => DoublyIntroduction());
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return MaterialPageRoute(
