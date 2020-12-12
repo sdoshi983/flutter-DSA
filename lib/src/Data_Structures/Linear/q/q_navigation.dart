@@ -148,6 +148,11 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
 
     super.initState();
   }
+  // 259.20000000000005
+  // 204.21818181818185
+  // 149.23636363636365
+  // 94.25454545454545
+  // 39.27272727272725
 
   void forwardAnimation() {
     if(currentSize>=4)return;
@@ -205,7 +210,7 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
         ),
       );
       _thirdController.forward();
-      tail -= 1;
+
       positionRequired -= _oneMoveOffset.dx;
       currentSize += 1;
       toInsert.remove(3);
@@ -256,6 +261,8 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
       currentSize += 1;
       toInsert.remove(1);toInsert.add(1);
     }
+    print('${_startingPoint.dx}');
+
 
   }
 
@@ -279,7 +286,7 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
 
       toRemove.remove(4);toRemove.add(4);
     } else if (toRemove[0]==3) {
-      print(2222);
+    //  print(2222);
       positionRequired += _oneMoveOffset.dx;
       _thirdColor = Colors.transparent;
       _allAheadTween =
@@ -309,8 +316,8 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
             ),
           );
       currentAheadOffset+=_oneMoveOffset.dx/_elementSize.width;
-      _allAheadController.value = 0.66;
-      _allAheadController.duration =Duration(milliseconds: 1600);
+   //   _allAheadController.value = 0.66;
+    //  _allAheadController.duration =Duration(milliseconds: 1600);
       _allAheadController.forward();
       currentSize -= 1;
       toRemove.remove(2);toRemove.add(2);
@@ -496,15 +503,20 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
                     setState(() {
                       forwardAnimation();
                     });
+                    print('Current element position $positionRequired');
+
                   },
                   child: Text('enqueue'),
                   color: kThemeColor,
                 ),
                 RaisedButton(
                     onPressed: () {
+
                       setState(() {
                         reverseAnimation();
                       });
+                      print('Current element position $positionRequired');
+
                     },
                     child: Text('dequeue'),
                     color: kThemeColor),
