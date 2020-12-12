@@ -1,16 +1,17 @@
 import 'package:dsa_simulation/src/Data_Structures/Linear/Stack/Introduction.dart';
 import 'package:dsa_simulation/src/Data_Structures/Linear/Stack/stack_mainPage.dart';
-import 'package:dsa_simulation/src/Data_Structures/Linear/linked_list/Singly/Introduction.dart';
+import 'package:dsa_simulation/src/Data_Structures/Linear/linked_list/Singly/singly_introduction.dart';
 import 'package:dsa_simulation/src/Data_Structures/Linear/linked_list/Singly/singly_deletion.dart';
 import 'package:dsa_simulation/src/Data_Structures/Linear/linked_list/Singly/singly_insertion.dart';
 import 'package:dsa_simulation/src/Data_Structures/Linear/linked_list/Singly/singly_main_page.dart';
 import 'package:dsa_simulation/src/Data_Structures/Linear/linked_list/linked_list_main_page.dart';
+import 'package:dsa_simulation/src/data_structures/linear/linked_list/doubly/doubly_main_page.dart';
 import 'package:dsa_simulation/src/data_structures/linear_and_non_linear.dart';
 import 'src/data_structures/linear/linear.dart';
 import 'src/Data_Structures/Linear/array/array_navigation_page.dart';
 import 'package:flutter/material.dart';
-import 'src/Data_Structures/Linear/q/q_navigation.dart';
-
+import 'src/Data_Structures/Linear/queue/q_navigation.dart';
+import 'src/data_structures/linear/linked_list/doubly/doubly_introduction.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -32,6 +33,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => LinkedListMainPage());
       case '/SinglyMainPage':
         return MaterialPageRoute(builder: (_) => SinglyMainPage());
+      case '/DoublyMainPage':
+        return MaterialPageRoute(builder:(_)=>DoublyMainPage());
       case '/SinglyIntroductionPage':
         return MaterialPageRoute(builder: (_) => SinglyIntroduction());
       case '/SinglyInsertionPage':

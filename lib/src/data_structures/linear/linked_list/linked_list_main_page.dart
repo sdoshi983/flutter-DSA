@@ -36,7 +36,10 @@ class _LinkedListMainPageState extends State<LinkedListMainPage> {
               height: height * 0.02,
             ),
             Tiles(
-              onPress: () {},
+              onPress: () {
+              addElement('Doubly');
+              Navigator.of(context).pushNamed('/DoublyMainPage');
+              },
               title: 'Doubly',
             ),
 
