@@ -16,23 +16,40 @@ class _DoublyInsertionState extends State<DoublyInsertion> {
   int currentState = 0;
   Color newArrowColor1 = Colors.transparent,newArrowColor2 = Colors.transparent;
   String newElementText = '',secondNext = 'third',thirdPrev = 'second';
+  String headPointerTarget = 'first';
   Color newElementColor = Colors.transparent;
   AlignmentGeometry firstSourceFrontArrow = Alignment.centerRight;
   AlignmentGeometry firstTargetArrow = Alignment.centerLeft;
   AlignmentGeometry secondSourceFrontArrow = Alignment.centerRight;
   AlignmentGeometry secondTargetArrow = Alignment.centerLeft;
-  void forwardAnimaton(){
+  AlignmentGeometry toNewElement = Alignment.centerLeft;
+  AlignmentGeometry thirdPrevAlignment = Alignment.bottomRight;
+  void forwardAnimation(){
     if(currentState==0){
+   //   print('hello world');
+      headPointerTarget = 'second';
+    }
+    else if(currentState==1){
       newElementText = 'Data';
       newElementColor=Colors.red;
     }
-    else if(currentState==1){
+    else if(currentState==2){
       secondNext = 'new';
+
+  //    toNewElement = Alignment.centerRight;
+      secondTargetArrow = Alignment.topRight;
+      secondSourceFrontArrow = Alignment.bottomRight;
+    }
+    else if(currentState ==3){
       newArrowColor1 = Colors.white;
     }
-    else if(currentState ==2){
+    else if(currentState ==4){
       thirdPrev = 'new';
+      thirdPrevAlignment = Alignment.centerRight;
+    }
+    else if(currentState==5){
       newArrowColor2 = Colors.white;
+
     }
     else return;
 
@@ -40,16 +57,28 @@ class _DoublyInsertionState extends State<DoublyInsertion> {
   }
   void reverseAnimation(){
     if(currentState==1){
+      headPointerTarget = 'first';
+    }
+    else if(currentState==2){
       newElementText = '';
       newElementColor=Colors.transparent;
     }
-    else if(currentState ==2){
-      secondNext = 'third';
-      newArrowColor1 = Colors.transparent;
-    }
     else if(currentState ==3){
+      secondNext = 'third';
+      secondSourceFrontArrow = Alignment.centerRight;
+      secondTargetArrow = Alignment.centerLeft;
+    }
+    else if(currentState ==4){
+      newArrowColor1 = Colors.transparent;
+
+    }
+    else if(currentState ==5){
       thirdPrev = 'second';
+      thirdPrevAlignment = Alignment.bottomRight;
+    }
+    else if(currentState==6){
       newArrowColor2 = Colors.transparent;
+
     }
     else return;
     currentState--;
@@ -79,7 +108,7 @@ class _DoublyInsertionState extends State<DoublyInsertion> {
                   SizedBox(width: width * 0.073,),
                   ArrowElement(
                     id: 'headPointer',
-                    targetId: 'first',
+                    targetId: headPointerTarget,
                     sourceAnchor: Alignment.bottomCenter,
                     targetAnchor: Alignment.topCenter,
                     color: Colors.white,
@@ -181,7 +210,7 @@ class _DoublyInsertionState extends State<DoublyInsertion> {
                     id: 'thirdBack',
                     targetId: thirdPrev,
                     sourceAnchor: Alignment.bottomLeft,
-                    targetAnchor: Alignment.bottomRight,
+                    targetAnchor: thirdPrevAlignment,
                     color: Colors.white,
                     child: ArrowElement(
                       id: 'third',
@@ -229,7 +258,7 @@ class _DoublyInsertionState extends State<DoublyInsertion> {
                   ArrowElement(
                     id: 'new1',
                     targetId: 'third',
-                    sourceAnchor: Alignment.centerRight,
+                    sourceAnchor: Alignment.bottomRight,
                     targetAnchor: Alignment.bottomCenter,
                     color: newArrowColor1,
                     child: ArrowElement(
@@ -284,7 +313,7 @@ class _DoublyInsertionState extends State<DoublyInsertion> {
                   RaisedButton(
                     onPressed: () {
                       setState(() {
-                        forwardAnimaton();
+                        forwardAnimation();
                       });
                     },
                     child: Icon(Icons.forward),
