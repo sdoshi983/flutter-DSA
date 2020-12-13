@@ -57,7 +57,7 @@ class _DoublyMainPageState extends State<DoublyMainPage> {
             Tiles(
               onPress: () {
                 addElement('Deletion');
-                //       Navigator.of(context).pushNamed('/SinglyDeletionPage');
+                Navigator.of(context).pushNamed('/DoublyDeletionPage');
               },
               title: 'Deletion',
             ),
