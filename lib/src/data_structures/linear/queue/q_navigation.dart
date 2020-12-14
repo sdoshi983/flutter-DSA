@@ -368,7 +368,7 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
         }
         _fourthAheadController.reset();
         _fourthAheadTween =
-            Tween<Offset>(begin: Offset(forFourth,0), end: Offset(forFourth+(_oneMoveOffset.dx/_elementSize.width), 0))
+            Tween<Offset>(begin: Offset(forFourth,0), end: Offset(forFourth+(_oneMoveOffset.dx/_elementSize.width),0))
                 .animate(
               CurvedAnimation(
                 parent: _fourthAheadController,
