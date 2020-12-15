@@ -5,11 +5,14 @@ import 'package:slimy_card/slimy_card.dart';
 import '../src/constants.dart';
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
 import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
-
+import 'package:auto_animated/auto_animated.dart';
 double max(double a, double b) {
   if (a > b) return a;
   return b;
 }
+
+List data = ['Array', 'Linked List', 'Queue', 'Stack'];
+List algo = ['Searching', 'Sorting', 'Dynamic Programming'];
 
 class HomePage extends StatefulWidget {
   @override
@@ -39,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                 color: kThemeColor,
                 width: width * 0.85,
                 topCardHeight: max(150, height * 0.1),
-                bottomCardHeight: max(200,height*0.15),
+                bottomCardHeight: max(200, height * 0.15),
                 borderRadius: 20,
                 topCardWidget: MainButton(
                   onPress: () {
@@ -48,34 +51,29 @@ class _HomePageState extends State<HomePage> {
                   },
                   title: 'DS',
                 ),
-                bottomCardWidget: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      'Array',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    Text(
-                      'Linked List',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    Text(
-                      'Queue',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    Text(
-                      'Stack',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ],
+                bottomCardWidget: ListView.builder(
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom:15.0),
+                      child: Center(
+                        child: Text(
+                          data[index],
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      ),
+                    );
+                  },
+                  itemCount: 4,
                 ),
               ),
-              SizedBox(height: height*0.05,),
+              SizedBox(
+                height: height * 0.05,
+              ),
               SlimyCard(
                 color: kThemeColor,
                 width: width * 0.85,
                 topCardHeight: max(150, height * 0.1),
-                bottomCardHeight: max(200,height*0.15),
+                bottomCardHeight: max(200, height * 0.15),
                 borderRadius: 20,
                 topCardWidget: MainButton(
                   onPress: () {
@@ -84,9 +82,8 @@ class _HomePageState extends State<HomePage> {
                   },
                   title: 'ALGO',
                 ),
-
                 bottomCardWidget: Container(
-                  height: max(200,height*0.15),
+                  height: max(200, height * 0.15),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -106,7 +103,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              SizedBox(height: height*0.2,),
+              SizedBox(
+                height: height * 0.2,
+              ),
             ],
           ),
         ),
