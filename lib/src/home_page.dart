@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dsa_simulation/src/Utilities/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/route_generator.dart';
@@ -20,6 +22,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -136,3 +139,23 @@ class MainButton extends StatelessWidget {
     );
   }
 }
+// StreamBuilder(
+// initialData: false,
+// stream: slimyCard.stream, //Stream of SlimyCard
+// builder: ((BuildContext context, AsyncSnapshot snapshot) {
+// return ListView(
+// children: <Widget>[
+// SlimyCard(
+// color: Colors.red,
+// width: 200,
+// topCardHeight: 400,
+// bottomCardHeight: 200,
+// borderRadius: 15,
+// topCardWidget: myWidget01(),
+// bottomCardWidget: myWidget02(),
+// slimeEnabled: true,
+// ),
+// ],
+// );
+// }),
+),
