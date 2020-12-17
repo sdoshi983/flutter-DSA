@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                 height: height * 0.05,
               ),
               SlimyCard(
-                color: kThemeColor,
+                color: Colors.white,
                 width: width * 0.85,
                 topCardHeight: max(150, height * 0.1),
                 bottomCardHeight: max(200, height * 0.15),
@@ -52,7 +52,8 @@ class _HomePageState extends State<HomePage> {
                     addElement('DS');
                     Navigator.of(context).pushNamed('/LinearNonLinearPage');
                   },
-                  title: 'DS',
+                  title: ' ',
+                  imagePath: 'assets/images/ds.jpeg',
                 ),
                 bottomCardWidget: ListView.builder(
                   itemBuilder: (BuildContext context, int index) {
@@ -61,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                       child: Center(
                         child: Text(
                           data[index],
-                          style: Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.black),
                         ),
                       ),
                     );
@@ -73,20 +74,22 @@ class _HomePageState extends State<HomePage> {
                 height: height * 0.05,
               ),
               SlimyCard(
-                color: kThemeColor,
+                color: Color(0xFF1837E8),
                 width: width * 0.85,
                 topCardHeight: max(150, height * 0.1),
                 bottomCardHeight: max(200, height * 0.15),
-                borderRadius: 20,
+               borderRadius: 20,
                 topCardWidget: MainButton(
                   onPress: () {
                     addElement('ALGO');
                     Navigator.of(context).pushNamed('/LinearNonLinearPage');
                   },
+                  imagePath: 'assets/images/algo.jpeg',
                   title: 'ALGO',
                 ),
                 bottomCardWidget: Container(
                   height: max(200, height * 0.15),
+                  color: kThemeColor,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -120,7 +123,8 @@ class _HomePageState extends State<HomePage> {
 class MainButton extends StatelessWidget {
   final String title;
   final Function onPress;
-  const MainButton({this.title, this.onPress});
+  final String imagePath;
+  const MainButton({this.title, this.onPress,this.imagePath});
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -128,7 +132,14 @@ class MainButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPress,
       child: Container(
-        width: w * 0.85,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(imagePath),
+            fit: BoxFit.cover,
+          ),
+        ),
+       // color: Colors.black,
+        width: w * 0.9,
         height: max(h * 0.1, 150),
         child: Center(
             child: Text(
@@ -139,23 +150,3 @@ class MainButton extends StatelessWidget {
     );
   }
 }
-// StreamBuilder(
-// initialData: false,
-// stream: slimyCard.stream, //Stream of SlimyCard
-// builder: ((BuildContext context, AsyncSnapshot snapshot) {
-// return ListView(
-// children: <Widget>[
-// SlimyCard(
-// color: Colors.red,
-// width: 200,
-// topCardHeight: 400,
-// bottomCardHeight: 200,
-// borderRadius: 15,
-// topCardWidget: myWidget01(),
-// bottomCardWidget: myWidget02(),
-// slimeEnabled: true,
-// ),
-// ],
-// );
-// }),
-),
