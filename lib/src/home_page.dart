@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                 width: width * 0.85,
                 topCardHeight: max(150, height * 0.1),
                 bottomCardHeight: max(200, height * 0.15),
-                borderRadius: 20,
+               borderRadius: 20,
                 topCardWidget: MainButton(
                   onPress: () {
                     addElement('ALGO');
@@ -87,6 +87,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 bottomCardWidget: Container(
                   height: max(200, height * 0.15),
+                  color: kThemeColor,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -128,7 +129,8 @@ class MainButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPress,
       child: Container(
-        width: w * 0.85,
+        color: Colors.black,
+        width: w * 0.9,
         height: max(h * 0.1, 150),
         child: Center(
             child: Text(
@@ -139,23 +141,3 @@ class MainButton extends StatelessWidget {
     );
   }
 }
-// StreamBuilder(
-// initialData: false,
-// stream: slimyCard.stream, //Stream of SlimyCard
-// builder: ((BuildContext context, AsyncSnapshot snapshot) {
-// return ListView(
-// children: <Widget>[
-// SlimyCard(
-// color: Colors.red,
-// width: 200,
-// topCardHeight: 400,
-// bottomCardHeight: 200,
-// borderRadius: 15,
-// topCardWidget: myWidget01(),
-// bottomCardWidget: myWidget02(),
-// slimeEnabled: true,
-// ),
-// ],
-// );
-// }),
-),
