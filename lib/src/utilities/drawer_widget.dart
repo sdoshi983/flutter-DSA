@@ -165,6 +165,7 @@ class _ReusableExpansionPanelListState
       data: Theme.of(context).copyWith(cardColor: Colors.black),
       child: GestureDetector(
         onTap: () {
+          Navigator.of(context).pop();
           Navigator.pushNamed(context, widget.routeName);
         },
         child: ExpansionPanelList(
