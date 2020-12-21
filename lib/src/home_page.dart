@@ -9,6 +9,9 @@ import 'package:dsa_simulation/src/Utilities/widgets.dart';
 import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
 import 'package:auto_animated/auto_animated.dart';
 import 'dart:math' as math;
+import 'package:animations/animations.dart';
+
+
 double max(double a, double b) {
   if (a > b) return a;
   return b;
