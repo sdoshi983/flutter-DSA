@@ -1,6 +1,7 @@
 import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:dsa_simulation/src/utilities/base_template.dart';
 
 class SinglyMainPage extends StatefulWidget {
   @override
@@ -12,47 +13,49 @@ class _SinglyMainPageState extends State<SinglyMainPage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: appBar(context),
-      body: Container(
-        height: height,
-        width: width,
-        color: Colors.black,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: height * 0.05,
-            ),
-            Tiles(
-              onPress: () {
-                addElement('Introduction');
-                Navigator.of(context).pushNamed('/SinglyIntroductionPage');
-              },
-              title: 'Introduction',
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Tiles(
-              onPress: () {
-                addElement('Insertion');
-                Navigator.of(context).pushNamed('/SinglyInsertionPage');
-              },
-              title: 'Insertion',
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Tiles(
-              onPress: () {
-                addElement('Insertion');
-                Navigator.of(context).pushNamed('/SinglyDeletionPage');
-              },
-              title: 'Deletion',
-            ),
+    return BaseTemplate(
+      body: Scaffold(
+        appBar: appBar(context),
+        body: Container(
+          height: height,
+          width: width,
+          color: Colors.black,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: height * 0.05,
+              ),
+              Tiles(
+                onPress: () {
+                  addElement('Introduction');
+                  Navigator.of(context).pushNamed('/SinglyIntroductionPage');
+                },
+                title: 'Introduction',
+              ),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              Tiles(
+                onPress: () {
+                  addElement('Insertion');
+                  Navigator.of(context).pushNamed('/SinglyInsertionPage');
+                },
+                title: 'Insertion',
+              ),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              Tiles(
+                onPress: () {
+                  addElement('Insertion');
+                  Navigator.of(context).pushNamed('/SinglyDeletionPage');
+                },
+                title: 'Deletion',
+              ),
 
-          ],
+            ],
+          ),
         ),
       ),
     );

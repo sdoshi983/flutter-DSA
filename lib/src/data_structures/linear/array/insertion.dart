@@ -4,6 +4,8 @@ import 'package:dsa_simulation/src/constants.dart';
 import 'package:dsa_simulation/src/Utilities/animation_helper.dart';
 import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
+import 'package:dsa_simulation/src/utilities/base_template.dart';
+
 class Element extends StatelessWidget {
   final Color color;
   final String name;
@@ -180,156 +182,158 @@ class _ArrayInsertState extends State<ArrayInsert>
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    return Scaffold(
+    return BaseTemplate(
+      body: Scaffold(
 
-      appBar:appBar(context),
-      body: Container(
-        color: Colors.black,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'Insertion in Array',
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            AnimatedContainer(
-              duration: Duration(milliseconds: 800),
-              curve: Curves.ease,
-              height: heightFactor * height,
-              child: Row(
+        appBar:appBar(context),
+        body: Container(
+          color: Colors.black,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                'Insertion in Array',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              AnimatedContainer(
+                duration: Duration(milliseconds: 800),
+                curve: Curves.ease,
+                height: heightFactor * height,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SlideTransition(
+                      child: AnimatedContainer(
+                        key: _keyNewElement,
+                        width: width * 0.2,
+                        height: height * 0.05,
+                        child: Center(
+                          child: Text(
+                            newElementText,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          color: newElementColor,
+                          borderRadius: BorderRadius.circular(9),
+                        ),
+                        duration: Duration(milliseconds: 800),
+                        curve: Curves.ease,
+                      ),
+                      position: _newElementOffset,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Element(
+                          name: 'Hello',
+                          color: Colors.green,
+                        ),
+                        SlideTransition(
+                          position: _downOffset,
+                          child: AnimatedContainer(
+                            key: _keySecondElement,
+                            width: width * 0.2,
+                            height: height * 0.05,
+                            child: Center(
+                              child: Text(
+                                'World',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(9),
+                            ),
+                            duration: Duration(milliseconds: 800),
+                            curve: Curves.ease,
+                          ),
+                        ),
+                        SlideTransition(
+                          position: _downOffset,
+                          child: AnimatedContainer(
+                            key: _keyThirdElement,
+                            width: width * 0.2,
+                            height: height * 0.05,
+                            child: Center(
+                              child: Text(
+                                'Heyy',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.purple,
+                              borderRadius: BorderRadius.circular(9),
+                            ),
+                            duration: Duration(milliseconds: 800),
+                            curve: Curves.ease,
+                          ),
+                        ),
+                        SlideTransition(
+                          position: _lastElementOffset,
+                          child: AnimatedContainer(
+                            key: _keyLastElement,
+                            width: width * 0.2,
+                            height: height * 0.05,
+                            child: Center(
+                              child: Text(
+                                ' ',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              color: lastElementColor,
+                              borderRadius: BorderRadius.circular(9),
+                            ),
+                            duration: Duration(milliseconds: 800),
+                            curve: Curves.ease,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Element(
+                      name: ' ',
+                      color: Colors.black,
+                    ),
+                  ],
+                ),
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SlideTransition(
-                    child: AnimatedContainer(
-                      key: _keyNewElement,
-                      width: width * 0.2,
-                      height: height * 0.05,
-                      child: Center(
-                        child: Text(
-                          newElementText,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        color: newElementColor,
-                        borderRadius: BorderRadius.circular(9),
-                      ),
-                      duration: Duration(milliseconds: 800),
-                      curve: Curves.ease,
-                    ),
-                    position: _newElementOffset,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Element(
-                        name: 'Hello',
-                        color: Colors.green,
-                      ),
-                      SlideTransition(
-                        position: _downOffset,
-                        child: AnimatedContainer(
-                          key: _keySecondElement,
-                          width: width * 0.2,
-                          height: height * 0.05,
-                          child: Center(
-                            child: Text(
-                              'World',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(9),
-                          ),
-                          duration: Duration(milliseconds: 800),
-                          curve: Curves.ease,
-                        ),
-                      ),
-                      SlideTransition(
-                        position: _downOffset,
-                        child: AnimatedContainer(
-                          key: _keyThirdElement,
-                          width: width * 0.2,
-                          height: height * 0.05,
-                          child: Center(
-                            child: Text(
-                              'Heyy',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.purple,
-                            borderRadius: BorderRadius.circular(9),
-                          ),
-                          duration: Duration(milliseconds: 800),
-                          curve: Curves.ease,
-                        ),
-                      ),
-                      SlideTransition(
-                        position: _lastElementOffset,
-                        child: AnimatedContainer(
-                          key: _keyLastElement,
-                          width: width * 0.2,
-                          height: height * 0.05,
-                          child: Center(
-                            child: Text(
-                              ' ',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                          decoration: BoxDecoration(
-                            color: lastElementColor,
-                            borderRadius: BorderRadius.circular(9),
-                          ),
-                          duration: Duration(milliseconds: 800),
-                          curve: Curves.ease,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Element(
-                    name: ' ',
-                    color: Colors.black,
-                  ),
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                RaisedButton(
-                  onPressed: () {
-                    setState(() {
-                      reverseAnimation();
-                    });
-                  },
-                  child: Icon(Icons.backspace_sharp),
-                  color: kThemeColor,
-                ),
-                RaisedButton(
+                  RaisedButton(
                     onPressed: () {
                       setState(() {
-                        forwardAnimation();
-                        //  lastElementColor = Colors.grey;
+                        reverseAnimation();
                       });
                     },
-                    child: Icon(Icons.forward),
-                    color: kThemeColor),
-              ],
-            ),
-            Container(
-              height: height * 0.3,
-            ),
-          ],
+                    child: Icon(Icons.backspace_sharp),
+                    color: kThemeColor,
+                  ),
+                  RaisedButton(
+                      onPressed: () {
+                        setState(() {
+                          forwardAnimation();
+                          //  lastElementColor = Colors.grey;
+                        });
+                      },
+                      child: Icon(Icons.forward),
+                      color: kThemeColor),
+                ],
+              ),
+              Container(
+                height: height * 0.3,
+              ),
+            ],
+          ),
         ),
+        // floatingActionButton: FloatingActionButton(
+        //   child: Text('T'),
+        //   onPressed: () {
+        //     popping(4, context);
+        //   },
+        // ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Text('T'),
-      //   onPressed: () {
-      //     popping(4, context);
-      //   },
-      // ),
     );
   }
 }
