@@ -31,7 +31,8 @@ dependencies:
   widget_arrows: ^0.1.7
   slimy_card: ^1.0.4
   auto_animated: ^2.1.0
-  
+  animations: ^1.1.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
