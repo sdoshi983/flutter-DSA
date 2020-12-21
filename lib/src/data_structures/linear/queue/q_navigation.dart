@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dsa_simulation/src/utilities/base_template.dart';
 
 import 'package:dsa_simulation/src/constants.dart';
 import 'package:dsa_simulation/src/Utilities/animation_helper.dart';
@@ -452,196 +453,198 @@ class _QNavigatorState extends State<QNavigator> with TickerProviderStateMixin {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      appBar: appBar(context),
-      body: Container(
-        color: Colors.black,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'Queue',
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                AnimatedContainer(
-                  key: _keyStart,
-                  width: width * 0.1,
-                  height: height * 0.13,
-                  child: Center(
-                    child: Text(
-                      'S',
-                      style: TextStyle(color: Colors.white),
+    return BaseTemplate(
+      body: Scaffold(
+        appBar: appBar(context),
+        body: Container(
+          color: Colors.black,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                'Queue',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  AnimatedContainer(
+                    key: _keyStart,
+                    width: width * 0.1,
+                    height: height * 0.13,
+                    child: Center(
+                      child: Text(
+                        'S',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(9),
+                    ),
+                    duration: Duration(milliseconds: 800),
+                    curve: Curves.ease,
+                  ),
+                  Container(
+                    height: height * 0.15,
+                    width: width * 0.6,
+                    decoration: BoxDecoration(
+                      border: Border.symmetric(
+                        horizontal: BorderSide(color: Colors.white),
+                        vertical: BorderSide.none,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SlideTransition(
+                          child: SlideTransition(
+                            position: _firstAheadTween,
+                            child: AnimatedContainer(
+                              key: _keyFirst,
+                              width: width * 0.1,
+                              height: height * 0.13,
+                              child: Center(
+                                child: Text(
+                                  _firstText,
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                color: _firstColor,
+                                borderRadius: BorderRadius.circular(9),
+                              ),
+                              duration: Duration(milliseconds: 800),
+                              curve: Curves.ease,
+                            ),
+                          ),
+                          position: _firstTween,
+                        ),
+                        SlideTransition(
+                          child: SlideTransition(
+                            child: AnimatedContainer(
+                              key: _keySecond,
+                              width: width * 0.1,
+                              height: height * 0.13,
+                              child: Center(
+                                child: Text(
+                                  _secondText,
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                color: _secondColor,
+                                borderRadius: BorderRadius.circular(9),
+                              ),
+                              duration: Duration(milliseconds: 800),
+                              curve: Curves.ease,
+                            ),
+                            position: _secondAheadTween,
+                          ),
+                          position: _secondTween,
+                        ),
+                        SlideTransition(
+                          child: SlideTransition(
+                            child: AnimatedContainer(
+                              key: _keyThird,
+                              width: width * 0.1,
+                              height: height * 0.13,
+                              child: Center(
+                                child: Text(
+                                  _thirdText,
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                color: _thirdColor,
+                                borderRadius: BorderRadius.circular(9),
+                              ),
+                              duration: Duration(milliseconds: 800),
+                              curve: Curves.ease,
+                            ),
+                            position: _thirdAheadTween,
+                          ),
+                          position: _thirdTween,
+                        ),
+                        SlideTransition(
+                          position: _fourthAheadTween,
+                          child: SlideTransition(
+                            position: _fourthTween,
+                            child: AnimatedContainer(
+                              key: _keyFourth,
+                              width: width * 0.1,
+                              height: height * 0.13,
+                              child: Center(
+                                child: Text(
+                                  _fourthText,
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                color: _fourthColor,
+                                borderRadius: BorderRadius.circular(9),
+                              ),
+                              duration: Duration(milliseconds: 800),
+                              curve: Curves.ease,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(9),
-                  ),
-                  duration: Duration(milliseconds: 800),
-                  curve: Curves.ease,
-                ),
-                Container(
-                  height: height * 0.15,
-                  width: width * 0.6,
-                  decoration: BoxDecoration(
-                    border: Border.symmetric(
-                      horizontal: BorderSide(color: Colors.white),
-                      vertical: BorderSide.none,
+                  AnimatedContainer(
+                    width: width * 0.1,
+                    height: height * 0.13,
+                    child: Center(
+                      child: Text(
+                        'E',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SlideTransition(
-                        child: SlideTransition(
-                          position: _firstAheadTween,
-                          child: AnimatedContainer(
-                            key: _keyFirst,
-                            width: width * 0.1,
-                            height: height * 0.13,
-                            child: Center(
-                              child: Text(
-                                _firstText,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              color: _firstColor,
-                              borderRadius: BorderRadius.circular(9),
-                            ),
-                            duration: Duration(milliseconds: 800),
-                            curve: Curves.ease,
-                          ),
-                        ),
-                        position: _firstTween,
-                      ),
-                      SlideTransition(
-                        child: SlideTransition(
-                          child: AnimatedContainer(
-                            key: _keySecond,
-                            width: width * 0.1,
-                            height: height * 0.13,
-                            child: Center(
-                              child: Text(
-                                _secondText,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              color: _secondColor,
-                              borderRadius: BorderRadius.circular(9),
-                            ),
-                            duration: Duration(milliseconds: 800),
-                            curve: Curves.ease,
-                          ),
-                          position: _secondAheadTween,
-                        ),
-                        position: _secondTween,
-                      ),
-                      SlideTransition(
-                        child: SlideTransition(
-                          child: AnimatedContainer(
-                            key: _keyThird,
-                            width: width * 0.1,
-                            height: height * 0.13,
-                            child: Center(
-                              child: Text(
-                                _thirdText,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              color: _thirdColor,
-                              borderRadius: BorderRadius.circular(9),
-                            ),
-                            duration: Duration(milliseconds: 800),
-                            curve: Curves.ease,
-                          ),
-                          position: _thirdAheadTween,
-                        ),
-                        position: _thirdTween,
-                      ),
-                      SlideTransition(
-                        position: _fourthAheadTween,
-                        child: SlideTransition(
-                          position: _fourthTween,
-                          child: AnimatedContainer(
-                            key: _keyFourth,
-                            width: width * 0.1,
-                            height: height * 0.13,
-                            child: Center(
-                              child: Text(
-                                _fourthText,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              color: _fourthColor,
-                              borderRadius: BorderRadius.circular(9),
-                            ),
-                            duration: Duration(milliseconds: 800),
-                            curve: Curves.ease,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                AnimatedContainer(
-                  width: width * 0.1,
-                  height: height * 0.13,
-                  child: Center(
-                    child: Text(
-                      'E',
-                      style: TextStyle(color: Colors.white),
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(9),
                     ),
+                    duration: Duration(milliseconds: 800),
+                    curve: Curves.ease,
                   ),
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(9),
-                  ),
-                  duration: Duration(milliseconds: 800),
-                  curve: Curves.ease,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                RaisedButton(
-                  onPressed: () {
-                    setState(() {
-                      forwardAnimation();
-
-                    });
-                    print('Position of next element $positionRequired');
-                    print('Current size of queue $currentSize');
-                    //    print('Current element position $positionRequired');
-                  },
-                  child: Text('enqueue'),
-                  color: kThemeColor,
-                ),
-                RaisedButton(
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  RaisedButton(
                     onPressed: () {
-                      print('To be removed ${toRemove[0]}');
                       setState(() {
-                             reverseAnimation();
+                        forwardAnimation();
+
                       });
                       print('Position of next element $positionRequired');
                       print('Current size of queue $currentSize');
-                      //       print('Current element position $positionRequired');
+                      //    print('Current element position $positionRequired');
                     },
-                    child: Text('dequeue'),
-                    color: kThemeColor),
-              ],
-            ),
-            Container(
-              height: height * 0.3,
-            ),
-          ],
+                    child: Text('enqueue'),
+                    color: kThemeColor,
+                  ),
+                  RaisedButton(
+                      onPressed: () {
+                        print('To be removed ${toRemove[0]}');
+                        setState(() {
+                               reverseAnimation();
+                        });
+                        print('Position of next element $positionRequired');
+                        print('Current size of queue $currentSize');
+                        //       print('Current element position $positionRequired');
+                      },
+                      child: Text('dequeue'),
+                      color: kThemeColor),
+                ],
+              ),
+              Container(
+                height: height * 0.3,
+              ),
+            ],
+          ),
         ),
       ),
     );

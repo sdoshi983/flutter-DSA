@@ -2,6 +2,8 @@ import 'package:dsa_simulation/src/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
+import 'package:dsa_simulation/src/utilities/base_template.dart';
+
 class Element extends StatelessWidget {
   final Color color, borderColor;
   final String name;
@@ -121,105 +123,107 @@ class _ArrayIntroState extends State<ArrayIntro>{
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      appBar: appBar(context),
-      body: Container(
-        color: Colors.black,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'Introduction to Array',
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElementIndex(
-                      text: 'a[0]',
-                      bgColor: indexBGColor,
-                      borderColor: firstColor,
-                      textColor: indexColor,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Element(
-                      borderColor: firstColor,
-                      color: Colors.red,
-                      name: 'John',
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElementIndex(
-                      textColor: indexColor,
-                      borderColor: secondColor,
-                      bgColor: indexBGColor,
-                      text: 'a[1]',
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Element(
-                      borderColor: secondColor,
-                      color: Colors.blue,
-                      name: 'Captain',
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElementIndex(
-                      text: 'a[2]',
-                      borderColor: thirdColor,
-                      textColor: indexColor,
-                      bgColor: indexBGColor,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Element(
-                      name: 'Fire',
-                      borderColor: thirdColor,
-                      color: Colors.green,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                RaisedButton(
-                  onPressed: () {
-                    setState(() {
-                      reverseAnimation();
-                    });
-                  },
-                  child: Icon(Icons.backspace_sharp),
-                  color: kThemeColor,
-                ),
-                RaisedButton(
+    return BaseTemplate(
+      body: Scaffold(
+        appBar: appBar(context),
+        body: Container(
+          color: Colors.black,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                'Introduction to Array',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElementIndex(
+                        text: 'a[0]',
+                        bgColor: indexBGColor,
+                        borderColor: firstColor,
+                        textColor: indexColor,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Element(
+                        borderColor: firstColor,
+                        color: Colors.red,
+                        name: 'John',
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElementIndex(
+                        textColor: indexColor,
+                        borderColor: secondColor,
+                        bgColor: indexBGColor,
+                        text: 'a[1]',
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Element(
+                        borderColor: secondColor,
+                        color: Colors.blue,
+                        name: 'Captain',
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElementIndex(
+                        text: 'a[2]',
+                        borderColor: thirdColor,
+                        textColor: indexColor,
+                        bgColor: indexBGColor,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Element(
+                        name: 'Fire',
+                        borderColor: thirdColor,
+                        color: Colors.green,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  RaisedButton(
                     onPressed: () {
                       setState(() {
-                        forwardAnimation();
+                        reverseAnimation();
                       });
                     },
-                    child: Icon(Icons.forward),
-                    color: kThemeColor,),
-              ],
-            ),
-            Container(
-              height: height * 0.3,
-            )
-          ],
+                    child: Icon(Icons.backspace_sharp),
+                    color: kThemeColor,
+                  ),
+                  RaisedButton(
+                      onPressed: () {
+                        setState(() {
+                          forwardAnimation();
+                        });
+                      },
+                      child: Icon(Icons.forward),
+                      color: kThemeColor,),
+                ],
+              ),
+              Container(
+                height: height * 0.3,
+              )
+            ],
+          ),
         ),
       ),
     );

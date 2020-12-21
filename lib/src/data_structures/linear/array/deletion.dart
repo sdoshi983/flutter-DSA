@@ -3,6 +3,8 @@ import 'package:dsa_simulation/src/Utilities/animation_helper.dart';
 import 'package:dsa_simulation/src/constants.dart';
 import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
+import 'package:dsa_simulation/src/utilities/base_template.dart';
+
 class Element extends StatelessWidget {
   final Color color;
   final String name;
@@ -131,123 +133,125 @@ class _ArrayDeleteState extends State<ArrayDelete>
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      appBar: appBar(context),
-      body: Container(
-        color: Colors.black,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'Deletion in Array',
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            AnimatedContainer(
-              duration: Duration(milliseconds: 800),
-              curve: Curves.ease,
-              height: heightFactor * height,
-              child: Column(
+    return BaseTemplate(
+      body: Scaffold(
+        appBar: appBar(context),
+        body: Container(
+          color: Colors.black,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                'Deletion in Array',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              AnimatedContainer(
+                duration: Duration(milliseconds: 800),
+                curve: Curves.ease,
+                height: heightFactor * height,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Element(
+                      name: 'Hello',
+                      color: Colors.green,
+                    ),
+                    SlideTransition(
+                      position: _downOffset,
+                      child: Element(
+                        name: delElementText,
+                        color: delElementColor,
+                      ),
+                    ),
+                    SlideTransition(
+                      position: _liftOffset,
+                      child: AnimatedContainer(
+                        key: _keyThird,
+                        width: width * 0.2,
+                        height: height * 0.05,
+                        child: Center(
+                          child: Text(
+                            'World',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(9),
+                        ),
+                        duration: Duration(milliseconds: 800),
+                        curve: Curves.ease,
+                      ),
+                    ),
+                    SlideTransition(
+                      position: _liftOffset,
+                      child: AnimatedContainer(
+                        key: _keyFourth,
+                        width: width * 0.2,
+                        height: height * 0.05,
+                        child: Center(
+                          child: Text(
+                            'Heyy',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.purple,
+                          borderRadius: BorderRadius.circular(9),
+                        ),
+                        duration: Duration(milliseconds: 800),
+                        curve: Curves.ease,
+                      ),
+                    ),
+                    SlideTransition(
+                      position: _liftOffset,
+                      child: AnimatedContainer(
+                        width: width * 0.2,
+                        height: height * 0.05,
+                        child: Center(
+                          child: Text(
+                            'Ok',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(9),
+                        ),
+                        duration: Duration(milliseconds: 800),
+                        curve: Curves.ease,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Element(
-                    name: 'Hello',
-                    color: Colors.green,
-                  ),
-                  SlideTransition(
-                    position: _downOffset,
-                    child: Element(
-                      name: delElementText,
-                      color: delElementColor,
-                    ),
-                  ),
-                  SlideTransition(
-                    position: _liftOffset,
-                    child: AnimatedContainer(
-                      key: _keyThird,
-                      width: width * 0.2,
-                      height: height * 0.05,
-                      child: Center(
-                        child: Text(
-                          'World',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(9),
-                      ),
-                      duration: Duration(milliseconds: 800),
-                      curve: Curves.ease,
-                    ),
-                  ),
-                  SlideTransition(
-                    position: _liftOffset,
-                    child: AnimatedContainer(
-                      key: _keyFourth,
-                      width: width * 0.2,
-                      height: height * 0.05,
-                      child: Center(
-                        child: Text(
-                          'Heyy',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.purple,
-                        borderRadius: BorderRadius.circular(9),
-                      ),
-                      duration: Duration(milliseconds: 800),
-                      curve: Curves.ease,
-                    ),
-                  ),
-                  SlideTransition(
-                    position: _liftOffset,
-                    child: AnimatedContainer(
-                      width: width * 0.2,
-                      height: height * 0.05,
-                      child: Center(
-                        child: Text(
-                          'Ok',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(9),
-                      ),
-                      duration: Duration(milliseconds: 800),
-                      curve: Curves.ease,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                RaisedButton(
-                  onPressed: () {
-                    setState(() {
-                      reverseAnimation();
-                    });
-                  },
-                  child: Icon(Icons.backspace_sharp),
-                  color: kThemeColor,
-                ),
-                RaisedButton(
+                  RaisedButton(
                     onPressed: () {
                       setState(() {
-                        forwardAnimation();
+                        reverseAnimation();
                       });
                     },
-                    child: Icon(Icons.forward),
-                    color: kThemeColor),
-              ],
-            ),
-            Container(
-              height: height * 0.3,
-            ),
-          ],
+                    child: Icon(Icons.backspace_sharp),
+                    color: kThemeColor,
+                  ),
+                  RaisedButton(
+                      onPressed: () {
+                        setState(() {
+                          forwardAnimation();
+                        });
+                      },
+                      child: Icon(Icons.forward),
+                      color: kThemeColor),
+                ],
+              ),
+              Container(
+                height: height * 0.3,
+              ),
+            ],
+          ),
         ),
       ),
     );
