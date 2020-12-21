@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:dsa_simulation/src/Data_Structures/Linear/Stack/Introduction.dart';
 import 'package:dsa_simulation/src/Data_Structures/Linear/Stack/stack_mainPage.dart';
 import 'package:dsa_simulation/src/Data_Structures/Linear/linked_list/Singly/singly_introduction.dart';
@@ -16,10 +17,29 @@ import 'src/data_structures/linear/linked_list/doubly/doubly_introduction.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
+    SharedAxisTransitionType _transitionType =
+        SharedAxisTransitionType.horizontal;
 
     switch (settings.name) {
       case '/LinearNonLinearPage':
-        return MaterialPageRoute(builder: (_) => LinearNonLinearPage());
+        return PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) {
+              return LinearNonLinearPage();
+            },
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              var begin = Offset(0.0, 1.0);
+              var end = Offset.zero;
+              var curve = Curves.ease;
+
+              var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+              return SharedAxisTransition(
+                child: child,
+                animation: animation,
+                secondaryAnimation: secondaryAnimation,
+                transitionType: _transitionType,
+              );
+            }
+        );
       case '/LinearDS':
         return MaterialPageRoute(builder: (_) => LinearDS());
       case '/QueueNavigationPage':
