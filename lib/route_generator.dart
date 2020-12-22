@@ -14,62 +14,44 @@ import 'src/Data_Structures/Linear/array/array_navigation_page.dart';
 import 'package:flutter/material.dart';
 import 'src/Data_Structures/Linear/queue/q_navigation.dart';
 import 'src/data_structures/linear/linked_list/doubly/doubly_introduction.dart';
+
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
-    SharedAxisTransitionType _transitionType =
-        SharedAxisTransitionType.horizontal;
 
     switch (settings.name) {
       case '/LinearNonLinearPage':
-        return PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) {
-              return LinearNonLinearPage();
-            },
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-              var begin = Offset(0.0, 1.0);
-              var end = Offset.zero;
-              var curve = Curves.ease;
-
-              var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-              return SharedAxisTransition(
-                child: child,
-                animation: animation,
-                secondaryAnimation: secondaryAnimation,
-                transitionType: _transitionType,
-              );
-            }
-        );
+        return reusablePageRouteBuilder(LinearNonLinearPage());
       case '/LinearDS':
-        return MaterialPageRoute(builder: (_) => LinearDS());
+        return reusablePageRouteBuilder(LinearDS());
       case '/QueueNavigationPage':
-        return MaterialPageRoute(builder: (_)=>QNavigator());
+        return reusablePageRouteBuilder(QNavigator());
       case '/ArrayPageView':
-        return MaterialPageRoute(builder: (_) => ArrayNavigator());
+        return reusablePageRouteBuilder(ArrayNavigator());
       case '/StackMainPage':
-        return MaterialPageRoute(builder: (_) => StackMainPage());
+        return reusablePageRouteBuilder(StackMainPage());
       case '/StackIntroduction':
-        return MaterialPageRoute(builder: (_) => StackIntroduction());
+        return reusablePageRouteBuilder(StackIntroduction());
       case '/LinkedListMainPage':
-        return MaterialPageRoute(builder: (_) => LinkedListMainPage());
+        return reusablePageRouteBuilder(LinkedListMainPage());
       case '/SinglyMainPage':
-        return MaterialPageRoute(builder: (_) => SinglyMainPage());
+        return reusablePageRouteBuilder(SinglyMainPage());
       case '/DoublyMainPage':
-        return MaterialPageRoute(builder:(_)=>DoublyMainPage());
+        return reusablePageRouteBuilder(DoublyMainPage());
       case '/SinglyIntroductionPage':
-        return MaterialPageRoute(builder: (_) => SinglyIntroduction());
+        return reusablePageRouteBuilder(SinglyIntroduction());
       case '/SinglyInsertionPage':
-        return MaterialPageRoute(builder: (_) => SinglyInsertion());
+        return reusablePageRouteBuilder(SinglyInsertion());
       case '/SinglyDeletionPage':
-        return MaterialPageRoute(builder: (_) => SinglyDeletion());
+        return reusablePageRouteBuilder(SinglyDeletion());
       case '/DoublyIntroductionPage':
-        return MaterialPageRoute(builder: (_) => DoublyIntroduction());
+        return reusablePageRouteBuilder(DoublyIntroduction());
       case '/DoublyDeletionPage':
-        return MaterialPageRoute(builder: (_) => DoublyDeletion());
+        return reusablePageRouteBuilder(DoublyDeletion());
       default:
         // If there is no such named route in the switch statement, e.g. /third
-        return MaterialPageRoute(
-          builder: (_) => Scaffold(
+        return reusablePageRouteBuilder(
+          Scaffold(
             body: SafeArea(
               child: Center(
                 child: Text(
@@ -84,4 +66,26 @@ class RouteGenerator {
         );
     }
   }
+}
+
+PageRouteBuilder<dynamic> reusablePageRouteBuilder(Widget page) {
+  SharedAxisTransitionType _transitionType =
+      SharedAxisTransitionType.horizontal;
+
+  return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) {
+    return page;
+  }, transitionsBuilder: (context, animation, secondaryAnimation, child) {
+    var begin = Offset(0.0, 1.0);
+    var end = Offset.zero;
+    var curve = Curves.ease;
+
+    var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+    return SharedAxisTransition(
+      child: child,
+      animation: animation,
+      secondaryAnimation: secondaryAnimation,
+      transitionType: _transitionType,
+    );
+  });
 }
