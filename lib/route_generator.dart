@@ -8,11 +8,11 @@ import 'package:dsa_simulation/src/Data_Structures/Linear/linked_list/Singly/sin
 import 'package:dsa_simulation/src/Data_Structures/Linear/linked_list/linked_list_main_page.dart';
 import 'package:dsa_simulation/src/data_structures/linear/linked_list/doubly/doubly_deletion.dart';
 import 'package:dsa_simulation/src/data_structures/linear/linked_list/doubly/doubly_main_page.dart';
+import 'package:dsa_simulation/src/data_structures/linear/queue/q_navigation.dart';
 import 'package:dsa_simulation/src/data_structures/linear_and_non_linear.dart';
 import 'src/data_structures/linear/linear.dart';
 import 'src/Data_Structures/Linear/array/array_navigation_page.dart';
 import 'package:flutter/material.dart';
-import 'src/Data_Structures/Linear/queue/q_navigation.dart';
 import 'src/data_structures/linear/linked_list/doubly/doubly_introduction.dart';
 
 class RouteGenerator {
@@ -25,7 +25,7 @@ class RouteGenerator {
       case '/LinearDS':
         return reusablePageRouteBuilder(LinearDS());
       case '/QueueNavigationPage':
-        return reusablePageRouteBuilder(QNavigator());
+        return reusablePageRouteBuilder(QueueNavigator());
       case '/ArrayPageView':
         return reusablePageRouteBuilder(ArrayNavigator());
       case '/StackMainPage':

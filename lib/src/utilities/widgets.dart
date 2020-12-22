@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/src/constants.dart';
 import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
+import 'package:dsa_simulation/src/utilities/base_template.dart';
 
 class Tiles extends StatelessWidget {
   final String title;
@@ -50,6 +51,15 @@ Widget appBar(BuildContext context) {
   double width = MediaQuery.of(context).size.width;
 
   return AppBar(
+    leading: ClipRect(
+      child: MaterialButton(
+        child: Icon(Icons.menu_rounded),
+        onPressed: () {
+          toggle();
+        },
+        splashColor: Colors.black,
+      ),
+    ),
     backgroundColor: kThemeColor,
     iconTheme: IconThemeData(color: Colors.white),
     title: Center(
