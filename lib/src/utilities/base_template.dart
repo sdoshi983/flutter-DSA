@@ -7,7 +7,12 @@ import 'package:dsa_simulation/src/utilities/widgets.dart';
 import '../constants.dart';
 import '../home_page.dart';
 import 'address_maninter.dart';
-
+AnimationController baseController;
+void toggle() {
+  baseController.isDismissed
+      ? baseController.forward()
+      : baseController.reverse();
+}
 double max(double a, double b) {
   if (a > b) return a;
   return b;
@@ -22,20 +27,15 @@ class BaseTemplate extends StatefulWidget {
 
 class _BaseTemplateState extends State<BaseTemplate>
     with SingleTickerProviderStateMixin {
-  AnimationController _contontroller;
   bool _canBeDragged = false;
-  void toggle() {
-    _contontroller.isDismissed
-        ? _contontroller.forward()
-        : _contontroller.reverse();
-  }
+
 
   void _onDragStart(DragStartDetails details) {
     bool fromLeft =
-        _contontroller.isDismissed && details.globalPosition.dx < 200;
+        baseController.isDismissed && details.globalPosition.dx < 200;
     print(details.globalPosition.dx);
     bool fromRigth =
-        (_contontroller.isDismissed || _contontroller.isCompleted) &&
+        (baseController.isDismissed || baseController.isCompleted) &&
             details.globalPosition.dx > 100;
     print(fromRigth);
     print(fromLeft);
@@ -45,21 +45,21 @@ class _BaseTemplateState extends State<BaseTemplate>
   void _onDragUpdate(DragUpdateDetails details) {
     if (_canBeDragged) {
       double delta = details.primaryDelta / 200;
-      _contontroller.value += delta;
+      baseController.value += delta;
     }
   }
 
   void _onDragEnd(DragEndDetails details) {
-    if (_contontroller.isDismissed || _contontroller.isCompleted) {
+    if (baseController.isDismissed || baseController.isCompleted) {
       return;
     }
     if (details.velocity.pixelsPerSecond.dx.abs() >= 365) {
       double visual = details.velocity.pixelsPerSecond.dx / 300;
-      _contontroller.fling(velocity: visual);
-    } else if (_contontroller.value < 0.5) {
-      _contontroller.reverse();
+      baseController.fling(velocity: visual);
+    } else if (baseController.value < 0.5) {
+      baseController.reverse();
     } else {
-      _contontroller.forward();
+      baseController.forward();
     }
   }
 
@@ -67,9 +67,9 @@ class _BaseTemplateState extends State<BaseTemplate>
   void initState() {
     // TODO: implement initState
     super.initState();
-    _contontroller = AnimationController(
+    baseController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 700),
+      duration: Duration(milliseconds: 300),
     );
   }
 
@@ -78,33 +78,34 @@ class _BaseTemplateState extends State<BaseTemplate>
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
+      color: Colors.black,
       child: GestureDetector(
         onHorizontalDragStart: _onDragStart,
         onHorizontalDragUpdate: _onDragUpdate,
         onHorizontalDragEnd: _onDragEnd,
         //  onTap: toggle,
         child: AnimatedBuilder(
-          animation: _contontroller,
+          animation: baseController,
           builder: (context, _) {
             return Stack(
               children: [
                 Transform.translate(
-                  offset: Offset(width * 0.8 * (-1 + _contontroller.value), 0),
+                  offset: Offset(width * 0.82 * (-1 + baseController.value), 0),
                   child: Transform(
                     transform: Matrix4.identity()
-                      ..setEntry(3, 2, 0.001)
+                      ..setEntry(3, 2, 0.002)
                       ..rotateY(
-                        math.pi / 10 * (1 - _contontroller.value),
+                        math.pi / 10 * (1 - baseController.value),
                       ),
                     child: DrawerWidget(),
                   ),
                 ),
                 Transform.translate(
-                  offset: Offset(width * 0.8 * _contontroller.value, 0),
+                  offset: baseController.value<0.1?Offset.zero: Offset(width * 0.8 * baseController.value -10, 0),
                   child: Transform(
                     transform: Matrix4.identity()
-                      ..setEntry(3, 2, -0.001)
-                      ..rotateY(math.pi / 2 * _contontroller.value),
+                      ..setEntry(3, 2, -0.002)
+                      ..rotateY(math.pi / 2 * baseController.value),
                     child: widget.body,
                   ),
                 ),
