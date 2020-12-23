@@ -30,7 +30,10 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
     thirdCon = AnimationController(vsync: this,duration: Duration(milliseconds: 500),);
     fourthCon = AnimationController(vsync: this,duration: Duration(milliseconds: 500),);
     super.initState();
-
+    firstCon.reset();
+    secondCon.reset();
+    thirdCon.reset();
+    fourthCon.reset();
   }
   void enqueueAnimation(){
     if(currentQueue.length==4){
@@ -143,6 +146,16 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
 
     return BaseTemplate(
       body: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){
+            setState(() {
+              print("Start");
+              print(fourthCon.value);
+             // fourthCon.forward();
+              print(fourthCon.value);
+            });
+          },
+        ),
         appBar: appBar(context),
         body: Container(
           color: Colors.black,
