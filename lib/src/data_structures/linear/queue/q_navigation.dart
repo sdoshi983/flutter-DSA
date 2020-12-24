@@ -36,6 +36,7 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
     fourthCon.reset();
   }
   void enqueueAnimation(){
+    print('inside');
     if(currentQueue.length==4){
       return;
     }
@@ -44,13 +45,16 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
     toAdd.add(toPush);
    // print(toPush);
     if(toPush==1){
+      print('if');
       double here = currentPosition-first;
       firstPosition = 2*here;
       first = currentPosition;
       currentPosition--;
       firstColor = Colors.red;
-  //    print(firstCon.value);
+     print(firstCon.value);
+     print('ad');
       firstCon.forward();
+      print(firstCon.value);
 
       firstPosition = 0;
       firstCon.reset();
@@ -85,11 +89,11 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
       fourthPosition = 2*here;
       fourth = currentPosition;
       currentPosition--;
-      print(fourthPosition);
+     // print (fourthPosition);
       fourthColor = Colors.green;
-      print(fourthCon.value);
+     print(fourthCon.value);
       fourthCon.forward();
-      print(fourthCon.value);
+     print(fourthCon.value);
       fourthPosition = 0;
       //fourthCon.reset();
       currentQueue.add(4);
@@ -138,6 +142,13 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
      currentQueue.remove(toRem);
 
   }
+
+  @override
+  void dispose() {
+    firstCon.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -149,10 +160,10 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
         floatingActionButton: FloatingActionButton(
           onPressed: (){
             setState(() {
-              print("Start");
-              print(fourthCon.value);
+             // print("Start");
+            //  print(fourthCon.value);
              // fourthCon.forward();
-              print(fourthCon.value);
+             // print(fourthCon.value);
             });
           },
         ),
@@ -185,6 +196,8 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
                           Stack(
                             children: [
                               AnimatedBuilder(animation: firstCon, builder:(context,_){
+                                print('first');
+                                print(firstCon.value);
                                 return Transform.translate(
                                   offset: Offset(firstPosition*firstCon.value,0),
                                   child: AnimatedContainer(
@@ -199,6 +212,8 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
                                 );
                               },),
                               AnimatedBuilder(animation: secondCon, builder:(context,_){
+                                print('secodn');
+
                                 return Transform.translate(
                                   offset: Offset(secondPosition*secondCon.value,0),
                                   child: AnimatedContainer(
@@ -213,6 +228,8 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
                                 );
                               },),
                               AnimatedBuilder(animation: thirdCon, builder:(context,_){
+                                print('third');
+
                                 return Transform.translate(
                                   offset: Offset(thirdPosition*thirdCon.value,0),
                                   child: AnimatedContainer(
@@ -227,7 +244,9 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
                                 );
                               },),
                               AnimatedBuilder(animation: fourthCon, builder:(context,_){
-                                print(fourthPosition*fourthCon.value);
+                                print('fourth');
+                                // print(fourthCon.value);
+                                //  print(fourthPosition*fourthCon.value);
                                 return Transform.translate(
                                   offset: Offset(fourthPosition*fourthCon.value,0),
                                   child: AnimatedContainer(
@@ -263,7 +282,9 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
                   RaisedButton(
                     onPressed: () {
                       setState(() {
+                        print('clicked');
                         enqueueAnimation();
+                        //print(firstCon.value);
                       });
                     },
                     child: Text('enqueue'),
