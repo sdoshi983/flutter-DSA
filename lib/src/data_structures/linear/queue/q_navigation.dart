@@ -7,146 +7,88 @@ import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
 
 class QueueNavigator extends StatefulWidget {
-
   @override
   _QueueNavigatorState createState() => _QueueNavigatorState();
 }
 
-class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStateMixin{
+class _QueueNavigatorState extends State<QueueNavigator>
+    with TickerProviderStateMixin {
+  int container = 300,slide = 500;
   List toAdd = [4, 3, 2, 1], currentQueue = [];
   Color firstColor = Colors.transparent,
       secondColor = Colors.transparent,
       thirdColor = Colors.transparent,
       fourthColor = Colors.transparent;
-  double firstPosition = 0,secondPosition = 0,thirdPosition = 0,fourthPosition = 0;
-  double first = 1,second =1,third = 1,fourth = 1;
-  double currentPosition = 4;
-  AnimationController firstCon,secondCon,thirdCon,fourthCon;
-  @override
-  void initState() {
-    // TODO: implement initState
-    firstCon = AnimationController(vsync: this,duration: Duration(milliseconds: 500),);
-    secondCon = AnimationController(vsync: this,duration: Duration(milliseconds: 500),);
-    thirdCon = AnimationController(vsync: this,duration: Duration(milliseconds: 500),);
-    fourthCon = AnimationController(vsync: this,duration: Duration(milliseconds: 500),);
-    super.initState();
-    firstCon.reset();
-    secondCon.reset();
-    thirdCon.reset();
-    fourthCon.reset();
-  }
-  void enqueueAnimation(){
-    print('inside');
-    if(currentQueue.length==4){
-      return;
+  double firstFac = 0,secondFac=0,thirdFac = 0,fourthFac = 0;
+  double required = 6;
+  int last = -1;
+  void enqueueAnimation() {
+    if(last==1){
+      firstFac=0;
     }
-    int toPush = toAdd[0];
-    toAdd.remove(toPush);
-    toAdd.add(toPush);
-   // print(toPush);
-    if(toPush==1){
-      print('if');
-      double here = currentPosition-first;
-      firstPosition = 2*here;
-      first = currentPosition;
-      currentPosition--;
-      firstColor = Colors.red;
-     print(firstCon.value);
-     print('ad');
-      firstCon.forward();
-      print(firstCon.value);
-
-      firstPosition = 0;
-      firstCon.reset();
-      currentQueue.add(1);
-
-
+    else if(last==2)secondFac=0;
+    else if(last==3)thirdFac=0;
+    else if(last==4) fourthFac=0;
+    last = -1;
+    if(currentQueue.length==4)return;
+    int here = toAdd[0];
+    toAdd.remove(here);
+    toAdd.add(here);
+    currentQueue.add(here);
+    if(here ==4){
+      fourthColor = Colors.red;
+      fourthFac = required;
     }
-    else if(toPush==2){
-      double here = currentPosition-second;
-      secondPosition = 2*here;
-      second = currentPosition;
-      currentPosition--;
-      secondColor = Colors.blue;
-      secondCon.forward();
-      secondPosition = 0;
-      secondCon.reset();
-      currentQueue.add(2);
+    else if(here ==3){
+      thirdColor=Colors.blue;
+      thirdFac=required;
     }
-    else if(toPush==3){
-      double here = currentPosition-third;
-      thirdPosition = 2*here;
-      third = currentPosition;
-      currentPosition--;
-      thirdColor = Colors.purple;
-      thirdCon.forward();
-      thirdPosition = 0;
-      thirdCon.reset();
-      currentQueue.add(3);
+    else if(here ==2){
+      secondColor = Colors.green;
+      secondFac = required;
     }
-    else if(toPush==4){
-      double here = currentPosition-fourth;
-      fourthPosition = 2*here;
-      fourth = currentPosition;
-      currentPosition--;
-     // print (fourthPosition);
-      fourthColor = Colors.green;
-     print(fourthCon.value);
-      fourthCon.forward();
-     print(fourthCon.value);
-      fourthPosition = 0;
-      //fourthCon.reset();
-      currentQueue.add(4);
+    else if(here == 1){
+      firstColor = Colors.yellow;
+      firstFac = required;
     }
-  }
-
-  void dequeueAnimation(){
-     if(currentQueue.length==0)return;
-     int toRem = currentQueue[0];
-     for(int i=0;i<currentQueue.length;i++){
-       if(currentQueue[i] ==1){
-         first++;
-         if(i==0)firstColor = Colors.transparent;
-         firstPosition = 2;
-         firstCon.forward();
-         firstPosition = 0;
-         firstCon.reset();
-       }
-       else if(currentQueue[i] ==2){
-         second++;
-         if(i==0)secondColor=Colors.transparent;
-         secondPosition = 2;
-         secondCon.forward();
-         secondPosition = 0;
-         secondCon.reset();
-       }
-       else if(currentQueue[i] ==3){
-         third++;
-         if(i==0)thirdColor=Colors.transparent;
-         thirdPosition = 2;
-         thirdCon.forward();
-         thirdPosition=0;
-         thirdCon.reset();
-       }
-       else if(currentQueue[i]==4){
-         fourth++;
-         if(i==0)fourthColor=Colors.transparent;
-         fourthPosition=2;
-
-         fourthCon.forward();
-         fourthPosition =0;
-         fourthCon.reset();
-       }
-     }
-     currentPosition++;
-     currentQueue.remove(toRem);
+    required-=2;
 
   }
 
-  @override
-  void dispose() {
-    firstCon.dispose();
-    super.dispose();
+  void dequeueAnimation() {
+    if(last==1){
+      firstFac=0;
+    }
+    else if(last==2)secondFac=0;
+    else if(last==3)thirdFac=0;
+    else if(last==4) fourthFac=0;
+    last = -1;
+    if(currentQueue.length==0)return;
+    int here = currentQueue[0];
+    for(int i=0;i<currentQueue.length;i++){
+      if(currentQueue[i] ==1){
+        if(i==0)firstColor=Colors.transparent;
+        firstFac+=2;
+      }
+      else if(currentQueue[i]==2){
+        if(i==0)secondColor=Colors.transparent;
+
+        secondFac+=2;
+      }
+      else if(currentQueue[i] ==3){
+        if(i==0)thirdColor=Colors.transparent;
+
+        thirdFac+=2;
+      }
+      else if(currentQueue[i]==4){
+        if(i==0)fourthColor=Colors.transparent;
+
+        fourthFac+=2;
+      }
+    }
+    last=here;
+    required+=2;
+    currentQueue.remove(here);
   }
 
   @override
@@ -157,16 +99,6 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
 
     return BaseTemplate(
       body: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            setState(() {
-             // print("Start");
-            //  print(fourthCon.value);
-             // fourthCon.forward();
-             // print(fourthCon.value);
-            });
-          },
-        ),
         appBar: appBar(context),
         body: Container(
           color: Colors.black,
@@ -180,100 +112,61 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-
                   Container(
-                    height: height * 0.17,
-                    width: width * 0.7,
-                    decoration: BoxDecoration(
-                      border: Border.symmetric(
-                        horizontal: BorderSide(color: Colors.white),
-                        vertical: BorderSide.none,
+                      height: height * 0.17,
+                      width: width * 0.7,
+                      decoration: BoxDecoration(
+                        border: Border.symmetric(
+                          horizontal: BorderSide(color: Colors.white),
+                          vertical: BorderSide.none,
+                        ),
                       ),
-                    ),
-                    child: Center(
-                      child: Row(
-                        children: [
-                          Stack(
-                            children: [
-                              AnimatedBuilder(animation: firstCon, builder:(context,_){
-                                print('first');
-                                print(firstCon.value);
-                                return Transform.translate(
-                                  offset: Offset(firstPosition*firstCon.value,0),
-                                  child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    height: h,
-                                    width: w,
-                                    decoration: BoxDecoration(
-                                      color: firstColor,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  ),
-                                );
-                              },),
-                              AnimatedBuilder(animation: secondCon, builder:(context,_){
-                                print('secodn');
-
-                                return Transform.translate(
-                                  offset: Offset(secondPosition*secondCon.value,0),
-                                  child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    height: h,
-                                    width: w,
-                                    decoration: BoxDecoration(
-                                      color: secondColor,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  ),
-                                );
-                              },),
-                              AnimatedBuilder(animation: thirdCon, builder:(context,_){
-                                print('third');
-
-                                return Transform.translate(
-                                  offset: Offset(thirdPosition*thirdCon.value,0),
-                                  child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    height: h,
-                                    width: w,
-                                    decoration: BoxDecoration(
-                                      color: thirdColor,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  ),
-                                );
-                              },),
-                              AnimatedBuilder(animation: fourthCon, builder:(context,_){
-                                print('fourth');
-                                // print(fourthCon.value);
-                                //  print(fourthPosition*fourthCon.value);
-                                return Transform.translate(
-                                  offset: Offset(fourthPosition*fourthCon.value,0),
-                                  child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    height: h,
-                                    width: w,
-                                    decoration: BoxDecoration(
-                                      color: fourthColor,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  ),
-                                );
-                              },),
-                            ],
-                          ),
-                          SizedBox(width: w),
-                          SizedBox(width: w),
-                          SizedBox(width: w),
-                          SizedBox(width: w),
-                          SizedBox(width: w),
-                          SizedBox(width: w),
-
-                        ],
-                      ),
-
-                    ),
-                  ),
+                      child: Center(
+                        child: Stack(
+                          children: [
+                            AnimatedPositioned(
+                              top: 6,
+                              left: w*firstFac,
+                              child: QueueElement(
+                                color: firstColor,
+                              ),
+                              duration: Duration(
+                                milliseconds: slide,
+                              ),
+                            ),
+                            AnimatedPositioned(
+                              top: 6,
+                              left: secondFac * w,
+                              child: QueueElement(
+                                color: secondColor,
+                              ),
+                              duration: Duration(
+                                milliseconds: slide,
+                              ),
+                            ),
+                            AnimatedPositioned(
+                              top: 6,
+                              left: thirdFac * w,
+                              child: QueueElement(
+                                color: thirdColor,
+                              ),
+                              duration: Duration(
+                                milliseconds:slide,
+                              ),
+                            ),
+                            AnimatedPositioned(
+                              top: 6,
+                              left: fourthFac* w,
+                              child: QueueElement(
+                                color: fourthColor,
+                              ),
+                              duration: Duration(
+                                milliseconds: slide,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )),
                 ],
               ),
               Row(
@@ -294,7 +187,6 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
                       onPressed: () {
                         setState(() {
                           dequeueAnimation();
-
                         });
                       },
                       child: Text('dequeue'),
@@ -314,9 +206,9 @@ class _QueueNavigatorState extends State<QueueNavigator> with TickerProviderStat
 
 class QueueElement extends StatefulWidget {
   Color color;
-  double dx;
-  AnimationController elementController;
-  QueueElement({this.dx, this.color,this.elementController});
+  QueueElement({
+    this.color,
+  });
   @override
   _QueueElementState createState() => _QueueElementState();
 }
@@ -328,19 +220,14 @@ class _QueueElementState extends State<QueueElement> {
     double width = MediaQuery.of(context).size.width;
     double h = height * 0.15, w = width * 0.1;
 
-    return AnimatedBuilder(animation: widget.elementController, builder:(context,_){
-      return Transform.translate(
-        offset: Offset(widget.dx*widget.elementController.value,0),
-        child: AnimatedContainer(
-          duration: Duration(milliseconds: 100),
-          height: h,
-          width: w,
-          decoration: BoxDecoration(
-            color: widget.color,
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-      );
-    },);
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 300),
+      height: h,
+      width: w,
+      decoration: BoxDecoration(
+        color: widget.color,
+        borderRadius: BorderRadius.circular(10),
+      ),
+    );
   }
 }
