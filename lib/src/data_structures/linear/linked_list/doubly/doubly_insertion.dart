@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:widget_arrows/arrows.dart';
 import 'package:widget_arrows/widget_arrows.dart';
 import 'package:dsa_simulation/src/utilities/base_template.dart';
-
 import '../../../../constants.dart';
 
 
@@ -129,7 +128,7 @@ class _DoublyInsertionState extends State<DoublyInsertion> {
                       sourceAnchor: Alignment.bottomCenter,
                       targetAnchor: Alignment.topCenter,
                       color: Colors.white,
-                      arcDirection: ArcDirection.Right,
+                     // arcDirection: ArcDirection.Right,
                       child: Text(
                         'Tail Pointer',
                         style: TextStyle(
@@ -150,7 +149,7 @@ class _DoublyInsertionState extends State<DoublyInsertion> {
                       sourceAnchor: Alignment.bottomLeft,
                       targetAnchor: Alignment.centerLeft,
                       color: Colors.white,
-                      arcDirection: ArcDirection.Left,
+                   //   arcDirection: ArcDirection.Left,
                       child: ArrowElement(
                         id: 'first',
                         targetId: 'second',
@@ -220,7 +219,7 @@ class _DoublyInsertionState extends State<DoublyInsertion> {
                         sourceAnchor: Alignment.bottomRight,
                         targetAnchor: Alignment.centerRight,
                         color: Colors.white,
-                        arcDirection: ArcDirection.Right,
+                      //  arcDirection: ArcDirection.Right,
                         child: AnimatedContainer(
                           duration: Duration(seconds: 1),
                           height: height * 0.05,
