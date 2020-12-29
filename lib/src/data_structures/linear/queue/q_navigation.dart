@@ -97,106 +97,113 @@ class _QueueNavigatorState extends State<QueueNavigator>
     double width = MediaQuery.of(context).size.width;
     double h = height * 0.13, w = width * 0.1;
 
-    return BaseTemplate(
-      body: Scaffold(
-        appBar: appBar(context),
-        body: Container(
-          color: Colors.black,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                'Queue',
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                      height: height * 0.17,
-                      width: width * 0.7,
-                      decoration: BoxDecoration(
-                        border: Border.symmetric(
-                          horizontal: BorderSide(color: Colors.white),
-                          vertical: BorderSide.none,
+    return WillPopScope(
+      onWillPop: ()async{
+        Navigator.pushNamedAndRemoveUntil(context, '/LinearNonLinearPage', (route) => false);
+        path = ['Home','DS'];
+        return true;
+      },
+      child: BaseTemplate(
+        body: Scaffold(
+          appBar: appBar(context),
+          body: Container(
+            color: Colors.black,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  'Queue',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                        height: height * 0.17,
+                        width: width * 0.7,
+                        decoration: BoxDecoration(
+                          border: Border.symmetric(
+                            horizontal: BorderSide(color: Colors.white),
+                            vertical: BorderSide.none,
+                          ),
                         ),
-                      ),
-                      child: Center(
-                        child: Stack(
-                          children: [
-                            AnimatedPositioned(
-                              top: 6,
-                              left: w*firstFac,
-                              child: QueueElement(
-                                color: firstColor,
+                        child: Center(
+                          child: Stack(
+                            children: [
+                              AnimatedPositioned(
+                                top: 6,
+                                left: w*firstFac,
+                                child: QueueElement(
+                                  color: firstColor,
+                                ),
+                                duration: Duration(
+                                  milliseconds: slide,
+                                ),
                               ),
-                              duration: Duration(
-                                milliseconds: slide,
+                              AnimatedPositioned(
+                                top: 6,
+                                left: secondFac * w,
+                                child: QueueElement(
+                                  color: secondColor,
+                                ),
+                                duration: Duration(
+                                  milliseconds: slide,
+                                ),
                               ),
-                            ),
-                            AnimatedPositioned(
-                              top: 6,
-                              left: secondFac * w,
-                              child: QueueElement(
-                                color: secondColor,
+                              AnimatedPositioned(
+                                top: 6,
+                                left: thirdFac * w,
+                                child: QueueElement(
+                                  color: thirdColor,
+                                ),
+                                duration: Duration(
+                                  milliseconds:slide,
+                                ),
                               ),
-                              duration: Duration(
-                                milliseconds: slide,
+                              AnimatedPositioned(
+                                top: 6,
+                                left: fourthFac* w,
+                                child: QueueElement(
+                                  color: fourthColor,
+                                ),
+                                duration: Duration(
+                                  milliseconds: slide,
+                                ),
                               ),
-                            ),
-                            AnimatedPositioned(
-                              top: 6,
-                              left: thirdFac * w,
-                              child: QueueElement(
-                                color: thirdColor,
-                              ),
-                              duration: Duration(
-                                milliseconds:slide,
-                              ),
-                            ),
-                            AnimatedPositioned(
-                              top: 6,
-                              left: fourthFac* w,
-                              child: QueueElement(
-                                color: fourthColor,
-                              ),
-                              duration: Duration(
-                                milliseconds: slide,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  RaisedButton(
-                    onPressed: () {
-                      setState(() {
-                        print('clicked');
-                        enqueueAnimation();
-                        //print(firstCon.value);
-                      });
-                    },
-                    child: Text('enqueue'),
-                    color: kThemeColor,
-                  ),
-                  RaisedButton(
+                            ],
+                          ),
+                        )),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    RaisedButton(
                       onPressed: () {
                         setState(() {
-                          dequeueAnimation();
+                          print('clicked');
+                          enqueueAnimation();
+                          //print(firstCon.value);
                         });
                       },
-                      child: Text('dequeue'),
-                      color: kThemeColor),
-                ],
-              ),
-              Container(
-                height: height * 0.3,
-              ),
-            ],
+                      child: Text('enqueue'),
+                      color: kThemeColor,
+                    ),
+                    RaisedButton(
+                        onPressed: () {
+                          setState(() {
+                            dequeueAnimation();
+                          });
+                        },
+                        child: Text('dequeue'),
+                        color: kThemeColor),
+                  ],
+                ),
+                Container(
+                  height: height * 0.3,
+                ),
+              ],
+            ),
           ),
         ),
       ),

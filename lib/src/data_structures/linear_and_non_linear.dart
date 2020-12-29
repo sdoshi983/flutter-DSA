@@ -12,21 +12,108 @@ class LinearNonLinearPage extends StatefulWidget {
 }
 
 class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
+  double initialHeight = 0.2, finalHeight = 0.4;
   @override
   void dispose() {
     // removeLast();
     super.dispose();
   }
 
+  int currentStep = 0;
+  goto(int step) {
+    setState(() {
+      currentStep = step;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    List<Step> steps = [
+      Step(
+        title: Text(
+          'Linear',
+          style: TextStyle(color: Colors.white54),
+        ),
+        //  state: StepState.disabled,
+        content: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
 
+                Navigator.of(context).pushReplacementNamed('/ArrayPageView');
+                path.add('Array');
+              },
+              child: Center(
+                child: Text(
+                  'Array',
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+
+                Navigator.of(context).pushReplacementNamed('/QueueNavigationPage');
+                path.add('Queue');
+              },
+              child: Center(
+                child: Text(
+                  'Queue',
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+
+                Navigator.of(context).pushReplacementNamed('/LinkedListMainPage');
+                path.add('Linked List');
+              },
+              child: Center(
+                child: Text(
+                  'Linked List',
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+
+                Navigator.of(context).pushReplacementNamed('/StackIntroduction');
+                path.add('Stack');
+              },
+              child: Center(
+                child: Text(
+                  'Stack',
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      Step(
+        // state: StepState.editing,
+
+        title: Text(
+          'Non Linear',
+          style: TextStyle(color: Colors.white54),
+        ),
+        content: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {},
+              child: Center(
+                child: Text(
+                  'Tree',
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ];
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushNamedAndRemoveUntil(context, '/Home', (route) => false);
-        //   Navigator.pushNamed(context, '/Home');
         path = ['Home'];
         return true;
       },
@@ -40,27 +127,19 @@ class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
             width: width,
             color: Colors.black,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(
-                  height: height * 0.3,
+                Expanded(
+                  child: Stepper(
+                    currentStep: currentStep,
+                    onStepTapped: (step) {
+                      setState(() {
+                        goto(step);
+                      });
+                    },
+                    steps: steps,
+                  ),
                 ),
-                Tiles(
-                  onPress: () {
-                    addElement('Linear');
-                    Navigator.of(context).pushNamed('/LinearDS');
-                  },
-                  title: 'Linear',
-                ),
-                SizedBox(
-                  height: height * 0.05,
-                ),
-                Tiles(
-                  title: 'Non-Linear',
-                  onPress: () {
-                    //remaining
-                  },
-                )
               ],
             ),
           ),
