@@ -61,22 +61,50 @@ class _HomePageState extends State<HomePage> {
                     title: ' ',
                     imagePath: 'assets/images/ds.jpeg',
                   ),
-                  bottomCardWidget: ListView.builder(
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 15.0),
-                        child: Center(
-                          child: Text(
-                            data[index],
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline6
-                                .copyWith(color: Colors.black),
+                  bottomCardWidget: Container(
+                    width: width*0.35,
+                    child: ListView.builder(
+                      itemBuilder: (BuildContext context, int index) {
+                        return SizedBox(
+                          width: width*0.4,
+                          child: ElevatedButton(
+                            onPressed: (){
+                              setState(() {
+
+                                if(data[index] == 'Array'){
+                                  Navigator.of(context).pushReplacementNamed('/ArrayPageView');
+                                  path.add('Array');
+                                }
+                                else if(data[index] == 'Linked List'){
+                                  Navigator.of(context).pushReplacementNamed('/LinkedListMainPage');
+                                  path.add('Linked List');
+                                }
+                                else if(data[index] == 'Queue'){
+                                  Navigator.of(context).pushReplacementNamed('/QueueNavigationPage');
+                                  path.add('Queue');
+                                }
+                                else if(data[index] == 'Stack'){
+                                  Navigator.of(context).pushReplacementNamed('/StackIntroduction');
+                                  path.add('Stack');
+                                }
+
+                              });
+
+                            },
+                            child: Center(
+                              child: Text(
+                                data[index],
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    .copyWith(color: Colors.black),
+                              ),
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                    itemCount: 4,
+                        );
+                      },
+                      itemCount: 4,
+                    ),
                   ),
                 ),
                 SizedBox(
