@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                     onPress: () {
                       addElement('DS');
                       Navigator.of(context)
-                          .pushNamed('/LinearNonLinearPage');
+                          .pushReplacementNamed('/LinearNonLinearPage');
                     },
                     title: ' ',
                     imagePath: 'assets/images/ds.jpeg',
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                     onPress: () {
                       addElement('ALGO');
                       Navigator.of(context)
-                          .pushNamed('/LinearNonLinearPage');
+                          .pushReplacementNamed('/LinearNonLinearPage');
                     },
                     imagePath: 'assets/images/algo.jpeg',
                     title: 'ALGO',
