@@ -33,11 +33,20 @@ class _AddressBarState extends State<AddressBar> {
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              print("ok");
-              int len = path.length - 1;
-              int curr = index;
-              print(len - curr);
-              popping(len - curr <= 0 ? 1 : len - curr + 1, context);
+              setState(() {
+                if (path[index] == 'Home') {
+                  Navigator.pushNamedAndRemoveUntil(context, '/Home', (route) => false);
+               //   Navigator.pushNamed(context, '/Home');
+                  path = ['Home'];
+                  print('in');
+                } else {
+                  print("ok");
+                  int len = path.length - 1;
+                  int curr = index;
+                  print(len - curr);
+                  popping(len - curr <= 0 ? 1 : len - curr + 1, context);
+                }
+              });
             },
             child: Text(
               path[index],

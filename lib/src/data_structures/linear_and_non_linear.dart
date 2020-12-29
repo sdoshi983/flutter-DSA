@@ -5,56 +5,64 @@ import 'package:dsa_simulation/src/utilities/base_template.dart';
 
 import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
 import 'package:dsa_simulation/src/constants.dart';
+
 class LinearNonLinearPage extends StatefulWidget {
   @override
   _LinearNonLinearPageState createState() => _LinearNonLinearPageState();
 }
 
 class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
-
   @override
   void dispose() {
-
-    removeLast();
+    // removeLast();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    return BaseTemplate(
-      body: Scaffold(
-      //  drawer: DrawerWidget(),
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pushNamedAndRemoveUntil(context, '/Home', (route) => false);
+        //   Navigator.pushNamed(context, '/Home');
+        path = ['Home'];
+        return true;
+      },
+      child: BaseTemplate(
+        body: Scaffold(
+          //  drawer: DrawerWidget(),
 
-        appBar: appBar(context),
-        body: Container(
-          height: height,
-          width: width,
-          color: Colors.black,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: height * 0.3,
-              ),
-              Tiles(
-                onPress: () {
-                  addElement('Linear');
-                  Navigator.of(context).pushNamed('/LinearDS');
-                },
-                title: 'Linear',
-              ),
-              SizedBox(
-                height: height * 0.05,
-              ),
-              Tiles(
-                title: 'Non-Linear',
-                onPress: () {
-                  //remaining
-                },
-              )
-            ],
+          appBar: appBar(context),
+          body: Container(
+            height: height,
+            width: width,
+            color: Colors.black,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: height * 0.3,
+                ),
+                Tiles(
+                  onPress: () {
+                    addElement('Linear');
+                    Navigator.of(context).pushNamed('/LinearDS');
+                  },
+                  title: 'Linear',
+                ),
+                SizedBox(
+                  height: height * 0.05,
+                ),
+                Tiles(
+                  title: 'Non-Linear',
+                  onPress: () {
+                    //remaining
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),
