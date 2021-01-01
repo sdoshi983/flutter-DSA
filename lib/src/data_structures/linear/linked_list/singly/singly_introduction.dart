@@ -251,7 +251,7 @@ class _SinglyIntroductionState extends State<SinglyIntroduction> {
                 right: width * 0.35,
                 top: height * 0.25,
                 child: AnimatedContainer(
-                  duration: Duration(seconds: 500),
+                  duration: Duration(milliseconds: 500),
                   height: height * 0.05,
                   width: width * 0.3,
                   child: Center(
