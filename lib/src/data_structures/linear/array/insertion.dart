@@ -106,11 +106,11 @@ class _ArrayInsertState extends State<ArrayInsert>
 
   void forwardAnimation() {
     if (currentState == 0) {
-      print('Height $heightFactor');
+    //  print('Height $heightFactor');
       heightFactor = 0.35;
       lastElementColor = Colors.white60;
 
-      print('I am here $heightFactor');
+   //   print('I am here $heightFactor');
     } else if (currentState == 1) {
       newElementText = 'New';
       newElementColor = Colors.cyan;

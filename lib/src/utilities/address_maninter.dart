@@ -38,12 +38,12 @@ class _AddressBarState extends State<AddressBar> {
                   Navigator.pushNamedAndRemoveUntil(context, '/Home', (route) => false);
                //   Navigator.pushNamed(context, '/Home');
                   path = ['Home'];
-                  print('in');
+                 // print('in');
                 } else {
-                  print("ok");
+                //  print("ok");
                   int len = path.length - 1;
                   int curr = index;
-                  print(len - curr);
+           //       print(len - curr);
                   popping(len - curr <= 0 ? 1 : len - curr + 1, context);
                 }
               });
