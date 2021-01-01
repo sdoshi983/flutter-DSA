@@ -181,7 +181,7 @@ class _QueueNavigatorState extends State<QueueNavigator>
                     RaisedButton(
                       onPressed: () {
                         setState(() {
-                          print('clicked');
+             //             print('clicked');
                           enqueueAnimation();
                           //print(firstCon.value);
                         });

@@ -33,12 +33,12 @@ class _BaseTemplateState extends State<BaseTemplate>
   void _onDragStart(DragStartDetails details) {
     bool fromLeft =
         baseController.isDismissed && details.globalPosition.dx < 200;
-    print(details.globalPosition.dx);
+  //  print(details.globalPosition.dx);
     bool fromRigth =
         (baseController.isDismissed || baseController.isCompleted) &&
             details.globalPosition.dx > 100;
-    print(fromRigth);
-    print(fromLeft);
+  //  print(fromRigth);
+   // print(fromLeft);
     _canBeDragged = fromLeft || fromRigth;
   }
 

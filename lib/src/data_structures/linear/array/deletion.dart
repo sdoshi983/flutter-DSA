@@ -79,7 +79,7 @@ class _ArrayDeleteState extends State<ArrayDelete>
         );
       }
     } else if (currentState == 1) {
-      print('Controller');
+  //    print('Controller');
       _controller.forward();
     } else if (currentState == 2) {
       delElementColor = Colors.transparent;
