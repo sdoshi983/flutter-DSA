@@ -13,10 +13,11 @@ class _LinkedListMainPageState extends State<LinkedListMainPage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    path = ['Home','DS','Linked List'];
+
     return WillPopScope(
       onWillPop: ()async{
         Navigator.pushNamedAndRemoveUntil(context, '/LinearNonLinearPage', (route) => false);
-        path = ['Home','DS'];
         return true;
       },
       child: BaseTemplate(

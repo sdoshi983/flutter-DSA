@@ -28,6 +28,7 @@ class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
 
   @override
   Widget build(BuildContext context) {
+    path = ['Home','DS'];
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     List<Step> steps = [
