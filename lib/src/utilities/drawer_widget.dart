@@ -1,4 +1,5 @@
 import 'package:dsa_simulation/src/constants.dart';
+import 'package:dsa_simulation/src/utilities/address_maninter.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_animated/auto_animated.dart';
 
@@ -12,15 +13,16 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   String networkImageUrl = "https://cdn.logo.com/hotlink-ok/logo-social.png";
   bool dataStructures = false;
 
-
-
   List<ReusableExpansionPanelList> mainList = [
     ReusableExpansionPanelList(
       text: "Data Structures",
       isExpanded: false,
       routeName: "/LinearNonLinearPage",
       alignment: -1,
-      child: LiveListOptions(itemCount: 2, list: dataStructuresList,),
+      child: LiveListOptions(
+        itemCount: 2,
+        list: dataStructuresList,
+      ),
     ),
     ReusableExpansionPanelList(
       text: "Algorithms",
@@ -34,13 +36,17 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     ReusableExpansionPanelList(
       text: "  Linear",
       isExpanded: false,
-      routeName: "/LinearDS",
+      routeName: "/LinearNonLinearPage",
       alignment: -0.7,
-      child: LiveListOptions(itemCount: 4, list: linearList,),
+      child: LiveListOptions(
+        itemCount: 4,
+        list: linearList,
+      ),
     ),
     ReusableExpansionPanelList(
       text: "  Non Linear",
       isExpanded: false,
+      routeName: '/LinearNonLinearPage',
       alignment: -0.7,
       child: Container(),
     ),
@@ -57,7 +63,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     ReusableExpansionPanelList(
       text: "    Stack",
       isExpanded: false,
-      routeName: '/StackMainPage',
+      routeName: '/StackIntroduction',
       alignment: -0.5,
       child: Container(),
     ),
@@ -66,15 +72,16 @@ class _DrawerWidgetState extends State<DrawerWidget> {
       isExpanded: false,
       alignment: -0.5,
       child: Container(),
+      routeName: '/QueueNavigationPage',
     ),
     ReusableExpansionPanelList(
       text: "    Linked List",
       isExpanded: false,
       alignment: -0.5,
       child: Container(),
+      routeName: '/LinkedListMainPage',
     ),
   ];
-  
 
   @override
   Widget build(BuildContext context) {
@@ -88,8 +95,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: SingleChildScrollView(
-
-            child: Column(  
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: height * 0.07),
@@ -133,7 +139,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 SizedBox(
                   height: height * 0.02,
                 ),
-                SingleChildScrollView(child: LiveListOptions(itemCount: 2, list: mainList,)),
+                SingleChildScrollView(
+                    child: LiveListOptions(
+                  itemCount: 2,
+                  list: mainList,
+                )),
               ],
             ),
           ),
@@ -165,8 +175,13 @@ class _ReusableExpansionPanelListState
       data: Theme.of(context).copyWith(cardColor: Colors.black),
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).pop();
-          Navigator.pushNamed(context, widget.routeName);
+          setState(() {
+            Navigator.pushNamedAndRemoveUntil(
+                context, widget.routeName, (route) => false);
+          });
+          // Navigator.of(context).pop();
+
+          // Navigator.pushNamed(context, widget.routeName);
         },
         child: ExpansionPanelList(
           expansionCallback: (int index, bool isExpanded) {
@@ -205,7 +220,6 @@ class LiveListOptions extends StatefulWidget {
 }
 
 class _LiveListOptionsState extends State<LiveListOptions> {
-
   final options = LiveOptions(
     // Start animation after (default zero)
     delay: Duration(milliseconds: 1),
@@ -232,8 +246,8 @@ class _LiveListOptionsState extends State<LiveListOptions> {
         shrinkWrap: true,
         options: options,
         itemCount: widget.itemCount,
-        itemBuilder: (BuildContext context, int index,
-            Animation<double> animation) {
+        itemBuilder:
+            (BuildContext context, int index, Animation<double> animation) {
           return FadeTransition(
             opacity: Tween<double>(
               begin: 0,

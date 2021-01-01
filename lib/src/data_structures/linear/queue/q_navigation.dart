@@ -1,9 +1,9 @@
+import 'package:dsa_simulation/src/utilities/address_maninter.dart';
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/src/utilities/base_template.dart';
 
 import 'package:dsa_simulation/src/constants.dart';
-import 'package:dsa_simulation/src/Utilities/animation_helper.dart';
-import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
+import 'package:dsa_simulation/src/Utilities/address_maninter.dart' as add;
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
 
 class QueueNavigator extends StatefulWidget {
@@ -93,6 +93,8 @@ class _QueueNavigatorState extends State<QueueNavigator>
 
   @override
   Widget build(BuildContext context) {
+  //  print('Inside build');
+    add.path = ['Home','DS','Queue'];
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     double h = height * 0.13, w = width * 0.1;
@@ -100,7 +102,7 @@ class _QueueNavigatorState extends State<QueueNavigator>
     return WillPopScope(
       onWillPop: ()async{
         Navigator.pushNamedAndRemoveUntil(context, '/LinearNonLinearPage', (route) => false);
-        path = ['Home','DS'];
+
         return true;
       },
       child: BaseTemplate(

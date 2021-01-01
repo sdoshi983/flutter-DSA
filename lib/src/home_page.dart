@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-
+    path = ['Home'];
     return BaseTemplate(
       body: Scaffold(
         //  drawer: DrawerWidget(),
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: 20,
                   topCardWidget: MainButton(
                     onPress: () {
-                      addElement('DS');
+                   addElement('DS');
                       Navigator.of(context)
                           .pushReplacementNamed('/LinearNonLinearPage');
                     },
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: 20,
                   topCardWidget: MainButton(
                     onPress: () {
-                      addElement('ALGO');
+                     addElement('ALGO');
                       Navigator.of(context)
                           .pushReplacementNamed('/LinearNonLinearPage');
                     },
