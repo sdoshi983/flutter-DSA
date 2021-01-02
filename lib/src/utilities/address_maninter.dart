@@ -6,7 +6,7 @@ void addElement(String addMe) {
 }
 
 void removeLast() {
- // path.removeLast();
+ path.removeLast();
 }
 
 List pathFinder(String ele) {
@@ -49,8 +49,10 @@ class _AddressBarState extends State<AddressBar> {
     return Container(
       width: w * 0.8,
       child: ListView.separated(
+        itemCount:path.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
+          print(index);
           return GestureDetector(
             onTap: () {
               setState(() {
@@ -84,7 +86,15 @@ class _AddressBarState extends State<AddressBar> {
                   Navigator.pushNamedAndRemoveUntil(
                       context, '/StackIntroduction', (route) => false);
                   path = ['Home', 'DS', 'Stack'];
-                } else {
+                }
+                else if(path[index] == 'Singly'){
+                  Navigator.pushNamedAndRemoveUntil(context, '/SinglyMainPage', (route) => false);
+
+                }
+                else if(path[index] == 'Doubly'){
+                  Navigator.pushNamedAndRemoveUntil(context, '/DoublyMainPage', (route) => false);
+                }
+                else {
                   //  print("ok");
                   int len = path.length - 1;
                   int curr = index;
@@ -101,7 +111,7 @@ class _AddressBarState extends State<AddressBar> {
         separatorBuilder: (BuildContext context, int index) {
           return Text(' > ');
         },
-        itemCount: path.length,
+      //  itemCount: path.length,
       ),
     );
   }

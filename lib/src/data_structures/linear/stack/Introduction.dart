@@ -35,8 +35,7 @@ class _StackIntroductionState extends State<StackIntroduction> with TickerProvid
   }
 
   @override
-  void dispose() {
-    removeLast();
+  void dispose() {removeLast();
     firstController.dispose();
     secondController.dispose();
     thirdController.dispose();
