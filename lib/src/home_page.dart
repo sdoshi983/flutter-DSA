@@ -26,12 +26,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
+  @override
+  void initState() {
+    path = ['Home'];
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home'];
+  //  path = ['Home'];
     return BaseTemplate(
       body: Scaffold(
         //  drawer: DrawerWidget(),
@@ -72,9 +77,11 @@ class _HomePageState extends State<HomePage> {
                               setState(() {
 
                                 if(data[index] == 'Array'){
-                                //  Navigator.of(context).pushReplacementNamed('/ArrayPageView');
+                                  print('array');
+                               //   path = ['Home','DS','Array'];
+
+                                  //  Navigator.of(context).pushReplacementNamed('/ArrayPageView');
                                   Navigator.pushNamedAndRemoveUntil(context, '/ArrayPageView', (route) => false);
-                                  path = ['Home','DS','Array'];
                                   //     path.add('Array');
                                 }
                                 else if(data[index] == 'Linked List'){

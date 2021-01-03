@@ -2,31 +2,11 @@ import 'package:flutter/material.dart';
 
 List<String> path = ['Home'];
 void addElement(String addMe) {
-  path.add(addMe);
+ // path.add(addMe);
 }
 
 void removeLast() {
- path.removeLast();
-}
-
-List pathFinder(String ele) {
-  if (ele == '/Home') {
-    path = ['Home'];
-    // print('in');
-  } else if (ele == '/LinearNonLinearPage') {
-    path = ['Home', 'DS'];
-  } else if (ele == 'Algo') {
-    path = ['Home', 'Algo'];
-  } else if (ele == '/ArrayPageView') {
-    path = ['Home', 'DS', 'Array'];
-  } else if (ele == '/QueueNavigationPage') {
-    path = ['Home', 'DS', 'Queue'];
-  } else if (ele == '/LinkedListMainPage') {
-    path = ['Home', 'DS', 'Linked List'];
-  } else if (ele == '/StackIntroduction') {
-    path = ['Home', 'DS', 'Stack'];
-  }
-  return path;
+ //path.removeLast();
 }
 
 class AddressBar extends StatefulWidget {
@@ -42,7 +22,12 @@ class _AddressBarState extends State<AddressBar> {
       return count == cnt;
     });
   }
-
+@override
+  void initState() {
+    print(path);
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -94,17 +79,11 @@ class _AddressBarState extends State<AddressBar> {
                 else if(path[index] == 'Doubly'){
                   Navigator.pushNamedAndRemoveUntil(context, '/DoublyMainPage', (route) => false);
                 }
-                else {
-                  //  print("ok");
-                  int len = path.length - 1;
-                  int curr = index;
-                  //       print(len - curr);
-                  popping(len - curr <= 0 ? 1 : len - curr + 1, context);
-                }
+
               });
             },
             child: Text(
-              path[index],
+              index>=path.length?"ERROR":path[index],
             ),
           );
         },
