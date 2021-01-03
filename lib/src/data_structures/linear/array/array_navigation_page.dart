@@ -19,6 +19,12 @@ class _ArrayNavigatorState extends State<ArrayNavigator> {
     //removeLast();
     super.dispose();
   }
+  @override
+  void initState() {
+    path = ['Home','DS','Array'];
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
