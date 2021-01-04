@@ -101,7 +101,10 @@ class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
         content: Column(
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed('/TreeMain');
+
+              },
               child: Center(
                 child: Text(
                   'Tree',
