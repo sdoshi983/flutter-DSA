@@ -13,8 +13,8 @@ class DoublyIntroduction extends StatefulWidget {
 
 class _DoublyIntroductionState extends State<DoublyIntroduction> {
   double arrowOpacity = 0;
-
-  double animationState = 0;
+  double firstChildOpacity=0, secondChildOpacity=1;
+  double animationState = -1;
   double firstBackArrowOpacity = 0;
   double secondBackArrowOpacity = 0;
   double thirdBackArrowOpacity = 0;
@@ -23,7 +23,11 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
   AlignmentGeometry secondSourceFrontArrow = Alignment.centerRight;
   AlignmentGeometry secondTargetArrow = Alignment.centerLeft;
   void forward() {
-    if(animationState == 0)
+    if(animationState == -1){
+      firstChildOpacity = 1;
+      secondChildOpacity = 0;
+    }
+    else if(animationState == 0)
       firstBackArrowOpacity = 1;
     else if(animationState == 1) {
       firstSourceFrontArrow = Alignment.topRight;
@@ -52,7 +56,10 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
       firstBackArrowOpacity = 0;
 
     }
-
+    else if(animationState == 0){
+      firstChildOpacity = 0;
+      secondChildOpacity = 1;
+    }
     animationState--;
   }
 
@@ -63,210 +70,233 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
     return ArrowContainer(
       child: Scaffold(
         appBar: appBar(context),
-        body: Container(
-          color: Colors.black,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                'Introduction to Doubly Linked List',
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              SizedBox(
-                //height: height * 0.01,
-                //width: double.infinity,
-              ),
-              Row(
-                children: [
-                  SizedBox(width: width * 0.073,),
-                  ArrowElement(
-                    id: 'headPointer',
-                    targetId: 'first',
-                    sourceAnchor: Alignment.bottomCenter,
-                    targetAnchor: Alignment.topCenter,
-                    color: Colors.white,
-                    child: Text(
-                      'Head Pointer',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: height * 0.02
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: width * 0.43,),
-                  ArrowElement(
-                    id: 'tailPointer',
-                    targetId: 'third',
-                    sourceAnchor: Alignment.bottomCenter,
-                    targetAnchor: Alignment.topCenter,
-                    color: Colors.white,
-                    arcDirection: ArcDirection.Right,
-                    child: Text(
-                      'Tail Pointer',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: height * 0.02
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: height * 0.01,),
-              Row(
+        body: Stack(
+          children: [
+            Container(
+              color: Colors.black,
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ArrowElement(
-                    id: 'firstBack',
-                    targetId: 'null',
-                    sourceAnchor: Alignment.bottomLeft,
-                    targetAnchor: Alignment.centerLeft,
-                    color: Colors.white.withOpacity(firstBackArrowOpacity),
-                    arcDirection: ArcDirection.Left,
-                    child: ArrowElement(
-                      id: 'first',
-                      targetId: 'second',
-                      sourceAnchor: firstSourceFrontArrow,
-                      targetAnchor: firstTargetArrow,
-                      color: Colors.white,
-                      child: AnimatedContainer(
-                        duration: Duration(seconds: 1),
-                        height: height * 0.05,
-                        width: width * 0.2,
-                        child: Center(
-                            child: Text(
-                              'Data',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )),
-                        decoration: BoxDecoration(
-                          color: Colors.green,
-                          //borderRadius: BorderRadius.circular(20),
+                  Text(
+                    'Introduction to Doubly Linked List',
+                    style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.white.withOpacity(firstChildOpacity)),
+                  ),
+                  SizedBox(
+                    //height: height * 0.01,
+                    //width: double.infinity,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(width: width * 0.073,),
+                      ArrowElement(
+                        id: 'headPointer',
+                        targetId: 'first',
+                        sourceAnchor: Alignment.bottomCenter,
+                        targetAnchor: Alignment.topCenter,
+                        color: Colors.white.withOpacity(firstChildOpacity),
+                        child: Text(
+                          'Head Pointer',
+                          style: TextStyle(
+                              color: Colors.white.withOpacity(firstChildOpacity),
+                              fontSize: height * 0.02
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  ArrowElement(
-                    id: 'secondBack',
-                    targetId: 'first',
-                    color: Colors.white.withOpacity(secondBackArrowOpacity),
-                    sourceAnchor: Alignment.bottomLeft,
-                    targetAnchor: Alignment.bottomRight,
-                    child: ArrowElement(
-                      id: 'second',
-                      targetId: 'third',
-                      sourceAnchor: secondSourceFrontArrow,
-                      targetAnchor: secondTargetArrow,
-                      color: Colors.white,
-                      child: AnimatedContainer(
-                        duration: Duration(milliseconds: 200),
-                        height: height * 0.05,
-                        width: width * 0.2,
-                        child: Center(
-                            child: Text(
-                              'Data',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-
-                              ),
-                            )),
-                        decoration: BoxDecoration(
-                          color: Colors.yellow,
-                          //borderRadius: BorderRadius.circular(20),
+                      SizedBox(width: width * 0.43,),
+                      ArrowElement(
+                        id: 'tailPointer',
+                        targetId: 'third',
+                        sourceAnchor: Alignment.bottomCenter,
+                        targetAnchor: Alignment.topCenter,
+                        color: Colors.white.withOpacity(firstChildOpacity),
+                        arcDirection: ArcDirection.Right,
+                        child: Text(
+                          'Tail Pointer',
+                          style: TextStyle(
+                              color: Colors.white.withOpacity(firstChildOpacity),
+                              fontSize: height * 0.02
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  ArrowElement(
-                    id: 'thirdBack',
-                    targetId: 'second',
-                    sourceAnchor: Alignment.bottomLeft,
-                    targetAnchor: Alignment.bottomRight,
-                    color: Colors.white.withOpacity(thirdBackArrowOpacity),
-                    child: ArrowElement(
-                      id: 'third',
-                      targetId: 'null',
-                      sourceAnchor: Alignment.bottomRight,
-                      targetAnchor: Alignment.centerRight,
-                      color: Colors.white,
-                      arcDirection: ArcDirection.Right,
-                      child: AnimatedContainer(
-                        duration: Duration(seconds: 1),
-                        height: height * 0.05,
-                        width: width * 0.2,
-                        child: Center(
-                            child: Text(
-                              'Data',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-
-                              ),
-                            )),
-                        decoration: BoxDecoration(
-                          color: Colors.cyan,
-                          //borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                ],
-              ),
-              Row(
-                children: [
-                  SizedBox(width: width * 0.45, height: height * 0.1,),
-                  ArrowElement(
-                    id: 'null',
-                    color: Colors.white,
-                    child: AnimatedContainer(
-                      duration: Duration(milliseconds: 100),
-                      height: height * 0.05,
-                      width: width * 0.1,
-                      child: Center(
-                          child: Text(
-                            'Null',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: height * 0.03,
+                  SizedBox(height: height * 0.01,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ArrowElement(
+                        id: 'firstBack',
+                        targetId: 'null',
+                        sourceAnchor: Alignment.bottomLeft,
+                        targetAnchor: Alignment.centerLeft,
+                        color: Colors.white.withOpacity(firstBackArrowOpacity),
+                        arcDirection: ArcDirection.Left,
+                        child: ArrowElement(
+                          id: 'first',
+                          targetId: 'second',
+                          sourceAnchor: firstSourceFrontArrow,
+                          targetAnchor: firstTargetArrow,
+                          color: Colors.white.withOpacity(firstChildOpacity),
+                          child: AnimatedContainer(
+                            duration: Duration(seconds: 1),
+                            height: height * 0.05,
+                            width: width * 0.2,
+                            child: Center(
+                                child: Text(
+                                  'Data',
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(firstChildOpacity),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )),
+                            decoration: BoxDecoration(
+                              color: Colors.green.withOpacity(firstChildOpacity),
+                              //borderRadius: BorderRadius.circular(20),
                             ),
-                          )),
+                          ),
+                        ),
+                      ),
+                      ArrowElement(
+                        id: 'secondBack',
+                        targetId: 'first',
+                        color: Colors.white.withOpacity(secondBackArrowOpacity),
+                        sourceAnchor: Alignment.bottomLeft,
+                        targetAnchor: Alignment.bottomRight,
+                        child: ArrowElement(
+                          id: 'second',
+                          targetId: 'third',
+                          sourceAnchor: secondSourceFrontArrow,
+                          targetAnchor: secondTargetArrow,
+                          color: Colors.white.withOpacity(firstChildOpacity),
+                          child: AnimatedContainer(
+                            duration: Duration(milliseconds: 200),
+                            height: height * 0.05,
+                            width: width * 0.2,
+                            child: Center(
+                                child: Text(
+                                  'Data',
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(firstChildOpacity),
+                                    fontWeight: FontWeight.bold,
 
-                    ),
+                                  ),
+                                )),
+                            decoration: BoxDecoration(
+                              color: Colors.yellow.withOpacity(firstChildOpacity),
+                              //borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                        ),
+                      ),
+                      ArrowElement(
+                        id: 'thirdBack',
+                        targetId: 'second',
+                        sourceAnchor: Alignment.bottomLeft,
+                        targetAnchor: Alignment.bottomRight,
+                        color: Colors.white.withOpacity(thirdBackArrowOpacity),
+                        child: ArrowElement(
+                          id: 'third',
+                          targetId: 'null',
+                          sourceAnchor: Alignment.bottomRight,
+                          targetAnchor: Alignment.centerRight,
+                          color: Colors.white.withOpacity(firstChildOpacity),
+                          arcDirection: ArcDirection.Right,
+                          child: AnimatedContainer(
+                            duration: Duration(seconds: 1),
+                            height: height * 0.05,
+                            width: width * 0.2,
+                            child: Center(
+                                child: Text(
+                                  'Data',
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(firstChildOpacity),
+                                    fontWeight: FontWeight.bold,
+
+                                  ),
+                                )),
+                            decoration: BoxDecoration(
+                              color: Colors.cyan.withOpacity(firstChildOpacity),
+                              //borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                    ],
                   ),
+                  Row(
+                    children: [
+                      SizedBox(width: width * 0.45, height: height * 0.1,),
+                      ArrowElement(
+                        id: 'null',
+                        color: Colors.white.withOpacity(firstChildOpacity),
+                        child: AnimatedContainer(
+                          duration: Duration(milliseconds: 100),
+                          height: height * 0.05,
+                          width: width * 0.1,
+                          child: Center(
+                              child: Text(
+                                'Null',
+                                style: TextStyle(
+                                  color: Colors.white.withOpacity(firstChildOpacity),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: height * 0.03,
+                                ),
+                              )),
+
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      RaisedButton(
+                        onPressed: () {
+                          setState(() {
+                            reverse();
+                          });
+                        },
+                        child: Icon(Icons.backspace_sharp),
+                        color: kThemeColor,
+                      ),
+                      RaisedButton(
+                        onPressed: () {
+                          setState(() {
+                            forward();
+                          });
+                        },
+                        child: Icon(Icons.forward),
+                        color: kThemeColor,
+                      ),
+                    ],
+                  ),
+                  Container(
+                    height: height * 0.3,
+                  )
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  RaisedButton(
-                    onPressed: () {
-                      setState(() {
-                        reverse();
-                      });
-                    },
-                    child: Icon(Icons.backspace_sharp),
-                    color: kThemeColor,
+            ),
+            Positioned(
+              right: width * 0.35,
+              top: height * 0.25,
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 500),
+                height: height * 0.05,
+                width: width * 0.3,
+                child: Center(
+                  child: Text(
+                    'Let\'s Dive',
+                    style: TextStyle(color: Colors.white.withOpacity(secondChildOpacity), fontSize: height * 0.02),
                   ),
-                  RaisedButton(
-                    onPressed: () {
-                      setState(() {
-                        forward();
-                      });
-                    },
-                    child: Icon(Icons.forward),
-                    color: kThemeColor,
-                  ),
-                ],
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.red.withOpacity(secondChildOpacity),
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
-              Container(
-                height: height * 0.3,
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
