@@ -10,6 +10,7 @@ import 'package:dsa_simulation/src/data_structures/linear/linked_list/doubly/dou
 import 'package:dsa_simulation/src/data_structures/linear/linked_list/doubly/doubly_main_page.dart';
 import 'package:dsa_simulation/src/data_structures/linear/queue/q_navigation.dart';
 import 'package:dsa_simulation/src/data_structures/linear_and_non_linear.dart';
+import 'package:dsa_simulation/src/data_structures/non_linear/trees/tree_main.dart';
 import 'package:dsa_simulation/src/home_page.dart';
 import 'src/data_structures/linear/linear.dart';
 import 'src/Data_Structures/Linear/array/array_navigation_page.dart';
@@ -23,6 +24,8 @@ class RouteGenerator {
     switch (settings.name) {
       case '/Home':
         return reusablePageRouteBuilder(HomePage());
+      case '/TreeMain':
+        return reusablePageRouteBuilder(TreeMainScreen());
       case '/LinearNonLinearPage':
         return reusablePageRouteBuilder(LinearNonLinearPage());
       case '/LinearDS':
