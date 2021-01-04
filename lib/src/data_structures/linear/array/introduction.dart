@@ -115,7 +115,7 @@ class _ArrayIntroState extends State<ArrayIntro>{
   }
 @override
   void dispose() {
-    removeLast();
+   removeLast();
     super.dispose();
   }
   @override

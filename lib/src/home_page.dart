@@ -26,12 +26,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
+  @override
+  void initState() {
+    path = ['Home'];
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home'];
+  //  path = ['Home'];
     return BaseTemplate(
       body: Scaffold(
         //  drawer: DrawerWidget(),
@@ -54,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: 20,
                   topCardWidget: MainButton(
                     onPress: () {
-                   addElement('DS');
+                //   addElement('DS');
                       Navigator.of(context)
                           .pushReplacementNamed('/LinearNonLinearPage');
                     },
@@ -72,20 +77,33 @@ class _HomePageState extends State<HomePage> {
                               setState(() {
 
                                 if(data[index] == 'Array'){
-                                  Navigator.of(context).pushReplacementNamed('/ArrayPageView');
-                                  path.add('Array');
+                                  print('array');
+                               //   path = ['Home','DS','Array'];
+
+                                  //  Navigator.of(context).pushReplacementNamed('/ArrayPageView');
+                                  Navigator.pushNamedAndRemoveUntil(context, '/ArrayPageView', (route) => false);
+                                  //     path.add('Array');
                                 }
                                 else if(data[index] == 'Linked List'){
-                                  Navigator.of(context).pushReplacementNamed('/LinkedListMainPage');
-                                  path.add('Linked List');
+                               //   Navigator.of(context).pushReplacementNamed('/LinkedListMainPage');
+                                  Navigator.pushNamedAndRemoveUntil(context, '/LinkedListMainPage', (route) => false);
+                                  path = ['Home','DS','Linked List'];
+
+                                  //     path.add('Linked List');
                                 }
                                 else if(data[index] == 'Queue'){
-                                  Navigator.of(context).pushReplacementNamed('/QueueNavigationPage');
-                                  path.add('Queue');
+                                //  Navigator.of(context).pushReplacementNamed('/QueueNavigationPage');
+                                  Navigator.pushNamedAndRemoveUntil(context, '/QueueNavigationPage', (route) => false);
+                                  path = ['Home','DS','Queue'];
+
+                                  //       path.add('Queue');
                                 }
                                 else if(data[index] == 'Stack'){
-                                  Navigator.of(context).pushReplacementNamed('/StackIntroduction');
-                                  path.add('Stack');
+                                //  Navigator.of(context).pushReplacementNamed('/StackIntroduction');
+                                  Navigator.pushNamedAndRemoveUntil(context, '/StackIntroduction', (route) => false);
+                                  path = ['Home','DS','Stack'];
+
+                                  //       path.add('Stack');
                                 }
 
                               });

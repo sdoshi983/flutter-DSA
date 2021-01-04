@@ -49,7 +49,7 @@ class Tiles extends StatelessWidget {
 
 Widget appBar(BuildContext context) {
   double width = MediaQuery.of(context).size.width;
-
+  print(path);
   return AppBar(
     leading: ClipRect(
       child: MaterialButton(
