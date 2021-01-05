@@ -13,10 +13,11 @@ class _SinglyMainPageState extends State<SinglyMainPage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home','DS','Linked List','Singly'];
+    path = ['Home', 'DS', 'Linked List', 'Singly'];
     return WillPopScope(
-      onWillPop: ()async{
-        Navigator.pushNamedAndRemoveUntil(context, '/LinkedListMainPage', (route) => false);
+      onWillPop: () async {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/LinkedListMainPage', (route) => false);
 
         return true;
       },
@@ -60,7 +61,6 @@ class _SinglyMainPageState extends State<SinglyMainPage> {
                   },
                   title: 'Deletion',
                 ),
-
               ],
             ),
           ),

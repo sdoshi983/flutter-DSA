@@ -11,7 +11,6 @@ import 'package:auto_animated/auto_animated.dart';
 import 'dart:math' as math;
 import 'package:animations/animations.dart';
 
-
 double max(double a, double b) {
   if (a > b) return a;
   return b;
@@ -31,11 +30,12 @@ class _HomePageState extends State<HomePage> {
     path = ['Home'];
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-  //  path = ['Home'];
+    //  path = ['Home'];
     return BaseTemplate(
       body: Scaffold(
         //  drawer: DrawerWidget(),
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: 20,
                   topCardWidget: MainButton(
                     onPress: () {
-                //   addElement('DS');
+                      //   addElement('DS');
                       Navigator.of(context)
                           .pushReplacementNamed('/LinearNonLinearPage');
                     },
@@ -66,47 +66,45 @@ class _HomePageState extends State<HomePage> {
                     imagePath: 'assets/images/ds.jpeg',
                   ),
                   bottomCardWidget: Container(
-                    width: width*0.35,
+                    width: width * 0.35,
                     child: ListView.builder(
                       itemBuilder: (BuildContext context, int index) {
                         return SizedBox(
-                          width: width*0.4,
+                          width: width * 0.4,
                           child: ElevatedButton(
-                            onPressed: (){
+                            onPressed: () {
                               setState(() {
-
-                                if(data[index] == 'Array'){
+                                if (data[index] == 'Array') {
                                   print('array');
-                               //   path = ['Home','DS','Array'];
+                                  //   path = ['Home','DS','Array'];
 
                                   //  Navigator.of(context).pushReplacementNamed('/ArrayPageView');
-                                  Navigator.pushNamedAndRemoveUntil(context, '/ArrayPageView', (route) => false);
+                                  Navigator.pushNamedAndRemoveUntil(context,
+                                      '/ArrayPageView', (route) => false);
                                   //     path.add('Array');
-                                }
-                                else if(data[index] == 'Linked List'){
-                               //   Navigator.of(context).pushReplacementNamed('/LinkedListMainPage');
-                                  Navigator.pushNamedAndRemoveUntil(context, '/LinkedListMainPage', (route) => false);
-                                  path = ['Home','DS','Linked List'];
+                                } else if (data[index] == 'Linked List') {
+                                  //   Navigator.of(context).pushReplacementNamed('/LinkedListMainPage');
+                                  Navigator.pushNamedAndRemoveUntil(context,
+                                      '/LinkedListMainPage', (route) => false);
+                                  path = ['Home', 'DS', 'Linked List'];
 
                                   //     path.add('Linked List');
-                                }
-                                else if(data[index] == 'Queue'){
-                                //  Navigator.of(context).pushReplacementNamed('/QueueNavigationPage');
-                                  Navigator.pushNamedAndRemoveUntil(context, '/QueueNavigationPage', (route) => false);
-                                  path = ['Home','DS','Queue'];
+                                } else if (data[index] == 'Queue') {
+                                  //  Navigator.of(context).pushReplacementNamed('/QueueNavigationPage');
+                                  Navigator.pushNamedAndRemoveUntil(context,
+                                      '/QueueNavigationPage', (route) => false);
+                                  path = ['Home', 'DS', 'Queue'];
 
                                   //       path.add('Queue');
-                                }
-                                else if(data[index] == 'Stack'){
-                                //  Navigator.of(context).pushReplacementNamed('/StackIntroduction');
-                                  Navigator.pushNamedAndRemoveUntil(context, '/StackIntroduction', (route) => false);
-                                  path = ['Home','DS','Stack'];
+                                } else if (data[index] == 'Stack') {
+                                  //  Navigator.of(context).pushReplacementNamed('/StackIntroduction');
+                                  Navigator.pushNamedAndRemoveUntil(context,
+                                      '/StackIntroduction', (route) => false);
+                                  path = ['Home', 'DS', 'Stack'];
 
                                   //       path.add('Stack');
                                 }
-
                               });
-
                             },
                             child: Center(
                               child: Text(
@@ -135,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: 20,
                   topCardWidget: MainButton(
                     onPress: () {
-                     addElement('ALGO');
+                      addElement('ALGO');
                       Navigator.of(context)
                           .pushReplacementNamed('/LinearNonLinearPage');
                     },
@@ -146,23 +144,19 @@ class _HomePageState extends State<HomePage> {
                     height: max(200, height * 0.15),
                     color: kThemeColor,
                     child: Column(
-                      mainAxisAlignment:
-                      MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
                           'Searching',
-                          style:
-                          Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.headline6,
                         ),
                         Text(
                           'Sorting',
-                          style:
-                          Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.headline6,
                         ),
                         Text(
                           'Dynamic Programming',
-                          style:
-                          Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.headline6,
                         ),
                       ],
                     ),
@@ -203,9 +197,9 @@ class MainButton extends StatelessWidget {
         height: max(h * 0.1, 150),
         child: Center(
             child: Text(
-              title,
-              style: Theme.of(context).textTheme.headline2,
-            )),
+          title,
+          style: Theme.of(context).textTheme.headline2,
+        )),
       ),
     );
   }

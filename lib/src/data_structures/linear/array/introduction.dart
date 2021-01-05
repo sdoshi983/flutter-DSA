@@ -69,7 +69,7 @@ class ArrayIntro extends StatefulWidget {
   _ArrayIntroState createState() => _ArrayIntroState();
 }
 
-class _ArrayIntroState extends State<ArrayIntro>{
+class _ArrayIntroState extends State<ArrayIntro> {
   int currentState = 0;
 
   Color indexColor = Colors.black,
@@ -87,9 +87,9 @@ class _ArrayIntroState extends State<ArrayIntro>{
       thirdColor = Colors.black;
       firstColor = Colors.deepOrange;
     } else if (currentState == 3) {
-      firstColor=Colors.black;
+      firstColor = Colors.black;
       secondColor = Colors.deepOrange;
-    }else{
+    } else {
       return;
     }
     currentState += 1;
@@ -97,27 +97,26 @@ class _ArrayIntroState extends State<ArrayIntro>{
 
   void reverseAnimation() {
     if (currentState == 1) {
-
       indexBGColor = Colors.black;
     } else if (currentState == 2) {
       thirdColor = Colors.black;
-    }
-    else if(currentState ==3){
-      thirdColor=Colors.deepOrange;
+    } else if (currentState == 3) {
+      thirdColor = Colors.deepOrange;
       firstColor = Colors.black;
-    }
-    else if(currentState==4){
-      firstColor=Colors.deepOrange;
-      secondColor=Colors.black;
-    }
-    else return;
+    } else if (currentState == 4) {
+      firstColor = Colors.deepOrange;
+      secondColor = Colors.black;
+    } else
+      return;
     currentState -= 1;
   }
-@override
+
+  @override
   void dispose() {
-   removeLast();
+    removeLast();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -210,13 +209,14 @@ class _ArrayIntroState extends State<ArrayIntro>{
                     color: kThemeColor,
                   ),
                   RaisedButton(
-                      onPressed: () {
-                        setState(() {
-                          forwardAnimation();
-                        });
-                      },
-                      child: Icon(Icons.forward),
-                      color: kThemeColor,),
+                    onPressed: () {
+                      setState(() {
+                        forwardAnimation();
+                      });
+                    },
+                    child: Icon(Icons.forward),
+                    color: kThemeColor,
+                  ),
                 ],
               ),
               Container(

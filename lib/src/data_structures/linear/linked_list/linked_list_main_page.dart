@@ -13,11 +13,12 @@ class _LinkedListMainPageState extends State<LinkedListMainPage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home','DS','Linked List'];
+    path = ['Home', 'DS', 'Linked List'];
 
     return WillPopScope(
-      onWillPop: ()async{
-        Navigator.pushNamedAndRemoveUntil(context, '/LinearNonLinearPage', (route) => false);
+      onWillPop: () async {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/LinearNonLinearPage', (route) => false);
         return true;
       },
       child: BaseTemplate(
@@ -33,7 +34,6 @@ class _LinkedListMainPageState extends State<LinkedListMainPage> {
                 SizedBox(
                   height: height * 0.05,
                 ),
-
                 Tiles(
                   onPress: () {
                     addElement('Singly');
@@ -46,12 +46,11 @@ class _LinkedListMainPageState extends State<LinkedListMainPage> {
                 ),
                 Tiles(
                   onPress: () {
-                  addElement('Doubly');
-                  Navigator.of(context).pushNamed('/DoublyMainPage');
+                    addElement('Doubly');
+                    Navigator.of(context).pushNamed('/DoublyMainPage');
                   },
                   title: 'Doubly',
                 ),
-
               ],
             ),
           ),

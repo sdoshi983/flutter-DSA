@@ -4,12 +4,14 @@ import 'package:dsa_simulation/src/utilities/base_template.dart';
 import '../../../constants.dart';
 import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
+
 class StackIntroduction extends StatefulWidget {
   @override
   _StackIntroductionState createState() => _StackIntroductionState();
 }
 
-class _StackIntroductionState extends State<StackIntroduction> with TickerProviderStateMixin {
+class _StackIntroductionState extends State<StackIntroduction>
+    with TickerProviderStateMixin {
   int currentState = 0;
   Color firstContainer = Colors.transparent;
   Color secondContainer = Colors.transparent;
@@ -35,7 +37,8 @@ class _StackIntroductionState extends State<StackIntroduction> with TickerProvid
   }
 
   @override
-  void dispose() {removeLast();
+  void dispose() {
+    removeLast();
     firstController.dispose();
     secondController.dispose();
     thirdController.dispose();
@@ -46,17 +49,13 @@ class _StackIntroductionState extends State<StackIntroduction> with TickerProvid
     if (currentState == 0) {
       thirdContainer = Colors.green;
       thirdController.forward();
-
     } else if (currentState == 1) {
       secondContainer = Colors.blueGrey;
       secondController.forward();
-
     } else if (currentState == 2) {
       firstContainer = Colors.yellow;
       firstController.forward();
-
-    }
-   else{
+    } else {
       return;
     }
     currentState += 1;
@@ -66,18 +65,16 @@ class _StackIntroductionState extends State<StackIntroduction> with TickerProvid
     if (currentState == 1) {
       thirdController.reverse();
       thirdContainer = Colors.transparent;
-
     } else if (currentState == 2) {
       secondController.reverse();
 
       secondContainer = Colors.transparent;
-    }
-    else if(currentState ==3){
+    } else if (currentState == 3) {
       firstController.reverse();
 
       firstContainer = Colors.transparent;
-    }
-    else return;
+    } else
+      return;
     currentState -= 1;
   }
 
@@ -85,11 +82,12 @@ class _StackIntroductionState extends State<StackIntroduction> with TickerProvid
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home','DS','Stack'];
+    path = ['Home', 'DS', 'Stack'];
 
     return WillPopScope(
-      onWillPop: ()async{
-        Navigator.pushNamedAndRemoveUntil(context, '/LinearNonLinearPage', (route) => false);
+      onWillPop: () async {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/LinearNonLinearPage', (route) => false);
         return true;
       },
       child: BaseTemplate(
@@ -115,7 +113,9 @@ class _StackIntroductionState extends State<StackIntroduction> with TickerProvid
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      SizedBox(width: width * 0.059,),
+                      SizedBox(
+                        width: width * 0.059,
+                      ),
                       Column(
                         children: [
                           SlideTransition(
@@ -140,7 +140,6 @@ class _StackIntroductionState extends State<StackIntroduction> with TickerProvid
                             ).animate(secondController),
                             child: AnimatedContainer(
                               duration: Duration(seconds: 1),
-
                               width: width * 0.38,
                               height: height * 0.1,
                               decoration: BoxDecoration(
@@ -156,7 +155,6 @@ class _StackIntroductionState extends State<StackIntroduction> with TickerProvid
                             ).animate(thirdController),
                             child: AnimatedContainer(
                               duration: Duration(seconds: 1),
-
                               width: width * 0.38,
                               height: height * 0.1,
                               decoration: BoxDecoration(
@@ -167,7 +165,9 @@ class _StackIntroductionState extends State<StackIntroduction> with TickerProvid
                           )
                         ],
                       ),
-                      SizedBox(width: width * 0.059,),
+                      SizedBox(
+                        width: width * 0.059,
+                      ),
                       Container(
                         width: width * 0.02,
                         height: height * 0.3,
@@ -195,7 +195,10 @@ class _StackIntroductionState extends State<StackIntroduction> with TickerProvid
                             reverseAnimation();
                           });
                         },
-                        child: Text("Pop", style: TextStyle(color: Colors.white),),
+                        child: Text(
+                          "Pop",
+                          style: TextStyle(color: Colors.white),
+                        ),
                         color: kThemeColor,
                       ),
                       RaisedButton(
@@ -204,7 +207,10 @@ class _StackIntroductionState extends State<StackIntroduction> with TickerProvid
                               forwardAnimation();
                             });
                           },
-                          child: Text("Push", style: TextStyle(color: Colors.white),),
+                          child: Text(
+                            "Push",
+                            style: TextStyle(color: Colors.white),
+                          ),
                           color: kThemeColor),
                     ],
                   ),

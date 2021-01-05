@@ -16,35 +16,30 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     path = ['Home', 'DS', 'Trees', 'Intro'];
+    print('introduction');
+    print(path);
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushNamedAndRemoveUntil(
-            context, '/LinearNonLinearPage', (route) => false);
+            context, '/TreeMain', (route) => false);
         return true;
       },
       child: BaseTemplate(
         body: Scaffold(
           appBar: appBar(context),
           body: Container(
-            height: height,
-            width: width,
-            color: Colors.black,
+            height: height,width: width,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ArrowContainer(
-                  child: Stack(
-                    children: [
-
-                    ],
-                  ),
-                )
+                Text('Introduction to Tree',style: Theme.of(context).textTheme.headline6,),
+                Container(child: Stack(),width: width,height: height*0.6,color: Colors.red,),
               ],
             ),
+
           ),
         ),
       ),
     );
   }
 }
-

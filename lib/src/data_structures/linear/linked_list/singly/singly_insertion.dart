@@ -14,7 +14,7 @@ class SinglyInsertion extends StatefulWidget {
 
 class _SinglyInsertionState extends State<SinglyInsertion> {
   double arrowOpacity = 0;
-  double firstChildOpacity=0, secondChildOpacity=1;
+  double firstChildOpacity = 0, secondChildOpacity = 1;
   double animationState = -1;
   double nullWidth = 0;
   double newElementOpacity = 0;
@@ -25,19 +25,17 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
   AlignmentGeometry headPointerArrow = Alignment.bottomCenter;
 
   void forward() {
-    if(animationState == -1){
+    if (animationState == -1) {
       firstChildOpacity = 1;
       secondChildOpacity = 0;
-    }
-    else if(animationState == 0)
+    } else if (animationState == 0)
       newElementOpacity = 1;
-    else if(animationState == 1) {
+    else if (animationState == 1) {
       headPointerArrow = Alignment.bottomRight;
       headPointerTargetId = 'second';
-    }
-    else if(animationState == 2)
+    } else if (animationState == 2)
       newElementTargetId = 'third';
-    else if(animationState == 3) {
+    else if (animationState == 3) {
       secondElementArrow = Alignment.bottomRight;
       secondTargetId = 'newElement';
     }
@@ -45,20 +43,17 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
   }
 
   void reverse() {
-
-    if(animationState == 4) {
+    if (animationState == 4) {
       secondElementArrow = Alignment.centerRight;
       secondTargetId = 'third';
-    }
-    else if(animationState == 3)
+    } else if (animationState == 3)
       newElementTargetId = '';
-    else if(animationState == 2) {
+    else if (animationState == 2) {
       headPointerArrow = Alignment.bottomCenter;
       headPointerTargetId = 'first';
-    }
-    else if (animationState == 1)
+    } else if (animationState == 1)
       newElementOpacity = 0;
-    else if(animationState == 0){
+    else if (animationState == 0) {
       firstChildOpacity = 0;
       secondChildOpacity = 1;
     }
@@ -70,11 +65,12 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home','DS','Linked List','Singly','Insertion'];
+    path = ['Home', 'DS', 'Linked List', 'Singly', 'Insertion'];
 
     return WillPopScope(
-      onWillPop: ()async{
-        Navigator.pushNamedAndRemoveUntil(context, '/SinglyMainPage', (route) => false);
+      onWillPop: () async {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/SinglyMainPage', (route) => false);
 
         return true;
       },
@@ -91,15 +87,20 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
                     children: [
                       Text(
                         'Introduction to Singly Linked List',
-                        style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.white),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            .copyWith(color: Colors.white),
                       ),
                       SizedBox(
-                        //height: height * 0.01,
-                        //width: double.infinity,
-                      ),
+                          //height: height * 0.01,
+                          //width: double.infinity,
+                          ),
                       Row(
                         children: [
-                          SizedBox(width: width * 0.07,),
+                          SizedBox(
+                            width: width * 0.07,
+                          ),
                           ArrowElement(
                             id: 'headPointer',
                             targetId: headPointerTargetId,
@@ -109,12 +110,14 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
                             child: Text(
                               'Head Pointer',
                               style: TextStyle(
-                                  color: Colors.white.withOpacity(firstChildOpacity),
-                                  fontSize: height * 0.02
-                              ),
+                                  color: Colors.white
+                                      .withOpacity(firstChildOpacity),
+                                  fontSize: height * 0.02),
                             ),
                           ),
-                          SizedBox(width: width * 0.34,),
+                          SizedBox(
+                            width: width * 0.34,
+                          ),
                           ArrowElement(
                             id: 'tailPointer',
                             targetId: 'third',
@@ -124,14 +127,16 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
                             child: Text(
                               'Tail Pointer',
                               style: TextStyle(
-                                  color: Colors.white.withOpacity(firstChildOpacity),
-                                  fontSize: height * 0.02
-                              ),
+                                  color: Colors.white
+                                      .withOpacity(firstChildOpacity),
+                                  fontSize: height * 0.02),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: height * 0.01,),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -146,14 +151,16 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
                               width: width * 0.2,
                               child: Center(
                                   child: Text(
-                                    'Data',
-                                    style: TextStyle(
-                                      color: Colors.white.withOpacity(firstChildOpacity),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )),
+                                'Data',
+                                style: TextStyle(
+                                  color: Colors.white
+                                      .withOpacity(firstChildOpacity),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
                               decoration: BoxDecoration(
-                                color: Colors.green.withOpacity(firstChildOpacity),
+                                color:
+                                    Colors.green.withOpacity(firstChildOpacity),
                                 //borderRadius: BorderRadius.circular(20),
                               ),
                             ),
@@ -169,15 +176,16 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
                               width: width * 0.2,
                               child: Center(
                                   child: Text(
-                                    'Data',
-                                    style: TextStyle(
-                                      color: Colors.white.withOpacity(firstChildOpacity),
-                                      fontWeight: FontWeight.bold,
-
-                                    ),
-                                  )),
+                                'Data',
+                                style: TextStyle(
+                                  color: Colors.white
+                                      .withOpacity(firstChildOpacity),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
                               decoration: BoxDecoration(
-                                color: Colors.yellow.withOpacity(firstChildOpacity),
+                                color: Colors.yellow
+                                    .withOpacity(firstChildOpacity),
                                 //borderRadius: BorderRadius.circular(20),
                               ),
                             ),
@@ -194,15 +202,16 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
                               width: width * 0.2,
                               child: Center(
                                   child: Text(
-                                    'Data',
-                                    style: TextStyle(
-                                      color: Colors.white.withOpacity(firstChildOpacity),
-                                      fontWeight: FontWeight.bold,
-
-                                    ),
-                                  )),
+                                'Data',
+                                style: TextStyle(
+                                  color: Colors.white
+                                      .withOpacity(firstChildOpacity),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
                               decoration: BoxDecoration(
-                                color: Colors.cyan.withOpacity(firstChildOpacity),
+                                color:
+                                    Colors.cyan.withOpacity(firstChildOpacity),
                                 //borderRadius: BorderRadius.circular(20),
                               ),
                             ),
@@ -216,21 +225,23 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
                               width: width * 0.08,
                               child: Center(
                                   child: Text(
-                                    'Null',
-                                    style: TextStyle(
-                                      color: Colors.white.withOpacity(firstChildOpacity),
-                                      fontWeight: FontWeight.bold,
-
-                                    ),
-                                  )),
-
+                                'Null',
+                                style: TextStyle(
+                                  color: Colors.white
+                                      .withOpacity(firstChildOpacity),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
                             ),
                           ),
                         ],
                       ),
                       Row(
                         children: [
-                          SizedBox(width: width * 0.6, height: height * 0.1,),
+                          SizedBox(
+                            width: width * 0.6,
+                            height: height * 0.1,
+                          ),
                           ArrowElement(
                             id: 'newElement',
                             targetId: newElementTargetId,
@@ -243,15 +254,16 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
                               width: width * 0.2,
                               child: Center(
                                   child: Text(
-                                    'Data',
-                                    style: TextStyle(
-                                      color: Colors.white.withOpacity(newElementOpacity),
-                                      fontWeight: FontWeight.bold,
-
-                                    ),
-                                  )),
+                                'Data',
+                                style: TextStyle(
+                                  color: Colors.white
+                                      .withOpacity(newElementOpacity),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
                               decoration: BoxDecoration(
-                                color: Colors.lightGreen.withOpacity(newElementOpacity),
+                                color: Colors.lightGreen
+                                    .withOpacity(newElementOpacity),
                                 //borderRadius: BorderRadius.circular(20),
                               ),
                             ),
@@ -297,7 +309,9 @@ class _SinglyInsertionState extends State<SinglyInsertion> {
                     child: Center(
                       child: Text(
                         'Let\'s Dive',
-                        style: TextStyle(color: Colors.white.withOpacity(secondChildOpacity), fontSize: height * 0.02),
+                        style: TextStyle(
+                            color: Colors.white.withOpacity(secondChildOpacity),
+                            fontSize: height * 0.02),
                       ),
                     ),
                     decoration: BoxDecoration(

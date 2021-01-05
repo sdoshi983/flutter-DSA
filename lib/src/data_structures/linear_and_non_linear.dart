@@ -28,7 +28,7 @@ class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
 
   @override
   Widget build(BuildContext context) {
-    path = ['Home','DS'];
+    path = ['Home', 'DS'];
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     List<Step> steps = [
@@ -42,7 +42,6 @@ class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
           children: [
             ElevatedButton(
               onPressed: () {
-
                 Navigator.of(context).pushReplacementNamed('/ArrayPageView');
                 path.add('Array');
               },
@@ -54,8 +53,8 @@ class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
             ),
             ElevatedButton(
               onPressed: () {
-
-                Navigator.of(context).pushReplacementNamed('/QueueNavigationPage');
+                Navigator.of(context)
+                    .pushReplacementNamed('/QueueNavigationPage');
                 path.add('Queue');
               },
               child: Center(
@@ -66,8 +65,8 @@ class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
             ),
             ElevatedButton(
               onPressed: () {
-
-                Navigator.of(context).pushReplacementNamed('/LinkedListMainPage');
+                Navigator.of(context)
+                    .pushReplacementNamed('/LinkedListMainPage');
                 path.add('Linked List');
               },
               child: Center(
@@ -78,8 +77,8 @@ class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
             ),
             ElevatedButton(
               onPressed: () {
-
-                Navigator.of(context).pushReplacementNamed('/StackIntroduction');
+                Navigator.of(context)
+                    .pushReplacementNamed('/StackIntroduction');
                 path.add('Stack');
               },
               child: Center(
@@ -103,7 +102,6 @@ class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushReplacementNamed('/TreeMain');
-
               },
               child: Center(
                 child: Text(
