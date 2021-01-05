@@ -8,7 +8,6 @@ import 'package:dsa_simulation/src/utilities/base_template.dart';
 
 import '../../../../constants.dart';
 
-
 class DoublyDeletion extends StatefulWidget {
   @override
   _DoublyDeletionState createState() => _DoublyDeletionState();
@@ -16,10 +15,10 @@ class DoublyDeletion extends StatefulWidget {
 
 class _DoublyDeletionState extends State<DoublyDeletion> {
   int currentState = -1;
-  double firstChildOpacity=0, secondChildOpacity=1;
+  double firstChildOpacity = 0, secondChildOpacity = 1;
 
-  Color newArrowColor1 = Colors.white,newArrowColor2 = Colors.white;
-  String newElementText = 'Data',secondNext = 'new',thirdPrev = 'new';
+  Color newArrowColor1 = Colors.white, newArrowColor2 = Colors.white;
+  String newElementText = 'Data', secondNext = 'new', thirdPrev = 'new';
   String headPointer = 'first';
   Color newElementColor = Colors.red;
 
@@ -29,59 +28,56 @@ class _DoublyDeletionState extends State<DoublyDeletion> {
   AlignmentGeometry secondTargetArrow = Alignment.centerLeft;
   AlignmentGeometry thirdPrevious = Alignment.topRight;
 
-  void forwardAnimaton(){
-    if(currentState == -1){
+  void forwardAnimaton() {
+    if (currentState == -1) {
       firstChildOpacity = 1;
       secondChildOpacity = 0;
-    }
-    else if(currentState==0){
+    } else if (currentState == 0) {
       headPointer = 'second';
-    }
-    else if(currentState==1){
+    } else if (currentState == 1) {
       thirdPrev = 'second';
       thirdPrevious = Alignment.bottomRight;
-    }
-    else if(currentState ==2){
+    } else if (currentState == 2) {
       secondNext = 'third';
-    }
-    else if(currentState == 3) {
+    } else if (currentState == 3) {
       newArrowColor1 = newArrowColor2 = newElementColor = Colors.transparent;
       newElementText = '';
-    } else return;
+    } else
+      return;
 
     currentState++;
   }
-  void reverseAnimation(){
-    if(currentState==4){
+
+  void reverseAnimation() {
+    if (currentState == 4) {
       newArrowColor1 = newArrowColor2 = Colors.white;
       newElementColor = Colors.red;
-          newElementText = 'Data';
-    }
-    else if(currentState ==3){
+      newElementText = 'Data';
+    } else if (currentState == 3) {
       secondNext = 'new';
-    }
-    else if(currentState ==2){
+    } else if (currentState == 2) {
       thirdPrev = 'new';
       thirdPrevious = Alignment.topRight;
-    }
-    else if(currentState == 1)
+    } else if (currentState == 1)
       headPointer = 'first';
-    else if(currentState == 0){
+    else if (currentState == 0) {
       firstChildOpacity = 0;
       secondChildOpacity = 1;
-    }
-    else return;
+    } else
+      return;
     currentState--;
   }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home','DS','Linked List','Doubly','Deletion'];
+    path = ['Home', 'DS', 'Linked List', 'Doubly', 'Deletion'];
 
     return WillPopScope(
-      onWillPop: ()async{
-        Navigator.pushNamedAndRemoveUntil(context, '/DoublyMainPage', (route) => false);
+      onWillPop: () async {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/DoublyMainPage', (route) => false);
 
         return true;
       },
@@ -98,15 +94,18 @@ class _DoublyDeletionState extends State<DoublyDeletion> {
                     children: [
                       Text(
                         'Doubly Linked List Deletion',
-                        style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.white.withOpacity(firstChildOpacity)),
+                        style: Theme.of(context).textTheme.headline6.copyWith(
+                            color: Colors.white.withOpacity(firstChildOpacity)),
                       ),
                       SizedBox(
-                        //height: height * 0.01,
-                        //width: double.infinity,
-                      ),
+                          //height: height * 0.01,
+                          //width: double.infinity,
+                          ),
                       Row(
                         children: [
-                          SizedBox(width: width * 0.073,),
+                          SizedBox(
+                            width: width * 0.073,
+                          ),
                           ArrowElement(
                             id: 'headPointer',
                             targetId: headPointer,
@@ -116,30 +115,34 @@ class _DoublyDeletionState extends State<DoublyDeletion> {
                             child: Text(
                               'Head Pointer',
                               style: TextStyle(
-                                  color: Colors.white.withOpacity(firstChildOpacity),
-                                  fontSize: height * 0.02
-                              ),
+                                  color: Colors.white
+                                      .withOpacity(firstChildOpacity),
+                                  fontSize: height * 0.02),
                             ),
                           ),
-                          SizedBox(width: width * 0.43,),
+                          SizedBox(
+                            width: width * 0.43,
+                          ),
                           ArrowElement(
                             id: 'tailPointer',
                             targetId: 'third',
                             sourceAnchor: Alignment.bottomCenter,
                             targetAnchor: Alignment.topCenter,
                             color: Colors.white.withOpacity(firstChildOpacity),
-                           // arcDirection: ArcDirection.Right,
+                            // arcDirection: ArcDirection.Right,
                             child: Text(
                               'Tail Pointer',
                               style: TextStyle(
-                                  color: Colors.white.withOpacity(firstChildOpacity),
-                                  fontSize: height * 0.02
-                              ),
+                                  color: Colors.white
+                                      .withOpacity(firstChildOpacity),
+                                  fontSize: height * 0.02),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: height * 0.01,),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -149,27 +152,30 @@ class _DoublyDeletionState extends State<DoublyDeletion> {
                             sourceAnchor: Alignment.bottomLeft,
                             targetAnchor: Alignment.centerLeft,
                             color: Colors.white.withOpacity(firstChildOpacity),
-                           // arcDirection: ArcDirection.Left,
+                            // arcDirection: ArcDirection.Left,
                             child: ArrowElement(
                               id: 'first',
                               targetId: 'second',
                               sourceAnchor: firstSourceFrontArrow,
                               targetAnchor: firstTargetArrow,
-                              color: Colors.white.withOpacity(firstChildOpacity),
+                              color:
+                                  Colors.white.withOpacity(firstChildOpacity),
                               child: AnimatedContainer(
                                 duration: Duration(seconds: 1),
                                 height: height * 0.05,
                                 width: width * 0.2,
                                 child: Center(
                                     child: Text(
-                                      'Data',
-                                      style: TextStyle(
-                                        color: Colors.white.withOpacity(firstChildOpacity),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )),
+                                  'Data',
+                                  style: TextStyle(
+                                    color: Colors.white
+                                        .withOpacity(firstChildOpacity),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )),
                                 decoration: BoxDecoration(
-                                  color: Colors.green.withOpacity(firstChildOpacity),
+                                  color: Colors.green
+                                      .withOpacity(firstChildOpacity),
                                   //borderRadius: BorderRadius.circular(20),
                                 ),
                               ),
@@ -186,22 +192,24 @@ class _DoublyDeletionState extends State<DoublyDeletion> {
                               targetId: secondNext,
                               sourceAnchor: secondSourceFrontArrow,
                               targetAnchor: secondTargetArrow,
-                              color: Colors.white.withOpacity(firstChildOpacity),
+                              color:
+                                  Colors.white.withOpacity(firstChildOpacity),
                               child: AnimatedContainer(
                                 duration: Duration(milliseconds: 200),
                                 height: height * 0.05,
                                 width: width * 0.2,
                                 child: Center(
                                     child: Text(
-                                      'Data',
-                                      style: TextStyle(
-                                        color: Colors.white.withOpacity(firstChildOpacity),
-                                        fontWeight: FontWeight.bold,
-
-                                      ),
-                                    )),
+                                  'Data',
+                                  style: TextStyle(
+                                    color: Colors.white
+                                        .withOpacity(firstChildOpacity),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )),
                                 decoration: BoxDecoration(
-                                  color: Colors.yellow.withOpacity(firstChildOpacity),
+                                  color: Colors.yellow
+                                      .withOpacity(firstChildOpacity),
                                   //borderRadius: BorderRadius.circular(20),
                                 ),
                               ),
@@ -218,29 +226,30 @@ class _DoublyDeletionState extends State<DoublyDeletion> {
                               targetId: 'null2',
                               sourceAnchor: Alignment.bottomRight,
                               targetAnchor: Alignment.centerRight,
-                              color: Colors.white.withOpacity(firstChildOpacity),
-                            //  arcDirection: ArcDirection.Right,
+                              color:
+                                  Colors.white.withOpacity(firstChildOpacity),
+                              //  arcDirection: ArcDirection.Right,
                               child: AnimatedContainer(
                                 duration: Duration(seconds: 1),
                                 height: height * 0.05,
                                 width: width * 0.2,
                                 child: Center(
                                     child: Text(
-                                      'Data',
-                                      style: TextStyle(
-                                        color: Colors.white.withOpacity(firstChildOpacity),
-                                        fontWeight: FontWeight.bold,
-
-                                      ),
-                                    )),
+                                  'Data',
+                                  style: TextStyle(
+                                    color: Colors.white
+                                        .withOpacity(firstChildOpacity),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )),
                                 decoration: BoxDecoration(
-                                  color: Colors.cyan.withOpacity(firstChildOpacity),
+                                  color: Colors.cyan
+                                      .withOpacity(firstChildOpacity),
                                   //borderRadius: BorderRadius.circular(20),
                                 ),
                               ),
                             ),
                           ),
-
                         ],
                       ),
                       Row(
@@ -252,41 +261,45 @@ class _DoublyDeletionState extends State<DoublyDeletion> {
                             color: Colors.white.withOpacity(firstChildOpacity),
                             child: Center(
                                 child: Text(
-                                  'Null',
-                                  style: TextStyle(
-                                    color: Colors.white.withOpacity(firstChildOpacity),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: height * 0.03,
-                                  ),
-                                )),
+                              'Null',
+                              style: TextStyle(
+                                color:
+                                    Colors.white.withOpacity(firstChildOpacity),
+                                fontWeight: FontWeight.bold,
+                                fontSize: height * 0.03,
+                              ),
+                            )),
                           ),
                           ArrowElement(
                             id: 'new1',
                             targetId: 'third',
                             sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.bottomCenter,
-                            color: newArrowColor1.withOpacity(firstChildOpacity),
+                            color:
+                                newArrowColor1.withOpacity(firstChildOpacity),
                             child: ArrowElement(
                               id: 'new',
                               targetId: 'second',
                               targetAnchor: Alignment.bottomCenter,
                               sourceAnchor: Alignment.topCenter,
-                              color: newArrowColor2.withOpacity(firstChildOpacity),
+                              color:
+                                  newArrowColor2.withOpacity(firstChildOpacity),
                               child: AnimatedContainer(
                                 duration: Duration(milliseconds: 500),
                                 height: height * 0.05,
                                 width: width * 0.2,
                                 child: Center(
                                     child: Text(
-                                      newElementText,
-                                      style: TextStyle(
-                                        color: Colors.white.withOpacity(firstChildOpacity),
-                                        fontWeight: FontWeight.bold,
-
-                                      ),
-                                    )),
+                                  newElementText,
+                                  style: TextStyle(
+                                    color: Colors.white
+                                        .withOpacity(firstChildOpacity),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )),
                                 decoration: BoxDecoration(
-                                  color: newElementColor.withOpacity(firstChildOpacity),
+                                  color: newElementColor
+                                      .withOpacity(firstChildOpacity),
                                   //borderRadius: BorderRadius.circular(20),
                                 ),
                               ),
@@ -297,13 +310,14 @@ class _DoublyDeletionState extends State<DoublyDeletion> {
                             color: Colors.white.withOpacity(firstChildOpacity),
                             child: Center(
                                 child: Text(
-                                  'Null',
-                                  style: TextStyle(
-                                    color: Colors.white.withOpacity(firstChildOpacity),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: height * 0.03,
-                                  ),
-                                )),
+                              'Null',
+                              style: TextStyle(
+                                color:
+                                    Colors.white.withOpacity(firstChildOpacity),
+                                fontWeight: FontWeight.bold,
+                                fontSize: height * 0.03,
+                              ),
+                            )),
                           ),
                         ],
                       ),
@@ -333,7 +347,6 @@ class _DoublyDeletionState extends State<DoublyDeletion> {
                       Container(
                         height: height * 0.3,
                       ),
-
                     ],
                   ),
                 ),
@@ -347,7 +360,9 @@ class _DoublyDeletionState extends State<DoublyDeletion> {
                     child: Center(
                       child: Text(
                         'Let\'s Dive',
-                        style: TextStyle(color: Colors.white.withOpacity(secondChildOpacity), fontSize: height * 0.02),
+                        style: TextStyle(
+                            color: Colors.white.withOpacity(secondChildOpacity),
+                            fontSize: height * 0.02),
                       ),
                     ),
                     decoration: BoxDecoration(

@@ -15,11 +15,12 @@ class _DoublyMainPageState extends State<DoublyMainPage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home','DS','Linked List','Doubly'];
+    path = ['Home', 'DS', 'Linked List', 'Doubly'];
 
     return WillPopScope(
-      onWillPop: ()async{
-        Navigator.pushNamedAndRemoveUntil(context, '/LinkedListMainPage', (route) => false);
+      onWillPop: () async {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/LinkedListMainPage', (route) => false);
 
         return true;
       },

@@ -11,9 +11,10 @@ class LinearDS extends StatefulWidget {
 class _LinearDSState extends State<LinearDS> {
   @override
   void dispose() {
-   // removeLast();
+    // removeLast();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -63,7 +64,7 @@ class _LinearDSState extends State<LinearDS> {
               ),
               Tiles(
                 onPress: () {
-                 addElement('LinkedList');
+                  addElement('LinkedList');
                   Navigator.of(context).pushNamed('/LinkedListMainPage');
                 },
                 title: 'Linked List',

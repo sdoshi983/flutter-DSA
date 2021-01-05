@@ -13,7 +13,7 @@ class DoublyIntroduction extends StatefulWidget {
 
 class _DoublyIntroductionState extends State<DoublyIntroduction> {
   double arrowOpacity = 0;
-  double firstChildOpacity=0, secondChildOpacity=1;
+  double firstChildOpacity = 0, secondChildOpacity = 1;
   double animationState = -1;
   double firstBackArrowOpacity = 0;
   double secondBackArrowOpacity = 0;
@@ -23,18 +23,16 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
   AlignmentGeometry secondSourceFrontArrow = Alignment.centerRight;
   AlignmentGeometry secondTargetArrow = Alignment.centerLeft;
   void forward() {
-    if(animationState == -1){
+    if (animationState == -1) {
       firstChildOpacity = 1;
       secondChildOpacity = 0;
-    }
-    else if(animationState == 0)
+    } else if (animationState == 0)
       firstBackArrowOpacity = 1;
-    else if(animationState == 1) {
+    else if (animationState == 1) {
       firstSourceFrontArrow = Alignment.topRight;
       firstTargetArrow = Alignment.topLeft;
       secondBackArrowOpacity = 1;
-    }
-    else if(animationState == 2) {
+    } else if (animationState == 2) {
       secondSourceFrontArrow = Alignment.topRight;
       secondTargetArrow = Alignment.topLeft;
       thirdBackArrowOpacity = 1;
@@ -43,20 +41,17 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
   }
 
   void reverse() {
-    if(animationState == 3) {
+    if (animationState == 3) {
       secondSourceFrontArrow = Alignment.centerRight;
       secondTargetArrow = Alignment.centerLeft;
       thirdBackArrowOpacity = 0;
-    }
-    else if(animationState == 2) {
+    } else if (animationState == 2) {
       firstSourceFrontArrow = Alignment.centerRight;
       firstTargetArrow = Alignment.centerLeft;
       secondBackArrowOpacity = 0;
-    } else if(animationState == 1) {
+    } else if (animationState == 1) {
       firstBackArrowOpacity = 0;
-
-    }
-    else if(animationState == 0){
+    } else if (animationState == 0) {
       firstChildOpacity = 0;
       secondChildOpacity = 1;
     }
@@ -79,15 +74,18 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
                 children: [
                   Text(
                     'Introduction to Doubly Linked List',
-                    style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.white.withOpacity(firstChildOpacity)),
+                    style: Theme.of(context).textTheme.headline6.copyWith(
+                        color: Colors.white.withOpacity(firstChildOpacity)),
                   ),
                   SizedBox(
-                    //height: height * 0.01,
-                    //width: double.infinity,
-                  ),
+                      //height: height * 0.01,
+                      //width: double.infinity,
+                      ),
                   Row(
                     children: [
-                      SizedBox(width: width * 0.073,),
+                      SizedBox(
+                        width: width * 0.073,
+                      ),
                       ArrowElement(
                         id: 'headPointer',
                         targetId: 'first',
@@ -97,12 +95,14 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
                         child: Text(
                           'Head Pointer',
                           style: TextStyle(
-                              color: Colors.white.withOpacity(firstChildOpacity),
-                              fontSize: height * 0.02
-                          ),
+                              color:
+                                  Colors.white.withOpacity(firstChildOpacity),
+                              fontSize: height * 0.02),
                         ),
                       ),
-                      SizedBox(width: width * 0.43,),
+                      SizedBox(
+                        width: width * 0.43,
+                      ),
                       ArrowElement(
                         id: 'tailPointer',
                         targetId: 'third',
@@ -113,14 +113,16 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
                         child: Text(
                           'Tail Pointer',
                           style: TextStyle(
-                              color: Colors.white.withOpacity(firstChildOpacity),
-                              fontSize: height * 0.02
-                          ),
+                              color:
+                                  Colors.white.withOpacity(firstChildOpacity),
+                              fontSize: height * 0.02),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: height * 0.01,),
+                  SizedBox(
+                    height: height * 0.01,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -143,14 +145,16 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
                             width: width * 0.2,
                             child: Center(
                                 child: Text(
-                                  'Data',
-                                  style: TextStyle(
-                                    color: Colors.white.withOpacity(firstChildOpacity),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )),
+                              'Data',
+                              style: TextStyle(
+                                color:
+                                    Colors.white.withOpacity(firstChildOpacity),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
                             decoration: BoxDecoration(
-                              color: Colors.green.withOpacity(firstChildOpacity),
+                              color:
+                                  Colors.green.withOpacity(firstChildOpacity),
                               //borderRadius: BorderRadius.circular(20),
                             ),
                           ),
@@ -174,15 +178,16 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
                             width: width * 0.2,
                             child: Center(
                                 child: Text(
-                                  'Data',
-                                  style: TextStyle(
-                                    color: Colors.white.withOpacity(firstChildOpacity),
-                                    fontWeight: FontWeight.bold,
-
-                                  ),
-                                )),
+                              'Data',
+                              style: TextStyle(
+                                color:
+                                    Colors.white.withOpacity(firstChildOpacity),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
                             decoration: BoxDecoration(
-                              color: Colors.yellow.withOpacity(firstChildOpacity),
+                              color:
+                                  Colors.yellow.withOpacity(firstChildOpacity),
                               //borderRadius: BorderRadius.circular(20),
                             ),
                           ),
@@ -207,13 +212,13 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
                             width: width * 0.2,
                             child: Center(
                                 child: Text(
-                                  'Data',
-                                  style: TextStyle(
-                                    color: Colors.white.withOpacity(firstChildOpacity),
-                                    fontWeight: FontWeight.bold,
-
-                                  ),
-                                )),
+                              'Data',
+                              style: TextStyle(
+                                color:
+                                    Colors.white.withOpacity(firstChildOpacity),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
                             decoration: BoxDecoration(
                               color: Colors.cyan.withOpacity(firstChildOpacity),
                               //borderRadius: BorderRadius.circular(20),
@@ -221,12 +226,14 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
                           ),
                         ),
                       ),
-
                     ],
                   ),
                   Row(
                     children: [
-                      SizedBox(width: width * 0.45, height: height * 0.1,),
+                      SizedBox(
+                        width: width * 0.45,
+                        height: height * 0.1,
+                      ),
                       ArrowElement(
                         id: 'null',
                         color: Colors.white.withOpacity(firstChildOpacity),
@@ -236,14 +243,14 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
                           width: width * 0.1,
                           child: Center(
                               child: Text(
-                                'Null',
-                                style: TextStyle(
-                                  color: Colors.white.withOpacity(firstChildOpacity),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: height * 0.03,
-                                ),
-                              )),
-
+                            'Null',
+                            style: TextStyle(
+                              color:
+                                  Colors.white.withOpacity(firstChildOpacity),
+                              fontWeight: FontWeight.bold,
+                              fontSize: height * 0.03,
+                            ),
+                          )),
                         ),
                       ),
                     ],
@@ -287,7 +294,9 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
                 child: Center(
                   child: Text(
                     'Let\'s Dive',
-                    style: TextStyle(color: Colors.white.withOpacity(secondChildOpacity), fontSize: height * 0.02),
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(secondChildOpacity),
+                        fontSize: height * 0.02),
                   ),
                 ),
                 decoration: BoxDecoration(

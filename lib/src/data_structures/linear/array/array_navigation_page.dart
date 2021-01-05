@@ -19,9 +19,10 @@ class _ArrayNavigatorState extends State<ArrayNavigator> {
     //removeLast();
     super.dispose();
   }
+
   @override
   void initState() {
-    path = ['Home','DS','Array'];
+    path = ['Home', 'DS', 'Array'];
     // TODO: implement initState
     super.initState();
   }
@@ -30,10 +31,11 @@ class _ArrayNavigatorState extends State<ArrayNavigator> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home','DS','Array'];
+    path = ['Home', 'DS', 'Array'];
     return WillPopScope(
-      onWillPop: ()async{
-        Navigator.pushNamedAndRemoveUntil(context, '/LinearNonLinearPage', (route) => false);
+      onWillPop: () async {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/LinearNonLinearPage', (route) => false);
 
         return true;
       },

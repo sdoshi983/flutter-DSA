@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 List<String> path = ['Home'];
 void addElement(String addMe) {
- // path.add(addMe);
+   path.add(addMe);
 }
 
 void removeLast() {
- //path.removeLast();
+  //path.removeLast();
 }
 
 class AddressBar extends StatefulWidget {
@@ -22,19 +22,21 @@ class _AddressBarState extends State<AddressBar> {
       return count == cnt;
     });
   }
-@override
+
+  @override
   void initState() {
     print(path);
     // TODO: implement initState
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
     return Container(
       width: w * 0.8,
       child: ListView.separated(
-        itemCount:path.length,
+        itemCount: path.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
           print(index);
@@ -71,26 +73,27 @@ class _AddressBarState extends State<AddressBar> {
                   Navigator.pushNamedAndRemoveUntil(
                       context, '/StackIntroduction', (route) => false);
                   path = ['Home', 'DS', 'Stack'];
+                } else if (path[index] == 'Singly') {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/SinglyMainPage', (route) => false);
+                } else if (path[index] == 'Doubly') {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/DoublyMainPage', (route) => false);
                 }
-                else if(path[index] == 'Singly'){
-                  Navigator.pushNamedAndRemoveUntil(context, '/SinglyMainPage', (route) => false);
-
+                else if(path[index]=='Trees'){
+                  Navigator.pushNamedAndRemoveUntil(context, '/TreeMain', (route) => false);
                 }
-                else if(path[index] == 'Doubly'){
-                  Navigator.pushNamedAndRemoveUntil(context, '/DoublyMainPage', (route) => false);
-                }
-
               });
             },
             child: Text(
-              index>=path.length?"ERROR":path[index],
+              index >= path.length ? "ERROR" : path[index],
             ),
           );
         },
         separatorBuilder: (BuildContext context, int index) {
           return Text(' > ');
         },
-      //  itemCount: path.length,
+        //  itemCount: path.length,
       ),
     );
   }

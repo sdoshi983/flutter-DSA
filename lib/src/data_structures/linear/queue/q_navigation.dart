@@ -13,95 +13,91 @@ class QueueNavigator extends StatefulWidget {
 
 class _QueueNavigatorState extends State<QueueNavigator>
     with TickerProviderStateMixin {
-  int container = 300,slide = 500;
+  int container = 300, slide = 500;
   List toAdd = [4, 3, 2, 1], currentQueue = [];
   Color firstColor = Colors.transparent,
       secondColor = Colors.transparent,
       thirdColor = Colors.transparent,
       fourthColor = Colors.transparent;
-  double firstFac = 0,secondFac=0,thirdFac = 0,fourthFac = 0;
+  double firstFac = 0, secondFac = 0, thirdFac = 0, fourthFac = 0;
   double required = 6;
   int last = -1;
   void enqueueAnimation() {
-    if(last==1){
-      firstFac=0;
-    }
-    else if(last==2)secondFac=0;
-    else if(last==3)thirdFac=0;
-    else if(last==4) fourthFac=0;
+    if (last == 1) {
+      firstFac = 0;
+    } else if (last == 2)
+      secondFac = 0;
+    else if (last == 3)
+      thirdFac = 0;
+    else if (last == 4) fourthFac = 0;
     last = -1;
-    if(currentQueue.length==4)return;
+    if (currentQueue.length == 4) return;
     int here = toAdd[0];
     toAdd.remove(here);
     toAdd.add(here);
     currentQueue.add(here);
-    if(here ==4){
+    if (here == 4) {
       fourthColor = Colors.red;
       fourthFac = required;
-    }
-    else if(here ==3){
-      thirdColor=Colors.blue;
-      thirdFac=required;
-    }
-    else if(here ==2){
+    } else if (here == 3) {
+      thirdColor = Colors.blue;
+      thirdFac = required;
+    } else if (here == 2) {
       secondColor = Colors.green;
       secondFac = required;
-    }
-    else if(here == 1){
+    } else if (here == 1) {
       firstColor = Colors.yellow;
       firstFac = required;
     }
-    required-=2;
-
+    required -= 2;
   }
 
   void dequeueAnimation() {
-    if(last==1){
-      firstFac=0;
-    }
-    else if(last==2)secondFac=0;
-    else if(last==3)thirdFac=0;
-    else if(last==4) fourthFac=0;
+    if (last == 1) {
+      firstFac = 0;
+    } else if (last == 2)
+      secondFac = 0;
+    else if (last == 3)
+      thirdFac = 0;
+    else if (last == 4) fourthFac = 0;
     last = -1;
-    if(currentQueue.length==0)return;
+    if (currentQueue.length == 0) return;
     int here = currentQueue[0];
-    for(int i=0;i<currentQueue.length;i++){
-      if(currentQueue[i] ==1){
-        if(i==0)firstColor=Colors.transparent;
-        firstFac+=2;
-      }
-      else if(currentQueue[i]==2){
-        if(i==0)secondColor=Colors.transparent;
+    for (int i = 0; i < currentQueue.length; i++) {
+      if (currentQueue[i] == 1) {
+        if (i == 0) firstColor = Colors.transparent;
+        firstFac += 2;
+      } else if (currentQueue[i] == 2) {
+        if (i == 0) secondColor = Colors.transparent;
 
-        secondFac+=2;
-      }
-      else if(currentQueue[i] ==3){
-        if(i==0)thirdColor=Colors.transparent;
+        secondFac += 2;
+      } else if (currentQueue[i] == 3) {
+        if (i == 0) thirdColor = Colors.transparent;
 
-        thirdFac+=2;
-      }
-      else if(currentQueue[i]==4){
-        if(i==0)fourthColor=Colors.transparent;
+        thirdFac += 2;
+      } else if (currentQueue[i] == 4) {
+        if (i == 0) fourthColor = Colors.transparent;
 
-        fourthFac+=2;
+        fourthFac += 2;
       }
     }
-    last=here;
-    required+=2;
+    last = here;
+    required += 2;
     currentQueue.remove(here);
   }
 
   @override
   Widget build(BuildContext context) {
-  //  print('Inside build');
-    add.path = ['Home','DS','Queue'];
+    //  print('Inside build');
+    add.path = ['Home', 'DS', 'Queue'];
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     double h = height * 0.13, w = width * 0.1;
 
     return WillPopScope(
-      onWillPop: ()async{
-        Navigator.pushNamedAndRemoveUntil(context, '/LinearNonLinearPage', (route) => false);
+      onWillPop: () async {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/LinearNonLinearPage', (route) => false);
 
         return true;
       },
@@ -134,7 +130,7 @@ class _QueueNavigatorState extends State<QueueNavigator>
                             children: [
                               AnimatedPositioned(
                                 top: 6,
-                                left: w*firstFac,
+                                left: w * firstFac,
                                 child: QueueElement(
                                   color: firstColor,
                                 ),
@@ -159,12 +155,12 @@ class _QueueNavigatorState extends State<QueueNavigator>
                                   color: thirdColor,
                                 ),
                                 duration: Duration(
-                                  milliseconds:slide,
+                                  milliseconds: slide,
                                 ),
                               ),
                               AnimatedPositioned(
                                 top: 6,
-                                left: fourthFac* w,
+                                left: fourthFac * w,
                                 child: QueueElement(
                                   color: fourthColor,
                                 ),
@@ -183,7 +179,7 @@ class _QueueNavigatorState extends State<QueueNavigator>
                     RaisedButton(
                       onPressed: () {
                         setState(() {
-             //             print('clicked');
+                          //             print('clicked');
                           enqueueAnimation();
                           //print(firstCon.value);
                         });

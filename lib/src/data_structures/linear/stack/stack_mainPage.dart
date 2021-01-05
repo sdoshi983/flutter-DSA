@@ -14,9 +14,10 @@ class _StackMainPageState extends State<StackMainPage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return WillPopScope(
-      onWillPop: ()async{
-        Navigator.pushNamedAndRemoveUntil(context, '/LinearNonLinearPage', (route) => false);
-        path = ['Home','DS'];
+      onWillPop: () async {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/LinearNonLinearPage', (route) => false);
+        path = ['Home', 'DS'];
         return true;
       },
       child: BaseTemplate(

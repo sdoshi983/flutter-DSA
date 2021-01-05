@@ -4,6 +4,7 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'src/constants.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -21,7 +22,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 
 class ArrayElement extends StatefulWidget {
   Color color;

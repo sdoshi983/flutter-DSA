@@ -3,7 +3,6 @@ import 'package:dsa_simulation/src/Utilities/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/src/utilities/base_template.dart';
 
-
 class TreeMainScreen extends StatefulWidget {
   @override
   _TreeMainScreenState createState() => _TreeMainScreenState();
@@ -14,10 +13,11 @@ class _TreeMainScreenState extends State<TreeMainScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home','DS','Trees'];
-    return  WillPopScope(
-      onWillPop: ()async{
-        Navigator.pushNamedAndRemoveUntil(context, '/LinearNonLinearPage', (route) => false);
+    path = ['Home', 'DS', 'Trees'];
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/LinearNonLinearPage', (route) => false);
         return true;
       },
       child: BaseTemplate(
@@ -33,11 +33,10 @@ class _TreeMainScreenState extends State<TreeMainScreen> {
                 SizedBox(
                   height: height * 0.05,
                 ),
-
                 Tiles(
                   onPress: () {
                     addElement('Intro');
-                    Navigator.of(context).pushNamed('/SinglyMainPage');
+                    Navigator.of(context).pushNamed('/TreeIntro');
                   },
                   title: 'Introduction',
                 ),
@@ -71,7 +70,6 @@ class _TreeMainScreenState extends State<TreeMainScreen> {
                   },
                   title: 'Avalance Tree',
                 ),
-
               ],
             ),
           ),

@@ -14,7 +14,7 @@ class SinglyDeletion extends StatefulWidget {
 
 class _SinglyDeletionState extends State<SinglyDeletion> {
   double arrowOpacity = 0;
-  double firstChildOpacity=0, secondChildOpacity=1;
+  double firstChildOpacity = 0, secondChildOpacity = 1;
   double animationState = -1;
   double nullWidth = 0;
   double newElementOpacity = 0;
@@ -25,43 +25,34 @@ class _SinglyDeletionState extends State<SinglyDeletion> {
   AlignmentGeometry headPointerArrow = Alignment.bottomCenter;
 
   void forward() {
-    if(animationState == -1){
+    if (animationState == -1) {
       secondChildOpacity = 0;
       firstChildOpacity = 1;
       newElementOpacity = 1;
-
-    }
-    else if(animationState == 0) {
+    } else if (animationState == 0) {
       headPointerArrow = Alignment.bottomRight;
       headPointerTargetId = 'second';
-    }
-    else if(animationState == 1){
+    } else if (animationState == 1) {
       secondElementArrow = Alignment.centerRight;
       secondTargetId = 'third';
-    }
-    else if(animationState == 2)
-      newElementOpacity = 0;
-
+    } else if (animationState == 2) newElementOpacity = 0;
 
     animationState++;
   }
 
   void reverse() {
-    if(animationState == 3)
+    if (animationState == 3)
       newElementOpacity = 1;
-    else if(animationState == 2){
+    else if (animationState == 2) {
       secondElementArrow = Alignment.bottomRight;
       secondTargetId = 'newElement';
-    }
-    else if (animationState == 1) {
+    } else if (animationState == 1) {
       headPointerArrow = Alignment.bottomCenter;
       headPointerTargetId = 'first';
-    }
-    else if(animationState == 0){
+    } else if (animationState == 0) {
       firstChildOpacity = 0;
       secondChildOpacity = 1;
       newElementOpacity = 0;
-
     }
     animationState--;
   }
@@ -70,11 +61,12 @@ class _SinglyDeletionState extends State<SinglyDeletion> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home','DS','Linked List','Singly','Deletion'];
+    path = ['Home', 'DS', 'Linked List', 'Singly', 'Deletion'];
 
     return WillPopScope(
-      onWillPop: ()async{
-        Navigator.pushNamedAndRemoveUntil(context, '/SinglyMainPage', (route) => false);
+      onWillPop: () async {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/SinglyMainPage', (route) => false);
 
         return true;
       },
@@ -91,15 +83,20 @@ class _SinglyDeletionState extends State<SinglyDeletion> {
                     children: [
                       Text(
                         'Introduction to Singly Linked List',
-                        style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.white),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            .copyWith(color: Colors.white),
                       ),
                       SizedBox(
-                        //height: height * 0.01,
-                        //width: double.infinity,
-                      ),
+                          //height: height * 0.01,
+                          //width: double.infinity,
+                          ),
                       Row(
                         children: [
-                          SizedBox(width: width * 0.07,),
+                          SizedBox(
+                            width: width * 0.07,
+                          ),
                           ArrowElement(
                             id: 'headPointer',
                             targetId: headPointerTargetId,
@@ -109,12 +106,14 @@ class _SinglyDeletionState extends State<SinglyDeletion> {
                             child: Text(
                               'Head Pointer',
                               style: TextStyle(
-                                  color: Colors.white.withOpacity(firstChildOpacity),
-                                  fontSize: height * 0.02
-                              ),
+                                  color: Colors.white
+                                      .withOpacity(firstChildOpacity),
+                                  fontSize: height * 0.02),
                             ),
                           ),
-                          SizedBox(width: width * 0.34,),
+                          SizedBox(
+                            width: width * 0.34,
+                          ),
                           ArrowElement(
                             id: 'tailPointer',
                             targetId: 'third',
@@ -124,14 +123,16 @@ class _SinglyDeletionState extends State<SinglyDeletion> {
                             child: Text(
                               'Tail Pointer',
                               style: TextStyle(
-                                  color: Colors.white.withOpacity(firstChildOpacity),
-                                  fontSize: height * 0.02
-                              ),
+                                  color: Colors.white
+                                      .withOpacity(firstChildOpacity),
+                                  fontSize: height * 0.02),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: height * 0.01,),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -146,14 +147,16 @@ class _SinglyDeletionState extends State<SinglyDeletion> {
                               width: width * 0.2,
                               child: Center(
                                   child: Text(
-                                    'Data',
-                                    style: TextStyle(
-                                      color: Colors.white.withOpacity(firstChildOpacity),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )),
+                                'Data',
+                                style: TextStyle(
+                                  color: Colors.white
+                                      .withOpacity(firstChildOpacity),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
                               decoration: BoxDecoration(
-                                color: Colors.green.withOpacity(firstChildOpacity),
+                                color:
+                                    Colors.green.withOpacity(firstChildOpacity),
                                 //borderRadius: BorderRadius.circular(20),
                               ),
                             ),
@@ -169,15 +172,16 @@ class _SinglyDeletionState extends State<SinglyDeletion> {
                               width: width * 0.2,
                               child: Center(
                                   child: Text(
-                                    'Data',
-                                    style: TextStyle(
-                                      color: Colors.white.withOpacity(firstChildOpacity),
-                                      fontWeight: FontWeight.bold,
-
-                                    ),
-                                  )),
+                                'Data',
+                                style: TextStyle(
+                                  color: Colors.white
+                                      .withOpacity(firstChildOpacity),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
                               decoration: BoxDecoration(
-                                color: Colors.yellow.withOpacity(firstChildOpacity),
+                                color: Colors.yellow
+                                    .withOpacity(firstChildOpacity),
                                 //borderRadius: BorderRadius.circular(20),
                               ),
                             ),
@@ -194,15 +198,16 @@ class _SinglyDeletionState extends State<SinglyDeletion> {
                               width: width * 0.2,
                               child: Center(
                                   child: Text(
-                                    'Data',
-                                    style: TextStyle(
-                                      color: Colors.white.withOpacity(firstChildOpacity),
-                                      fontWeight: FontWeight.bold,
-
-                                    ),
-                                  )),
+                                'Data',
+                                style: TextStyle(
+                                  color: Colors.white
+                                      .withOpacity(firstChildOpacity),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
                               decoration: BoxDecoration(
-                                color: Colors.cyan.withOpacity(firstChildOpacity),
+                                color:
+                                    Colors.cyan.withOpacity(firstChildOpacity),
                                 //borderRadius: BorderRadius.circular(20),
                               ),
                             ),
@@ -216,21 +221,23 @@ class _SinglyDeletionState extends State<SinglyDeletion> {
                               width: width * 0.08,
                               child: Center(
                                   child: Text(
-                                    'Null',
-                                    style: TextStyle(
-                                      color: Colors.white.withOpacity(firstChildOpacity),
-                                      fontWeight: FontWeight.bold,
-
-                                    ),
-                                  )),
-
+                                'Null',
+                                style: TextStyle(
+                                  color: Colors.white
+                                      .withOpacity(firstChildOpacity),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
                             ),
                           ),
                         ],
                       ),
                       Row(
                         children: [
-                          SizedBox(width: width * 0.6, height: height * 0.1,),
+                          SizedBox(
+                            width: width * 0.6,
+                            height: height * 0.1,
+                          ),
                           ArrowElement(
                             id: 'newElement',
                             targetId: newElementTargetId,
@@ -243,15 +250,16 @@ class _SinglyDeletionState extends State<SinglyDeletion> {
                               width: width * 0.2,
                               child: Center(
                                   child: Text(
-                                    'Data',
-                                    style: TextStyle(
-                                      color: Colors.white.withOpacity(newElementOpacity),
-                                      fontWeight: FontWeight.bold,
-
-                                    ),
-                                  )),
+                                'Data',
+                                style: TextStyle(
+                                  color: Colors.white
+                                      .withOpacity(newElementOpacity),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
                               decoration: BoxDecoration(
-                                color: Colors.lightGreen.withOpacity(newElementOpacity),
+                                color: Colors.lightGreen
+                                    .withOpacity(newElementOpacity),
                                 //borderRadius: BorderRadius.circular(20),
                               ),
                             ),
@@ -297,7 +305,9 @@ class _SinglyDeletionState extends State<SinglyDeletion> {
                     child: Center(
                       child: Text(
                         'Let\'s Dive',
-                        style: TextStyle(color: Colors.white.withOpacity(secondChildOpacity), fontSize: height * 0.02),
+                        style: TextStyle(
+                            color: Colors.white.withOpacity(secondChildOpacity),
+                            fontSize: height * 0.02),
                       ),
                     ),
                     decoration: BoxDecoration(
