@@ -12,6 +12,7 @@ import 'package:dsa_simulation/src/data_structures/linear/queue/q_navigation.dar
 import 'package:dsa_simulation/src/data_structures/linear_and_non_linear.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/introduction/tree_introduction.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/tree_main.dart';
+import 'package:dsa_simulation/src/data_structures/non_linear/heap/heap_main_page.dart';
 import 'package:dsa_simulation/src/home_page.dart';
 import 'src/data_structures/linear/linear.dart';
 import 'src/Data_Structures/Linear/array/array_navigation_page.dart';
@@ -57,6 +58,10 @@ class RouteGenerator {
         return reusablePageRouteBuilder(DoublyIntroduction());
       case '/DoublyDeletionPage':
         return reusablePageRouteBuilder(DoublyDeletion());
+      case '/HeapMainPage':
+        return reusablePageRouteBuilder(HeapMainPage());
+      // case '/HeapInsertion':
+      //   return reusablePageRouteBuilder(HeapInsertion());
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return reusablePageRouteBuilder(
