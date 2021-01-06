@@ -39,6 +39,12 @@ class _HomePageState extends State<HomePage> {
     return BaseTemplate(
       body: Scaffold(
         //  drawer: DrawerWidget(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){
+            Navigator.of(context)
+                .pushReplacementNamed('/TreeIntro');
+          },
+        ),
         appBar: appBar(context),
         body: SingleChildScrollView(
           child: Container(
