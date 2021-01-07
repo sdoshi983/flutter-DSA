@@ -13,7 +13,7 @@ class _HeapMainPageState extends State<HeapMainPage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home', 'DS', 'Trees'];
+    path = ['Home', 'DS', 'Heaps'];
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushNamedAndRemoveUntil(
@@ -36,7 +36,7 @@ class _HeapMainPageState extends State<HeapMainPage> {
                 Tiles(
                   onPress: () {
                     addElement('Intro');
-                    Navigator.of(context).pushNamed('/TreeIntro');
+                    Navigator.of(context).pushNamed('/HeapIntroduction');
                   },
                   title: 'Introduction',
                 ),
