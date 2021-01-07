@@ -78,45 +78,43 @@ class _BaseTemplateState extends State<BaseTemplate>
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return ArrowContainer(
-      child: Container(
-        color: Colors.black,
-        child: GestureDetector(
-          onHorizontalDragStart: _onDragStart,
-          onHorizontalDragUpdate: _onDragUpdate,
-          onHorizontalDragEnd: _onDragEnd,
-          //  onTap: toggle,
-          child: AnimatedBuilder(
-            animation: baseController,
-            builder: (context, _) {
-              return Stack(
-                children: [
-                  Transform.translate(
-                    offset: Offset(width * 0.82 * (-1 + baseController.value), 0),
-                    child: Transform(
-                      transform: Matrix4.identity()
-                        ..setEntry(3, 2, 0.002)
-                        ..rotateY(
-                          math.pi / 10 * (1 - baseController.value),
-                        ),
-                      child: DrawerWidget(),
-                    ),
+    return Container(
+      color: Colors.black,
+      child: GestureDetector(
+        onHorizontalDragStart: _onDragStart,
+        onHorizontalDragUpdate: _onDragUpdate,
+        onHorizontalDragEnd: _onDragEnd,
+        //  onTap: toggle,
+        child: AnimatedBuilder(
+          animation: baseController,
+          builder: (context, _) {
+            return Stack(
+              children: [
+                Transform.translate(
+                  offset: Offset(width * 0.82 * (-1 + baseController.value), 0),
+                  child: Transform(
+                    transform: Matrix4.identity()
+                      ..setEntry(3, 2, 0.002)
+                      ..rotateY(
+                        math.pi / 10 * (1 - baseController.value),
+                      ),
+                    child: DrawerWidget(),
                   ),
-                  Transform.translate(
-                    offset: baseController.value < 0.1
-                        ? Offset.zero
-                        : Offset(width * 0.8 * baseController.value - 10, 0),
-                    child: Transform(
-                      transform: Matrix4.identity()
-                        ..setEntry(3, 2, -0.002)
-                        ..rotateY(math.pi / 2 * baseController.value),
-                      child: widget.body,
-                    ),
+                ),
+                Transform.translate(
+                  offset: baseController.value < 0.1
+                      ? Offset.zero
+                      : Offset(width * 0.8 * baseController.value - 10, 0),
+                  child: Transform(
+                    transform: Matrix4.identity()
+                      ..setEntry(3, 2, -0.002)
+                      ..rotateY(math.pi / 2 * baseController.value),
+                    child: widget.body,
                   ),
-                ],
-              );
-            },
-          ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
