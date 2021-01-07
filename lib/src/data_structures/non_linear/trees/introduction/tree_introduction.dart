@@ -15,34 +15,53 @@ class TreeIntroduction extends StatefulWidget {
 class _TreeIntroductionState extends State<TreeIntroduction> {
   double tipLength = 10;
   bool elementVisible = false;
-  int state = 0;
+  int state = -1;
   Color first = Colors.transparent,
       second = Colors.transparent,
+      third = Colors.transparent,
+      fourth = Colors.transparent,
       rest = Colors.transparent;
   void forward() {
-    if (state == 0)
+    if (state == -1) {
+    } else if (state == 0)
       elementVisible = true;
     else if (state == 1) {
     } else if (state == 2) {
     } else if (state == 3)
-
       rest = Colors.white;
-    else if(state==4)first=Colors.white;
-    else if(state==5)second=Colors.white;
+    else if (state == 4)
+      first = Colors.white;
+    else if (state == 5)
+      second = Colors.white;
+    else if (state == 6) {
+      third = Colors.white;
+      second = Colors.transparent;
+      first = Colors.transparent;
+    } else if (state == 7)
+      fourth = Colors.white;
     else
       return;
     state++;
   }
 
   void reverse() {
-    if (state == 1)
+    if (state == 0) {
+    } else if (state == 1)
       elementVisible = false;
     else if (state == 2) {
     } else if (state == 3) {
     } else if (state == 4)
       rest = Colors.transparent;
-    else if(state==5)first=Colors.transparent;
-    else if(state==6)second=Colors.transparent;
+    else if (state == 5)
+      first = Colors.transparent;
+    else if (state == 6)
+      second = Colors.transparent;
+    else if (state == 7) {
+      second = Colors.white;
+      first = Colors.white;
+      third = Colors.transparent;
+    } else if (state == 8)
+      fourth = Colors.transparent;
     else
       return;
     state--;
@@ -56,6 +75,7 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
     //print('introduction');
     // print(path);
     print(state);
+
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushNamedAndRemoveUntil(
@@ -63,213 +83,253 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
         return true;
       },
       child: BaseTemplate(
-        body: Scaffold(
-          appBar: appBar(context),
-          body: Container(
-            color: Colors.black,
-            height: height,
-            width: width,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'Introduction to Tree',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline6
-                      .copyWith(color: Colors.white),
-                ),
-                Container(
-                  child: Stack(
-                    children: [
-                      ArrowElement(
-                        tipLength: tipLength,
-                        id: 'root',
-                        targetId: '1',
-                        flip: true,
-                        targetAnchor: Alignment.topCenter,
-                        color: first,
-                        child: Positioned(
-                          child: Text(
-                            'Root Node',
-                            style: TextStyle(
-                              color:first,
-                              fontSize: 16,
+        body: ArrowContainer(
+          child: Scaffold(
+            appBar: appBar(context),
+            body: Container(
+              color: Colors.black,
+              height: height,
+              width: width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    'Introduction to Tree',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6
+                        .copyWith(color: Colors.white),
+                  ),
+                  Container(
+                    child: Stack(
+                      children: [
+                        ArrowElement(
+                          tipLength: tipLength,
+                          id: 'root',
+                          targetId: '1',
+                          flip: true,
+                          targetAnchor: Alignment.topCenter,
+                          color: first,
+                          child: Positioned(
+                            child: Text(
+                              'Root Node',
+                              style: TextStyle(
+                                color: first,
+                                fontSize: 16,
+                              ),
                             ),
+                            right: 5,
                           ),
-                          right: 5,
                         ),
-                      ),
-                      ArrowElement(
-                        flip: true,
-                        tipLength: tipLength,
-                        color: state > 2 ? Colors.white : Colors.transparent,
-                        bow: 0,
-                        sourceAnchor: Alignment.centerRight,
-                        targetAnchor: Alignment.topCenter,
-                        id: '01',
-                        targetId: '3',
-                        child: TreeNode(
-                          isVisible: elementVisible,
-                          id: '1',
-                          targetId: '2',
-                          color: Colors.red,
-                          arrowColor:
-                              state > 1 ? Colors.white : Colors.transparent,
-                          title: '1',
-                          left: width * 0.45,
-                          source: Alignment.centerLeft,
-                          target: Alignment.topCenter,
+                        ArrowElement(
+                          flip: true,
+                          tipLength: tipLength,
+                          color: state > 2 ? Colors.white : Colors.transparent,
+                          bow: 0,
+                          sourceAnchor: Alignment.centerRight,
+                          targetAnchor: Alignment.topCenter,
+                          id: '01',
+                          targetId: '3',
+                          child: TreeNode(
+                            isVisible: elementVisible,
+                            id: '1',
+                            targetId: '2',
+                            color: state < 0 ? Colors.transparent : Colors.red,
+                            arrowColor:
+                                state > 1 ? Colors.white : Colors.transparent,
+                            title: '1',
+                            left: width * 0.45,
+                            source: Alignment.centerLeft,
+                            target: Alignment.topCenter,
+                          ),
                         ),
-                      ),
-                      ArrowElement(
-                        id: '0002',
-                        tipLength: tipLength,
-                        color: rest,
-                        targetId: '6',
-                        targetAnchor: Alignment.topCenter,
-                        sourceAnchor: Alignment.centerRight,
-                        flip: true,
-                        child: ArrowElement(
-                          id: '002',
-                          targetId: '5',
+                        ArrowElement(
+                          id: '0002',
                           tipLength: tipLength,
                           color: rest,
-                          sourceAnchor: Alignment.bottomCenter,
+                          targetId: '6',
                           targetAnchor: Alignment.topCenter,
+                          sourceAnchor: Alignment.centerRight,
+                          flip: true,
                           child: ArrowElement(
-                            color: rest,
+                            id: '002',
+                            targetId: '5',
                             tipLength: tipLength,
-                            id: '02',
-                            targetId: '4',
+                            color: rest,
+                            sourceAnchor: Alignment.bottomCenter,
                             targetAnchor: Alignment.topCenter,
-                            flip: true,
-                            child: TreeNode(
-                              isVisible: elementVisible,
-                              id: '2',
-                              color: Colors.green,
-                              title: '2',
-                              top: width * 0.2,
-                              left: width * ((1 / 3) - 0.05),
+                            child: ArrowElement(
+                              color: rest,
+                              tipLength: tipLength,
+                              id: '02',
+                              targetId: '4',
+                              targetAnchor: Alignment.topCenter,
+                              flip: true,
+                              child: TreeNode(
+                                isVisible: elementVisible,
+                                id: '2',
+                                color: state < 0
+                                    ? Colors.transparent
+                                    : Colors.green,
+                                title: '2',
+                                top: width * 0.2,
+                                left: width * ((1 / 3) - 0.05),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      ArrowElement(
-                        id: '03',
-                        targetId: '7',
-                        tipLength: tipLength,
-                        targetAnchor: Alignment.topCenter,
-                        sourceAnchor: Alignment.centerRight,
-                        flip: true,
-                        color: rest,
-                        child: TreeNode(
-                          id: '3',
-                          color: Colors.blue,
-                          title: '3',
-                          top: width * 0.2,
-                          left: width * ((2 / 3) - 0.05),
+                        ArrowElement(
+                          id: '03',
+                          targetId: '7',
+                          tipLength: tipLength,
+                          targetAnchor: Alignment.centerLeft,
+                          sourceAnchor: Alignment.bottomCenter,
+                          //flip: true,
+                          color: rest,
+                          child: TreeNode(
+                            id: '3',
+                            color: state < 0 ? Colors.transparent : Colors.blue,
+                            title: '3',
+                            top: width * 0.2,
+                            left: width * ((2 / 3) - 0.05),
+                            isVisible: elementVisible,
+                          ),
+                        ),
+                        TreeNode(
+                          id: '4',
+                          color: state < 0 ? Colors.transparent : Colors.cyan,
+                          isVisible: elementVisible,
+                          title: '4',
+                          top: width * 0.4,
+                          left: width * ((1 / 6) - 0.05),
+                        ),
+                        TreeNode(
+                          id: '5',
+                          color: state < 0 ? Colors.transparent : Colors.orange,
+                          //  targetId: '2',
+                          isVisible: elementVisible,
+                          title: '5',
+                          top: width * 0.4,
+                          left: width * ((2 / 6) - 0.05),
+                        ),
+                        TreeNode(
+                          id: '6',
+                          color: state < 0 ? Colors.transparent : Colors.purple,
+                          //  targetId: '2',
+                          title: '6',
+                          top: width * 0.4,
+                          left: width * ((3 / 6) - 0.05),
                           isVisible: elementVisible,
                         ),
-                      ),
-                      TreeNode(
-                        id: '4',
-                        color: Colors.cyan,
-                        isVisible: elementVisible,
-                        title: '4',
-                        top: width * 0.4,
-                        left: width * ((1 / 6) - 0.05),
-                      ),
-                      TreeNode(
-                        id: '5',
-                        color: Colors.orange,
-                        //  targetId: '2',
-                        isVisible: elementVisible,
-                        title: '5',
-                        top: width * 0.4,
-                        left: width * ((2 / 6) - 0.05),
-                      ),
-                      TreeNode(
-                        id: '6',
-                        color: Colors.purple,
-                        //  targetId: '2',
-                        title: '6',
-                        top: width * 0.4,
-                        left: width * ((3 / 6) - 0.05),
-                        isVisible: elementVisible,
-                      ),
-                      TreeNode(
-                        id: '7',
-                        color: Colors.deepOrangeAccent,
-                        //  targetId: '2',
-                        title: '7',
-                        top: width * 0.4,
-                        left: width * ((5 / 6) - 0.05),
-                        isVisible: elementVisible,
-                      ),
-                      ArrowElement(
-                        id: 'leaf',
-                        targetId: '7',
-                        targetAnchor: Alignment.bottomCenter,
-                        sourceAnchor: Alignment.centerRight,
-                        tipLength: tipLength,
-                        color: second,
-                        child: ArrowElement(
-                          id: 'lea',
-                          tipLength: tipLength,
-                          targetId: '6',
-                          sourceAnchor: Alignment.topCenter,
+                        TreeNode(
+                          id: '7',
+                          color: state < 0
+                              ? Colors.transparent
+                              : Colors.deepOrangeAccent,
+                          //  targetId: '2',
+                          title: '7',
+                          top: width * 0.4,
+                          left: width * ((5 / 6) - 0.05),
+                          isVisible: elementVisible,
+                        ),
+                        ArrowElement(
+                          id: 'leaf',
+                          targetId: '7',
                           targetAnchor: Alignment.bottomCenter,
+                          sourceAnchor: Alignment.centerRight,
+                          tipLength: tipLength,
                           color: second,
                           child: ArrowElement(
+                            id: 'lea',
                             tipLength: tipLength,
-                            flip: true,
-                            id: 'le',
-                            targetId: '5',
+                            targetId: '6',
+                            sourceAnchor: Alignment.topCenter,
                             targetAnchor: Alignment.bottomCenter,
-                            sourceAnchor: Alignment.centerLeft,
                             color: second,
                             child: ArrowElement(
-                              id: 'l',
-                              targetId: '4',
                               tipLength: tipLength,
-                              color: second,
+                              flip: true,
+                              id: 'le',
+                              targetId: '5',
                               targetAnchor: Alignment.bottomCenter,
-                              child: Positioned(
-                                top: width*0.65,
-                                left: width*0.45,
-                                child: Text(
-                                  'Leaves',
-                                  style: TextStyle(
-                                    color: second,
-                                    fontSize: 20,
+                              sourceAnchor: Alignment.centerLeft,
+                              color: second,
+                              child: ArrowElement(
+                                id: 'l',
+                                targetId: '4',
+                                tipLength: tipLength,
+                                color: second,
+                                targetAnchor: Alignment.bottomCenter,
+                                child: Positioned(
+                                  top: width * 0.65,
+                                  left: width * 0.45,
+                                  child: Text(
+                                    'Leaves',
+                                    style: TextStyle(
+                                      color: second,
+                                      fontSize: 20,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  width: width,
-                  height: height * 0.6,
-                  color: Colors.black,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    RaisedButton(
-                      onPressed: () {
-                        setState(() {
-                          reverse();
-                          print(state);
-                        });
-                      },
-                      child: Icon(Icons.backspace_sharp),
-                      color: kThemeColor,
+                        ArrowElement(
+                          flip: true,
+                          id: 'parent',
+                          targetId: '1',
+                          sourceAnchor: Alignment.centerRight,
+                          targetAnchor: Alignment.topCenter,
+                          color: third,
+                          child: Positioned(
+                            left: width * 0.1,
+                            child: Text(
+                              'Parent',
+                              style: TextStyle(
+                                color: third,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ),
+                        ArrowElement(
+                          id: 'child',
+                          targetId: '3',
+                          flip: true,
+                          tipLength: tipLength,
+                          sourceAnchor: Alignment.bottomCenter,
+                          targetAnchor: Alignment.centerRight,
+                          color: fourth,
+                          child: Positioned(
+                            top: width * 0.1,
+                            right: width * 0.05,
+                            child: Text(
+                              'Child',
+                              style: TextStyle(color: fourth, fontSize: 18),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                    RaisedButton(
+                    width: width,
+                    height: height * 0.6,
+                    color: Colors.black,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      RaisedButton(
+                        onPressed: () {
+                          setState(() {
+                            reverse();
+                            print(state);
+                          });
+                        },
+                        child: Icon(Icons.backspace_sharp),
+                        color: kThemeColor,
+                      ),
+                      RaisedButton(
                         onPressed: () {
                           setState(() {
                             forward();
@@ -277,10 +337,12 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
                           });
                         },
                         child: Icon(Icons.forward),
-                        color: kThemeColor),
-                  ],
-                ),
-              ],
+                        color: kThemeColor,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -343,8 +405,7 @@ class _TreeNodeState extends State<TreeNode> {
           ),
           child: CircleAvatar(
             radius: w * 0.05,
-            backgroundColor:
-                widget.isVisible ? widget.color : Colors.transparent,
+            backgroundColor: widget.color,
             child: Text(
               widget.title,
               style: TextStyle(
