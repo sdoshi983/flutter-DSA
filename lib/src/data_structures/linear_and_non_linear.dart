@@ -109,6 +109,16 @@ class _LinearNonLinearPageState extends State<LinearNonLinearPage> {
                 ),
               ),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed('/HeapMainPage');
+              },
+              child: Center(
+                child: Text(
+                  'Heap',
+                ),
+              ),
+            ),
           ],
         ),
       ),
