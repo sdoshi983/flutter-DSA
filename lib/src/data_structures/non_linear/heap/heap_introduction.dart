@@ -22,13 +22,8 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
   void forward() {
     if (state == 0)
       elementVisible = true;
-    else if (state == 1) {
-    } else if (state == 2) {
-    } else if (state == 3)
-
-      rest = Colors.white;
-    else if(state==4)first=Colors.white;
-    else if(state==5)second=Colors.white;
+    else if(state==1);
+    else if(state==2);
     else
       return;
     state++;
@@ -37,12 +32,8 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
   void reverse() {
     if (state == 1)
       elementVisible = false;
-    else if (state == 2) {
-    } else if (state == 3) {
-    } else if (state == 4)
-      rest = Colors.transparent;
-    else if(state==5)first=Colors.transparent;
-    else if(state==6)second=Colors.transparent;
+    else if(state==2);
+    else if(state==3);
     else
       return;
     state--;
@@ -88,65 +79,82 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
                           tipLength: tipLength,
                           color: state > 1 ? Colors.white : Colors.transparent,
                           bow: 0,
-                          sourceAnchor: Alignment.centerRight,
+                          sourceAnchor: Alignment.centerLeft,
                           targetAnchor: Alignment.topCenter,
                           id: '07',
-                          targetId: '5',
-                          arcDirection: ArcDirection.Right,
-                          child: TreeNode(
-                            isVisible: elementVisible,
+                          targetId: '6',
+                          arcDirection: ArcDirection.Left,
+                          child: ArrowElement(
+                            flip: true,
+                            tipLength: tipLength,
+                            color: state > 1 ? Colors.white : Colors.transparent,
+                            bow: 0,
+                            sourceAnchor: Alignment.centerRight,
+                            targetAnchor: Alignment.topCenter,
                             id: '7',
-                            targetId: '6',
-                            color: Colors.red,
-                            arrowColor:
-                            state > 1 ? Colors.white : Colors.transparent,
-                            title: '7',
-                            left: width * 0.45,
-                            source: Alignment.centerLeft,
-                            target: Alignment.topCenter,
-                            arcDirection: ArcDirection.Left,
+                            targetId: '5',
+                            arcDirection: ArcDirection.Right,
+                            child: TreeNode(
+                              isVisible: elementVisible,
+                              color: Colors.red,
+                              title: state > 2 ? '1' : '7',
+                              left: width * 0.45,
+                            ),
                           ),
                         ),
                         ArrowElement(
-                          color:  Colors.white,
+                          color: state > 1 ? Colors.white : Colors.transparent,
                           tipLength: tipLength,
-                          id: '6',
+                          id: '06',
                           targetId: '3',
+                          sourceAnchor: Alignment.centerRight,
                           targetAnchor: Alignment.topCenter,
                           flip: true,
-                          child: TreeNode(
-                            isVisible: elementVisible,
-                          //  id: '06',
-                        //    targetId: '3',
-                            color: Colors.green,
-                            arrowColor: Colors.white,
-                            title: '6',
-                            top: width * 0.2,
-                            left: width * 0.2,
-                            source: Alignment.bottomCenter,
+                          child: ArrowElement(
+                            color: state > 1 ? Colors.white : Colors.transparent,
+                            tipLength: tipLength,
+                            id: '6',
+                            targetId: '4',
+                            targetAnchor: Alignment.topCenter,
+                            flip: true,
+                            child: TreeNode(
+                              isVisible: elementVisible,
+
+                              color: Colors.green,
+                              title: state > 2 ? '2' : '6',
+                              top: width * 0.2,
+                              left: width * 0.2,
+                            ),
                           ),
                         ),
                         ArrowElement(
-                          id: '5',
-                          targetId: '2',
+                          id: '05',
+                          targetId: '1',
                           tipLength: tipLength,
                           targetAnchor: Alignment.topCenter,
                           sourceAnchor: Alignment.centerRight,
                           flip: true,
-                          color: Colors.white,
-                          child: TreeNode(
+                          color: state > 1 ? Colors.white : Colors.transparent,
+                          child: ArrowElement(
                             id: '5',
-                            targetId: '1',
-                            color: Colors.blue,
-                            title: '5',
-                            top: width * 0.2,
-                            left: width * 0.71,
-                            isVisible: elementVisible,
+                            targetId: '2',
+                            tipLength: tipLength,
+                            targetAnchor: Alignment.topCenter,
+                            sourceAnchor: Alignment.centerLeft,
+                            flip: true,
+                            color: state > 1 ? Colors.white : Colors.transparent,
+                            child: TreeNode(
+
+                              color: Colors.blue,
+                              title: state > 2 ? '3' : '5',
+                              top: width * 0.2,
+                              left: width * 0.71,
+                              isVisible: elementVisible,
+                            ),
                           ),
                         ),
                         ArrowElement(
                           id: '4',
-
                           child: TreeNode(
                           //  id: '4',
                             color: Colors.cyan,
@@ -163,28 +171,32 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
                             color: Colors.orange,
                             //  targetId: '2',
                             isVisible: elementVisible,
-                            title: '3',
+                            title: state > 2 ? '5' : '3',
                             top: width * 0.4,
                             left: width * 0.3,
                           ),
                         ),
-                        TreeNode(
+                        ArrowElement(
                           id: '2',
-                          color: Colors.purple,
-                          //  targetId: '2',
-                          title: '2',
-                          top: width * 0.4,
-                          left: width * 0.6,
-                          isVisible: elementVisible,
+                          child: TreeNode(
+                            color: Colors.purple,
+                            //  targetId: '2',
+                            title: state > 2 ? '6' : '2',
+                            top: width * 0.4,
+                            left: width * 0.6,
+                            isVisible: elementVisible,
+                          ),
                         ),
-                        TreeNode(
+                        ArrowElement(
                           id: '1',
-                          color: Colors.deepOrangeAccent,
-                          //  targetId: '2',
-                          title: '1',
-                          top: width * 0.4,
-                          left: width * 0.82,
-                          isVisible: elementVisible,
+                          child: TreeNode(
+                            color: Colors.deepOrangeAccent,
+                            //  targetId: '2',
+                            title: state > 2 ? '7' : '1',
+                            top: width * 0.4,
+                            left: width * 0.82,
+                            isVisible: elementVisible,
+                          ),
                         ),
 
                       ],
@@ -228,26 +240,21 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
 }
 
 class TreeNode extends StatefulWidget {
-  String title, id, targetId;
-  Color color, arrowColor;
-  Alignment source, target;
+  String title;
+  Color color;
+
   bool isVisible;
   double tipLength;
   double top = 100, left = 0;
-  ArcDirection arcDirection = ArcDirection.Left;
   TreeNode({
     this.isVisible,
     this.color,
     this.title,
-    this.id,
-    this.targetId,
-    this.source,
-    this.target,
+
     this.top,
     this.left,
     this.tipLength,
-    this.arrowColor,
-    this.arcDirection
+
   });
 
   @override
@@ -258,38 +265,25 @@ class _TreeNodeState extends State<TreeNode> {
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
-    return ArrowElement(
-      flip: true,
-      //   tipAngleOutwards: 0,
-      tipLength: widget.tipLength ?? 10,
-      color: widget.arrowColor,
-      straights: false,
-      bow: 0,
-      id: widget.id,
-      targetId: widget.targetId,
-      sourceAnchor: widget.source,
-      targetAnchor: widget.target,
-      arcDirection: widget.arcDirection,
-      child: Positioned(
-        top: widget.top,
-        left: widget.left,
-        child: AnimatedContainer(
-          duration: Duration(milliseconds: 600),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: widget.isVisible ? Colors.white : Colors.transparent,
-            border: Border.all(
-                color: widget.isVisible ? Colors.white : Colors.transparent,
-                width: 3),
-          ),
-          child: CircleAvatar(
-            radius: w * 0.05,
-            backgroundColor: widget.color,
-            child: Text(
-              widget.title,
-              style: TextStyle(
-                color: widget.isVisible ? Colors.white : Colors.transparent,
-              ),
+    return Positioned(
+      top: widget.top,
+      left: widget.left,
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 600),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: widget.isVisible ? Colors.white : Colors.transparent,
+          border: Border.all(
+              color: widget.isVisible ? Colors.white : Colors.transparent,
+              width: 3),
+        ),
+        child: CircleAvatar(
+          radius: w * 0.05,
+          backgroundColor: widget.color,
+          child: Text(
+            widget.title,
+            style: TextStyle(
+              color: widget.isVisible ? Colors.white : Colors.transparent,
             ),
           ),
         ),
