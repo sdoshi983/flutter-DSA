@@ -14,6 +14,7 @@ class HeapIntroduction extends StatefulWidget {
 
 class _HeapIntroductionState extends State<HeapIntroduction> {
   double tipLength = 10;
+  double dataOpacity = 0;
   bool elementVisible = false;
   int state = 0;
   Color first = Colors.transparent,
@@ -23,7 +24,10 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
     if (state == 0)
       elementVisible = true;
     else if(state==1);
-    else if(state==2);
+    else if(state==2)
+      elementVisible = false;
+    else if(state==3)
+    elementVisible = true;
     else
       return;
     state++;
@@ -33,7 +37,10 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
     if (state == 1)
       elementVisible = false;
     else if(state==2);
-    else if(state==3);
+    else if(state==3)
+      elementVisible = true;
+    else if(state == 4)
+      elementVisible = false;
     else
       return;
     state--;
@@ -96,6 +103,7 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
                             arcDirection: ArcDirection.Right,
                             child: TreeNode(
                               isVisible: elementVisible,
+                              dataOpacity: elementVisible ? 1 : 0,
                               color: Colors.red,
                               title: state > 2 ? '1' : '7',
                               left: width * 0.45,
@@ -119,6 +127,7 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
                             flip: true,
                             child: TreeNode(
                               isVisible: elementVisible,
+                              dataOpacity: elementVisible ? 1 : 0,
 
                               color: Colors.green,
                               title: state > 2 ? '2' : '6',
@@ -144,6 +153,7 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
                             flip: true,
                             color: state > 1 ? Colors.white : Colors.transparent,
                             child: TreeNode(
+                              dataOpacity: elementVisible ? 1 : 0,
 
                               color: Colors.blue,
                               title: state > 2 ? '3' : '5',
@@ -157,6 +167,8 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
                           id: '4',
                           child: TreeNode(
                           //  id: '4',
+                            dataOpacity: elementVisible ? 1 : 0,
+
                             color: Colors.cyan,
                             isVisible: elementVisible,
                             title: '4',
@@ -168,6 +180,8 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
                           id: '3',
                           child: TreeNode(
                             //id: '3',
+                            dataOpacity: elementVisible ? 1 : 0,
+
                             color: Colors.orange,
                             //  targetId: '2',
                             isVisible: elementVisible,
@@ -179,6 +193,8 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
                         ArrowElement(
                           id: '2',
                           child: TreeNode(
+                            dataOpacity: elementVisible ? 1 : 0,
+
                             color: Colors.purple,
                             //  targetId: '2',
                             title: state > 2 ? '6' : '2',
@@ -190,6 +206,8 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
                         ArrowElement(
                           id: '1',
                           child: TreeNode(
+                            dataOpacity: elementVisible ? 1 : 0,
+
                             color: Colors.deepOrangeAccent,
                             //  targetId: '2',
                             title: state > 2 ? '7' : '1',
@@ -245,12 +263,13 @@ class TreeNode extends StatefulWidget {
 
   bool isVisible;
   double tipLength;
+  double dataOpacity;
   double top = 100, left = 0;
   TreeNode({
     this.isVisible,
     this.color,
     this.title,
-
+    this.dataOpacity,
     this.top,
     this.left,
     this.tipLength,
@@ -280,10 +299,14 @@ class _TreeNodeState extends State<TreeNode> {
         child: CircleAvatar(
           radius: w * 0.05,
           backgroundColor: widget.color,
-          child: Text(
-            widget.title,
-            style: TextStyle(
-              color: widget.isVisible ? Colors.white : Colors.transparent,
+          child: AnimatedOpacity(
+            opacity: widget.dataOpacity,
+            duration: Duration(milliseconds: 800),
+            child: Text(
+              widget.title,
+              style: TextStyle(
+                color: widget.isVisible ? Colors.white : Colors.transparent,
+              ),
             ),
           ),
         ),
