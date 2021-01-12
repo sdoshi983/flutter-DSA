@@ -12,7 +12,8 @@ import 'package:dsa_simulation/src/data_structures/linear/queue/q_navigation.dar
 import 'package:dsa_simulation/src/data_structures/linear_and_non_linear.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/heap/heap_introduction.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/binary_tree.dart';
-import 'file:///C:/Users/smit3/AndroidStudioProjects/flutter-DSA-1/lib/src/data_structures/non_linear/trees/tree_introduction.dart';
+// import 'file:///C:/Users/smit3/AndroidStudioProjects/flutter-DSA-1/lib/src/data_structures/non_linear/trees/tree_introduction.dart';
+import 'package:dsa_simulation/src/data_structures/non_linear/trees/tree_introduction.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/tree_main.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/heap/heap_main_page.dart';
 import 'package:dsa_simulation/src/home_page.dart';
