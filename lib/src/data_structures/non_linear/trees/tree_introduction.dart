@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:widget_arrows/arrows.dart';
 import 'package:widget_arrows/widget_arrows.dart';
 
-import '../../../../constants.dart';
+import '../../../constants.dart';
 
 class TreeIntroduction extends StatefulWidget {
   @override
@@ -39,7 +39,9 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
       first = Colors.transparent;
     } else if (state == 7)
       fourth = Colors.white;
-    else
+    else if (state == 8) {
+      fourth = Colors.transparent;
+    } else
       return;
     state++;
   }
@@ -103,6 +105,31 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
                   Container(
                     child: Stack(
                       children: [
+                        AnimatedPositioned(
+                          top: width * 0.5,
+                          left: width * 0.55,
+                          child: AnimatedContainer(
+                            duration: Duration(milliseconds: 400),
+                            height: width * 0.12,
+                            width: width * 0.8,
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 3,
+                              ),
+                            ),
+                            child: Text(
+                              'hee',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          duration: Duration(
+                            milliseconds: 800,
+                          ),
+                        ),
                         ArrowElement(
                           tipLength: tipLength,
                           id: 'root',

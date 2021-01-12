@@ -46,7 +46,7 @@ class _TreeMainScreenState extends State<TreeMainScreen> {
                 Tiles(
                   onPress: () {
                     addElement('BT');
-                    Navigator.of(context).pushNamed('/DoublyMainPage');
+                    Navigator.of(context).pushNamed('/BinaryTree');
                   },
                   title: 'Binary Tree',
                 ),
