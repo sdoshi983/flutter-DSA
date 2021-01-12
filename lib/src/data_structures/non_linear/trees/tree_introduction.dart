@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:widget_arrows/arrows.dart';
 import 'package:widget_arrows/widget_arrows.dart';
 
-import '../../../../constants.dart';
+import '../../../constants.dart';
 
 class TreeIntroduction extends StatefulWidget {
   @override
@@ -15,6 +15,7 @@ class TreeIntroduction extends StatefulWidget {
 class _TreeIntroductionState extends State<TreeIntroduction> {
   double tipLength = 10;
   bool elementVisible = false;
+  double chec = 0;
   int state = -1;
   Color first = Colors.transparent,
       second = Colors.transparent,
@@ -27,6 +28,7 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
       elementVisible = true;
     else if (state == 1) {
     } else if (state == 2) {
+      chec = 1;
     } else if (state == 3)
       rest = Colors.white;
     else if (state == 4)
@@ -50,6 +52,7 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
       elementVisible = false;
     else if (state == 2) {
     } else if (state == 3) {
+      chec = 0;
     } else if (state == 4)
       rest = Colors.transparent;
     else if (state == 5)
@@ -66,14 +69,20 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
       return;
     state--;
   }
+  @override
+  void initState() {
+    // TODO: implement initState
 
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    //path = ['Home', 'DS', 'Trees', 'Intro'];
     //print('introduction');
     // print(path);
+    path = ['Home', 'DS', 'Trees', 'Intro'];
+
     print(state);
 
     return WillPopScope(
@@ -121,26 +130,31 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
                             right: 5,
                           ),
                         ),
-                        ArrowElement(
-                          flip: true,
-                          tipLength: tipLength,
-                          color: state > 2 ? Colors.white : Colors.transparent,
-                          bow: 0,
-                          sourceAnchor: Alignment.centerRight,
-                          targetAnchor: Alignment.topCenter,
-                          id: '01',
-                          targetId: '3',
-                          child: TreeNode(
-                            isVisible: elementVisible,
-                            id: '1',
-                            targetId: '2',
-                            color: state < 0 ? Colors.transparent : Colors.red,
-                            arrowColor:
-                                state > 1 ? Colors.white : Colors.transparent,
-                            title: '1',
-                            left: width * 0.45,
-                            source: Alignment.centerLeft,
-                            target: Alignment.topCenter,
+                        AnimatedOpacity(
+                          opacity: chec,
+                          curve: Curves.ease,
+                          duration: Duration(seconds: 1),
+                          child: ArrowElement(
+                            flip: true,
+                            tipLength: tipLength,
+                            color: Colors.white,
+                            bow: 0,
+                            sourceAnchor: Alignment.centerRight,
+                            targetAnchor: Alignment.topCenter,
+                            id: '01',
+                            targetId: '3',
+                            child: TreeNode(
+                              isVisible: elementVisible,
+                              id: '1',
+                              targetId: '2',
+                              color: state < 0 ? Colors.transparent : Colors.red,
+                              arrowColor:
+                                  state > 1 ? Colors.white : Colors.transparent,
+                              title: '1',
+                              left: width * 0.45,
+                              source: Alignment.centerLeft,
+                              target: Alignment.topCenter,
+                            ),
                           ),
                         ),
                         ArrowElement(
@@ -391,7 +405,8 @@ class _TreeNodeState extends State<TreeNode> {
       targetId: widget.targetId,
       sourceAnchor: widget.source,
       targetAnchor: widget.target,
-      child: Positioned(
+      child: AnimatedPositioned(
+        duration: Duration(milliseconds: 800),
         top: widget.top,
         left: widget.left,
         child: AnimatedContainer(
