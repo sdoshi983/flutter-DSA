@@ -22,6 +22,7 @@ import 'src/data_structures/linear/linear.dart';
 import 'src/Data_Structures/Linear/array/array_navigation_page.dart';
 import 'package:flutter/material.dart';
 import 'src/data_structures/linear/linked_list/doubly/doubly_introduction.dart';
+import 'package:dsa_simulation/src/data_structures/non_linear/heap/heap_insertion.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -70,6 +71,8 @@ class RouteGenerator {
         return reusablePageRouteBuilder(HeapMainPage());
       case '/HeapIntroduction':
         return reusablePageRouteBuilder(HeapIntroduction());
+      case '/HeapInsertion':
+        return reusablePageRouteBuilder(HeapInsertion());
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return reusablePageRouteBuilder(
