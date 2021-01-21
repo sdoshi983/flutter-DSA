@@ -16,6 +16,7 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
   double tipLength = 10;
   bool elementVisible = false;
   int state = -1;
+  double currentHeight = 0.001,currentWidth = 0.2;
   Color first = Colors.transparent,
       second = Colors.transparent,
       third = Colors.transparent,
@@ -41,7 +42,15 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
       fourth = Colors.white;
     else if (state == 8) {
       fourth = Colors.transparent;
-    } else
+      third = Colors.transparent;
+    }
+    else if(state==9){
+      currentHeight = 0.17;currentWidth = 0.6;
+    }
+    else if(state==10){
+      currentHeight = 0.37;currentWidth = 0.9;
+    }
+    else
       return;
     state++;
   }
@@ -59,11 +68,23 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
     else if (state == 6)
       second = Colors.transparent;
     else if (state == 7) {
+      third = Colors.transparent;
+
       second = Colors.white;
       first = Colors.white;
-      third = Colors.transparent;
-    } else if (state == 8)
+    } else if (state == 8){
       fourth = Colors.transparent;
+
+    }
+    else if(state==9){
+      fourth = Colors.white;third=Colors.white;
+    }
+    else if(state==10){
+      currentWidth = 0.2;currentHeight = 0.001;
+    }
+    else if(state==11){
+      currentWidth = 0.6;currentHeight = 0.17;
+    }
     else
       return;
     state--;
@@ -104,37 +125,36 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
                   ),
                   Container(
                     child: Stack(
+                      alignment: Alignment.center,
                       children: [
                         AnimatedPositioned(
-                          top: width * 0.5,
-                          left: width * 0.55,
+                          top: width * currentHeight,
+                          //0.001
+                          //left: width * 0.3,
+                         // left: width*0.08,
                           child: AnimatedContainer(
                             duration: Duration(milliseconds: 400),
-                            height: width * 0.12,
-                            width: width * 0.8,
+                            height: width * 0.18,
+                            width: width * currentWidth,
+                            //0.9,0,6
                             decoration: BoxDecoration(
                               color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                color: Colors.white,
+                                color: state>8?Colors.white:Colors.transparent,
                                 width: 3,
                               ),
                             ),
-                            child: Text(
-                              'hee',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
+
                           ),
                           duration: Duration(
-                            milliseconds: 800,
+                            milliseconds: 400,
                           ),
                         ),
                         ArrowElement(
                           tipLength: tipLength,
                           id: 'root',
                           targetId: '1',
-                          flip: true,
                           targetAnchor: Alignment.topCenter,
                           color: first,
                           child: Positioned(
@@ -146,10 +166,10 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
                               ),
                             ),
                             right: 5,
+                            top: width*0.001,
                           ),
                         ),
                         ArrowElement(
-                          flip: true,
                           tipLength: tipLength,
                           color: state > 2 ? Colors.white : Colors.transparent,
                           bow: 0,
@@ -165,7 +185,7 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
                             arrowColor:
                                 state > 1 ? Colors.white : Colors.transparent,
                             title: '1',
-                            left: width * 0.45,
+                            top: width*0.03,
                             source: Alignment.centerLeft,
                             target: Alignment.topCenter,
                           ),
@@ -245,7 +265,6 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
                           //  targetId: '2',
                           title: '6',
                           top: width * 0.4,
-                          left: width * ((3 / 6) - 0.05),
                           isVisible: elementVisible,
                         ),
                         TreeNode(
@@ -303,7 +322,6 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
                           ),
                         ),
                         ArrowElement(
-                          flip: true,
                           id: 'parent',
                           targetId: '1',
                           sourceAnchor: Alignment.centerRight,
@@ -311,6 +329,7 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
                           color: third,
                           child: Positioned(
                             left: width * 0.1,
+                            top: width*0.001,
                             child: Text(
                               'Parent',
                               style: TextStyle(

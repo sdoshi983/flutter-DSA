@@ -1,19 +1,19 @@
-import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
-import 'package:dsa_simulation/src/Utilities/widgets.dart';
-import 'package:flutter/material.dart';
+import 'package:dsa_simulation/src/utilities/address_maninter.dart';
 import 'package:dsa_simulation/src/utilities/base_template.dart';
+import 'package:dsa_simulation/src/utilities/widgets.dart';
+import 'package:flutter/material.dart';
 
-class TreeMainScreen extends StatefulWidget {
+class TreeTraversal extends StatefulWidget {
   @override
-  _TreeMainScreenState createState() => _TreeMainScreenState();
+  _TreeTraversalState createState() => _TreeTraversalState();
 }
 
-class _TreeMainScreenState extends State<TreeMainScreen> {
+class _TreeTraversalState extends State<TreeTraversal> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home', 'DS', 'Trees'];
+    path = ['Home', 'DS', 'Trees','Traversal'];
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushNamedAndRemoveUntil(
@@ -35,10 +35,10 @@ class _TreeMainScreenState extends State<TreeMainScreen> {
                 ),
                 Tiles(
                   onPress: () {
-                    addElement('Intro');
-                    Navigator.of(context).pushNamed('/TreeIntro');
+                //    addElement('Intro');
+                //    Navigator.of(context).pushNamed('/TreeIntro');
                   },
-                  title: 'Introduction',
+                  title: 'Pre-Order',
                 ),
                 SizedBox(
                   height: height * 0.02,
@@ -48,7 +48,7 @@ class _TreeMainScreenState extends State<TreeMainScreen> {
                     addElement('BT');
                     Navigator.of(context).pushNamed('/BinaryTree');
                   },
-                  title: 'Binary Tree',
+                  title: 'Post-Order',
                 ),
                 SizedBox(
                   height: height * 0.02,
@@ -58,7 +58,7 @@ class _TreeMainScreenState extends State<TreeMainScreen> {
                     addElement('BST');
                     Navigator.of(context).pushNamed('/DoublyMainPage');
                   },
-                  title: 'Binary Search T',
+                  title: 'In-Order',
                 ),
                 SizedBox(
                   height: height * 0.02,
@@ -68,7 +68,7 @@ class _TreeMainScreenState extends State<TreeMainScreen> {
                     addElement('Traversal');
                     Navigator.of(context).pushNamed('/TreeTraversal');
                   },
-                  title: 'Tree Traversal',
+                  title: 'Level Order',
                 ),
               ],
             ),
