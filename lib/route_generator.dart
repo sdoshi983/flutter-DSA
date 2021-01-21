@@ -12,7 +12,8 @@ import 'package:dsa_simulation/src/data_structures/linear/queue/q_navigation.dar
 import 'package:dsa_simulation/src/data_structures/linear_and_non_linear.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/heap/heap_introduction.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/binary_tree.dart';
-// import 'file:///C:/Users/smit3/AndroidStudioProjects/flutter-DSA-1/lib/src/data_structures/non_linear/trees/tree_introduction.dart';
+import 'package:dsa_simulation/src/data_structures/non_linear/trees/traversal/in_order.dart';
+import 'package:dsa_simulation/src/data_structures/non_linear/trees/traversal/pre-order.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/tree_introduction.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/tree_main.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/heap/heap_main_page.dart';
@@ -33,6 +34,10 @@ class RouteGenerator {
         return reusablePageRouteBuilder(HomePage());
       case '/TreeTraversal':
         return reusablePageRouteBuilder(TreeTraversal());
+      case '/InOrder':
+        return reusablePageRouteBuilder(InOrderTraversal());
+      case '/PreOrder':
+        return reusablePageRouteBuilder(PreOrderTraversal());
       case '/TreeMain':
         return reusablePageRouteBuilder(TreeMainScreen());
       case '/TreeIntro':

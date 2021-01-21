@@ -47,10 +47,17 @@ class Tiles extends StatelessWidget {
   }
 }
 
-Widget appBar(BuildContext context) {
-  double width = MediaQuery.of(context).size.width;
-  print(path);
-  return AppBar(
+class appBar extends StatefulWidget {
+  @override
+  _appBarState createState() => _appBarState();
+}
+
+class _appBarState extends State<appBar> {
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return AppBar(
     leading: ClipRect(
       child: MaterialButton(
         child: Icon(Icons.menu_rounded),
@@ -65,4 +72,25 @@ Widget appBar(BuildContext context) {
     title: Center(
         child: Container(width: width * 0.9, height: 30, child: AddressBar())),
   );
+  }
 }
+
+
+// Widget appBar(BuildContext context) {
+//   double width = MediaQuery.of(context).size.width;
+//   return AppBar(
+//     leading: ClipRect(
+//       child: MaterialButton(
+//         child: Icon(Icons.menu_rounded),
+//         onPressed: () {
+//           toggle();
+//         },
+//         splashColor: Colors.black,
+//       ),
+//     ),
+//     backgroundColor: kThemeColor,
+//     iconTheme: IconThemeData(color: Colors.white),
+//     title: Center(
+//         child: Container(width: width * 0.9, height: 30, child: AddressBar())),
+//   );
+// }

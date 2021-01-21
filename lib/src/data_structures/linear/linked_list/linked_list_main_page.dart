@@ -3,6 +3,8 @@ import 'package:dsa_simulation/src/Utilities/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/src/utilities/base_template.dart';
 
+import '../../../constants.dart';
+
 class LinkedListMainPage extends StatefulWidget {
   @override
   _LinkedListMainPageState createState() => _LinkedListMainPageState();
@@ -23,7 +25,21 @@ class _LinkedListMainPageState extends State<LinkedListMainPage> {
       },
       child: BaseTemplate(
         body: Scaffold(
-          appBar: appBar(context),
+          appBar: AppBar(
+            leading: ClipRect(
+              child: MaterialButton(
+                child: Icon(Icons.menu_rounded),
+                onPressed: () {
+                  toggle();
+                },
+                splashColor: Colors.black,
+              ),
+            ),
+            backgroundColor: kThemeColor,
+            iconTheme: IconThemeData(color: Colors.white),
+            title: Center(
+                child: Container(width: width * 0.9, height: 30, child: AddressBar())),
+          ),
           body: Container(
             height: height,
             width: width,

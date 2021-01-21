@@ -3,6 +3,8 @@ import 'package:dsa_simulation/src/utilities/base_template.dart';
 import 'package:dsa_simulation/src/utilities/widgets.dart';
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
+
 class TreeTraversal extends StatefulWidget {
   @override
   _TreeTraversalState createState() => _TreeTraversalState();
@@ -10,19 +12,40 @@ class TreeTraversal extends StatefulWidget {
 
 class _TreeTraversalState extends State<TreeTraversal> {
   @override
+  void initState() {
+
+    // TODO: implement initState
+    super.initState();
+
+  }
+  @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home', 'DS', 'Trees','Traversal'];
+    path = ['Home','DS','Tree','Traversal'];
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushNamedAndRemoveUntil(
-            context, '/LinearNonLinearPage', (route) => false);
+            context, '/TreeMain', (route) => false);
         return true;
       },
       child: BaseTemplate(
         body: Scaffold(
-          appBar: appBar(context),
+          appBar: AppBar(
+            leading: ClipRect(
+              child: MaterialButton(
+                child: Icon(Icons.menu_rounded),
+                onPressed: () {
+                  toggle();
+                },
+                splashColor: Colors.black,
+              ),
+            ),
+            backgroundColor: kThemeColor,
+            iconTheme: IconThemeData(color: Colors.white),
+            title: Center(
+                child: Container(width: width * 0.9, height: 30, child: AddressBar())),
+          ),
           body: Container(
             height: height,
             width: width,
@@ -35,8 +58,7 @@ class _TreeTraversalState extends State<TreeTraversal> {
                 ),
                 Tiles(
                   onPress: () {
-                //    addElement('Intro');
-                //    Navigator.of(context).pushNamed('/TreeIntro');
+                    Navigator.of(context).pushReplacementNamed('/PreOrder');
                   },
                   title: 'Pre-Order',
                 ),
@@ -45,8 +67,7 @@ class _TreeTraversalState extends State<TreeTraversal> {
                 ),
                 Tiles(
                   onPress: () {
-                    addElement('BT');
-                    Navigator.of(context).pushNamed('/BinaryTree');
+                    Navigator.of(context).pushReplacementNamed('/PostOrder');
                   },
                   title: 'Post-Order',
                 ),
@@ -55,8 +76,7 @@ class _TreeTraversalState extends State<TreeTraversal> {
                 ),
                 Tiles(
                   onPress: () {
-                    addElement('BST');
-                    Navigator.of(context).pushNamed('/DoublyMainPage');
+                    Navigator.of(context).pushReplacementNamed('/InOrder');
                   },
                   title: 'In-Order',
                 ),
@@ -65,7 +85,7 @@ class _TreeTraversalState extends State<TreeTraversal> {
                 ),
                 Tiles(
                   onPress: () {
-                    addElement('Traversal');
+              //      addElement('Traversal');
                     Navigator.of(context).pushNamed('/TreeTraversal');
                   },
                   title: 'Level Order',

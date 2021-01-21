@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:dsa_simulation/src/Utilities/address_maninter.dart';
 import 'package:dsa_simulation/src/utilities/base_template.dart';
 
+import '../../constants.dart';
+
 class LinearDS extends StatefulWidget {
   @override
   _LinearDSState createState() => _LinearDSState();
@@ -21,7 +23,21 @@ class _LinearDSState extends State<LinearDS> {
     double width = MediaQuery.of(context).size.width;
     return BaseTemplate(
       body: Scaffold(
-        appBar: appBar(context),
+        appBar: AppBar(
+          leading: ClipRect(
+            child: MaterialButton(
+              child: Icon(Icons.menu_rounded),
+              onPressed: () {
+                toggle();
+              },
+              splashColor: Colors.black,
+            ),
+          ),
+          backgroundColor: kThemeColor,
+          iconTheme: IconThemeData(color: Colors.white),
+          title: Center(
+              child: Container(width: width * 0.9, height: 30, child: AddressBar())),
+        ),
         body: Container(
           height: height,
           width: width,

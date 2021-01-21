@@ -43,7 +43,21 @@ class _BinaryTreeState extends State<BinaryTree> {
       child: BaseTemplate(
         body: ArrowContainer(
           child: Scaffold(
-            appBar: appBar(context),
+            appBar: AppBar(
+              leading: ClipRect(
+                child: MaterialButton(
+                  child: Icon(Icons.menu_rounded),
+                  onPressed: () {
+                    toggle();
+                  },
+                  splashColor: Colors.black,
+                ),
+              ),
+              backgroundColor: kThemeColor,
+              iconTheme: IconThemeData(color: Colors.white),
+              title: Center(
+                  child: Container(width: width * 0.9, height: 30, child: AddressBar())),
+            ),
             body: Container(
               color: Colors.black,
               height: height,
