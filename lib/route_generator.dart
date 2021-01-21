@@ -16,6 +16,7 @@ import 'package:dsa_simulation/src/data_structures/non_linear/trees/binary_tree.
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/tree_introduction.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/tree_main.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/heap/heap_main_page.dart';
+import 'package:dsa_simulation/src/data_structures/non_linear/trees/tree_traversal.dart';
 import 'package:dsa_simulation/src/home_page.dart';
 import 'src/data_structures/linear/linear.dart';
 import 'src/Data_Structures/Linear/array/array_navigation_page.dart';
@@ -29,6 +30,8 @@ class RouteGenerator {
     switch (settings.name) {
       case '/Home':
         return reusablePageRouteBuilder(HomePage());
+      case '/TreeTraversal':
+        return reusablePageRouteBuilder(TreeTraversal());
       case '/TreeMain':
         return reusablePageRouteBuilder(TreeMainScreen());
       case '/TreeIntro':
