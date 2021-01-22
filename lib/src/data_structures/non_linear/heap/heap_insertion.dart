@@ -20,7 +20,7 @@ class _HeapInsertionState extends State<HeapInsertion> {
   // left values of datas:
   double seventyl = 0.3, eightyFivel = 0.35, fiftyl = 0.4, nintyFivel = 0.45, fourtyFivel = 0.5, sixtyl = 0.55, tenl = 0.6;
 
-  int treeDuration = 5;
+  int treeDuration = 700;
 
   double tipLength = 10;
   double dataOpacity = 1;
