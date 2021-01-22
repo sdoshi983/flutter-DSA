@@ -13,34 +13,164 @@ class HeapInsertion extends StatefulWidget {
 }
 
 class _HeapInsertionState extends State<HeapInsertion> {
+
+  // top values of datas:
+  double seventyt = 0.6, eightyFivet = 0.6, fiftyt = 0.6, nintyFivet = 0.6, fourtyFivet = 0.6, sixtyt = 0.6, tent = 0.6;
+
+  // left values of datas:
+  double seventyl = 0.3, eightyFivel = 0.35, fiftyl = 0.4, nintyFivel = 0.45, fourtyFivel = 0.5, sixtyl = 0.55, tenl = 0.6;
+
+  int treeDuration = 5;
+
   double tipLength = 10;
-  double dataOpacity = 0;
+  double dataOpacity = 1;
   bool elementVisible = false;
   int state = 0;
   Color first = Colors.transparent,
       second = Colors.transparent,
       rest = Colors.transparent;
   void forward() {
-    if (state == 0)
-      elementVisible = true;
-    else if(state==1);
-    else if(state==2)
-      elementVisible = false;
-    else if(state==3)
-      elementVisible = true;
+    if(state == 0){
+      seventyt = 0.04;
+      seventyl = 0.485;
+    }
+    else if(state == 1){
+      eightyFivet = 0.238;
+      eightyFivel = 0.235;
+    }
+    else if(state == 2){
+      double temp = eightyFivet;
+      eightyFivet = seventyt;
+      seventyt = temp;
+
+      temp = eightyFivel;
+      eightyFivel = seventyl;
+      seventyl = temp;
+
+    }
+    else if(state == 3){
+      fiftyt = 0.235;
+      fiftyl = 0.747;
+    }
+    else if(state == 4){
+      nintyFivet = 0.44;
+      nintyFivel = 0.137;
+    }
+    else if(state == 5){
+      double temp = nintyFivet;
+      nintyFivet = seventyt;
+      seventyt = temp;
+
+      temp = nintyFivel;
+      nintyFivel = seventyl;
+      seventyl = temp;
+
+    }
+    else if(state == 6){
+      double temp = nintyFivet;
+      nintyFivet = eightyFivet;
+      eightyFivet = temp;
+
+      temp = nintyFivel;
+      nintyFivel = eightyFivel;
+      eightyFivel = temp;
+
+    }
+    else if(state == 7){
+      fourtyFivet = 0.44;
+      fourtyFivel = 0.34;
+    }
+    else if(state == 8){
+      sixtyt = 0.44;
+      sixtyl = 0.635;
+    }
+    else if(state == 9){
+      double temp = sixtyt;
+      sixtyt = fiftyt;
+      fiftyt = temp;
+
+      temp = sixtyl;
+      sixtyl = fiftyl;
+      fiftyl = temp;
+
+    }
+    else if(state == 10){
+      tent = 0.44;
+      tenl = 0.855;
+    }
     else
       return;
     state++;
   }
 
   void reverse() {
-    if (state == 1)
-      elementVisible = false;
-    else if(state==2);
-    else if(state==3)
-      elementVisible = true;
-    else if(state == 4)
-      elementVisible = false;
+    if(state == 1){
+      seventyt = 0.6;
+      seventyl = 0.3;
+    }
+    else if(state == 2){
+      eightyFivet = 0.6;
+      eightyFivel = 0.35;
+    }
+    else if(state == 3){
+      double temp = eightyFivet;
+      eightyFivet = seventyt;
+      seventyt = temp;
+
+      temp = eightyFivel;
+      eightyFivel = seventyl;
+      seventyl = temp;
+    }
+    else if(state == 4){
+      fiftyt = 0.6;
+      fiftyl = 0.42;
+    }
+    else if(state == 5){
+      nintyFivet = 0.6;
+      nintyFivel = 0.45;
+    }
+    else if(state == 6){
+      double temp = nintyFivet;
+      nintyFivet = seventyt;
+      seventyt = temp;
+
+      temp = nintyFivel;
+      nintyFivel = seventyl;
+      seventyl = temp;
+
+    }
+    else if(state == 7){
+      double temp = nintyFivet;
+      nintyFivet = eightyFivet;
+      eightyFivet = temp;
+
+      temp = nintyFivel;
+      nintyFivel = eightyFivel;
+      eightyFivel = temp;
+
+    }
+    else if(state == 8){
+      fourtyFivet = 0.6;
+      fourtyFivel = 0.5;
+    }
+    else if(state == 9){
+      sixtyt = 0.6;
+      sixtyl = 0.55;
+    }
+    else if(state == 10){
+      double temp = sixtyt;
+      sixtyt = fiftyt;
+      fiftyt = temp;
+
+      temp = sixtyl;
+      sixtyl = fiftyl;
+      fiftyl = temp;
+
+    }
+    else if(state == 11){
+      tent = 0.6;
+      tenl = 0.6;
+    }
     else
       return;
     state--;
@@ -53,7 +183,7 @@ class _HeapInsertionState extends State<HeapInsertion> {
     //path = ['Home', 'DS', 'Trees', 'Intro'];
     //print('introduction');
     // print(path);
-    print(state);
+    print("inside heap");
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushNamedAndRemoveUntil(
@@ -72,7 +202,7 @@ class _HeapInsertionState extends State<HeapInsertion> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    'Introduction to Heaps',
+                    'Introduction to Heap Insertion',
                     style: Theme.of(context)
                         .textTheme
                         .headline6
@@ -84,7 +214,7 @@ class _HeapInsertionState extends State<HeapInsertion> {
                         ArrowElement(
                           flip: true,
                           tipLength: tipLength,
-                          color: state > 1 ? Colors.white : Colors.transparent,
+                          color: Colors.white,
                           bow: 0,
                           sourceAnchor: Alignment.centerLeft,
                           targetAnchor: Alignment.topCenter,
@@ -94,7 +224,7 @@ class _HeapInsertionState extends State<HeapInsertion> {
                           child: ArrowElement(
                             flip: true,
                             tipLength: tipLength,
-                            color: state > 1 ? Colors.white : Colors.transparent,
+                            color: Colors.white,
                             bow: 0,
                             sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
@@ -105,13 +235,13 @@ class _HeapInsertionState extends State<HeapInsertion> {
                               isVisible: elementVisible,
                               dataOpacity: elementVisible ? 1 : 0,
                               color: Colors.red,
-                              title: state > 2 ? '1' : '7',
+                              title: '',
                               left: width * 0.45,
                             ),
                           ),
                         ),
                         ArrowElement(
-                          color: state > 1 ? Colors.white : Colors.transparent,
+                          color: Colors.white,
                           tipLength: tipLength,
                           id: '06',
                           targetId: '3',
@@ -119,7 +249,7 @@ class _HeapInsertionState extends State<HeapInsertion> {
                           targetAnchor: Alignment.topCenter,
                           flip: true,
                           child: ArrowElement(
-                            color: state > 1 ? Colors.white : Colors.transparent,
+                            color: Colors.white,
                             tipLength: tipLength,
                             id: '6',
                             targetId: '4',
@@ -143,7 +273,7 @@ class _HeapInsertionState extends State<HeapInsertion> {
                           targetAnchor: Alignment.topCenter,
                           sourceAnchor: Alignment.centerRight,
                           flip: true,
-                          color: state > 1 ? Colors.white : Colors.transparent,
+                          color: Colors.white,
                           child: ArrowElement(
                             id: '5',
                             targetId: '2',
@@ -151,7 +281,7 @@ class _HeapInsertionState extends State<HeapInsertion> {
                             targetAnchor: Alignment.topCenter,
                             sourceAnchor: Alignment.centerLeft,
                             flip: true,
-                            color: state > 1 ? Colors.white : Colors.transparent,
+                            color: Colors.white,
                             child: TreeNode(
                               dataOpacity: elementVisible ? 1 : 0,
 
@@ -217,8 +347,97 @@ class _HeapInsertionState extends State<HeapInsertion> {
                           ),
                         ),
 
+                        // ------------------------------- Data --------------------------------
+                        Positioned(
+                          top: width * 0.6,
+                          left: width * 0.2,
+                          child: Text(
+                            'Data: ',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        AnimatedPositioned(
+                          top: width * seventyt,
+                          left: width * seventyl,
+                          duration: Duration(milliseconds: treeDuration),
+                          child: Text(
+                            '70',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        AnimatedPositioned(
+                          top: width * eightyFivet,
+                          left: width * eightyFivel,
+                          duration: Duration(milliseconds: treeDuration),
+                          child: Text(
+                            '85',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        AnimatedPositioned(
+                          top: width * fiftyt,
+                          left: width * fiftyl,
+                          duration: Duration(milliseconds: treeDuration),
+                          child: Text(
+                            '50',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        AnimatedPositioned(
+                          top: width * nintyFivet,
+                          left: width * nintyFivel,
+                          duration: Duration(milliseconds: treeDuration),
+                          child: Text(
+                            '95',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        AnimatedPositioned(
+                          top: width * fourtyFivet,
+                          left: width * fourtyFivel,
+                          duration: Duration(milliseconds: treeDuration),
+                          child: Text(
+                            '45',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        AnimatedPositioned(
+                          top: width * sixtyt,
+                          left: width * sixtyl,
+                          duration: Duration(milliseconds: treeDuration),
+                          child: Text(
+                            '60',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        AnimatedPositioned(
+                          top: width * tent,
+                          left: width * tenl,
+                          duration: Duration(milliseconds: treeDuration),
+                          child: Text(
+                            '10',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
+
                     width: width,
                     height: height * 0.6,
                     color: Colors.black,
