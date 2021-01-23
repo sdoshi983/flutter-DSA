@@ -16,9 +16,11 @@ class _HeapInsertionState extends State<HeapInsertion> {
 
   // top values of datas:
   double seventyt = 0.6, eightyFivet = 0.6, fiftyt = 0.6, nintyFivet = 0.6, fourtyFivet = 0.6, sixtyt = 0.6, tent = 0.6;
+  double seventyt2 = 0.6, eightyFivet2 = 0.6, fiftyt2 = 0.6, nintyFivet2 = 0.6, fourtyFivet2 = 0.6, sixtyt2 = 0.6, tent2 = 0.6;
 
   // left values of datas:
   double seventyl = 0.3, eightyFivel = 0.35, fiftyl = 0.4, nintyFivel = 0.45, fourtyFivel = 0.5, sixtyl = 0.55, tenl = 0.6;
+  double seventyl2 = 0.3, eightyFivel2 = 0.35, fiftyl2 = 0.4, nintyFivel2 = 0.45, fourtyFivel2 = 0.5, sixtyl2 = 0.55, tenl2 = 0.6;
 
   int treeDuration = 700;
 
@@ -29,14 +31,21 @@ class _HeapInsertionState extends State<HeapInsertion> {
   Color first = Colors.transparent,
       second = Colors.transparent,
       rest = Colors.transparent;
+
+  TextStyle textStyle = TextStyle(color: Colors.white, fontWeight: FontWeight.bold);
+
   void forward() {
     if(state == 0){
       seventyt = 0.04;
       seventyl = 0.485;
+      seventyt2 = 0.705;
+      seventyl2 = 0.305;
     }
     else if(state == 1){
       eightyFivet = 0.238;
       eightyFivel = 0.235;
+      eightyFivet2 = 0.705;
+      eightyFivel2 = 0.355;
     }
     else if(state == 2){
       double temp = eightyFivet;
@@ -51,10 +60,14 @@ class _HeapInsertionState extends State<HeapInsertion> {
     else if(state == 3){
       fiftyt = 0.235;
       fiftyl = 0.747;
+      fiftyt2 = 0.705;
+      fiftyl2 = 0.405;
     }
     else if(state == 4){
       nintyFivet = 0.44;
       nintyFivel = 0.137;
+      nintyFivet2 = 0.705;
+      nintyFivel2 = 0.455;
     }
     else if(state == 5){
       double temp = nintyFivet;
@@ -79,10 +92,14 @@ class _HeapInsertionState extends State<HeapInsertion> {
     else if(state == 7){
       fourtyFivet = 0.44;
       fourtyFivel = 0.34;
+      fourtyFivet2 = 0.705;
+      fourtyFivel2 = 0.505;
     }
     else if(state == 8){
       sixtyt = 0.44;
       sixtyl = 0.635;
+      sixtyt2 = 0.705;
+      sixtyl2 = 0.555;
     }
     else if(state == 9){
       double temp = sixtyt;
@@ -97,6 +114,8 @@ class _HeapInsertionState extends State<HeapInsertion> {
     else if(state == 10){
       tent = 0.44;
       tenl = 0.855;
+      tent2 = 0.705;
+      tenl2 = 0.605;
     }
     else
       return;
@@ -107,10 +126,14 @@ class _HeapInsertionState extends State<HeapInsertion> {
     if(state == 1){
       seventyt = 0.6;
       seventyl = 0.3;
+      seventyt2 = 0.6;
+      seventyl2 = 0.3;
     }
     else if(state == 2){
       eightyFivet = 0.6;
       eightyFivel = 0.35;
+      eightyFivet2 = 0.6;
+      eightyFivel2 = 0.35;
     }
     else if(state == 3){
       double temp = eightyFivet;
@@ -123,11 +146,15 @@ class _HeapInsertionState extends State<HeapInsertion> {
     }
     else if(state == 4){
       fiftyt = 0.6;
-      fiftyl = 0.42;
+      fiftyl = 0.4;
+      fiftyt2 = 0.6;
+      fiftyl2 = 0.4;
     }
     else if(state == 5){
       nintyFivet = 0.6;
       nintyFivel = 0.45;
+      nintyFivet2 = 0.6;
+      nintyFivel2 = 0.45;
     }
     else if(state == 6){
       double temp = nintyFivet;
@@ -152,10 +179,14 @@ class _HeapInsertionState extends State<HeapInsertion> {
     else if(state == 8){
       fourtyFivet = 0.6;
       fourtyFivel = 0.5;
+      fourtyFivet2 = 0.6;
+      fourtyFivel2 = 0.5;
     }
     else if(state == 9){
       sixtyt = 0.6;
       sixtyl = 0.55;
+      sixtyt2 = 0.6;
+      sixtyl2 = 0.55;
     }
     else if(state == 10){
       double temp = sixtyt;
@@ -170,6 +201,8 @@ class _HeapInsertionState extends State<HeapInsertion> {
     else if(state == 11){
       tent = 0.6;
       tenl = 0.6;
+      tent2 = 0.6;
+      tenl2 = 0.6;
     }
     else
       return;
@@ -384,8 +417,30 @@ class _HeapInsertionState extends State<HeapInsertion> {
                           ),
                         ),
                         AnimatedPositioned(
+                          top: width * seventyt2,
+                          left: width * seventyl2,
+                          duration: Duration(milliseconds: treeDuration),
+                          child: Text(
+                            '70',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        AnimatedPositioned(
                           top: width * eightyFivet,
                           left: width * eightyFivel,
+                          duration: Duration(milliseconds: treeDuration),
+                          child: Text(
+                            '85',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        AnimatedPositioned(
+                          top: width * eightyFivet2,
+                          left: width * eightyFivel2,
                           duration: Duration(milliseconds: treeDuration),
                           child: Text(
                             '85',
@@ -406,8 +461,30 @@ class _HeapInsertionState extends State<HeapInsertion> {
                           ),
                         ),
                         AnimatedPositioned(
+                          top: width * fiftyt2,
+                          left: width * fiftyl2,
+                          duration: Duration(milliseconds: treeDuration),
+                          child: Text(
+                            '50',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        AnimatedPositioned(
                           top: width * nintyFivet,
                           left: width * nintyFivel,
+                          duration: Duration(milliseconds: treeDuration),
+                          child: Text(
+                            '95',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        AnimatedPositioned(
+                          top: width * nintyFivet2,
+                          left: width * nintyFivel2,
                           duration: Duration(milliseconds: treeDuration),
                           child: Text(
                             '95',
@@ -428,8 +505,30 @@ class _HeapInsertionState extends State<HeapInsertion> {
                           ),
                         ),
                         AnimatedPositioned(
+                          top: width * fourtyFivet2,
+                          left: width * fourtyFivel2,
+                          duration: Duration(milliseconds: treeDuration),
+                          child: Text(
+                            '45',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        AnimatedPositioned(
                           top: width * sixtyt,
                           left: width * sixtyl,
+                          duration: Duration(milliseconds: treeDuration),
+                          child: Text(
+                            '60',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        AnimatedPositioned(
+                          top: width * sixtyt2,
+                          left: width * sixtyl2,
                           duration: Duration(milliseconds: treeDuration),
                           child: Text(
                             '60',
@@ -449,6 +548,35 @@ class _HeapInsertionState extends State<HeapInsertion> {
                             ),
                           ),
                         ),
+                        AnimatedPositioned(
+                          top: width * tent2,
+                          left: width * tenl2,
+                          duration: Duration(milliseconds: treeDuration),
+                          child: Text(
+                            '10',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        // --------------------- array ----------------------------
+
+                        ReusableIndexText(text: '0', width: width, left: 0.3,),
+                        ReusableIndexText(text: '1', width: width, left: 0.35,),
+                        ReusableIndexText(text: '2', width: width, left: 0.4,),
+                        ReusableIndexText(text: '3', width: width, left: 0.45,),
+                        ReusableIndexText(text: '4', width: width, left: 0.5,),
+                        ReusableIndexText(text: '5', width: width, left: 0.55,),
+                        ReusableIndexText(text: '6', width: width, left: 0.6,),
+
+                        ReusableArrayContainer(width: width, left: 0.3,),
+                        ReusableArrayContainer(width: width, left: 0.35,),
+                        ReusableArrayContainer(width: width, left: 0.4,),
+                        ReusableArrayContainer(width: width, left: 0.45,),
+                        ReusableArrayContainer(width: width, left: 0.5,),
+                        ReusableArrayContainer(width: width, left: 0.55,),
+                        ReusableArrayContainer(width: width, left: 0.6,),
+
                       ],
                     ),
 
@@ -541,6 +669,54 @@ class _TreeNodeState extends State<TreeNode> {
                 color: widget.isVisible ? Colors.white : Colors.transparent,
               ),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ReusableIndexText extends StatefulWidget {
+  String text;
+  double width, left;
+  ReusableIndexText({this.text, this.width, this.left});
+  @override
+  _ReusableIndexTextState createState() => _ReusableIndexTextState();
+}
+
+class _ReusableIndexTextState extends State<ReusableIndexText> {
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: widget.width * 0.65,
+      left: widget.width * (widget.left + 0.01),
+      child: Container(
+        child: Text(widget.text, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+
+      ),
+    );
+  }
+}
+
+class ReusableArrayContainer extends StatefulWidget {
+  double width, left;
+  ReusableArrayContainer({this.width, this.left});
+  @override
+  _ReusableArrayContainerState createState() => _ReusableArrayContainerState();
+}
+
+class _ReusableArrayContainerState extends State<ReusableArrayContainer> {
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: widget.width * 0.7,
+      left: widget.width * widget.left,
+      child: Container(
+        child: Text('70', style: TextStyle(color: Colors.white.withOpacity(0)),),
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 3,
+            color: Colors.grey,
           ),
         ),
       ),
