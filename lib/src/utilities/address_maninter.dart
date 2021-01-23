@@ -6,7 +6,7 @@ void addElement(String addMe) {
 }
 
 void removeLast() {
-  //path.removeLast();
+//  path.removeLast();
 }
 
 class AddressBar extends StatefulWidget {
@@ -15,17 +15,11 @@ class AddressBar extends StatefulWidget {
 }
 
 class _AddressBarState extends State<AddressBar> {
-  void popping(int cnt, BuildContext context) {
-    int count = 0;
-    Navigator.popUntil(context, (route) {
-      count++;
-      return count == cnt;
-    });
-  }
+
 
   @override
   void initState() {
-    print(path);
+  //  print(path);
     // TODO: implement initState
     super.initState();
   }
@@ -33,13 +27,14 @@ class _AddressBarState extends State<AddressBar> {
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
+    print('============> Inside Address Maintainer length of the appbar ${path.length}');
     return Container(
       width: w * 0.8,
       child: ListView.separated(
         itemCount: path.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
-          print(index);
+     //     print(index);
           return GestureDetector(
             onTap: () {
               setState(() {

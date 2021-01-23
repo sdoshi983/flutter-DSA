@@ -1,4 +1,6 @@
 import 'package:dsa_simulation/src/Utilities/widgets.dart';
+import 'package:dsa_simulation/src/utilities/address_maninter.dart';
+import 'package:dsa_simulation/src/utilities/base_template.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:widget_arrows/arrows.dart';
@@ -64,7 +66,21 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
     double width = MediaQuery.of(context).size.width;
     return ArrowContainer(
       child: Scaffold(
-        appBar: appBar(context),
+        appBar: AppBar(
+          leading: ClipRect(
+            child: MaterialButton(
+              child: Icon(Icons.menu_rounded),
+              onPressed: () {
+                toggle();
+              },
+              splashColor: Colors.black,
+            ),
+          ),
+          backgroundColor: kThemeColor,
+          iconTheme: IconThemeData(color: Colors.white),
+          title: Center(
+              child: Container(width: width * 0.9, height: 30, child: AddressBar())),
+        ),
         body: Stack(
           children: [
             Container(
