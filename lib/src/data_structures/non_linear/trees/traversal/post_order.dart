@@ -18,20 +18,118 @@ class _PostOrderTraversalState extends State<PostOrderTraversal> {
   double tipLength = 5;
   int state = 0;
   int currentElement = -1;
- void forward(){
-   if(state==0){
-     currentElement=1;
-   }
-   else return;
-   state++;
- }
- void reverse(){
-   if(state<1)return;
-   if(state==1){
-     currentElement=-1;
-   }
-   state--;
- }
+  void forward() {
+    if (state == 0) {
+      currentElement = 1;
+    } else if (state == 1) {
+      top = 0.1;
+      left = 0.26;
+      currentElement = 10;
+    } else if (state == 2) {
+      top = 0.2;
+      left = 0.16;
+      currentElement = 7;visited++;
+    } else if (state == 3) {
+      top = 0.1;
+      left = 0.26;
+      currentElement = 10;
+    } else if (state == 4) {
+      top = 0.2;
+      left = 0.36;
+      currentElement = 2;visited++;
+    } else if (state == 5) {
+      top = 0.1;
+      left = 0.26;
+      currentElement = 10;visited++;
+    } else if (state == 6) {
+      top = 0;
+      left = 0.46;
+      currentElement = 1;
+    } else if (state == 7) {
+      top = 0.1;
+      left = (1 - 0.35);
+      currentElement = 5;
+    } else if (state == 8) {
+      top = 0.2;
+      left = (1 - 0.45);
+      currentElement = 0;visited++;
+    } else if (state == 9) {
+      top = 0.1;
+      left = (1 - 0.35);
+      currentElement = 5;
+    } else if (state == 10) {
+      top = 0.2;
+      left = (1 - 0.25);
+      currentElement = 4;visited++;
+    }
+    else if(state==11){
+      top=0.1;left=(1-0.35);currentElement=5;visited++;
+    }
+    else if(state==12){
+      top=0;left=0.46;currentElement=1;visited++;
+    }
+    else
+      return;
+    state++;
+  }
+
+  void reverse() {
+    if (state < 1) return;
+    if (state == 1) {
+      currentElement = -1;
+    } else if (state == 2) {
+      top = 0;
+      left = 0.46;
+      currentElement = 1;
+    } else if (state == 3) {
+      top = 0.1;
+      left = 0.26;
+      currentElement = 10;visited--;
+    } else if (state == 4) {
+      top = 0.2;
+      left = 0.16;
+      currentElement = 7;
+    } else if (state == 5) {
+      top = 0.1;
+      left = 0.26;
+      currentElement = 10;visited--;
+    } else if (state == 6) {
+      top = 0.2;
+      left = 0.36;
+      currentElement = 2;visited--;
+    } else if (state == 7) {
+      top = 0.1;
+      left = 0.26;
+      currentElement = 10;
+    } else if (state == 8) {
+      top = 0;
+      left = 0.46;
+      currentElement = 1;
+    } else if (state == 9) {
+      top = 0.1;
+      left = (1 - 0.35);
+      currentElement = 5;visited--;
+    } else if (state == 10) {
+      top = 0.2;
+      left = (1 - 0.45);
+      currentElement = 0;
+    } else if (state == 11) {
+      top = 0.1;
+      left = (1 - 0.35);
+      currentElement = 5;visited--;
+    }
+    else if(state==12){
+      top = 0.2;
+      left=(1-0.25);
+      currentElement=4;visited--;
+    }
+    else if(state==13){
+      top=0.1;
+      left=(1-0.35);
+      currentElement=5;visited--;
+    }
+    state--;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,8 +213,8 @@ class _PostOrderTraversalState extends State<PostOrderTraversal> {
                                           .textTheme
                                           .bodyText1
                                           .copyWith(
-                                        color: Colors.white,
-                                      ),
+                                            color: Colors.white,
+                                          ),
                                     ),
                                   ),
                                   duration: Duration(milliseconds: 500),
@@ -162,8 +260,8 @@ class _PostOrderTraversalState extends State<PostOrderTraversal> {
                                           .textTheme
                                           .bodyText1
                                           .copyWith(
-                                        color: Colors.white,
-                                      ),
+                                            color: Colors.white,
+                                          ),
                                     ),
                                   ),
                                   duration: Duration(milliseconds: 500),
@@ -204,14 +302,14 @@ class _PostOrderTraversalState extends State<PostOrderTraversal> {
                                 child: AnimatedContainer(
                                   child: Center(
                                       child: Text(
-                                        '5',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1
-                                            .copyWith(
+                                    '5',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1
+                                        .copyWith(
                                           color: Colors.white,
                                         ),
-                                      )),
+                                  )),
                                   duration: Duration(milliseconds: 500),
                                   height: width * 0.12,
                                   width: width * 0.12,
@@ -243,8 +341,8 @@ class _PostOrderTraversalState extends State<PostOrderTraversal> {
                                         .textTheme
                                         .bodyText1
                                         .copyWith(
-                                      color: Colors.white,
-                                    ),
+                                          color: Colors.white,
+                                        ),
                                   ),
                                 ),
                                 duration: Duration(milliseconds: 500),
@@ -272,14 +370,14 @@ class _PostOrderTraversalState extends State<PostOrderTraversal> {
                               child: AnimatedContainer(
                                 child: Center(
                                     child: Text(
-                                      '2',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1
-                                          .copyWith(
+                                  '2',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .copyWith(
                                         color: Colors.white,
                                       ),
-                                    )),
+                                )),
                                 duration: Duration(milliseconds: 500),
                                 height: width * 0.12,
                                 width: width * 0.12,
@@ -306,14 +404,14 @@ class _PostOrderTraversalState extends State<PostOrderTraversal> {
                               child: AnimatedContainer(
                                 child: Center(
                                     child: Text(
-                                      '0',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1
-                                          .copyWith(
+                                  '0',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .copyWith(
                                         color: Colors.white,
                                       ),
-                                    )),
+                                )),
                                 duration: Duration(milliseconds: 500),
                                 height: width * 0.12,
                                 width: width * 0.12,
@@ -339,14 +437,14 @@ class _PostOrderTraversalState extends State<PostOrderTraversal> {
                               child: AnimatedContainer(
                                 child: Center(
                                     child: Text(
-                                      '4',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1
-                                          .copyWith(
+                                  '4',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .copyWith(
                                         color: Colors.white,
                                       ),
-                                    )),
+                                )),
                                 duration: Duration(milliseconds: 500),
                                 height: width * 0.12,
                                 width: width * 0.12,
