@@ -7,135 +7,106 @@ import 'package:widget_arrows/widget_arrows.dart';
 import '../../../../constants.dart';
 import '../tree_introduction.dart';
 
-class InOrderTraversal extends StatefulWidget {
+class PreOrderTraversal extends StatefulWidget {
   @override
-  _InOrderTraversalState createState() => _InOrderTraversalState();
+  _PreOrderTraversalState createState() => _PreOrderTraversalState();
 }
 
-class _InOrderTraversalState extends State<InOrderTraversal> {
+class _PreOrderTraversalState extends State<PreOrderTraversal> {
   int visited = 0;
-  double top = 0,left = 0.46;
+  double top = 0, left = 0.46;
   double tipLength = 5;
   int state = 0;
   int currentElement = -1;
-  void forward(){
-        if(state==0){
-          currentElement=1;
-        }
-        else if(state==1){
-          currentElement=10;
-          top=0.1;
-          left=0.26;
-        }
-        else if(state==2){
-          currentElement=7;
-          top=0.2;
-          left=0.16;
-          visited++;
-        }
-        else if(state==3){
-          currentElement=10;
-          top=0.1;
-          left=0.26;
-          visited++;
-        }
-        else if(state==4){
-          currentElement=2;
-          top=0.2;
-          left=0.36;
-          visited++;
-        }
-        else if(state==5){
-          currentElement=10;
-          top=0.1;
-          left=0.26;
-        }
-        else if(state==6){
-          currentElement=1;
-          top=0;
-          left=0.46;
-          visited++;
-        }
-        else if(state==7){
-          currentElement=5;
-          top=0.1;
-          left=(1-0.35);
-        }
-        else if(state==8){
-          currentElement = 0;
-          top=0.2;
-          left=(1-0.45);
-          visited++;
-        }
-        else if(state==9){
-          currentElement=5;
-          top=0.1;left=(1-0.35);visited++;
-        }
-        else if(state==10){
-          currentElement=4;
-          top=0.2;left=(1-0.25);visited++;
-        }
-        else{return;}state++;}
-  void reverse(){
-    if(state<=0)return;
-    if(state==1){
-      currentElement=-1;
+  void forward() {
+    if (state == 0) {
+      currentElement = 1;
+      visited++;
+    }
+    else if(state==1){
+      top=0.1;left=0.26;
+      currentElement=10;
+      visited++;
     }
     else if(state==2){
-      currentElement=1;
-      top=0;
-      left=0.46;
+      top=0.2;left=0.16;currentElement=7;
+      visited++;
     }
     else if(state==3){
-      currentElement=10;
-      top=0.1;
-      left=0.26;
-      visited--;
+      top = 0.1;left=0.26;currentElement=10;
     }
     else if(state==4){
-      currentElement=7;
-      top=0.2;
-      left=0.16;
-      visited--;
+      top = 0.2;left=0.36;currentElement=2;visited++;
     }
     else if(state==5){
-      currentElement=10;
-      top=0.1;
-      left=0.26;
-      visited--;
+      top = 0.1;left=0.26;currentElement=10;
     }
     else if(state==6){
-      currentElement=2;
-      top=0.2;left=0.36;
+      top=0;left=0.46;currentElement=1;
     }
     else if(state==7){
-      currentElement=10;
-      top=0.1;left=0.26;visited--;
+      top = 0.1;
+      left=(1-0.35);currentElement=5;visited++;
     }
     else if(state==8){
-      currentElement=1;
-      top=0;left=0.46;
+      top=0.2;
+      left=(1-0.45);currentElement=0;visited++;
     }
     else if(state==9){
-      currentElement=5;
-      top=0.1;left=(1-0.35);visited--;
+      top = 0.1;left=(1-0.35);currentElement=5;
     }
     else if(state==10){
-      currentElement=0;
-      top=0.2;left=(1-0.45);visited--;
-    }else if(state==11){
-      currentElement=5;top=0.1;left=(1-0.35);visited--;
+      top = 0.2;left= (1-0.25);currentElement=4;visited++;
     }
+    else
+      return;
+    state++;
+  }
 
+  void reverse() {
+    if (state < 1) return;
+    if (state == 1) {
+      currentElement = -1;
+      visited--;
+    }
+    else if(state==2){
+      top = 0;left=0.46;
+      currentElement=1;visited--;
+    }else if(state==3){
+      top = 0.1;left=0.26;currentElement=10;visited--;
+    }else if(state==4){
+      top=0.2;left=0.16;currentElement=7;
+    }
+    else if(state==5){
+      top=0.1;left=0.26;currentElement=10;visited--;
+    }
+    else if(state==6){
+      top=0.2;left=0.36;currentElement=2;
+    }
+    else if(state==7){
+      top=0.1;left=0.26;currentElement=10;
+    }
+    else if(state==8){
+      top=0;left=0.46;currentElement=1;visited--;
+    }
+    else if(state==9){
+      top=0.1;left=(1-0.35);currentElement=5;visited--;
+    }
+    else if(state==10){
+      top=0.2;left=(1-0.45);currentElement=0;
+    }
+    else if(state==11){
+      top = 0.1;left=(1-0.35);currentElement=5;visited--;
+    }
     state--;
   }
+
   @override
   Widget build(BuildContext context) {
-
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    path = ['Home', 'DS', 'Trees', 'Traversal', 'In-Order'];
+    path = ['Home', 'DS', 'Trees', 'Traversal', 'Pre-Order'];
 
     return WillPopScope(
       onWillPop: () async {
@@ -175,7 +146,7 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'In-Order Tree Traversal',
+                      'Pre-Order Tree Traversal',
                       style: Theme.of(context)
                           .textTheme
                           .headline6
@@ -188,7 +159,6 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-
                           ArrowElement(
                             id: '01',
                             targetId: '5',
@@ -224,7 +194,9 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                                     color: Colors.red,
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                      color:currentElement==1?Colors.indigo: Colors.white,
+                                      color: currentElement == 1
+                                          ? Colors.indigo
+                                          : Colors.white,
                                       width: 3,
                                     ),
                                   ),
@@ -269,8 +241,9 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                                     color: Colors.blue,
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                      color:currentElement==10?Colors.indigo: Colors.white,
-
+                                      color: currentElement == 10
+                                          ? Colors.indigo
+                                          : Colors.white,
                                       width: 3,
                                     ),
                                   ),
@@ -314,8 +287,9 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                                     color: Colors.cyan,
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                      color:currentElement==5?Colors.indigo: Colors.white,
-
+                                      color: currentElement == 5
+                                          ? Colors.indigo
+                                          : Colors.white,
                                       width: 3,
                                     ),
                                   ),
@@ -348,8 +322,9 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                                   color: Colors.orange,
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color:currentElement==7?Colors.indigo: Colors.white,
-
+                                    color: currentElement == 7
+                                        ? Colors.indigo
+                                        : Colors.white,
                                     width: 3,
                                   ),
                                 ),
@@ -380,8 +355,9 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                                   color: Colors.green,
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color:currentElement==2?Colors.indigo: Colors.white,
-
+                                    color: currentElement == 2
+                                        ? Colors.indigo
+                                        : Colors.white,
                                     width: 3,
                                   ),
                                 ),
@@ -413,8 +389,9 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                                   color: Colors.deepPurpleAccent,
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color:currentElement==0?Colors.indigo: Colors.white,
-
+                                    color: currentElement == 0
+                                        ? Colors.indigo
+                                        : Colors.white,
                                     width: 3,
                                   ),
                                 ),
@@ -445,8 +422,9 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                                   color: Colors.pink,
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color:currentElement==4?Colors.indigo: Colors.white,
-
+                                    color: currentElement == 4
+                                        ? Colors.indigo
+                                        : Colors.white,
                                     width: 3,
                                   ),
                                 ),
@@ -468,7 +446,7 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                                     width: width * 0.12,
                                     child: Center(
                                       child: Text(
-                                        visited > 0 ? '7' : '',
+                                        visited > 0 ? '1' : '',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -512,7 +490,7 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                                     width: width * 0.12,
                                     child: Center(
                                       child: Text(
-                                        visited > 2 ? '2' : '',
+                                        visited > 2 ? '7' : '',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -534,7 +512,7 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                                     width: width * 0.12,
                                     child: Center(
                                       child: Text(
-                                        visited > 3 ? '1' : '',
+                                        visited > 3 ? '2' : '',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -553,7 +531,7 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                                   AnimatedContainer(
                                     child: Center(
                                       child: Text(
-                                        visited > 4 ? '0' : '',
+                                        visited > 4 ? '5' : '',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -575,7 +553,7 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                                   AnimatedContainer(
                                     child: Center(
                                       child: Text(
-                                        visited > 5 ? '5' : '',
+                                        visited > 5 ? '0' : '',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -622,12 +600,12 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 500),
-                            top:height*top+30,
-                            left: width*left,
+                            top: height * top + 30,
+                            left: width * left,
                             curve: Curves.ease,
                             child: AnimatedOpacity(
                               duration: Duration(milliseconds: 700),
-                              opacity: state>0?1:0,
+                              opacity: state > 0 ? 1 : 0,
                               child: Text(
                                 '😇',
                                 style: TextStyle(
@@ -664,7 +642,6 @@ class _InOrderTraversalState extends State<InOrderTraversal> {
                     ),
                   ],
                 ),
-
               ),
             ),
           ),
