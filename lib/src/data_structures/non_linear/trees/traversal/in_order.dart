@@ -7,14 +7,14 @@ import 'package:widget_arrows/widget_arrows.dart';
 import '../../../../constants.dart';
 import '../tree_introduction.dart';
 
-class PreOrderTraversal extends StatefulWidget {
+class InOrderTraversal extends StatefulWidget {
   @override
-  _PreOrderTraversalState createState() => _PreOrderTraversalState();
+  _InOrderTraversalState createState() => _InOrderTraversalState();
 }
 
-class _PreOrderTraversalState extends State<PreOrderTraversal> {
+class _InOrderTraversalState extends State<InOrderTraversal> {
   int visited = 0;
-  double top = 0,left = 0.5;
+  double top = 0,left = 0.46;
   double tipLength = 5;
   int state = 0;
   int currentElement = -1;

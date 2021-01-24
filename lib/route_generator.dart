@@ -34,8 +34,8 @@ class RouteGenerator {
       case '/TreeTraversal':
         return reusablePageRouteBuilder(TreeTraversal());
 
-      case '/PreOrder':
-        return reusablePageRouteBuilder(PreOrderTraversal());
+      case '/InOrder':
+        return reusablePageRouteBuilder(InOrderTraversal());
       case '/TreeMain':
         return reusablePageRouteBuilder(TreeMainScreen());
       case '/TreeIntro':
