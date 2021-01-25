@@ -275,7 +275,7 @@ class _HeapInsertionState extends State<HeapInsertion> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    //path = ['Home', 'DS', 'Trees', 'Intro'];
+    path = ['Home', 'DS', 'Heaps', 'Insertion'];
     //print('introduction');
     // print(path);
     print("inside heap");
