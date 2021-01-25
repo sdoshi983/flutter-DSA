@@ -15,11 +15,11 @@ class HeapDeletion extends StatefulWidget {
 class _HeapDeletionState extends State<HeapDeletion> {
 
   // top values of datas:
-  double seventyt = 0.6, eightyFivet = 0.6, fiftyt = 0.6, nintyFivet = 0.6, fourtyFivet = 0.6, sixtyt = 0.6, tent = 0.6;
-  double seventyt2 = 0.6, eightyFivet2 = 0.6, fiftyt2 = 0.6, nintyFivet2 = 0.6, fourtyFivet2 = 0.6, sixtyt2 = 0.6, tent2 = 0.6;
+  double seventyt = 0.44, eightyFivet = 0.238, fiftyt = 0.44, nintyFivet = 0.04, fourtyFivet = 0.44, sixtyt = 0.235, tent = 0.44;
+  double seventy= 1, eightyFive = 1, fifty = 1, nintyFive = 1, fourtyFivet2 = 0.6, sixtyt2 = 0.6, tent2 = 0.6;
 
   // left values of datas:
-  double seventyl = 0.3, eightyFivel = 0.35, fiftyl = 0.4, nintyFivel = 0.45, fourtyFivel = 0.5, sixtyl = 0.55, tenl = 0.6;
+  double seventyl = 0.137, eightyFivel = 0.235, fiftyl = 0.635, nintyFivel = 0.485, fourtyFivel = 0.34, sixtyl = 0.747, tenl = 0.855;
   double seventyl2 = 0.3, eightyFivel2 = 0.35, fiftyl2 = 0.4, nintyFivel2 = 0.45, fourtyFivel2 = 0.5, sixtyl2 = 0.55, tenl2 = 0.6;
 
   int treeDuration = 700;
@@ -36,96 +36,57 @@ class _HeapDeletionState extends State<HeapDeletion> {
 
   void forward() {
     if(state == 0){
-      seventyt = 0.04;
-      seventyl = 0.485;
-      seventyt2 = 0.705;
-      seventyl2 = 0.305;
+      nintyFive = 0;
+      tent = nintyFivet;
+      tenl = nintyFivel;
     }
     else if(state == 1){
-      eightyFivet = 0.238;
-      eightyFivel = 0.235;
-      eightyFivet2 = 0.705;
-      eightyFivel2 = 0.355;
-    }
-    else if(state == 2){
       double temp = eightyFivet;
-      eightyFivet = seventyt;
-      seventyt = temp;
+      eightyFivet = tent;
+      tent = temp;
 
       temp = eightyFivel;
-      eightyFivel = seventyl;
-      seventyl = temp;
+      eightyFivel = tenl;
+      tenl = temp;
+    }
+    else if(state == 2){
+      double temp = seventyt;
+      seventyt = tent;
+      tent = temp;
 
-      temp = eightyFivet2;
-      eightyFivet2 = seventyt2;
-      seventyt2 = temp;
-
-      temp = eightyFivel2;
-      eightyFivel2 = seventyl2;
-      seventyl2 = temp;
-
+      temp = seventyl;
+      seventyl = tenl;
+      tenl = temp;
     }
     else if(state == 3){
-      fiftyt = 0.235;
-      fiftyl = 0.747;
-      fiftyt2 = 0.705;
-      fiftyl2 = 0.405;
+      eightyFive = 0;
+      fiftyt = eightyFivet;
+      fiftyl = eightyFivel;
     }
     else if(state == 4){
-      nintyFivet = 0.44;
-      nintyFivel = 0.137;
-      nintyFivet2 = 0.705;
-      nintyFivel2 = 0.455;
+      double temp = seventyt;
+      seventyt = fiftyt;
+      fiftyt = temp;
+
+      temp = seventyl;
+      seventyl = fiftyl;
+      fiftyl = temp;
     }
     else if(state == 5){
-      double temp = nintyFivet;
-      nintyFivet = seventyt;
-      seventyt = temp;
+      double temp = fourtyFivet;
+      fourtyFivet = fiftyt;
+      fiftyt = temp;
 
-      temp = nintyFivel;
-      nintyFivel = seventyl;
-      seventyl = temp;
-
-      temp = nintyFivet2;
-      nintyFivet2 = seventyt2;
-      seventyt2 = temp;
-
-      temp = nintyFivel2;
-      nintyFivel2 = seventyl2;
-      seventyl2 = temp;
-
+      temp = fourtyFivel;
+      fourtyFivel = fiftyl;
+      fiftyl = temp;
     }
     else if(state == 6){
-      double temp = nintyFivet;
-      nintyFivet = eightyFivet;
-      eightyFivet = temp;
-
-      temp = nintyFivel;
-      nintyFivel = eightyFivel;
-      eightyFivel = temp;
-
-      temp = nintyFivet2;
-      nintyFivet2 = eightyFivet2;
-      eightyFivet2 = temp;
-
-      temp = nintyFivel2;
-      nintyFivel2 = eightyFivel2;
-      eightyFivel2 = temp;
-
+      seventy = 0;
+      fiftyt = seventyt;
+      fiftyl = seventyl;
     }
     else if(state == 7){
-      fourtyFivet = 0.44;
-      fourtyFivel = 0.34;
-      fourtyFivet2 = 0.705;
-      fourtyFivel2 = 0.505;
-    }
-    else if(state == 8){
-      sixtyt = 0.44;
-      sixtyl = 0.635;
-      sixtyt2 = 0.705;
-      sixtyl2 = 0.555;
-    }
-    else if(state == 9){
       double temp = sixtyt;
       sixtyt = fiftyt;
       fiftyt = temp;
@@ -133,22 +94,8 @@ class _HeapDeletionState extends State<HeapDeletion> {
       temp = sixtyl;
       sixtyl = fiftyl;
       fiftyl = temp;
-
-      temp = sixtyt2;
-      sixtyt2 = fiftyt2;
-      fiftyt2 = temp;
-
-      temp = sixtyl2;
-      sixtyl2 = fiftyl2;
-      fiftyl2 = temp;
-
     }
-    else if(state == 10){
-      tent = 0.44;
-      tenl = 0.855;
-      tent2 = 0.705;
-      tenl2 = 0.605;
-    }
+
     else
       return;
     state++;
@@ -156,94 +103,58 @@ class _HeapDeletionState extends State<HeapDeletion> {
 
   void reverse() {
     if(state == 1){
-      seventyt = 0.6;
-      seventyl = 0.3;
-      seventyt2 = 0.6;
-      seventyl2 = 0.3;
+      nintyFive = 1;
+      tent = 0.44;
+      tenl = 0.855;
     }
     else if(state == 2){
-      eightyFivet = 0.6;
-      eightyFivel = 0.35;
-      eightyFivet2 = 0.6;
-      eightyFivel2 = 0.35;
-    }
-    else if(state == 3){
       double temp = eightyFivet;
-      eightyFivet = seventyt;
-      seventyt = temp;
+      eightyFivet = tent;
+      tent = temp;
 
       temp = eightyFivel;
-      eightyFivel = seventyl;
-      seventyl = temp;
+      eightyFivel = tenl;
+      tenl = temp;
+    }
+    else if(state == 3){
+      double temp = seventyt;
+      seventyt = tent;
+      tent = temp;
 
-      temp = eightyFivet2;
-      eightyFivet2 = seventyt2;
-      seventyt2 = temp;
-
-      temp = eightyFivel2;
-      eightyFivel2 = seventyl2;
-      seventyl2 = temp;
+      temp = seventyl;
+      seventyl = tenl;
+      tenl = temp;
     }
     else if(state == 4){
-      fiftyt = 0.6;
-      fiftyl = 0.4;
-      fiftyt2 = 0.6;
-      fiftyl2 = 0.4;
+      eightyFive = 1;
+      fiftyt = 0.44;
+      fiftyl = 0.635;
     }
     else if(state == 5){
-      nintyFivet = 0.6;
-      nintyFivel = 0.45;
-      nintyFivet2 = 0.6;
-      nintyFivel2 = 0.45;
+      double temp = seventyt;
+      seventyt = fiftyt;
+      fiftyt = temp;
+
+      temp = seventyl;
+      seventyl = fiftyl;
+      fiftyl = temp;
     }
     else if(state == 6){
-      double temp = nintyFivet;
-      nintyFivet = seventyt;
-      seventyt = temp;
+      double temp = fourtyFivet;
+      fourtyFivet = fiftyt;
+      fiftyt = temp;
 
-      temp = nintyFivel;
-      nintyFivel = seventyl;
-      seventyl = temp;
-
-      temp = nintyFivet2;
-      nintyFivet2 = seventyt2;
-      seventyt2 = temp;
-
-      temp = nintyFivel2;
-      nintyFivel2 = seventyl2;
-      seventyl2 = temp;
+      temp = fourtyFivel;
+      fourtyFivel = fiftyl;
+      fiftyl = temp;
 
     }
     else if(state == 7){
-      double temp = nintyFivet;
-      nintyFivet = eightyFivet;
-      eightyFivet = temp;
-
-      temp = nintyFivel;
-      nintyFivel = eightyFivel;
-      eightyFivel = temp;
-
-      temp = nintyFivet2;
-      nintyFivet2 = eightyFivet2;
-      eightyFivet2 = temp;
-
-      temp = nintyFivel2;
-      nintyFivel2 = eightyFivel2;
-      eightyFivel2 = temp;
+      seventy = 1;
+      fiftyt = 0.44;
+      fiftyl = 0.34;
     }
     else if(state == 8){
-      fourtyFivet = 0.6;
-      fourtyFivel = 0.5;
-      fourtyFivet2 = 0.6;
-      fourtyFivel2 = 0.5;
-    }
-    else if(state == 9){
-      sixtyt = 0.6;
-      sixtyl = 0.55;
-      sixtyt2 = 0.6;
-      sixtyl2 = 0.55;
-    }
-    else if(state == 10){
       double temp = sixtyt;
       sixtyt = fiftyt;
       fiftyt = temp;
@@ -251,21 +162,8 @@ class _HeapDeletionState extends State<HeapDeletion> {
       temp = sixtyl;
       sixtyl = fiftyl;
       fiftyl = temp;
-
-      temp = sixtyt2;
-      sixtyt2 = fiftyt2;
-      fiftyt2 = temp;
-
-      temp = sixtyl2;
-      sixtyl2 = fiftyl2;
-      fiftyl2 = temp;
     }
-    else if(state == 11){
-      tent = 0.6;
-      tenl = 0.6;
-      tent2 = 0.6;
-      tenl2 = 0.6;
-    }
+
     else
       return;
     state--;
@@ -311,7 +209,7 @@ class _HeapDeletionState extends State<HeapDeletion> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    'Introduction to Heap Insertion',
+                    'Introduction to Heap Deletion',
                     style: Theme.of(context)
                         .textTheme
                         .headline6
@@ -457,35 +355,19 @@ class _HeapDeletionState extends State<HeapDeletion> {
                         ),
 
                         // ------------------------------- Data --------------------------------
-                        Positioned(
-                          top: width * 0.6,
-                          left: width * 0.2,
-                          child: Text(
-                            'Data: ',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
+
                         AnimatedPositioned(
                           top: width * seventyt,
                           left: width * seventyl,
                           duration: Duration(milliseconds: treeDuration),
-                          child: Text(
-                            '70',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        AnimatedPositioned(
-                          top: width * seventyt2,
-                          left: width * seventyl2,
-                          duration: Duration(milliseconds: treeDuration),
-                          child: Text(
-                            '70',
-                            style: TextStyle(
-                              color: Colors.white,
+                          child: AnimatedOpacity(
+                            opacity: seventy,
+                            duration: Duration(milliseconds: treeDuration),
+                            child: Text(
+                              '70',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
@@ -493,21 +375,14 @@ class _HeapDeletionState extends State<HeapDeletion> {
                           top: width * eightyFivet,
                           left: width * eightyFivel,
                           duration: Duration(milliseconds: treeDuration),
-                          child: Text(
-                            '85',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        AnimatedPositioned(
-                          top: width * eightyFivet2,
-                          left: width * eightyFivel2,
-                          duration: Duration(milliseconds: treeDuration),
-                          child: Text(
-                            '85',
-                            style: TextStyle(
-                              color: Colors.white,
+                          child: AnimatedOpacity(
+                            opacity: eightyFive,
+                            duration: Duration(milliseconds: treeDuration),
+                            child: Text(
+                              '85',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
@@ -523,52 +398,23 @@ class _HeapDeletionState extends State<HeapDeletion> {
                           ),
                         ),
                         AnimatedPositioned(
-                          top: width * fiftyt2,
-                          left: width * fiftyl2,
-                          duration: Duration(milliseconds: treeDuration),
-                          child: Text(
-                            '50',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        AnimatedPositioned(
                           top: width * nintyFivet,
                           left: width * nintyFivel,
                           duration: Duration(milliseconds: treeDuration),
-                          child: Text(
-                            '95',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        AnimatedPositioned(
-                          top: width * nintyFivet2,
-                          left: width * nintyFivel2,
-                          duration: Duration(milliseconds: treeDuration),
-                          child: Text(
-                            '95',
-                            style: TextStyle(
-                              color: Colors.white,
+                          child: AnimatedOpacity(
+                            opacity: nintyFive,
+                            duration: Duration(milliseconds: treeDuration),
+                            child: Text(
+                              '95',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
                         AnimatedPositioned(
                           top: width * fourtyFivet,
                           left: width * fourtyFivel,
-                          duration: Duration(milliseconds: treeDuration),
-                          child: Text(
-                            '45',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        AnimatedPositioned(
-                          top: width * fourtyFivet2,
-                          left: width * fourtyFivel2,
                           duration: Duration(milliseconds: treeDuration),
                           child: Text(
                             '45',
@@ -589,17 +435,6 @@ class _HeapDeletionState extends State<HeapDeletion> {
                           ),
                         ),
                         AnimatedPositioned(
-                          top: width * sixtyt2,
-                          left: width * sixtyl2,
-                          duration: Duration(milliseconds: treeDuration),
-                          child: Text(
-                            '60',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        AnimatedPositioned(
                           top: width * tent,
                           left: width * tenl,
                           duration: Duration(milliseconds: treeDuration),
@@ -610,34 +445,6 @@ class _HeapDeletionState extends State<HeapDeletion> {
                             ),
                           ),
                         ),
-                        AnimatedPositioned(
-                          top: width * tent2,
-                          left: width * tenl2,
-                          duration: Duration(milliseconds: treeDuration),
-                          child: Text(
-                            '10',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        // --------------------- array ----------------------------
-
-                        ReusableIndexText(text: '0', width: width, left: 0.3,),
-                        ReusableIndexText(text: '1', width: width, left: 0.35,),
-                        ReusableIndexText(text: '2', width: width, left: 0.4,),
-                        ReusableIndexText(text: '3', width: width, left: 0.45,),
-                        ReusableIndexText(text: '4', width: width, left: 0.5,),
-                        ReusableIndexText(text: '5', width: width, left: 0.55,),
-                        ReusableIndexText(text: '6', width: width, left: 0.6,),
-
-                        ReusableArrayContainer(width: width, left: 0.3,),
-                        ReusableArrayContainer(width: width, left: 0.35,),
-                        ReusableArrayContainer(width: width, left: 0.4,),
-                        ReusableArrayContainer(width: width, left: 0.45,),
-                        ReusableArrayContainer(width: width, left: 0.5,),
-                        ReusableArrayContainer(width: width, left: 0.55,),
-                        ReusableArrayContainer(width: width, left: 0.6,),
 
                       ],
                     ),
