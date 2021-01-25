@@ -56,6 +56,14 @@ class _HeapInsertionState extends State<HeapInsertion> {
       eightyFivel = seventyl;
       seventyl = temp;
 
+      temp = eightyFivet2;
+      eightyFivet2 = seventyt2;
+      seventyt2 = temp;
+
+      temp = eightyFivel2;
+      eightyFivel2 = seventyl2;
+      seventyl2 = temp;
+
     }
     else if(state == 3){
       fiftyt = 0.235;
@@ -78,6 +86,14 @@ class _HeapInsertionState extends State<HeapInsertion> {
       nintyFivel = seventyl;
       seventyl = temp;
 
+      temp = nintyFivet2;
+      nintyFivet2 = seventyt2;
+      seventyt2 = temp;
+
+      temp = nintyFivel2;
+      nintyFivel2 = seventyl2;
+      seventyl2 = temp;
+
     }
     else if(state == 6){
       double temp = nintyFivet;
@@ -87,6 +103,14 @@ class _HeapInsertionState extends State<HeapInsertion> {
       temp = nintyFivel;
       nintyFivel = eightyFivel;
       eightyFivel = temp;
+
+      temp = nintyFivet2;
+      nintyFivet2 = eightyFivet2;
+      eightyFivet2 = temp;
+
+      temp = nintyFivel2;
+      nintyFivel2 = eightyFivel2;
+      eightyFivel2 = temp;
 
     }
     else if(state == 7){
@@ -109,6 +133,14 @@ class _HeapInsertionState extends State<HeapInsertion> {
       temp = sixtyl;
       sixtyl = fiftyl;
       fiftyl = temp;
+
+      temp = sixtyt2;
+      sixtyt2 = fiftyt2;
+      fiftyt2 = temp;
+
+      temp = sixtyl2;
+      sixtyl2 = fiftyl2;
+      fiftyl2 = temp;
 
     }
     else if(state == 10){
@@ -143,6 +175,14 @@ class _HeapInsertionState extends State<HeapInsertion> {
       temp = eightyFivel;
       eightyFivel = seventyl;
       seventyl = temp;
+
+      temp = eightyFivet2;
+      eightyFivet2 = seventyt2;
+      seventyt2 = temp;
+
+      temp = eightyFivel2;
+      eightyFivel2 = seventyl2;
+      seventyl2 = temp;
     }
     else if(state == 4){
       fiftyt = 0.6;
@@ -165,6 +205,14 @@ class _HeapInsertionState extends State<HeapInsertion> {
       nintyFivel = seventyl;
       seventyl = temp;
 
+      temp = nintyFivet2;
+      nintyFivet2 = seventyt2;
+      seventyt2 = temp;
+
+      temp = nintyFivel2;
+      nintyFivel2 = seventyl2;
+      seventyl2 = temp;
+
     }
     else if(state == 7){
       double temp = nintyFivet;
@@ -175,6 +223,13 @@ class _HeapInsertionState extends State<HeapInsertion> {
       nintyFivel = eightyFivel;
       eightyFivel = temp;
 
+      temp = nintyFivet2;
+      nintyFivet2 = eightyFivet2;
+      eightyFivet2 = temp;
+
+      temp = nintyFivel2;
+      nintyFivel2 = eightyFivel2;
+      eightyFivel2 = temp;
     }
     else if(state == 8){
       fourtyFivet = 0.6;
@@ -197,6 +252,13 @@ class _HeapInsertionState extends State<HeapInsertion> {
       sixtyl = fiftyl;
       fiftyl = temp;
 
+      temp = sixtyt2;
+      sixtyt2 = fiftyt2;
+      fiftyt2 = temp;
+
+      temp = sixtyl2;
+      sixtyl2 = fiftyl2;
+      fiftyl2 = temp;
     }
     else if(state == 11){
       tent = 0.6;
