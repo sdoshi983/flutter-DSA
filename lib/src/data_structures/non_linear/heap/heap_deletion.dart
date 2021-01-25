@@ -275,7 +275,7 @@ class _HeapDeletionState extends State<HeapDeletion> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    //path = ['Home', 'DS', 'Trees', 'Intro'];
+    path = ['Home', 'DS', 'Heaps', 'Deletion'];
     //print('introduction');
     // print(path);
     print("inside heap");
