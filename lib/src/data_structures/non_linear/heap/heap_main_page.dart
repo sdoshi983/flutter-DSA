@@ -71,7 +71,7 @@ class _HeapMainPageState extends State<HeapMainPage> {
                 ),
                 Tiles(
                   onPress: () {
-                    addElement('Deletion');
+                    addElement('Deletion ');
                     Navigator.of(context).pushNamed('/HeapDeletion');
                   },
                   title: 'Deletion',
