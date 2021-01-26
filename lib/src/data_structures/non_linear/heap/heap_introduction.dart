@@ -50,7 +50,7 @@ class _HeapIntroductionState extends State<HeapIntroduction> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    //path = ['Home', 'DS', 'Trees', 'Intro'];
+    path = ['Home', 'DS', 'Heaps', 'Intro'];
     //print('introduction');
     // print(path);
     print(state);
