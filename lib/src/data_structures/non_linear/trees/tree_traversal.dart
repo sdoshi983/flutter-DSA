@@ -86,7 +86,7 @@ class _TreeTraversalState extends State<TreeTraversal> {
                 Tiles(
                   onPress: () {
               //      addElement('Traversal');
-                    Navigator.of(context).pushNamed('/TreeTraversal');
+                    Navigator.of(context).pushReplacementNamed('/LevelOrder');
                   },
                   title: 'Level Order',
                 ),

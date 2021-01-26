@@ -14,18 +14,85 @@ class LevelOrderTraversal extends StatefulWidget {
 
 class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
   int visited = 0;
-  double top = 0, left = 0.46;
+  double top = 0, left = 0;
+  double container = 0;
+  double ok = 0.2;
   double tipLength = 5;
   int state = 0;
   int currentElement = -1;
-  void forward(){}
-  void reverse(){}
+  void forward() async {
+    if (state == 0) {
+      currentElement = 1;
+      visited++;
+    } else if (state == 1) {
+      ok = 0.6;
+      container = 0.08;
+      top = 0.1;
+      currentElement = 10;
+      visited++;
+    } else if (state == 2) {
+      currentElement = 5;
+      visited++;
+    } else if (state == 3) {
+      container = 0.19;
+      ok = 0.76;
+      currentElement = 7;
+      visited++;
+      top = 0.19;
+    } else if (state == 4) {
+      visited++;
+      currentElement = 2;
+    } else if (state == 5) {
+      visited++;
+      currentElement = 0;
+    } else if (state == 6) {
+      visited++;
+      currentElement = 4;
+    } else
+      return;
+    state++;
+  }
+
+  void reverse() {
+    if (state <= 0) return;
+    if (state == 1) {
+      currentElement = -1;
+      visited--;
+    } else if (state == 2) {
+      visited--;
+      currentElement = 1;
+      ok = 0.2;
+      top = 0;
+      container = 0;
+    } else if (state == 3) {
+      visited--;
+      currentElement = 10;
+    } else if (state == 4) {
+      visited--;
+      currentElement = 5;
+      ok = 0.6;
+      container = 0.08;
+      top = 0.1;
+    } else if (state == 5) {
+      visited--;
+      currentElement = 7;
+    } else if (state == 6) {
+      visited--;
+      currentElement = 2;
+    } else if (state == 7) {
+      visited--;
+      currentElement = 0;
+    }
+
+    state--;
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    path = ['Home', 'DS', 'Trees', 'Traversal', 'Post-Order'];
+    path = ['Home', 'DS', 'Trees', 'Traversal', 'Level-Order'];
 
     return WillPopScope(
       onWillPop: () async {
@@ -65,7 +132,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'Pre-Order Tree Traversal',
+                      'Level-Order Tree Traversal',
                       style: Theme.of(context)
                           .textTheme
                           .headline6
@@ -78,22 +145,41 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
+                          AnimatedPositioned(
+                            top: container * height,
+                            child: AnimatedContainer(
+                              duration: Duration(milliseconds: 600),
+                              width: width * ok,
+                              height: height * 0.09,
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                border: Border.all(
+                                  color: state > 0
+                                      ? kThemeColor
+                                      : Colors.transparent,
+                                  width: 3,
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            duration: Duration(
+                              milliseconds: 600,
+                            ),
+                          ),
                           ArrowElement(
                             id: '01',
                             targetId: '5',
                             sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
                             color: Colors.white,
-                            flip: true,
                             child: ArrowElement(
                               id: '1',
                               targetId: '10',
                               sourceAnchor: Alignment.centerLeft,
                               targetAnchor: Alignment.topCenter,
                               color: Colors.white,
-                              flip: true,
                               child: Positioned(
-                                top: 0,
+                                top: 10,
                                 child: AnimatedContainer(
                                   child: Center(
                                     child: Text(
@@ -102,8 +188,8 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                           .textTheme
                                           .bodyText1
                                           .copyWith(
-                                        color: Colors.white,
-                                      ),
+                                            color: Colors.white,
+                                          ),
                                     ),
                                   ),
                                   duration: Duration(milliseconds: 500),
@@ -116,7 +202,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                       color: currentElement == 1
                                           ? Colors.indigo
                                           : Colors.white,
-                                      width: 3,
+                                      width: currentElement == 1 ? 5 : 3,
                                     ),
                                   ),
                                 ),
@@ -149,8 +235,8 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                           .textTheme
                                           .bodyText1
                                           .copyWith(
-                                        color: Colors.white,
-                                      ),
+                                            color: Colors.white,
+                                          ),
                                     ),
                                   ),
                                   duration: Duration(milliseconds: 500),
@@ -163,7 +249,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                       color: currentElement == 10
                                           ? Colors.indigo
                                           : Colors.white,
-                                      width: 3,
+                                      width: currentElement == 10 ? 5 : 3,
                                     ),
                                   ),
                                 ),
@@ -191,14 +277,14 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                 child: AnimatedContainer(
                                   child: Center(
                                       child: Text(
-                                        '5',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1
-                                            .copyWith(
+                                    '5',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1
+                                        .copyWith(
                                           color: Colors.white,
                                         ),
-                                      )),
+                                  )),
                                   duration: Duration(milliseconds: 500),
                                   height: width * 0.12,
                                   width: width * 0.12,
@@ -209,7 +295,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                       color: currentElement == 5
                                           ? Colors.indigo
                                           : Colors.white,
-                                      width: 3,
+                                      width: currentElement == 5 ? 5 : 3,
                                     ),
                                   ),
                                 ),
@@ -230,8 +316,8 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                         .textTheme
                                         .bodyText1
                                         .copyWith(
-                                      color: Colors.white,
-                                    ),
+                                          color: Colors.white,
+                                        ),
                                   ),
                                 ),
                                 duration: Duration(milliseconds: 500),
@@ -244,7 +330,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                     color: currentElement == 7
                                         ? Colors.indigo
                                         : Colors.white,
-                                    width: 3,
+                                    width: currentElement == 7 ? 5 : 3,
                                   ),
                                 ),
                               ),
@@ -259,14 +345,14 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                               child: AnimatedContainer(
                                 child: Center(
                                     child: Text(
-                                      '2',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1
-                                          .copyWith(
+                                  '2',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .copyWith(
                                         color: Colors.white,
                                       ),
-                                    )),
+                                )),
                                 duration: Duration(milliseconds: 500),
                                 height: width * 0.12,
                                 width: width * 0.12,
@@ -277,7 +363,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                     color: currentElement == 2
                                         ? Colors.indigo
                                         : Colors.white,
-                                    width: 3,
+                                    width: currentElement == 2 ? 5 : 3,
                                   ),
                                 ),
                               ),
@@ -293,14 +379,14 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                               child: AnimatedContainer(
                                 child: Center(
                                     child: Text(
-                                      '0',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1
-                                          .copyWith(
+                                  '0',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .copyWith(
                                         color: Colors.white,
                                       ),
-                                    )),
+                                )),
                                 duration: Duration(milliseconds: 500),
                                 height: width * 0.12,
                                 width: width * 0.12,
@@ -311,7 +397,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                     color: currentElement == 0
                                         ? Colors.indigo
                                         : Colors.white,
-                                    width: 3,
+                                    width: currentElement == 0 ? 5 : 3,
                                   ),
                                 ),
                               ),
@@ -326,14 +412,14 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                               child: AnimatedContainer(
                                 child: Center(
                                     child: Text(
-                                      '4',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1
-                                          .copyWith(
+                                  '4',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .copyWith(
                                         color: Colors.white,
                                       ),
-                                    )),
+                                )),
                                 duration: Duration(milliseconds: 500),
                                 height: width * 0.12,
                                 width: width * 0.12,
@@ -344,7 +430,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                     color: currentElement == 4
                                         ? Colors.indigo
                                         : Colors.white,
-                                    width: 3,
+                                    width: currentElement == 4 ? 5 : 3,
                                   ),
                                 ),
                               ),
@@ -365,7 +451,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                     width: width * 0.12,
                                     child: Center(
                                       child: Text(
-                                        visited > 0 ? '7' : '',
+                                        visited > 0 ? '1' : '',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -387,7 +473,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                     width: width * 0.12,
                                     child: Center(
                                       child: Text(
-                                        visited > 1 ? '2' : '',
+                                        visited > 1 ? '10' : '',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -409,7 +495,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                     width: width * 0.12,
                                     child: Center(
                                       child: Text(
-                                        visited > 2 ? '10' : '',
+                                        visited > 2 ? '5' : '',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -431,7 +517,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                     width: width * 0.12,
                                     child: Center(
                                       child: Text(
-                                        visited > 3 ? '0' : '',
+                                        visited > 3 ? '7' : '',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -450,7 +536,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                   AnimatedContainer(
                                     child: Center(
                                       child: Text(
-                                        visited > 4 ? '4' : '',
+                                        visited > 4 ? '2' : '',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -472,7 +558,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                   AnimatedContainer(
                                     child: Center(
                                       child: Text(
-                                        visited > 5 ? '5' : '',
+                                        visited > 5 ? '0' : '',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -494,7 +580,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                   AnimatedContainer(
                                     child: Center(
                                       child: Text(
-                                        visited > 6 ? '1' : '',
+                                        visited > 6 ? '4' : '',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -519,8 +605,8 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                           ),
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 500),
-                            top: height * top + 30,
-                            left: width * left,
+                            top: height * top + 10,
+                            left: width * left + 10,
                             curve: Curves.ease,
                             child: AnimatedOpacity(
                               duration: Duration(milliseconds: 700),
