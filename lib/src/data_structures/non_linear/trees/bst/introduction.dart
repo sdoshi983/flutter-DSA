@@ -1,5 +1,6 @@
 import 'package:dsa_simulation/src/utilities/address_maninter.dart';
 import 'package:dsa_simulation/src/utilities/base_template.dart';
+import 'package:dsa_simulation/src/utilities/triangle_creator.dart';
 import 'package:dsa_simulation/src/utilities/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:widget_arrows/widget_arrows.dart';
@@ -13,13 +14,50 @@ class BstIntroduction extends StatefulWidget {
 }
 
 class _BstIntroductionState extends State<BstIntroduction> {
-  int visited = 0;
-  double top = 0, left = 0.46;
   double tipLength = 5;
-  int state = 0;
   int currentElement = -1;
-  void forward() {}
-  void reverse() {}
+  int mxCurrentElement = 100;
+  double first = 0.00, second = 0.00, third = 0, fourth = 0;
+  int state = 0;
+  void forward() {
+    if (state == 0) {
+      first = 1;
+    } else if (state == 1) {
+      first = 0;
+      second = 1;
+    } else if (state == 2) {
+      second = 0;
+      third = 1;
+    } else if (state == 3) {
+      third = 0;
+      fourth = 1;
+    } else if (state == 4) {
+      fourth = 0;
+    } else
+      return;
+    state++;
+  }
+
+  void reverse() {
+    if (state <= 0) return;
+    if (state == 1) {
+      first = 0;
+    } else if (state == 2) {
+      first = 1;
+      second = 0;
+    } else if (state == 3) {
+      second = 1;
+      third = 0;
+    } else if (state == 4) {
+      third = 1;
+      fourth =0;
+    } else if (state == 5) {
+      fourth = 1;
+    }
+
+    state--;
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -78,6 +116,66 @@ class _BstIntroductionState extends State<BstIntroduction> {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
+                          Positioned(
+                            top: height * 0.05,
+                            left: width * 0.03,
+                            child: AnimatedOpacity(
+                              duration: Duration(milliseconds: 700),
+                              opacity: first,
+                              child: CustomPaint(
+                                painter: TriangleCreator(),
+                                child: Container(
+                                  height: height * 0.25,
+                                  width: width * 0.55,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: height * 0.05,
+                            right: width * 0.03,
+                            child: AnimatedOpacity(
+                              duration: Duration(milliseconds: 700),
+                              opacity: second,
+                              child: CustomPaint(
+                                painter: TriangleCreator(),
+                                child: Container(
+                                  height: height * 0.25,
+                                  width: width * 0.55,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: height * 0.14,
+                            left: width * 0.08,
+                            child: AnimatedOpacity(
+                              duration: Duration(milliseconds: 700),
+                              opacity: third,
+                              child: CustomPaint(
+                                painter: TriangleCreator(),
+                                child: Container(
+                                  height: height * 0.13,
+                                  width: width * 0.25,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: height * 0.14,
+                            left: width * 0.28,
+                            child: AnimatedOpacity(
+                              duration: Duration(milliseconds: 700),
+                              opacity: fourth,
+                              child: CustomPaint(
+                                painter: TriangleCreator(),
+                                child: Container(
+                                  height: height * 0.13,
+                                  width: width * 0.25,
+                                ),
+                              ),
+                            ),
+                          ),
                           ArrowElement(
                             id: '01',
                             targetId: '5',
@@ -113,7 +211,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                                     color: Colors.red,
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                      color: currentElement == 1
+                                      color: state == 100
                                           ? Colors.indigo
                                           : Colors.white,
                                       width: 3,
@@ -160,7 +258,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                                     color: Colors.blue,
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                      color: currentElement == 10
+                                      color: state == 1
                                           ? Colors.indigo
                                           : Colors.white,
                                       width: 3,
@@ -206,7 +304,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                                     color: Colors.cyan,
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                      color: currentElement == 5
+                                      color: state == 2
                                           ? Colors.indigo
                                           : Colors.white,
                                       width: 3,
@@ -241,7 +339,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                                   color: Colors.orange,
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color: currentElement == 7
+                                    color: state == 1 || state == 3
                                         ? Colors.indigo
                                         : Colors.white,
                                     width: 3,
@@ -274,7 +372,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                                   color: Colors.green,
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color: currentElement == 2
+                                    color: state == 1 || state == 4
                                         ? Colors.indigo
                                         : Colors.white,
                                     width: 3,
@@ -308,7 +406,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                                   color: Colors.deepPurpleAccent,
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color: currentElement == 0
+                                    color: state == 2
                                         ? Colors.indigo
                                         : Colors.white,
                                     width: 3,
@@ -342,7 +440,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                                   color: Colors.pink,
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color: currentElement == 4
+                                    color: state == 2
                                         ? Colors.indigo
                                         : Colors.white,
                                     width: 3,
