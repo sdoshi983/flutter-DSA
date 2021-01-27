@@ -69,7 +69,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushNamedAndRemoveUntil(
-            context, '/TreeTraversal', (route) => false);
+            context, '/BST', (route) => false);
         return true;
       },
       child: BaseTemplate(
