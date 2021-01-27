@@ -33,9 +33,9 @@ class _BstIntroductionState extends State<BstIntroduction> {
             context, '/TreeTraversal', (route) => false);
         return true;
       },
-      child: ArrowContainer(
-        child: BaseTemplate(
-          body: Scaffold(
+      child: BaseTemplate(
+        body: ArrowContainer(
+          child: Scaffold(
             appBar: AppBar(
               leading: ClipRect(
                 child: MaterialButton(
@@ -97,7 +97,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                                 child: AnimatedContainer(
                                   child: Center(
                                     child: Text(
-                                      '1',
+                                      '6',
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyText1
@@ -144,7 +144,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                                 child: AnimatedContainer(
                                   child: Center(
                                     child: Text(
-                                      '10',
+                                      '3',
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyText1
@@ -191,7 +191,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                                 child: AnimatedContainer(
                                   child: Center(
                                       child: Text(
-                                    '5',
+                                    '10',
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyText1
@@ -225,7 +225,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                               child: AnimatedContainer(
                                 child: Center(
                                   child: Text(
-                                    '7',
+                                    '1',
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyText1
@@ -259,7 +259,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                               child: AnimatedContainer(
                                 child: Center(
                                     child: Text(
-                                  '2',
+                                  '4',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1
@@ -293,7 +293,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                               child: AnimatedContainer(
                                 child: Center(
                                     child: Text(
-                                  '0',
+                                  '7',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1
@@ -318,6 +318,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                             ),
                           ),
                           //0
+
                           ArrowElement(
                             id: '4',
                             child: Positioned(
@@ -326,7 +327,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                               child: AnimatedContainer(
                                 child: Center(
                                     child: Text(
-                                  '4',
+                                  '11',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1

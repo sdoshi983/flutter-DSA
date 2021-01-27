@@ -100,9 +100,9 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
             context, '/TreeTraversal', (route) => false);
         return true;
       },
-      child: ArrowContainer(
-        child: BaseTemplate(
-          body: Scaffold(
+      child: BaseTemplate(
+        body: ArrowContainer(
+          child: Scaffold(
             appBar: AppBar(
               leading: ClipRect(
                 child: MaterialButton(
