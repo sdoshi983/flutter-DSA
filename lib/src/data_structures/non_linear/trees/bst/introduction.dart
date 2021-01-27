@@ -7,92 +7,25 @@ import 'package:widget_arrows/widget_arrows.dart';
 import '../../../../constants.dart';
 import '../tree_introduction.dart';
 
-class LevelOrderTraversal extends StatefulWidget {
+class BstIntroduction extends StatefulWidget {
   @override
-  _LevelOrderTraversalState createState() => _LevelOrderTraversalState();
+  _BstIntroductionState createState() => _BstIntroductionState();
 }
 
-class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
+class _BstIntroductionState extends State<BstIntroduction> {
   int visited = 0;
-  double top = 0, left = 0;
-  double container = 0;
-  double ok = 0.2;
+  double top = 0, left = 0.46;
   double tipLength = 5;
   int state = 0;
   int currentElement = -1;
-  void forward() async {
-    if (state == 0) {
-      currentElement = 1;
-      visited++;
-    } else if (state == 1) {
-      ok = 0.6;
-      container = 0.08;
-      top = 0.1;
-      currentElement = 10;
-      visited++;
-    } else if (state == 2) {
-      currentElement = 5;
-      visited++;
-    } else if (state == 3) {
-      container = 0.19;
-      ok = 0.76;
-      currentElement = 7;
-      visited++;
-      top = 0.19;
-    } else if (state == 4) {
-      visited++;
-      currentElement = 2;
-    } else if (state == 5) {
-      visited++;
-      currentElement = 0;
-    } else if (state == 6) {
-      visited++;
-      currentElement = 4;
-    } else
-      return;
-    state++;
-  }
-
-  void reverse() {
-    if (state <= 0) return;
-    if (state == 1) {
-      currentElement = -1;
-      visited--;
-    } else if (state == 2) {
-      visited--;
-      currentElement = 1;
-      ok = 0.2;
-      top = 0;
-      container = 0;
-    } else if (state == 3) {
-      visited--;
-      currentElement = 10;
-    } else if (state == 4) {
-      visited--;
-      currentElement = 5;
-      ok = 0.6;
-      container = 0.08;
-      top = 0.1;
-    } else if (state == 5) {
-      visited--;
-      currentElement = 7;
-    } else if (state == 6) {
-      visited--;
-      currentElement = 2;
-    } else if (state == 7) {
-      visited--;
-      currentElement = 0;
-    }
-
-    state--;
-  }
-
+  void forward() {}
+  void reverse() {}
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    path = ['Home', 'DS', 'Trees', 'Traversal', 'Level-Order'];
+    path = ['Home', 'DS', 'Trees', 'BST', 'Intro'];
 
     return WillPopScope(
       onWillPop: () async {
@@ -132,7 +65,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'Level-Order Tree Traversal',
+                      'BST Introduction',
                       style: Theme.of(context)
                           .textTheme
                           .headline6
@@ -145,45 +78,26 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          AnimatedPositioned(
-                            top: container * height,
-                            child: AnimatedContainer(
-                              duration: Duration(milliseconds: 600),
-                              width: width * ok,
-                              height: height * 0.09,
-                              decoration: BoxDecoration(
-                                color: Colors.transparent,
-                                border: Border.all(
-                                  color: state > 0
-                                      ? kThemeColor
-                                      : Colors.transparent,
-                                  width: 3,
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            duration: Duration(
-                              milliseconds: 600,
-                            ),
-                          ),
                           ArrowElement(
                             id: '01',
                             targetId: '5',
                             sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
                             color: Colors.white,
+                            flip: true,
                             child: ArrowElement(
                               id: '1',
                               targetId: '10',
                               sourceAnchor: Alignment.centerLeft,
                               targetAnchor: Alignment.topCenter,
                               color: Colors.white,
+                              flip: true,
                               child: Positioned(
-                                top: 10,
+                                top: 0,
                                 child: AnimatedContainer(
                                   child: Center(
                                     child: Text(
-                                      '1',
+                                      '6',
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyText1
@@ -202,7 +116,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                       color: currentElement == 1
                                           ? Colors.indigo
                                           : Colors.white,
-                                      width: currentElement == 1 ? 5 : 3,
+                                      width: 3,
                                     ),
                                   ),
                                 ),
@@ -230,7 +144,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                 child: AnimatedContainer(
                                   child: Center(
                                     child: Text(
-                                      '10',
+                                      '3',
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyText1
@@ -249,7 +163,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                       color: currentElement == 10
                                           ? Colors.indigo
                                           : Colors.white,
-                                      width: currentElement == 10 ? 5 : 3,
+                                      width: 3,
                                     ),
                                   ),
                                 ),
@@ -277,7 +191,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                 child: AnimatedContainer(
                                   child: Center(
                                       child: Text(
-                                    '5',
+                                    '10',
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyText1
@@ -295,7 +209,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                       color: currentElement == 5
                                           ? Colors.indigo
                                           : Colors.white,
-                                      width: currentElement == 5 ? 5 : 3,
+                                      width: 3,
                                     ),
                                   ),
                                 ),
@@ -311,7 +225,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                               child: AnimatedContainer(
                                 child: Center(
                                   child: Text(
-                                    '7',
+                                    '1',
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyText1
@@ -330,7 +244,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                     color: currentElement == 7
                                         ? Colors.indigo
                                         : Colors.white,
-                                    width: currentElement == 7 ? 5 : 3,
+                                    width: 3,
                                   ),
                                 ),
                               ),
@@ -345,7 +259,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                               child: AnimatedContainer(
                                 child: Center(
                                     child: Text(
-                                  '2',
+                                  '4',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1
@@ -363,7 +277,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                     color: currentElement == 2
                                         ? Colors.indigo
                                         : Colors.white,
-                                    width: currentElement == 2 ? 5 : 3,
+                                    width: 3,
                                   ),
                                 ),
                               ),
@@ -379,7 +293,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                               child: AnimatedContainer(
                                 child: Center(
                                     child: Text(
-                                  '0',
+                                  '7',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1
@@ -397,13 +311,14 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                     color: currentElement == 0
                                         ? Colors.indigo
                                         : Colors.white,
-                                    width: currentElement == 0 ? 5 : 3,
+                                    width: 3,
                                   ),
                                 ),
                               ),
                             ),
                           ),
                           //0
+
                           ArrowElement(
                             id: '4',
                             child: Positioned(
@@ -412,7 +327,7 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                               child: AnimatedContainer(
                                 child: Center(
                                     child: Text(
-                                  '4',
+                                  '11',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1
@@ -430,195 +345,13 @@ class _LevelOrderTraversalState extends State<LevelOrderTraversal> {
                                     color: currentElement == 4
                                         ? Colors.indigo
                                         : Colors.white,
-                                    width: currentElement == 4 ? 5 : 3,
+                                    width: 3,
                                   ),
                                 ),
                               ),
                             ),
                           ),
                           //4
-                          Positioned(
-                            bottom: 0,
-                            left: width * 0.08,
-                            child: Container(
-                              width: width,
-                              height: height * 0.1,
-                              child: Row(
-                                children: [
-                                  AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    height: width * 0.13,
-                                    width: width * 0.12,
-                                    child: Center(
-                                      child: Text(
-                                        visited > 0 ? '1' : '',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: visited > 0
-                                          ? kThemeColor
-                                          : Colors.transparent,
-                                      border: Border.all(
-                                          color: Colors.white, width: 3),
-                                    ),
-                                  ),
-                                  AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    height: width * 0.13,
-                                    width: width * 0.12,
-                                    child: Center(
-                                      child: Text(
-                                        visited > 1 ? '10' : '',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: visited > 1
-                                          ? kThemeColor
-                                          : Colors.transparent,
-                                      border: Border.all(
-                                          color: Colors.white, width: 3),
-                                    ),
-                                  ),
-                                  AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    height: width * 0.13,
-                                    width: width * 0.12,
-                                    child: Center(
-                                      child: Text(
-                                        visited > 2 ? '5' : '',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: visited > 2
-                                          ? kThemeColor
-                                          : Colors.transparent,
-                                      border: Border.all(
-                                          color: Colors.white, width: 3),
-                                    ),
-                                  ),
-                                  AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    height: width * 0.13,
-                                    width: width * 0.12,
-                                    child: Center(
-                                      child: Text(
-                                        visited > 3 ? '7' : '',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: visited > 3
-                                          ? kThemeColor
-                                          : Colors.transparent,
-                                      border: Border.all(
-                                          color: Colors.white, width: 3),
-                                    ),
-                                  ),
-                                  AnimatedContainer(
-                                    child: Center(
-                                      child: Text(
-                                        visited > 4 ? '2' : '',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                    duration: Duration(milliseconds: 500),
-                                    height: width * 0.13,
-                                    width: width * 0.12,
-                                    decoration: BoxDecoration(
-                                      color: visited > 4
-                                          ? kThemeColor
-                                          : Colors.transparent,
-                                      border: Border.all(
-                                          color: Colors.white, width: 3),
-                                    ),
-                                  ),
-                                  AnimatedContainer(
-                                    child: Center(
-                                      child: Text(
-                                        visited > 5 ? '0' : '',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                    duration: Duration(milliseconds: 500),
-                                    height: width * 0.13,
-                                    width: width * 0.12,
-                                    decoration: BoxDecoration(
-                                      color: visited > 5
-                                          ? kThemeColor
-                                          : Colors.transparent,
-                                      border: Border.all(
-                                          color: Colors.white, width: 3),
-                                    ),
-                                  ),
-                                  AnimatedContainer(
-                                    child: Center(
-                                      child: Text(
-                                        visited > 6 ? '4' : '',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                    duration: Duration(milliseconds: 500),
-                                    height: width * 0.13,
-                                    width: width * 0.12,
-                                    decoration: BoxDecoration(
-                                      color: visited > 6
-                                          ? kThemeColor
-                                          : Colors.transparent,
-                                      border: Border.all(
-                                          color: Colors.white, width: 3),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          AnimatedPositioned(
-                            duration: Duration(milliseconds: 500),
-                            top: height * top + 10,
-                            left: width * left + 10,
-                            curve: Curves.ease,
-                            child: AnimatedOpacity(
-                              duration: Duration(milliseconds: 700),
-                              opacity: state > 0 ? 1 : 0,
-                              child: Text(
-                                '😇',
-                                style: TextStyle(
-                                  fontSize: 30,
-                                ),
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ),

@@ -3,23 +3,24 @@ import 'package:dsa_simulation/src/Utilities/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:dsa_simulation/src/utilities/base_template.dart';
 
-import '../../../constants.dart';
+import '../../../../constants.dart';
 
-class TreeMainScreen extends StatefulWidget {
+
+class BSTMainPage extends StatefulWidget {
   @override
-  _TreeMainScreenState createState() => _TreeMainScreenState();
+  _BSTMainPageState createState() => _BSTMainPageState();
 }
 
-class _TreeMainScreenState extends State<TreeMainScreen> {
+class _BSTMainPageState extends State<BSTMainPage> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    path = ['Home', 'DS', 'Trees'];
+    path = ['Home', 'DS', 'Trees','BST'];
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushNamedAndRemoveUntil(
-            context, '/LinearNonLinearPage', (route) => false);
+            context, '/TreeMain', (route) => false);
         return true;
       },
       child: BaseTemplate(
@@ -52,7 +53,7 @@ class _TreeMainScreenState extends State<TreeMainScreen> {
                 Tiles(
                   onPress: () {
                     addElement('Intro');
-                    Navigator.of(context).pushNamed('/TreeIntro');
+                    Navigator.of(context).pushNamed('/BSTIntro');
                   },
                   title: 'Introduction',
                 ),
@@ -61,31 +62,22 @@ class _TreeMainScreenState extends State<TreeMainScreen> {
                 ),
                 Tiles(
                   onPress: () {
-                    addElement('BT');
-                    Navigator.of(context).pushNamed('/BinaryTree');
+                    addElement('Insertion');
+                    Navigator.of(context).pushNamed('/BSTInsertion');
                   },
-                  title: 'Binary Tree',
+                  title: 'Insertion',
                 ),
                 SizedBox(
                   height: height * 0.02,
                 ),
                 Tiles(
                   onPress: () {
-                    addElement('BST');
-                    Navigator.of(context).pushNamed('/BST');
+                    addElement('Deletion ');
+                    Navigator.of(context).pushNamed('/BSTDeletion');
                   },
-                  title: 'BST',
+                  title: 'Deletion',
                 ),
-                SizedBox(
-                  height: height * 0.02,
-                ),
-                Tiles(
-                  onPress: () {
-                    addElement('Traversal');
-                    Navigator.of(context).pushNamed('/TreeTraversal');
-                  },
-                  title: 'Tree Traversal',
-                ),
+
               ],
             ),
           ),
