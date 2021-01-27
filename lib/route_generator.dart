@@ -29,6 +29,7 @@ import 'package:flutter/material.dart';
 import 'src/data_structures/linear/linked_list/doubly/doubly_introduction.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/heap/heap_insertion.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/heap/heap_deletion.dart';
+import 'package:dsa_simulation/src/data_structures/non_linear/trees/avl/avl_main_page.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/avl/avl_introduction.dart';
 
 class RouteGenerator {
@@ -94,6 +95,8 @@ class RouteGenerator {
         return reusablePageRouteBuilder(HeapInsertion());
       case '/HeapDeletion':
         return reusablePageRouteBuilder(HeapDeletion());
+      case '/AvlMainPage':
+        return reusablePageRouteBuilder(AvlMainPage());
       case '/AvlIntroduction':
         return reusablePageRouteBuilder(AvlIntroduction());
 
