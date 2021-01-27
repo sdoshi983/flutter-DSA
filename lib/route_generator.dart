@@ -29,6 +29,7 @@ import 'package:flutter/material.dart';
 import 'src/data_structures/linear/linked_list/doubly/doubly_introduction.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/heap/heap_insertion.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/heap/heap_deletion.dart';
+import 'package:dsa_simulation/src/data_structures/non_linear/trees/avl/avl_introduction.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -93,6 +94,9 @@ class RouteGenerator {
         return reusablePageRouteBuilder(HeapInsertion());
       case '/HeapDeletion':
         return reusablePageRouteBuilder(HeapDeletion());
+      case '/AvlIntroduction':
+        return reusablePageRouteBuilder(AvlIntroduction());
+
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return reusablePageRouteBuilder(
