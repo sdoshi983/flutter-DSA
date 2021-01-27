@@ -3,6 +3,7 @@ import 'package:dsa_simulation/src/utilities/base_template.dart';
 import 'package:dsa_simulation/src/utilities/triangle_creator.dart';
 import 'package:dsa_simulation/src/utilities/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:widget_arrows/arrows.dart';
 import 'package:widget_arrows/widget_arrows.dart';
 
 import '../../../../constants.dart';
@@ -123,7 +124,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                               duration: Duration(milliseconds: 700),
                               opacity: first,
                               child: CustomPaint(
-                                painter: TriangleCreator(),
+                                painter: TriangleCreator(strokeColor: Colors.greenAccent),
                                 child: Container(
                                   height: height * 0.25,
                                   width: width * 0.55,
@@ -138,7 +139,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                               duration: Duration(milliseconds: 700),
                               opacity: second,
                               child: CustomPaint(
-                                painter: TriangleCreator(),
+                                painter: TriangleCreator(strokeColor: Colors.redAccent),
                                 child: Container(
                                   height: height * 0.25,
                                   width: width * 0.55,
@@ -153,7 +154,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                               duration: Duration(milliseconds: 700),
                               opacity: third,
                               child: CustomPaint(
-                                painter: TriangleCreator(),
+                                painter: TriangleCreator(strokeColor: Colors.greenAccent),
                                 child: Container(
                                   height: height * 0.13,
                                   width: width * 0.25,
@@ -168,7 +169,7 @@ class _BstIntroductionState extends State<BstIntroduction> {
                               duration: Duration(milliseconds: 700),
                               opacity: fourth,
                               child: CustomPaint(
-                                painter: TriangleCreator(),
+                                painter: TriangleCreator(strokeColor: Colors.redAccent),
                                 child: Container(
                                   height: height * 0.13,
                                   width: width * 0.25,
