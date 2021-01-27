@@ -81,6 +81,16 @@ class _TreeMainScreenState extends State<TreeMainScreen> {
                 ),
                 Tiles(
                   onPress: () {
+                    addElement('AVL');
+                    Navigator.of(context).pushNamed('/AvlMainPage');
+                  },
+                  title: 'AVL Trees',
+                ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                Tiles(
+                  onPress: () {
                     addElement('Traversal');
                     Navigator.of(context).pushNamed('/TreeTraversal');
                   },
