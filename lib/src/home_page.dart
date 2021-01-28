@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
         floatingActionButton: FloatingActionButton(
           onPressed: (){
             Navigator.of(context)
-                .pushReplacementNamed('/LevelOrder');
+                .pushReplacementNamed('/BSTInsertion');
           },
         ),
         appBar:AppBar(
