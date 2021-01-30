@@ -16,106 +16,18 @@ class Position {
   Position({this.x, this.y});
 }
 
-class BstInsertion extends StatefulWidget {
+class BstSearching extends StatefulWidget {
   @override
-  _BstInsertionState createState() => _BstInsertionState();
+  _BstSearchingState createState() => _BstSearchingState();
 }
 
-class _BstInsertionState extends State<BstInsertion> {
+class _BstSearchingState extends State<BstSearching> {
   double tipLength = 5;
   int state = 0;
-  Color startColor = Colors.transparent;
-  Position first = Position(x: 0.5, y: 0.1 / 6),
-      second = Position(x: 0.5, y: 1.1 / 6),
-      third = Position(x: 0.5, y: 2.1 / 6),
-      fourth = Position(x: 0.5, y: 3.1 / 6),
-      fifth = Position(x: 0.5, y: 4.1 / 6),sixth = Position(x:0.5,y:5.1/6);
+  Color startColor = Colors.blue;
 
-  void forward() {
-    if (state == 0) {
-    } else if (state == 1) {
-      first.x = 0;
-      first.y = 0.44;
-    } else if (state == 2) {
-      second.x = 0.05;
-      second.y = 0.44;
-    } else if (state == 3) {
-      second.x = 0.1;
-      second.y = 0.63;
-    } else if (state == 4) {
-      third.x = 0.05;
-      third.y = 0.44;
-    } else if (state == 5) {
-      third.x = 0.15;
-      third.y = 0.63;
-    } else if (state == 6) {
-      third.x = 0.2;
-      third.y = 0.53;
-    } else if (state == 7) {
-      fourth.x = 0.05;
-      fourth.y = 0.44;
-    } else if (state == 8) {
-      fourth.x = 0.1;
-      fourth.y = 0.25;
-    }else if(state==9){
-      fifth.x = 0.05;fifth.y=0.44;
-    }
-    else if(state==10){
-      fifth.x = 0.15;fifth.y = 0.25;
-    }
-  else if(state==11){
-    fifth.x = 0.2;fifth.y = 0.35;
-    }
-  else if(state==12){
-    sixth.x = 0.2;sixth.y = 0.15;
-    }
-    else
-      return;
-    state++;
-  }
-
-  void reverse() {
-    if (state == 1) {
-    }else if(state==13){
-      sixth.x = 0.5;sixth.y = 5.1/6;
-    }
-    else if(state==12){
-      fifth.x = 0.15;fifth.y=0.25;
-    }
-    else if(state==11){
-      fifth.x=0.05;fifth.y=0.44;
-    }
-    else if(state==10){
-      fifth.x=0.5;fifth.y = 4.1/6;
-    }
-    else if (state == 9) {
-      fourth.x = 0.05;
-      fourth.y = 0.44;
-    } else if (state == 8) {
-      fourth.x = 0.5;
-      fourth.y = 3.1 / 6;
-    } else if (state == 7) {
-      third.x = 0.15;
-      third.y = 0.63;
-    } else if (state == 6) {
-      third.x = 0.05;
-      third.y = 0.44;
-    } else if (state == 2) {
-      first.x = 0.5;
-      first.y = 0.1 / 6;
-    } else if (state == 3) {
-      second.x = 0.5;
-      second.y = 1.1 / 6;
-    } else if (state == 4) {
-      second.x = 0.05;
-      second.y = 0.44;
-    } else if (state == 5) {
-      third.x = 0.5;
-      third.y = 2.1 / 6;
-    } else
-      return;
-    state--;
-  }
+  void forward() {}
+  void reverse() {}
 
   @override
   Widget build(BuildContext context) {
@@ -126,8 +38,7 @@ class _BstInsertionState extends State<BstInsertion> {
 
     return WillPopScope(
       onWillPop: () async {
-        Navigator.pushNamedAndRemoveUntil(
-            context, '/BST', (route) => false);
+        Navigator.pushNamedAndRemoveUntil(context, '/BST', (route) => false);
         return true;
       },
       child: BaseTemplate(
@@ -162,7 +73,7 @@ class _BstInsertionState extends State<BstInsertion> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'BST Introduction',
+                      'BST Searching',
                       style: Theme.of(context)
                           .textTheme
                           .headline6
@@ -206,14 +117,17 @@ class _BstInsertionState extends State<BstInsertion> {
                             targetId: '2',
                             sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
-                            color: state>11?Colors.white:Colors.transparent,
+                            color:
+                                state > 11 ? Colors.white : Colors.transparent,
                             flip: true,
                             child: ArrowElement(
                               id: '10',
                               targetId: '7',
                               sourceAnchor: Alignment.centerLeft,
                               targetAnchor: Alignment.topCenter,
-                              color: state>12?Colors.white:Colors.transparent,
+                              color: state > 12
+                                  ? Colors.white
+                                  : Colors.transparent,
                               flip: true,
                               child: Positioned(
                                   top: height * 0.1,
@@ -265,115 +179,6 @@ class _BstInsertionState extends State<BstInsertion> {
                             ),
                           ),
                           //0
-
-                          AnimatedPositioned(
-                            duration: Duration(milliseconds: 600),
-                            top: height * 0.5,
-                            left: state == 0 ? 0 : width * (5.1 / 6),
-                            child: Node(
-                              text: '1',
-                              color: Colors.grey,
-                            ),
-                          ),
-                          AnimatedPositioned(
-                            duration: Duration(milliseconds: 600),
-                            top: height * 0.5,
-                            left: state == 0 ? 0 : width * (0.1 / 6),
-                            child: Node(
-                              text: '6',
-                              color: Colors.grey,
-                            ),
-                          ),
-                          AnimatedPositioned(
-                            duration: Duration(milliseconds: 600),
-                            top: height * 0.5,
-                            left: state == 0 ? 0 : width * (1.1 / 6),
-                            child: Node(
-                              text: '10',
-                              color: Colors.grey,
-                            ),
-                          ),
-                          AnimatedPositioned(
-                            duration: Duration(milliseconds: 600),
-                            top: height * 0.5,
-                            left: state == 0 ? 0 : width * (2.1 / 6),
-                            child: Node(
-                              text: '7',
-                              color: Colors.grey,
-                            ),
-                          ),
-                          AnimatedPositioned(
-                            duration: Duration(milliseconds: 600),
-                            top: height * 0.5,
-                            left: state == 0 ? 0 : width * (3.1 / 6),
-                            child: Node(
-                              text: '3',
-                              color: Colors.grey,
-                            ),
-                          ),
-                          AnimatedPositioned(
-                            duration: Duration(milliseconds: 600),
-                            top: height * 0.5,
-                            left: state == 0 ? 0 : width * (4.1 / 6),
-                            child: Node(
-                              text: '4',
-                              color: Colors.grey,
-                            ),
-                          ),
-                          AnimatedPositioned(
-                            duration: Duration(milliseconds: 600),
-                            top: height * first.x,
-                            left: state == 0 ? 0 : width * first.y,
-                            child: Node(
-                              text: '6',
-                              color: Colors.red,
-                            ),
-                          ),
-                          AnimatedPositioned(
-                            duration: Duration(milliseconds: 600),
-                            top: height * second.x,
-                            left: state == 0 ? 0 : width * (second.y),
-                            child: Node(
-                              text: '10',
-                              color: Colors.cyan,
-                            ),
-                          ),
-                          AnimatedPositioned(
-                            duration: Duration(milliseconds: 600),
-                            top: height * third.x,
-                            left: state == 0 ? 0 : width * third.y,
-                            child: Node(
-                              text: '7',
-                              color: Colors.purple,
-                            ),
-                          ),
-                          AnimatedPositioned(
-                            duration: Duration(milliseconds: 600),
-                            top: height * fourth.x,
-                            left: state == 0 ? 0 : width * fourth.y,
-                            child: Node(
-                              text: '3',
-                              color: Colors.blue,
-                            ),
-                          ),
-                          AnimatedPositioned(
-                            duration: Duration(milliseconds: 600),
-                            top: height * fifth.x,
-                            left: state == 0 ? 0 : width * fifth.y,
-                            child: Node(
-                              text: '4',
-                              color: Colors.green,
-                            ),
-                          ),
-                          AnimatedPositioned(
-                            duration: Duration(milliseconds: 600),
-                            top: height * sixth.x,
-                            left: state == 0 ? 0 : width * sixth.y,
-                            child: Node(
-                              text: '1',
-                              color: Colors.orange,
-                            ),
-                          ),
                         ],
                       ),
                     ),
@@ -425,7 +230,7 @@ class _NodeState extends State<Node> {
     return AnimatedContainer(
       child: Center(
           child: Text(
-        widget.color==Colors.transparent?' ':widget.text,
+        widget.color == Colors.transparent ? ' ' : widget.text,
         style: Theme.of(context).textTheme.bodyText1.copyWith(
               color: Colors.white,
             ),
@@ -437,7 +242,9 @@ class _NodeState extends State<Node> {
         color: widget.color,
         shape: BoxShape.circle,
         border: Border.all(
-          color: widget.color==Colors.transparent?Colors.transparent:Colors.white,
+          color: widget.color == Colors.transparent
+              ? Colors.transparent
+              : Colors.white,
           width: 3,
         ),
       ),
