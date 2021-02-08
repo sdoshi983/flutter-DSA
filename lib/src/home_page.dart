@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
         appBar:AppBar(
           leading: ClipRect(
             child: MaterialButton(
-              child: Icon(Icons.menu_rounded),
+              child: Icon(Icons.menu_rounded,color: Colors.black,),
               onPressed: () {
                 toggle();
               },

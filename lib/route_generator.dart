@@ -15,6 +15,7 @@ import 'package:dsa_simulation/src/data_structures/non_linear/trees/binary_tree.
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/bst/insertion.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/bst/introduction.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/bst/main_page.dart';
+import 'package:dsa_simulation/src/data_structures/non_linear/trees/bst/searching.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/traversal/in_order.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/traversal/level_order.dart';
 import 'package:dsa_simulation/src/data_structures/non_linear/trees/traversal/post_order.dart';
@@ -52,6 +53,8 @@ class RouteGenerator {
         return reusablePageRouteBuilder(BstIntroduction());
       case '/BSTInsertion':
         return reusablePageRouteBuilder(BstInsertion());
+      case '/BSTSearching':
+        return reusablePageRouteBuilder(BstSearching());
       case '/PreOrder':
         return reusablePageRouteBuilder(PreOrderTraversal());
       case '/InOrder':

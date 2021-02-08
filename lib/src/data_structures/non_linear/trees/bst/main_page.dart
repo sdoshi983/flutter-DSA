@@ -72,12 +72,21 @@ class _BSTMainPageState extends State<BSTMainPage> {
                 ),
                 Tiles(
                   onPress: () {
-                    addElement('Searching');
-                    Navigator.of(context).pushNamed('/BSTSearching');
+                    addElement('Deletion');
+                    Navigator.of(context).pushNamed('/BSTDeletion');
                   },
                   title: 'Deletion',
                 ),
-
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                Tiles(
+                  onPress: () {
+                    addElement('Search');
+                    Navigator.of(context).pushNamed('/BSTSearching');
+                  },
+                  title: 'Searching',
+                ),
               ],
             ),
           ),

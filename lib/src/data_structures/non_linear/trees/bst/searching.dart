@@ -2,19 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:dsa_simulation/src/utilities/address_maninter.dart';
 import 'package:dsa_simulation/src/utilities/base_template.dart';
-import 'package:dsa_simulation/src/utilities/triangle_creator.dart';
-import 'package:dsa_simulation/src/utilities/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:widget_arrows/arrows.dart';
 import 'package:widget_arrows/widget_arrows.dart';
 
 import '../../../../constants.dart';
-import '../tree_introduction.dart';
-
-class Position {
-  double x, y;
-  Position({this.x, this.y});
-}
 
 class BstSearching extends StatefulWidget {
   @override
@@ -34,7 +24,7 @@ class _BstSearchingState extends State<BstSearching> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    path = ['Home', 'DS', 'Trees', 'BST', 'Intro'];
+    path = ['Home', 'DS', 'Trees', 'BST', 'Search'];
 
     return WillPopScope(
       onWillPop: () async {
@@ -91,16 +81,14 @@ class _BstSearchingState extends State<BstSearching> {
                             targetId: '5',
                             sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
-                            color:
-                                state > 3 ? Colors.white : Colors.transparent,
+                            color: Colors.white,
                             flip: true,
                             child: ArrowElement(
                               id: '1',
                               targetId: '10',
                               sourceAnchor: Alignment.centerLeft,
                               targetAnchor: Alignment.topCenter,
-                              color:
-                                  state > 8 ? Colors.white : Colors.transparent,
+                              color: Colors.white,
                               flip: true,
                               child: Positioned(
                                 top: 0,
@@ -117,17 +105,14 @@ class _BstSearchingState extends State<BstSearching> {
                             targetId: '2',
                             sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
-                            color:
-                                state > 11 ? Colors.white : Colors.transparent,
+                            color: Colors.white,
                             flip: true,
                             child: ArrowElement(
                               id: '10',
                               targetId: '7',
                               sourceAnchor: Alignment.centerLeft,
                               targetAnchor: Alignment.topCenter,
-                              color: state > 12
-                                  ? Colors.white
-                                  : Colors.transparent,
+                              color: Colors.white,
                               flip: true,
                               child: Positioned(
                                   top: height * 0.1,
@@ -137,17 +122,24 @@ class _BstSearchingState extends State<BstSearching> {
                           ),
                           //10
                           ArrowElement(
-                            id: '5',
-                            targetId: '0',
-                            sourceAnchor: Alignment.centerLeft,
+                            id: '05',
+                            targetId: '15',
+                            sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
-                            color:
-                                state > 6 ? Colors.white : Colors.transparent,
+                            color: Colors.white,
                             flip: true,
-                            child: Positioned(
-                              top: height * 0.1,
-                              right: width * 0.25,
-                              child: Node(text: '10', color: startColor),
+                            child: ArrowElement(
+                              id: '5',
+                              targetId: '0',
+                              sourceAnchor: Alignment.centerLeft,
+                              targetAnchor: Alignment.topCenter,
+                              color: Colors.white,
+                              flip: true,
+                              child: Positioned(
+                                top: height * 0.1,
+                                right: width * 0.25,
+                                child: Node(text: '10', color: startColor),
+                              ),
                             ),
                           ),
                           //5
@@ -168,6 +160,14 @@ class _BstSearchingState extends State<BstSearching> {
                               child: Node(text: '4', color: startColor),
                             ),
                           ),
+                          ArrowElement(
+                            id: '15',
+                            child: Positioned(
+                              top: height * 0.2,
+                              right: width * 0.15,
+                              child: Node(text: '15', color: startColor),
+                            ),
+                          ),
                           //2
 
                           ArrowElement(
@@ -180,6 +180,15 @@ class _BstSearchingState extends State<BstSearching> {
                           ),
                           //0
                         ],
+                      ),
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Enter number',
+
+                          border: OutlineInputBorder(
+
+                        )
                       ),
                     ),
                     Row(
