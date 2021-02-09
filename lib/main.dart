@@ -17,7 +17,15 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       onGenerateRoute: RouteGenerator.generateRoute,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: kThemeColor,
+        accentColor: Color(0xff6200EE),
+        textTheme: TextTheme(
+          headline1: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+          headline6: TextStyle(fontSize: 16.0, fontStyle: FontStyle.italic),
+        ),
+      ),
       home: HomePage(),
     );
   }

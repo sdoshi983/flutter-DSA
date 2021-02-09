@@ -42,13 +42,13 @@ class _HomePageState extends State<HomePage> {
         floatingActionButton: FloatingActionButton(
           onPressed: (){
             Navigator.of(context)
-                .pushReplacementNamed('/BSTInsertion');
+                .pushReplacementNamed('/BSTSearching');
           },
         ),
         appBar:AppBar(
           leading: ClipRect(
             child: MaterialButton(
-              child: Icon(Icons.menu_rounded),
+              child: Icon(Icons.menu_rounded,color: Colors.black,),
               onPressed: () {
                 toggle();
               },
