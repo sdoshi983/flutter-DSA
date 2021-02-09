@@ -6,6 +6,21 @@ import 'package:widget_arrows/widget_arrows.dart';
 
 import '../../../../constants.dart';
 
+class NodePosition {
+  double x, y;
+  int value;
+  NodePosition({
+    this.x,
+    this.y,
+    this.value
+  });
+}
+
+class Child {
+  NodePosition left, right;
+  Child({this.right, this.left});
+}
+
 class BstSearching extends StatefulWidget {
   @override
   _BstSearchingState createState() => _BstSearchingState();
@@ -14,16 +29,46 @@ class BstSearching extends StatefulWidget {
 class _BstSearchingState extends State<BstSearching> {
   double tipLength = 5;
   int state = -1;
-  int value=0;
+  int value = 0;
   Color startColor = Colors.blue;
+  NodePosition node6 = NodePosition(x: 0.44, y: 0,value: 6),
+      node3 = NodePosition(x: 0.25, y: 0.1,value: 3),
+      node10 = NodePosition(x: 0.64, y: 0.1,value: 10),
+      node1 = NodePosition(y: 0.2, x: 0.15,value: 1),
+      node4 = NodePosition(y: 0.2, x: 0.35,value: 4),
+      node7 = NodePosition(y: 0.2, x: 0.54,value: 7),
+      node15 = NodePosition(y: 0.2, x: 0.74,value: 15);
+  NodePosition searchWalk = NodePosition(x: 0.44,y: 0,);
+  Map<NodePosition, Child> tree = {};
+//  tree[node6] = Child(left:node3,right:node10);
+  void makeTree(){
+    tree={
+      node6:Child(left: node3,right: node10),
+      node3:Child(left: node1,right: node4),
+      node10:Child(left: node7,right: node15),
+      node1:null,
+      node4:null,
+      node7:null,
+      node15:null,
 
+    };
+  }
   void forward() {
+    if(tree=={})return;
+
+    if(state==0){
+      searchWalk = node6;
+
+    }
 
   }
-  void reverse() {}
+  void reverse() {
+
+  }
 
   @override
   Widget build(BuildContext context) {
+     makeTree();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
@@ -83,14 +128,13 @@ class _BstSearchingState extends State<BstSearching> {
                             width: width * 0.2,
                             height: 40,
                             child: TextField(
-                              onChanged: (value1){
+                              onChanged: (value1) {
                                 setState(() {
                                   value = int.parse(value1);
                                 });
                               },
                               decoration: InputDecoration(
                                   labelText: 'Enter',
-
                                   border: OutlineInputBorder()),
                             ),
                           ),
@@ -100,7 +144,7 @@ class _BstSearchingState extends State<BstSearching> {
                           ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                if(state==-1){
+                                if (state == -1) {
                                   state++;
                                 }
                               });
@@ -109,11 +153,14 @@ class _BstSearchingState extends State<BstSearching> {
                               'Search',
                             ),
                           ),
-                          SizedBox(width: 10,),
+                          SizedBox(
+                            width: 10,
+                          ),
                           ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                value = 0;state =-1;
+                                value = 0;
+                                state = -1;
                               });
                             },
                             child: Text(
@@ -125,7 +172,6 @@ class _BstSearchingState extends State<BstSearching> {
                       SizedBox(
                         height: 30,
                       ),
-
                       Container(
                         height: height * 0.6,
                         width: width,
@@ -133,7 +179,6 @@ class _BstSearchingState extends State<BstSearching> {
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
-
                             ArrowElement(
                               id: '01',
                               targetId: '5',
@@ -149,7 +194,7 @@ class _BstSearchingState extends State<BstSearching> {
                                 color: Colors.white,
                                 flip: true,
                                 child: Positioned(
-                                  top: 0,
+                                  top: height*node6.y,left:width* node6.x,
                                   child: Node(
                                     text: '6',
                                     color: startColor,
@@ -173,8 +218,8 @@ class _BstSearchingState extends State<BstSearching> {
                                 color: Colors.white,
                                 flip: true,
                                 child: Positioned(
-                                    top: height * 0.1,
-                                    left: width * 0.25,
+                                    top: height * (node3.y),
+                                    left: width * (node3.x),
                                     child: Node(text: '3', color: startColor)),
                               ),
                             ),
@@ -194,8 +239,8 @@ class _BstSearchingState extends State<BstSearching> {
                                 color: Colors.white,
                                 flip: true,
                                 child: Positioned(
-                                  top: height * 0.1,
-                                  right: width * 0.25,
+                                  top: height * (node10.y),
+                                  left: width * (node10.x),
                                   child: Node(text: '10', color: startColor),
                                 ),
                               ),
@@ -204,8 +249,8 @@ class _BstSearchingState extends State<BstSearching> {
                             ArrowElement(
                               id: '7',
                               child: Positioned(
-                                top: height * 0.2,
-                                left: width * 0.15,
+                                top: height *(node1.y),
+                                left: width *(node1.x),
                                 child: Node(text: '1', color: startColor),
                               ),
                             ),
@@ -213,16 +258,16 @@ class _BstSearchingState extends State<BstSearching> {
                             ArrowElement(
                               id: '2',
                               child: Positioned(
-                                top: height * 0.2,
-                                left: width * 0.35,
+                                top: height *(node4.y),
+                                left: width * (node4.x),
                                 child: Node(text: '4', color: startColor),
                               ),
                             ),
                             ArrowElement(
                               id: '15',
                               child: Positioned(
-                                top: height * 0.2,
-                                right: width * 0.15,
+                                top: height * (node15.y),
+                                left: width * (node15.x),
                                 child: Node(text: '15', color: startColor),
                               ),
                             ),
@@ -231,19 +276,21 @@ class _BstSearchingState extends State<BstSearching> {
                             ArrowElement(
                               id: '0',
                               child: Positioned(
-                                top: height * 0.2,
-                                right: width * 0.35,
+                                top: height *(node7.y),
+                                left: width *(node7.x),
                                 child: Node(text: '7', color: startColor),
                               ),
                             ),
                             //0
                             AnimatedPositioned(
-                              top: 40,
-                              left: width*0.44,
+                              top: height*(searchWalk.y)+40,
+                              left: width *(searchWalk.x),
                               duration: Duration(milliseconds: 300),
                               child: Node(
                                 text: value.toString(),
-                                color: state==-1?Colors.transparent:startColor,
+                                color: state == -1
+                                    ? Colors.transparent
+                                    : startColor,
                               ),
                             ),
                           ],
