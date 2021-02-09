@@ -13,10 +13,13 @@ class BstSearching extends StatefulWidget {
 
 class _BstSearchingState extends State<BstSearching> {
   double tipLength = 5;
-  int state = 0;
+  int state = -1;
+  int value=0;
   Color startColor = Colors.blue;
 
-  void forward() {}
+  void forward() {
+
+  }
   void reverse() {}
 
   @override
@@ -58,162 +61,218 @@ class _BstSearchingState extends State<BstSearching> {
               width: width,
               color: Colors.black,
               child: Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      'BST Searching',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6
-                          .copyWith(color: Colors.white),
-                    ),
-                    Container(
-                      height: height * 0.6,
-                      width: width,
-                      color: Colors.black,
-                      child: Stack(
-                        alignment: Alignment.center,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        'BST Searching',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            .copyWith(color: Colors.white),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ArrowElement(
-                            id: '01',
-                            targetId: '5',
-                            sourceAnchor: Alignment.centerRight,
-                            targetAnchor: Alignment.topCenter,
-                            color: Colors.white,
-                            flip: true,
-                            child: ArrowElement(
-                              id: '1',
-                              targetId: '10',
-                              sourceAnchor: Alignment.centerLeft,
+                          Container(
+                            width: width * 0.2,
+                            height: 40,
+                            child: TextField(
+                              onChanged: (value1){
+                                setState(() {
+                                  value = int.parse(value1);
+                                });
+                              },
+                              decoration: InputDecoration(
+                                  labelText: 'Enter',
+
+                                  border: OutlineInputBorder()),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                if(state==-1){
+                                  state++;
+                                }
+                              });
+                            },
+                            child: Text(
+                              'Search',
+                            ),
+                          ),
+                          SizedBox(width: 10,),
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                value = 0;state =-1;
+                              });
+                            },
+                            child: Text(
+                              'Reset',
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+
+                      Container(
+                        height: height * 0.6,
+                        width: width,
+                        color: Colors.black,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+
+                            ArrowElement(
+                              id: '01',
+                              targetId: '5',
+                              sourceAnchor: Alignment.centerRight,
                               targetAnchor: Alignment.topCenter,
                               color: Colors.white,
                               flip: true,
-                              child: Positioned(
-                                top: 0,
-                                child: Node(
-                                  text: '6',
-                                  color: startColor,
+                              child: ArrowElement(
+                                id: '1',
+                                targetId: '10',
+                                sourceAnchor: Alignment.centerLeft,
+                                targetAnchor: Alignment.topCenter,
+                                color: Colors.white,
+                                flip: true,
+                                child: Positioned(
+                                  top: 0,
+                                  child: Node(
+                                    text: '6',
+                                    color: startColor,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          //1
-                          ArrowElement(
-                            id: '010',
-                            targetId: '2',
-                            sourceAnchor: Alignment.centerRight,
-                            targetAnchor: Alignment.topCenter,
-                            color: Colors.white,
-                            flip: true,
-                            child: ArrowElement(
-                              id: '10',
-                              targetId: '7',
-                              sourceAnchor: Alignment.centerLeft,
+                            //1
+                            ArrowElement(
+                              id: '010',
+                              targetId: '2',
+                              sourceAnchor: Alignment.centerRight,
                               targetAnchor: Alignment.topCenter,
                               color: Colors.white,
                               flip: true,
-                              child: Positioned(
-                                  top: height * 0.1,
-                                  left: width * 0.25,
-                                  child: Node(text: '3', color: startColor)),
-                            ),
-                          ),
-                          //10
-                          ArrowElement(
-                            id: '05',
-                            targetId: '15',
-                            sourceAnchor: Alignment.centerRight,
-                            targetAnchor: Alignment.topCenter,
-                            color: Colors.white,
-                            flip: true,
-                            child: ArrowElement(
-                              id: '5',
-                              targetId: '0',
-                              sourceAnchor: Alignment.centerLeft,
-                              targetAnchor: Alignment.topCenter,
-                              color: Colors.white,
-                              flip: true,
-                              child: Positioned(
-                                top: height * 0.1,
-                                right: width * 0.25,
-                                child: Node(text: '10', color: startColor),
+                              child: ArrowElement(
+                                id: '10',
+                                targetId: '7',
+                                sourceAnchor: Alignment.centerLeft,
+                                targetAnchor: Alignment.topCenter,
+                                color: Colors.white,
+                                flip: true,
+                                child: Positioned(
+                                    top: height * 0.1,
+                                    left: width * 0.25,
+                                    child: Node(text: '3', color: startColor)),
                               ),
                             ),
-                          ),
-                          //5
-                          ArrowElement(
-                            id: '7',
-                            child: Positioned(
-                              top: height * 0.2,
-                              left: width * 0.15,
-                              child: Node(text: '1', color: startColor),
+                            //10
+                            ArrowElement(
+                              id: '05',
+                              targetId: '15',
+                              sourceAnchor: Alignment.centerRight,
+                              targetAnchor: Alignment.topCenter,
+                              color: Colors.white,
+                              flip: true,
+                              child: ArrowElement(
+                                id: '5',
+                                targetId: '0',
+                                sourceAnchor: Alignment.centerLeft,
+                                targetAnchor: Alignment.topCenter,
+                                color: Colors.white,
+                                flip: true,
+                                child: Positioned(
+                                  top: height * 0.1,
+                                  right: width * 0.25,
+                                  child: Node(text: '10', color: startColor),
+                                ),
+                              ),
                             ),
-                          ),
-                          //7
-                          ArrowElement(
-                            id: '2',
-                            child: Positioned(
-                              top: height * 0.2,
-                              left: width * 0.35,
-                              child: Node(text: '4', color: startColor),
+                            //5
+                            ArrowElement(
+                              id: '7',
+                              child: Positioned(
+                                top: height * 0.2,
+                                left: width * 0.15,
+                                child: Node(text: '1', color: startColor),
+                              ),
                             ),
-                          ),
-                          ArrowElement(
-                            id: '15',
-                            child: Positioned(
-                              top: height * 0.2,
-                              right: width * 0.15,
-                              child: Node(text: '15', color: startColor),
+                            //7
+                            ArrowElement(
+                              id: '2',
+                              child: Positioned(
+                                top: height * 0.2,
+                                left: width * 0.35,
+                                child: Node(text: '4', color: startColor),
+                              ),
                             ),
-                          ),
-                          //2
+                            ArrowElement(
+                              id: '15',
+                              child: Positioned(
+                                top: height * 0.2,
+                                right: width * 0.15,
+                                child: Node(text: '15', color: startColor),
+                              ),
+                            ),
+                            //2
 
-                          ArrowElement(
-                            id: '0',
-                            child: Positioned(
-                              top: height * 0.2,
-                              right: width * 0.35,
-                              child: Node(text: '7', color: startColor),
+                            ArrowElement(
+                              id: '0',
+                              child: Positioned(
+                                top: height * 0.2,
+                                right: width * 0.35,
+                                child: Node(text: '7', color: startColor),
+                              ),
                             ),
-                          ),
-                          //0
-                        ],
-                      ),
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Enter number',
-
-                          border: OutlineInputBorder(
-
-                        )
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        RaisedButton(
-                          onPressed: () {
-                            setState(() {
-                              reverse();
-                            });
-                          },
-                          child: Icon(Icons.backspace_sharp),
-                          color: kThemeColor,
+                            //0
+                            AnimatedPositioned(
+                              top: 40,
+                              left: width*0.44,
+                              duration: Duration(milliseconds: 300),
+                              child: Node(
+                                text: value.toString(),
+                                color: state==-1?Colors.transparent:startColor,
+                              ),
+                            ),
+                          ],
                         ),
-                        RaisedButton(
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          RaisedButton(
                             onPressed: () {
                               setState(() {
-                                forward();
+                                reverse();
                               });
                             },
-                            child: Icon(Icons.forward),
-                            color: kThemeColor),
-                      ],
-                    ),
-                  ],
+                            child: Icon(Icons.backspace_sharp),
+                            color: kThemeColor,
+                          ),
+                          RaisedButton(
+                              onPressed: () {
+                                setState(() {
+                                  forward();
+                                });
+                              },
+                              child: Icon(Icons.forward),
+                              color: kThemeColor),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
