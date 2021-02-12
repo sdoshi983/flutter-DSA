@@ -40,6 +40,9 @@ class _BstSearchingState extends State<BstSearching> {
     x: 0.44,
     y: 0,
   );
+  List<NodePosition> allPosition = [
+    null,
+  ];
   Map<NodePosition, Child> tree = {};
 //  tree[node6] = Child(left:node3,right:node10);
   void makeTree() {
@@ -55,37 +58,49 @@ class _BstSearchingState extends State<BstSearching> {
   }
 
   void goLeft() {
+    allPosition.add(searchWalk);
     searchWalk = tree[searchWalk].left;
   }
 
   void goRight() {
+    allPosition.add(searchWalk);
+
     searchWalk = tree[searchWalk].right;
   }
 
   void forward() {
     if (tree == {}) return;
-
-    if (state == 0) {
+    if(state==-1){
+      state = 0;
+      searchColor = Colors.blue;
+      searchCompleted = false;
       searchWalk = node6;
+      return;
     }
-    if(searchWalk.value ==value){
+    if (state == 0) {
+      allPosition.add(node6);
+      searchWalk = node6;
+      state++;
+      return;
+    }
+    if (searchWalk.value == value) {
       searchColor = Colors.green;
-      searchCompleted=true;state=-1;
-    }
-    else if(searchWalk.value < value){
-      if(tree[searchWalk]==null || tree[searchWalk].right==null){
+      searchCompleted = true;
+      state = -1;
+    } else if (searchWalk.value < value) {
+      if (tree[searchWalk] == null || tree[searchWalk].right == null) {
         searchColor = Colors.red;
-        searchCompleted = true;state=-1;
-      }
-      else{
+        searchCompleted = true;
+        state = -1;
+      } else {
         goRight();
       }
-    }
-    else{
-      if(tree[searchWalk]==null || tree[searchWalk].left==null){
-        searchColor = Colors.red;searchCompleted=true;state=-1;
-      }
-      else{
+    } else {
+      if (tree[searchWalk] == null || tree[searchWalk].left == null) {
+        searchColor = Colors.red;
+        searchCompleted = true;
+        state = -1;
+      } else {
         goLeft();
       }
     }
@@ -93,8 +108,21 @@ class _BstSearchingState extends State<BstSearching> {
   }
 
   void reverse() {
-    if(searchCompleted){
-      searchColor=Colors.blue;searchCompleted=false;
+    if(state==0){
+      state=-1;searchColor=Colors.transparent;
+    //  allPosition.removeLast();
+      return;
+    }
+    if (searchCompleted) {
+      searchColor = Colors.blue;
+      state--;
+      searchCompleted = false;
+      return;
+    }
+    else{
+      state--;
+      searchWalk = allPosition.last;
+      allPosition.removeLast();
     }
   }
 
@@ -176,10 +204,10 @@ class _BstSearchingState extends State<BstSearching> {
                           ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                state=0;
-                                searchColor=Colors.blue;
-                                searchCompleted=false;
-                                searchWalk=node6;
+                                state = 0;
+                                searchColor = Colors.blue;
+                                searchCompleted = false;
+                                searchWalk = node6;
                               });
                             },
                             child: Text(
@@ -194,8 +222,8 @@ class _BstSearchingState extends State<BstSearching> {
                               setState(() {
                                 value = 0;
                                 state = -1;
-                                searchColor=Colors.transparent;
-                                searchWalk=node6;
+                                searchColor = Colors.transparent;
+                                searchWalk = node6;
                               });
                             },
                             child: Text(
