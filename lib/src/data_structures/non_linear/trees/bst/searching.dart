@@ -5,17 +5,9 @@ import 'package:dsa_simulation/src/utilities/base_template.dart';
 import 'package:widget_arrows/widget_arrows.dart';
 
 import '../../../../constants.dart';
+import 'tree_data.dart';
 
-class NodePosition {
-  double x, y;
-  int value;
-  NodePosition({this.x, this.y, this.value});
-}
 
-class Child {
-  NodePosition left, right;
-  Child({this.right, this.left});
-}
 
 class BstSearching extends StatefulWidget {
   @override
@@ -28,14 +20,8 @@ class _BstSearchingState extends State<BstSearching> {
   int value = 0;
   Color startColor = Colors.blue;
   Color searchColor = Colors.transparent;
-  NodePosition node6 = NodePosition(x: 0.44, y: 0, value: 6),
-      node3 = NodePosition(x: 0.25, y: 0.1, value: 3),
-      node10 = NodePosition(x: 0.64, y: 0.1, value: 10),
-      node1 = NodePosition(y: 0.2, x: 0.15, value: 1),
-      node4 = NodePosition(y: 0.2, x: 0.35, value: 4),
-      node7 = NodePosition(y: 0.2, x: 0.54, value: 7),
-      node15 = NodePosition(y: 0.2, x: 0.74, value: 15);
   bool searchCompleted = false;
+  Tree ourBst = Tree();
   NodePosition searchWalk = NodePosition(
     x: 0.44,
     y: 0,
@@ -43,43 +29,32 @@ class _BstSearchingState extends State<BstSearching> {
   List<NodePosition> allPosition = [
     null,
   ];
-  Map<NodePosition, Child> tree = {};
 //  tree[node6] = Child(left:node3,right:node10);
-  void makeTree() {
-    tree = {
-      node6: Child(left: node3, right: node10),
-      node3: Child(left: node1, right: node4),
-      node10: Child(left: node7, right: node15),
-      node1: null,
-      node4: null,
-      node7: null,
-      node15: null,
-    };
-  }
+
 
   void goLeft() {
     allPosition.add(searchWalk);
-    searchWalk = tree[searchWalk].left;
+    searchWalk = ourBst.tree[searchWalk].left;
   }
 
   void goRight() {
     allPosition.add(searchWalk);
 
-    searchWalk = tree[searchWalk].right;
+    searchWalk = ourBst.tree[searchWalk].right;
   }
 
   void forward() {
-    if (tree == {}) return;
+    if (ourBst.tree == {}) return;
     if(state==-1){
       state = 0;
       searchColor = Colors.blue;
       searchCompleted = false;
-      searchWalk = node6;
+      searchWalk = ourBst.node6;
       return;
     }
     if (state == 0) {
-      allPosition.add(node6);
-      searchWalk = node6;
+      allPosition.add(ourBst.node6);
+      searchWalk = ourBst.node6;
       state++;
       return;
     }
@@ -88,7 +63,7 @@ class _BstSearchingState extends State<BstSearching> {
       searchCompleted = true;
       state = -1;
     } else if (searchWalk.value < value) {
-      if (tree[searchWalk] == null || tree[searchWalk].right == null) {
+      if (ourBst.tree[searchWalk] == null || ourBst.tree[searchWalk].right == null) {
         searchColor = Colors.red;
         searchCompleted = true;
         state = -1;
@@ -96,7 +71,7 @@ class _BstSearchingState extends State<BstSearching> {
         goRight();
       }
     } else {
-      if (tree[searchWalk] == null || tree[searchWalk].left == null) {
+      if (ourBst.tree[searchWalk] == null || ourBst.tree[searchWalk].left == null) {
         searchColor = Colors.red;
         searchCompleted = true;
         state = -1;
@@ -128,7 +103,7 @@ class _BstSearchingState extends State<BstSearching> {
 
   @override
   Widget build(BuildContext context) {
-    makeTree();
+    ourBst.makeTree();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
@@ -207,7 +182,7 @@ class _BstSearchingState extends State<BstSearching> {
                                 state = 0;
                                 searchColor = Colors.blue;
                                 searchCompleted = false;
-                                searchWalk = node6;
+                                searchWalk = ourBst.node6;
                               });
                             },
                             child: Text(
@@ -223,7 +198,7 @@ class _BstSearchingState extends State<BstSearching> {
                                 value = 0;
                                 state = -1;
                                 searchColor = Colors.transparent;
-                                searchWalk = node6;
+                                searchWalk = ourBst.node6;
                               });
                             },
                             child: Text(
@@ -257,8 +232,8 @@ class _BstSearchingState extends State<BstSearching> {
                                 color: Colors.white,
                                 flip: true,
                                 child: Positioned(
-                                  top: height * node6.y,
-                                  left: width * node6.x,
+                                  top: height * ourBst.node6.y,
+                                  left: width * ourBst.node6.x,
                                   child: Node(
                                     text: '6',
                                     color: startColor,
@@ -282,8 +257,8 @@ class _BstSearchingState extends State<BstSearching> {
                                 color: Colors.white,
                                 flip: true,
                                 child: Positioned(
-                                    top: height * (node3.y),
-                                    left: width * (node3.x),
+                                    top: height * (ourBst.node3.y),
+                                    left: width * (ourBst.node3.x),
                                     child: Node(text: '3', color: startColor)),
                               ),
                             ),
@@ -303,8 +278,8 @@ class _BstSearchingState extends State<BstSearching> {
                                 color: Colors.white,
                                 flip: true,
                                 child: Positioned(
-                                  top: height * (node10.y),
-                                  left: width * (node10.x),
+                                  top: height * (ourBst.node10.y),
+                                  left: width * (ourBst.node10.x),
                                   child: Node(text: '10', color: startColor),
                                 ),
                               ),
@@ -313,8 +288,8 @@ class _BstSearchingState extends State<BstSearching> {
                             ArrowElement(
                               id: '7',
                               child: Positioned(
-                                top: height * (node1.y),
-                                left: width * (node1.x),
+                                top: height * (ourBst.node1.y),
+                                left: width * (ourBst.node1.x),
                                 child: Node(text: '1', color: startColor),
                               ),
                             ),
@@ -322,16 +297,16 @@ class _BstSearchingState extends State<BstSearching> {
                             ArrowElement(
                               id: '2',
                               child: Positioned(
-                                top: height * (node4.y),
-                                left: width * (node4.x),
+                                top: height * (ourBst.node4.y),
+                                left: width * (ourBst.node4.x),
                                 child: Node(text: '4', color: startColor),
                               ),
                             ),
                             ArrowElement(
                               id: '15',
                               child: Positioned(
-                                top: height * (node15.y),
-                                left: width * (node15.x),
+                                top: height * (ourBst.node15.y),
+                                left: width * (ourBst.node15.x),
                                 child: Node(text: '15', color: startColor),
                               ),
                             ),
@@ -340,8 +315,8 @@ class _BstSearchingState extends State<BstSearching> {
                             ArrowElement(
                               id: '0',
                               child: Positioned(
-                                top: height * (node7.y),
-                                left: width * (node7.x),
+                                top: height * (ourBst.node7.y),
+                                left: width * (ourBst.node7.x),
                                 child: Node(text: '7', color: startColor),
                               ),
                             ),
