@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:dsa_simulation/src/utilities/address_maninter.dart';
 import 'package:dsa_simulation/src/utilities/base_template.dart';
-import 'package:dsa_simulation/src/utilities/triangle_creator.dart';
-import 'package:dsa_simulation/src/utilities/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:widget_arrows/arrows.dart';
 import 'package:widget_arrows/widget_arrows.dart';
 
 import '../../../../constants.dart';
-import '../tree_introduction.dart';
 
 class Position {
   double x, y;
@@ -92,7 +87,7 @@ class _BstDeletionState extends State<BstDeletion> {
                             sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
                             color:
-                                state > 3 ? Colors.white : Colors.transparent,
+                                Colors.white,
                             flip: true,
                             child: ArrowElement(
                               id: '1',
@@ -100,7 +95,7 @@ class _BstDeletionState extends State<BstDeletion> {
                               sourceAnchor: Alignment.centerLeft,
                               targetAnchor: Alignment.topCenter,
                               color:
-                                  state > 8 ? Colors.white : Colors.transparent,
+                                  Colors.white,
                               flip: true,
                               child: Positioned(
                                 top: 0,
@@ -118,16 +113,14 @@ class _BstDeletionState extends State<BstDeletion> {
                             sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
                             color:
-                                state > 11 ? Colors.white : Colors.transparent,
+                                Colors.white,
                             flip: true,
                             child: ArrowElement(
                               id: '10',
                               targetId: '7',
                               sourceAnchor: Alignment.centerLeft,
                               targetAnchor: Alignment.topCenter,
-                              color: state > 12
-                                  ? Colors.white
-                                  : Colors.transparent,
+                              color:Colors.white,
                               flip: true,
                               child: Positioned(
                                   top: height * 0.1,
@@ -142,7 +135,7 @@ class _BstDeletionState extends State<BstDeletion> {
                             sourceAnchor: Alignment.centerLeft,
                             targetAnchor: Alignment.topCenter,
                             color:
-                                state > 6 ? Colors.white : Colors.transparent,
+                                Colors.white,
                             flip: true,
                             child: Positioned(
                               top: height * 0.1,
