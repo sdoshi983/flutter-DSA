@@ -20,7 +20,7 @@ class _BstDeletionState extends State<BstDeletion> {
   double tipLength = 5;
   int state = 0;
   Color startColor = Colors.blue;
-
+  List<int> inorder = [1, 3, 4, 6, 7, 10, 15];
   void forward() {}
   void reverse() {}
 
@@ -68,7 +68,7 @@ class _BstDeletionState extends State<BstDeletion> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'BST Searching',
+                      'BST Deletion',
                       style: Theme.of(context)
                           .textTheme
                           .headline6
@@ -86,16 +86,14 @@ class _BstDeletionState extends State<BstDeletion> {
                             targetId: '5',
                             sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
-                            color:
-                                Colors.white,
+                            color: Colors.white,
                             flip: true,
                             child: ArrowElement(
                               id: '1',
                               targetId: '10',
                               sourceAnchor: Alignment.centerLeft,
                               targetAnchor: Alignment.topCenter,
-                              color:
-                                  Colors.white,
+                              color: Colors.white,
                               flip: true,
                               child: Positioned(
                                 top: 0,
@@ -112,15 +110,14 @@ class _BstDeletionState extends State<BstDeletion> {
                             targetId: '2',
                             sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
-                            color:
-                                Colors.white,
+                            color: Colors.white,
                             flip: true,
                             child: ArrowElement(
                               id: '10',
                               targetId: '7',
                               sourceAnchor: Alignment.centerLeft,
                               targetAnchor: Alignment.topCenter,
-                              color:Colors.white,
+                              color: Colors.white,
                               flip: true,
                               child: Positioned(
                                   top: height * 0.1,
@@ -130,17 +127,24 @@ class _BstDeletionState extends State<BstDeletion> {
                           ),
                           //10
                           ArrowElement(
-                            id: '5',
-                            targetId: '0',
-                            sourceAnchor: Alignment.centerLeft,
+                            id: '05',
+                            targetId: '15',
+                            sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
-                            color:
-                                Colors.white,
+                            color: Colors.white,
                             flip: true,
-                            child: Positioned(
-                              top: height * 0.1,
-                              right: width * 0.25,
-                              child: Node(text: '10', color: startColor),
+                            child: ArrowElement(
+                              id: '5',
+                              targetId: '0',
+                              sourceAnchor: Alignment.centerLeft,
+                              targetAnchor: Alignment.topCenter,
+                              color: Colors.white,
+                              flip: true,
+                              child: Positioned(
+                                top: height * 0.1,
+                                right: width * 0.25,
+                                child: Node(text: '10', color: startColor),
+                              ),
                             ),
                           ),
                           //5
@@ -171,8 +175,34 @@ class _BstDeletionState extends State<BstDeletion> {
                               child: Node(text: '7', color: startColor),
                             ),
                           ),
+                          ArrowElement(
+                            id: '15',
+                            child: Positioned(
+                              top: height * 0.2,
+                              right: width * 0.15,
+                              child: Node(text: '15', color: startColor),
+                            ),
+                          ),
                           //0
                         ],
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: height * 0.1,
+                        width: width * 0.75,
+                        child: Center(
+                          child: ListView.separated(
+                            itemBuilder: (BuildContext _, int index) {
+                              return Item(value: inorder[index],);
+                            },
+                            separatorBuilder: (BuildContext _,int index){
+                              return SizedBox(width: 10,);
+                            },
+                            itemCount: inorder.length,
+                            scrollDirection: Axis.horizontal,
+                          ),
+                        ),
                       ),
                     ),
                     Row(
@@ -220,6 +250,7 @@ class _NodeState extends State<Node> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+
     return AnimatedContainer(
       child: Center(
           child: Text(
@@ -239,6 +270,34 @@ class _NodeState extends State<Node> {
               ? Colors.transparent
               : Colors.white,
           width: 3,
+        ),
+      ),
+    );
+  }
+}
+
+class Item extends StatefulWidget {
+  int value;
+  Item({this.value});
+  @override
+  _ItemState createState() => _ItemState();
+}
+
+class _ItemState extends State<Item> {
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
+    return Container(
+      child: Center(child: Text(widget.value.toString())),
+      height: width * 0.08,
+      width: width * 0.08,
+      decoration: BoxDecoration(
+        color: Colors.blue,
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: Colors.white,
+          width: 1.5,
         ),
       ),
     );
