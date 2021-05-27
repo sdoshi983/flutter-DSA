@@ -1,3 +1,4 @@
+import 'package:dsa_simulation/src/data_structures/non_linear/trees/bst/tree_data.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dsa_simulation/src/utilities/address_maninter.dart';
@@ -21,6 +22,8 @@ class _BstDeletionState extends State<BstDeletion> {
   int state = 0;
   Color startColor = Colors.blue;
   List<int> inorder = [1, 3, 4, 6, 7, 10, 15];
+  List<int> deletedNode = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  List<int> toDeleted = [15, 3, 6];
   void forward() {}
   void reverse() {}
 
@@ -28,6 +31,8 @@ class _BstDeletionState extends State<BstDeletion> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    Tree ourBst = Tree();
+    ourBst.makeTree();
 
     path = ['Home', 'DS', 'Trees', 'BST', 'Intro'];
 
@@ -86,20 +91,27 @@ class _BstDeletionState extends State<BstDeletion> {
                             targetId: '5',
                             sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
-                            color: Colors.white,
+                            color: (deletedNode[6] == 1 || deletedNode[10] == 1)
+                                ? Colors.transparent
+                                : Colors.white,
                             flip: true,
                             child: ArrowElement(
                               id: '1',
                               targetId: '10',
                               sourceAnchor: Alignment.centerLeft,
                               targetAnchor: Alignment.topCenter,
-                              color: Colors.white,
+                              color:
+                                  (deletedNode[6] == 1 || deletedNode[3] == 1)
+                                      ? Colors.transparent
+                                      : Colors.white,
                               flip: true,
                               child: Positioned(
                                 top: 0,
                                 child: Node(
                                   text: '6',
-                                  color: startColor,
+                                  color: deletedNode[6] == 0
+                                      ? startColor
+                                      : Colors.transparent,
                                 ),
                               ),
                             ),
@@ -110,19 +122,28 @@ class _BstDeletionState extends State<BstDeletion> {
                             targetId: '2',
                             sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
-                            color: Colors.white,
+                            color: (deletedNode[3] == 1 || deletedNode[4] == 1)
+                                ? Colors.transparent
+                                : Colors.white,
                             flip: true,
                             child: ArrowElement(
                               id: '10',
                               targetId: '7',
                               sourceAnchor: Alignment.centerLeft,
                               targetAnchor: Alignment.topCenter,
-                              color: Colors.white,
+                              color:
+                                  (deletedNode[3] == 1 || deletedNode[1] == 1)
+                                      ? Colors.transparent
+                                      : Colors.white,
                               flip: true,
                               child: Positioned(
                                   top: height * 0.1,
                                   left: width * 0.25,
-                                  child: Node(text: '3', color: startColor)),
+                                  child: Node(
+                                      text: '3',
+                                      color: (deletedNode[3] == 1)
+                                          ? Colors.transparent
+                                          : startColor)),
                             ),
                           ),
                           //10
@@ -131,19 +152,29 @@ class _BstDeletionState extends State<BstDeletion> {
                             targetId: '15',
                             sourceAnchor: Alignment.centerRight,
                             targetAnchor: Alignment.topCenter,
-                            color: Colors.white,
+                            color:
+                                (deletedNode[15] == 1 || deletedNode[10] == 1)
+                                    ? Colors.transparent
+                                    : Colors.white,
                             flip: true,
                             child: ArrowElement(
                               id: '5',
                               targetId: '0',
                               sourceAnchor: Alignment.centerLeft,
                               targetAnchor: Alignment.topCenter,
-                              color: Colors.white,
+                              color:
+                                  (deletedNode[7] == 1 || deletedNode[10] == 1)
+                                      ? Colors.transparent
+                                      : Colors.white,
                               flip: true,
                               child: Positioned(
                                 top: height * 0.1,
                                 right: width * 0.25,
-                                child: Node(text: '10', color: startColor),
+                                child: Node(
+                                    text: '10',
+                                    color: (deletedNode[10] == 1)
+                                        ? Colors.transparent
+                                        : startColor),
                               ),
                             ),
                           ),
@@ -153,7 +184,11 @@ class _BstDeletionState extends State<BstDeletion> {
                             child: Positioned(
                               top: height * 0.2,
                               left: width * 0.15,
-                              child: Node(text: '1', color: startColor),
+                              child: Node(
+                                  text: '1',
+                                  color: (deletedNode[1] == 1)
+                                      ? Colors.transparent
+                                      : startColor),
                             ),
                           ),
                           //7
@@ -162,7 +197,11 @@ class _BstDeletionState extends State<BstDeletion> {
                             child: Positioned(
                               top: height * 0.2,
                               left: width * 0.35,
-                              child: Node(text: '4', color: startColor),
+                              child: Node(
+                                  text: '4',
+                                  color: (deletedNode[5] == 1)
+                                      ? Colors.transparent
+                                      : startColor),
                             ),
                           ),
                           //2
@@ -172,7 +211,11 @@ class _BstDeletionState extends State<BstDeletion> {
                             child: Positioned(
                               top: height * 0.2,
                               right: width * 0.35,
-                              child: Node(text: '7', color: startColor),
+                              child: Node(
+                                  text: '7',
+                                  color: (deletedNode[7] == 1)
+                                      ? Colors.transparent
+                                      : startColor),
                             ),
                           ),
                           ArrowElement(
@@ -180,7 +223,11 @@ class _BstDeletionState extends State<BstDeletion> {
                             child: Positioned(
                               top: height * 0.2,
                               right: width * 0.15,
-                              child: Node(text: '15', color: startColor),
+                              child: Node(
+                                  text: '15',
+                                  color: (deletedNode[15] == 1)
+                                      ? Colors.transparent
+                                      : startColor),
                             ),
                           ),
                           //0
@@ -194,10 +241,14 @@ class _BstDeletionState extends State<BstDeletion> {
                         child: Center(
                           child: ListView.separated(
                             itemBuilder: (BuildContext _, int index) {
-                              return Item(value: inorder[index],);
+                              return Item(
+                                value: inorder[index],
+                              );
                             },
-                            separatorBuilder: (BuildContext _,int index){
-                              return SizedBox(width: 10,);
+                            separatorBuilder: (BuildContext _, int index) {
+                              return SizedBox(
+                                width: 10,
+                              );
                             },
                             itemCount: inorder.length,
                             scrollDirection: Axis.horizontal,
@@ -208,23 +259,22 @@ class _BstDeletionState extends State<BstDeletion> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        RaisedButton(
+                        ElevatedButton(
                           onPressed: () {
                             setState(() {
                               reverse();
                             });
                           },
                           child: Icon(Icons.backspace_sharp),
-                          color: kThemeColor,
                         ),
-                        RaisedButton(
-                            onPressed: () {
-                              setState(() {
-                                forward();
-                              });
-                            },
-                            child: Icon(Icons.forward),
-                            color: kThemeColor),
+                        ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              forward();
+                            });
+                          },
+                          child: Icon(Icons.forward),
+                        ),
                       ],
                     ),
                   ],
