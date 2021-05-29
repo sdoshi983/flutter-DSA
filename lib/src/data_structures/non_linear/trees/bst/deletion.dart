@@ -24,8 +24,72 @@ class _BstDeletionState extends State<BstDeletion> {
   List<int> inorder = [1, 3, 4, 6, 7, 10, 15];
   List<int> deletedNode = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   List<int> toDeleted = [15, 3, 6];
-  void forward() {}
-  void reverse() {}
+  String a = '3', b = '4', c = '6', d = '7';
+  Color firstSwap = Colors.blue, secondSwap = Colors.blue;
+  void delete(int x) {
+    deletedNode[15] = 1;
+  }
+
+  void forward() {
+    if (state == 0) {
+      delete(15);
+      inorder.remove(15);
+    } else if (state == 1) {
+      firstSwap = Colors.red;
+      String tem = a;
+      a = b;
+      b = tem;
+
+    }
+    else if(state == 2){
+      deletedNode[4]  =1;
+      firstSwap = Colors.blue;
+      inorder.remove(3);
+    }
+    else if(state == 3){
+      secondSwap = Colors.red;
+      String tem = c;
+      c = d;d = tem;
+    }
+    else if(state == 4){
+      deletedNode[7]  =1;
+      secondSwap = Colors.blue;
+      inorder.remove(6);
+    }
+    else return;
+    state++;
+  }
+
+  void reverse() {
+    if (state == 1) {
+      deletedNode[15] = 0;
+      inorder.add(15);
+    }
+    else if(state == 2){
+      String tem = a;a = b;b = tem;
+      firstSwap=Colors.blue;
+    }
+    else if(state == 3){
+      deletedNode[4] = 0;
+      firstSwap = Colors.red;
+      inorder.insert(2, 3);
+
+    }
+    else if(state == 4){
+      secondSwap = Colors.blue;
+      String tem = c;
+      c = d;d = tem;
+    }
+    else if(state == 5){
+      deletedNode[7]=0;
+      secondSwap=Colors.red;
+      inorder.insert(2, 6);
+    }
+    else return;
+
+
+    state--;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,9 +172,9 @@ class _BstDeletionState extends State<BstDeletion> {
                               child: Positioned(
                                 top: 0,
                                 child: Node(
-                                  text: '6',
+                                  text: c,
                                   color: deletedNode[6] == 0
-                                      ? startColor
+                                      ? secondSwap
                                       : Colors.transparent,
                                 ),
                               ),
@@ -137,13 +201,15 @@ class _BstDeletionState extends State<BstDeletion> {
                                       : Colors.white,
                               flip: true,
                               child: Positioned(
-                                  top: height * 0.1,
-                                  left: width * 0.25,
-                                  child: Node(
-                                      text: '3',
-                                      color: (deletedNode[3] == 1)
-                                          ? Colors.transparent
-                                          : startColor)),
+                                top: height * 0.1,
+                                left: width * 0.25,
+                                child: Node(
+                                  text: a,
+                                  color: (deletedNode[3] == 1)
+                                      ? Colors.transparent
+                                      : firstSwap,
+                                ),
+                              ),
                             ),
                           ),
                           //10
@@ -198,10 +264,11 @@ class _BstDeletionState extends State<BstDeletion> {
                               top: height * 0.2,
                               left: width * 0.35,
                               child: Node(
-                                  text: '4',
-                                  color: (deletedNode[5] == 1)
-                                      ? Colors.transparent
-                                      : startColor),
+                                text: b,
+                                color: (deletedNode[4] == 1)
+                                    ? Colors.transparent
+                                    : firstSwap,
+                              ),
                             ),
                           ),
                           //2
@@ -212,10 +279,10 @@ class _BstDeletionState extends State<BstDeletion> {
                               top: height * 0.2,
                               right: width * 0.35,
                               child: Node(
-                                  text: '7',
+                                  text: d,
                                   color: (deletedNode[7] == 1)
                                       ? Colors.transparent
-                                      : startColor),
+                                      : secondSwap),
                             ),
                           ),
                           ArrowElement(
@@ -243,6 +310,7 @@ class _BstDeletionState extends State<BstDeletion> {
                             itemBuilder: (BuildContext _, int index) {
                               return Item(
                                 value: inorder[index],
+                                color:Colors.blue,
                               );
                             },
                             separatorBuilder: (BuildContext _, int index) {
@@ -327,8 +395,8 @@ class _NodeState extends State<Node> {
 }
 
 class Item extends StatefulWidget {
-  int value;
-  Item({this.value});
+  int value;Color color;
+  Item({this.value,this.color});
   @override
   _ItemState createState() => _ItemState();
 }
@@ -343,7 +411,7 @@ class _ItemState extends State<Item> {
       height: width * 0.08,
       width: width * 0.08,
       decoration: BoxDecoration(
-        color: Colors.blue,
+        color:widget.color,
         shape: BoxShape.circle,
         border: Border.all(
           color: Colors.white,
