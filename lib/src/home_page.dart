@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
                     onPress: () {
                       addElement('ALGO');
                       Navigator.of(context)
-                          .pushReplacementNamed('/LinearNonLinearPage');
+                          .pushReplacementNamed('/AlgoMain');
                     },
                     imagePath: 'assets/images/algo.jpeg',
                     title: 'ALGO',

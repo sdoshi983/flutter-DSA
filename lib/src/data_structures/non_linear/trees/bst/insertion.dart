@@ -122,7 +122,7 @@ class _BstInsertionState extends State<BstInsertion> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    path = ['Home', 'DS', 'Trees', 'BST', 'Intro'];
+    path = ['Home', 'DS', 'Trees', 'BST', 'Insert'];
 
     return WillPopScope(
       onWillPop: () async {

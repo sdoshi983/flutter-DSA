@@ -89,7 +89,7 @@ class _QueueNavigatorState extends State<QueueNavigator>
   @override
   Widget build(BuildContext context) {
     //  print('Inside build');
-    add.path = ['Home', 'DS', 'Queue'];
+   path = ['Home', 'DS', 'Queue'];
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     double h = height * 0.13, w = width * 0.1;
