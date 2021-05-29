@@ -62,6 +62,8 @@ class _DoublyIntroductionState extends State<DoublyIntroduction> {
 
   @override
   Widget build(BuildContext context) {
+    path = ['Home', 'DS', 'Linked List', 'Doubly', 'Intro'];
+
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return ArrowContainer(

@@ -98,7 +98,7 @@ class _BstDeletionState extends State<BstDeletion> {
     Tree ourBst = Tree();
     ourBst.makeTree();
 
-    path = ['Home', 'DS', 'Trees', 'BST', 'Intro'];
+    path = ['Home', 'DS', 'Trees', 'BST', 'Delete'];
 
     return WillPopScope(
       onWillPop: () async {

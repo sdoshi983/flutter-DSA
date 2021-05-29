@@ -34,6 +34,7 @@ class _BinaryTreeState extends State<BinaryTree> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    path = ['Home','DS','Tree','BT'];
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushNamedAndRemoveUntil(

@@ -94,7 +94,7 @@ class _TreeIntroductionState extends State<TreeIntroduction> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    //path = ['Home', 'DS', 'Trees', 'Intro'];
+    path = ['Home', 'DS', 'Trees', 'Intro'];
     //print('introduction');
     // print(path);
     print(state);

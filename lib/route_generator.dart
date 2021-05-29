@@ -6,6 +6,7 @@ import 'package:dsa_simulation/src/Data_Structures/Linear/linked_list/Singly/sin
 import 'package:dsa_simulation/src/Data_Structures/Linear/linked_list/Singly/singly_insertion.dart';
 import 'package:dsa_simulation/src/Data_Structures/Linear/linked_list/Singly/singly_main_page.dart';
 import 'package:dsa_simulation/src/Data_Structures/Linear/linked_list/linked_list_main_page.dart';
+import 'package:dsa_simulation/src/algorithms/algo.dart';
 import 'package:dsa_simulation/src/data_structures/linear/linked_list/doubly/doubly_deletion.dart';
 import 'package:dsa_simulation/src/data_structures/linear/linked_list/doubly/doubly_main_page.dart';
 import 'package:dsa_simulation/src/data_structures/linear/queue/q_navigation.dart';
@@ -42,6 +43,8 @@ class RouteGenerator {
     switch (settings.name) {
       case '/Home':
         return reusablePageRouteBuilder(HomePage());
+      case '/AlgoMain':
+        return reusablePageRouteBuilder(AlgoMain());
       case '/TreeTraversal':
         return reusablePageRouteBuilder(TreeTraversal());
       case '/PostOrder':
